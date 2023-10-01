@@ -1,6 +1,6 @@
 {
   "name": "Novzella Extension",
-  "description": "Novels' characters coloring system",
+  "description": "Novels' characters coloring browser extension",
   "version": "10.0.0",
   "manifest_version": 3,
   "action": {
