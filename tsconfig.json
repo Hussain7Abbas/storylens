@@ -26,11 +26,12 @@
     "target": "ESNext",
     "allowJs": false,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
     "src",
     "vite.config.ts", // from tsconfig.node.json
+    "manifest.config.ts",
     "*.json" // added for chrom extension
   ]
 }

@@ -8,7 +8,7 @@
     "node": ">=22"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "tsc && vite build --watch --mode development",
     "build": "tsc && vite build",
     "format": "biome format --write .",
     "lint": "biome lint --write .",
@@ -16,7 +16,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@crxjs/vite-plugin": "2.0.0-beta.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -34,6 +33,6 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
-    "vite-plugin-chrome-extension": "^0.0.7"
+    "vite-plugin-web-extension": "^4.4.3"
   }
 }
