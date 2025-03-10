@@ -1,18 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './assets/styles/index.css';
+import '@/assets/styles/global.css';
+import { Box, Button, useMantineColorScheme } from '@mantine/core';
+import { Navbar } from '@/components/navbar';
+import ReactDOMWrapper from '.';
+import { useEffect } from 'react';
 
 function Popup() {
-  console.log('🍅', 'Hello from src/App.tsx:5:5');
+  const { setColorScheme } = useMantineColorScheme();
 
-  return <>Hello World</>;
+  useEffect(() => {
+    setColorScheme('dark');
+  }, []);
+  return (
+    <Box w={350} h={600}>
+      <Navbar />
+      <Box p="md">
+        <Button>Click me</Button>
+      </Box>
+    </Box>
+  );
 }
 
-const root = document.createElement('div');
-root.id = 'novzella-root';
-document.body.appendChild(root);
-ReactDOM.createRoot(root).render(
-  <React.StrictMode>
-    <Popup />
-  </React.StrictMode>,
-);
+ReactDOMWrapper(<Popup />, 'novzella-popup');
