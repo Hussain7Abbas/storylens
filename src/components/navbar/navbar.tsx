@@ -1,14 +1,5 @@
 import { useRoutes } from '@/hooks/useRoutes';
-import {
-  ActionIcon,
-  Box,
-  Group,
-  Image,
-  Menu,
-  Stack,
-  Title,
-  Tooltip,
-} from '@mantine/core';
+import { ActionIcon, Box, Group, Image, Menu, Title, Tooltip } from '@mantine/core';
 import {
   IconChevronRight,
   IconDotsVertical,
@@ -61,7 +52,12 @@ export function Navbar() {
 
               <Menu.Dropdown>
                 <Menu.Label>User</Menu.Label>
-                <Menu.Item leftSection={<IconUser size={14} />}>Profile</Menu.Item>
+                <Menu.Item
+                  leftSection={<IconUser size={14} />}
+                  onClick={() => go('profile')}
+                >
+                  Profile
+                </Menu.Item>
                 <Menu.Item
                   leftSection={<IconSettings size={14} />}
                   onClick={() => go('settings')}

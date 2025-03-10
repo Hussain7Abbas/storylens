@@ -1,11 +1,15 @@
-import { prevRouteAtom, routesAtom } from '@/stores/route';
+import type { Routes } from '@/router';
 import { useAtom } from 'jotai';
+import { atom } from 'jotai';
+
+const routesAtom = atom<Routes[]>(['home']);
+const prevRouteAtom = atom<Routes[]>([]);
 
 export function useRoutes() {
   const [routes, setRoutes] = useAtom(routesAtom);
   const [prevRoutes, setPrevRoutes] = useAtom(prevRouteAtom);
 
-  function push(route: string) {
+  function push(route: Routes) {
     setRoutes((prev) => [...prev, route]);
     return route;
   }
@@ -17,12 +21,12 @@ export function useRoutes() {
     return poppedRoute;
   }
 
-  function replace(route: string) {
+  function replace(route: Routes) {
     setRoutes((prev) => [...prev.slice(0, -1), route]);
     return route;
   }
 
-  function go(route: string) {
+  function go(route: Routes) {
     return push(route);
   }
 
