@@ -8,10 +8,7 @@ export default defineConfig({
   plugins: [
     react(),
     webExtension({
-      watchFilePaths: [
-        path.resolve(__dirname, 'src/popup.tsx'),
-        path.resolve(__dirname, 'src/components'),
-      ],
+      watchFilePaths: [path.resolve(__dirname, 'src')],
       disableAutoLaunch: true,
       manifest: () => {
         // Generate your manifest

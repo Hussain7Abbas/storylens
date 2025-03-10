@@ -1,22 +1,17 @@
 import '@/assets/styles/global.css';
-import { Box, Button, useMantineColorScheme } from '@mantine/core';
 import { Navbar } from '@/components/navbar';
-import ReactDOMWrapper from '.';
-import { useEffect } from 'react';
+import ReactDOMWrapper from '@/.';
+import { Router } from '@/router';
+import { ScrollArea, Stack } from '@mantine/core';
 
 function Popup() {
-  const { setColorScheme } = useMantineColorScheme();
-
-  useEffect(() => {
-    setColorScheme('dark');
-  }, []);
   return (
-    <Box w={350} h={600}>
+    <Stack w={370} h={600} gap="xs">
       <Navbar />
-      <Box p="md">
-        <Button>Click me</Button>
-      </Box>
-    </Box>
+      <ScrollArea>
+        <Router />
+      </ScrollArea>
+    </Stack>
   );
 }
 

@@ -1,4 +1,4 @@
-import ReactDOMWrapper from '..';
+import ReactDOMWrapper from '@/.';
 
 function ContentScript() {
   return (

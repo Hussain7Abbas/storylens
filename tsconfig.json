@@ -13,7 +13,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "composite": true, // from tsconfig.node.json
     "allowSyntheticDefaultImports": true, // from tsconfig.node.json
     /* Linting */
@@ -22,7 +22,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     /* added for chrom extension */
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "target": "ESNext",
     "allowJs": false,
     "esModuleInterop": true,
