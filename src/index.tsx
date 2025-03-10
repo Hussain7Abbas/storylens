@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '@mantine/core/styles.css';
 import '@mantine/dropzone/styles.css';
-import '@mantine/form/styles.css';
 import '@/assets/styles/global.css';
 import { theme } from '@/assets/styles/theme';
 import { MantineProvider } from '@mantine/core';
