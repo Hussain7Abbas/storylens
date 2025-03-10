@@ -28,7 +28,7 @@ export function Navbar() {
       </Group>
 
       {routes.length > 1 ? (
-        <ActionIcon variant="subtle" onClick={() => back()}>
+        <ActionIcon variant="transparent" onClick={() => back()}>
           <IconChevronRight />
         </ActionIcon>
       ) : (
@@ -36,7 +36,7 @@ export function Navbar() {
           {!isLoggedIn && (
             <Tooltip label="Login" withArrow>
               <Box>
-                <ActionIcon variant="subtle">
+                <ActionIcon variant="transparent">
                   <IconLogin />
                 </ActionIcon>
               </Box>
@@ -45,7 +45,7 @@ export function Navbar() {
           {isLoggedIn && (
             <Menu shadow="md" width={200}>
               <Menu.Target>
-                <ActionIcon variant="subtle">
+                <ActionIcon variant="transparent">
                   <IconDotsVertical />
                 </ActionIcon>
               </Menu.Target>
