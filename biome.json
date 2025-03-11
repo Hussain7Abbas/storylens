@@ -6,12 +6,10 @@
 
   "files": {
     "ignore": [
-      "**/tailwind.config.ts",
-      "**/bindings.ts",
       "**/node_modules/**",
-      "**/.turbo/**",
-      "**/.next/**",
-      "**/dist/**"
+      "**/.plasmo/**",
+      "**/.github/**",
+      "**/build/**"
     ]
   },
 
@@ -43,7 +41,6 @@
       "suspicious": {},
       "performance": {},
       "correctness": {
-        "noUnusedImports": "warn",
         "noUnusedVariables": "warn",
         "useHookAtTopLevel": "warn",
         "useExhaustiveDependencies": "off"

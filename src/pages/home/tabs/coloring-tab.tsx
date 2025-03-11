@@ -1,4 +1,12 @@
-import { Button, TextInput, Group, Select, ScrollArea, Text } from '@mantine/core';
+import React from 'react';
+import {
+  Button,
+  TextInput,
+  Group,
+  Select,
+  ScrollArea,
+  Text,
+} from '@mantine/core';
 import { useForm } from '@mantine/form';
 export function ColoringTab() {
   const form = useForm({

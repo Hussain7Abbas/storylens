@@ -1,5 +1,14 @@
-import { useRoutes } from '@/hooks/useRoutes';
-import { ActionIcon, Box, Group, Image, Menu, Title, Tooltip } from '@mantine/core';
+import React from 'react';
+import { useRoutes } from '~/hooks/useRoutes';
+import {
+  ActionIcon,
+  Box,
+  Group,
+  Image,
+  Menu,
+  Title,
+  Tooltip,
+} from '@mantine/core';
 import {
   IconChevronRight,
   IconDotsVertical,
@@ -23,7 +32,7 @@ export function Navbar() {
       style={{ borderBottom: '1px solid #e5e7eb' }}
     >
       <Group>
-        <Image src={'/favicon.png'} alt="Logo" width={32} height={32} />
+        <Image src={'/icon.png'} alt="Logo" width={32} height={32} />
         <Title order={4}>Novzella</Title>
       </Group>
 
@@ -68,8 +77,12 @@ export function Navbar() {
                 <Menu.Divider />
                 <Menu.Label>Application</Menu.Label>
 
-                <Menu.Item leftSection={<IconDownload size={14} />}>Import</Menu.Item>
-                <Menu.Item leftSection={<IconUpload size={14} />}>Export</Menu.Item>
+                <Menu.Item leftSection={<IconDownload size={14} />}>
+                  Import
+                </Menu.Item>
+                <Menu.Item leftSection={<IconUpload size={14} />}>
+                  Export
+                </Menu.Item>
                 <Menu.Item color="red" leftSection={<IconUpload size={14} />}>
                   Log out
                 </Menu.Item>

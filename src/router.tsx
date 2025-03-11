@@ -1,7 +1,8 @@
-import { useRoutes } from '@/hooks/useRoutes';
-import { HomePage } from '@/pages/home/home';
-import { SettingsPage } from '@/pages/settings';
-import { ProfilePage } from '@/pages/profile';
+import React from 'react';
+import { useRoutes } from '~/hooks/useRoutes';
+import { HomePage } from '~/pages/home/home';
+import { SettingsPage } from '~/pages/settings';
+import { ProfilePage } from '~/pages/profile';
 
 export type Routes = 'home' | 'settings' | 'profile';
 

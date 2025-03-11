@@ -1,47 +1,44 @@
 {
-  "name": "novzella",
-  "private": true,
-  "version": "10.0.0",
-  "type": "module",
-  "packageManager": "pnpm@9.5.0",
-  "engines": {
-    "node": ">=22"
-  },
+  "name": "plasmo-starter-template",
+  "displayName": "Plasmo starter template",
+  "version": "0.0.1",
+  "description": "A basic Plasmo extension.",
+  "author": "Plasmo Corp. <foss@plasmo.com>",
   "scripts": {
-    "dev": "tsc && vite build --watch --mode development",
-    "build": "tsc && vite build",
+    "dev": "plasmo dev",
+    "build": "plasmo build",
     "format": "biome format --write .",
     "lint": "biome lint --write .",
     "check": "biome check --write .",
-    "preview": "vite preview"
+    "package": "plasmo package"
   },
   "dependencies": {
     "@mantine/core": "^7.17.1",
-    "@mantine/dropzone": "^7.17.1",
     "@mantine/form": "^7.17.1",
     "@mantine/hooks": "^7.17.1",
     "@tabler/icons-react": "^3.31.0",
-    "jotai": "^2.12.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "jotai": "^2.12.2",
+    "plasmo": "0.90.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
-    "@types/node": "^20.8.0",
-    "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "@vitejs/plugin-react-swc": "^3.3.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.3",
+    "@ianvs/prettier-plugin-sort-imports": "4.1.1",
+    "@types/chrome": "0.0.258",
+    "@types/node": "20.11.5",
+    "@types/react": "18.2.48",
+    "@types/react-dom": "18.2.18",
     "postcss": "^8.5.3",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
-    "typescript": "^5.0.2",
-    "vite": "^4.4.5",
-    "vite-plugin-web-extension": "^4.4.3"
+    "typescript": "5.3.3"
+  },
+  "manifest": {
+    "host_permissions": [
+      "https://*/*"
+    ]
   }
 }

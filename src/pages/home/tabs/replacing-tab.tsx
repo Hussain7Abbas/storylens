@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button, TextInput, Group, ScrollArea, Text } from '@mantine/core';
 import { useForm } from '@mantine/form';
 export function ReplacingTab() {

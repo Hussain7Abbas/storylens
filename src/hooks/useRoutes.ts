@@ -1,4 +1,4 @@
-import type { Routes } from '@/router';
+import type { Routes } from '~router';
 import { useAtom } from 'jotai';
 import { atom } from 'jotai';
 

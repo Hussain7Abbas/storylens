@@ -1,18 +1,22 @@
-import '@/assets/styles/global.css';
-import { Navbar } from '@/components/navbar';
-import ReactDOMWrapper from '@/.';
-import { Router } from '@/router';
-import { ScrollArea, Stack } from '@mantine/core';
+import React from 'react';
+import '@mantine/core/styles.css';
+import '~/styles/global.css';
+import { theme } from '~/styles/theme';
+import { Router } from '~router';
+import { ScrollArea, Stack, MantineProvider } from '@mantine/core';
+import { Navbar } from '~components/navbar';
 
-function Popup() {
+function IndexPopup() {
   return (
-    <Stack w={370} h={600} gap="xs">
-      <Navbar />
-      <ScrollArea>
-        <Router />
-      </ScrollArea>
-    </Stack>
+    <MantineProvider theme={theme}>
+      <Stack w={370} h={600} gap="xs">
+        <Navbar />
+        <ScrollArea>
+          <Router />
+        </ScrollArea>
+      </Stack>
+    </MantineProvider>
   );
 }
 
-ReactDOMWrapper(<Popup />, 'novzella-popup');
+export default IndexPopup;

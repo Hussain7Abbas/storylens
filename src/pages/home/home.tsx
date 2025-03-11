@@ -1,3 +1,4 @@
+import React from 'react';
 import { Tabs, Container } from '@mantine/core';
 import { ColoringTab, ReplacingTab } from './tabs';
 

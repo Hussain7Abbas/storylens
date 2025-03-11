@@ -1,40 +1,13 @@
 {
+  "extends": "plasmo/templates/tsconfig.base",
+  "exclude": ["node_modules"],
+  "include": [".plasmo/index.d.ts", "./**/*.ts", "./**/*.tsx"],
   "compilerOptions": {
-    "useDefineForClassFields": true,
-    "lib": [
-      "ESNext", // added for chrom extension
-      "DOM",
-      "DOM.Iterable"
-    ],
-    "module": "ESNext",
-    "skipLibCheck": true,
-    /* Bundler mode */
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "preserve",
-    "composite": true, // from tsconfig.node.json
-    "allowSyntheticDefaultImports": true, // from tsconfig.node.json
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    /* added for chrom extension */
-    "moduleResolution": "Bundler",
-    "target": "ESNext",
-    "allowJs": false,
+    "jsx": "react",
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
     "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
-  "include": [
-    "src",
-    "vite.config.ts", // from tsconfig.node.json
-    "manifest.config.ts",
-    "*.json" // added for chrom extension
-  ]
+      "~*": ["./src/*"]
+    },
+    "baseUrl": "."
+  }
 }
