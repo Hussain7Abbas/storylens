@@ -1,7 +1,21 @@
-import { defineConfig } from 'wxt';
+import { defineConfig } from "wxt";
 
 // See https://wxt.dev/api/config.html
 export default defineConfig({
-  modules: ['@wxt-dev/module-react'],
-  srcDir: 'src',
+	hooks: {
+		"build:manifestGenerated": (wxt, manifest) => {
+			if (wxt.config.mode === "development") {
+				manifest.title += " (DEV)";
+			}
+		},
+	},
+	imports: false,
+	modules: ["@wxt-dev/module-react"],
+	srcDir: "src",
+
+	webExt: {
+		binaries: {
+			chrome: "/usr/bin/google-chrome",
+		},
+	},
 });
