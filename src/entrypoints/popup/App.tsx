@@ -1,10 +1,11 @@
 import { useState } from "react";
 import logo from "@/assets/icon.png";
 import "./App.css";
+import { useAppConfig } from "#imports";
 import "@/utils/i18n";
 import { useTranslation } from "react-i18next";
-import { useAppConfig } from "#imports";
-import { Button } from "@/components/button";
+import "@mantine/core/styles.css";
+import { Button, MantineProvider } from "@mantine/core";
 
 function App() {
 	const [count, setCount] = useState(0);
@@ -20,7 +21,7 @@ function App() {
 	};
 
 	return (
-		<>
+		<MantineProvider>
 			<Button
 				onClick={() => changeLanguage(i18n.language === "ar" ? "en" : "ar")}
 			>
@@ -44,7 +45,7 @@ function App() {
 			<p className="read-the-docs">
 				Click on the WXT and React logos to learn more
 			</p>
-		</>
+		</MantineProvider>
 	);
 }
 
