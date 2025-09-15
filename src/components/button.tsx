@@ -1,3 +1,10 @@
-export function Button() {
-	return <button type="button">Click me</button>;
+export function Button({
+	children,
+	...props
+}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+	return (
+		<button type="button" {...props}>
+			{children}
+		</button>
+	);
 }
