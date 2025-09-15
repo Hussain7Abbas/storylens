@@ -5,7 +5,8 @@
 			"source": {
 				"useSortedKeys": "on"
 			}
-		}
+		},
+		"includes": ["src/**/*.tsx", "src/**/*.ts"]
 	},
 	"formatter": {},
 	"linter": {

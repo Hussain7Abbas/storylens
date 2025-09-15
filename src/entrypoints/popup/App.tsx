@@ -2,13 +2,21 @@ import { useState } from "react";
 import reactLogo from "@/assets/react.svg";
 import wxtLogo from "/wxt.svg";
 import "./App.css";
+import { browser, useAppConfig } from "#imports";
+import { Button } from "@/components/button";
 
 function App() {
 	const [count, setCount] = useState(0);
+	console.log(
+		"ff",
+		useAppConfig().skipWelcome,
+		import.meta.env.WXT_SKIP_WELCOME,
+	);
 
 	return (
 		<>
 			<Button />
+			<p>{browser.i18n.getMessage("helloWorld")}dd</p>
 			<div>
 				<a href="https://wxt.dev" target="_blank" rel="noopener noreferrer">
 					<img src={wxtLogo} className="logo" alt="WXT logo" />
