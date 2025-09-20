@@ -1,33 +1,33 @@
 {
-	"[markdown][html][yaml][mdx]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
-	"[typescript]": {
-		"editor.defaultFormatter": "biomejs.biome"
-	},
-	"[typescriptreact]": {
-		"editor.defaultFormatter": "biomejs.biome"
-	},
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.formatOnSave": true,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "[markdown][html][yaml][mdx]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
 
-	"editor.codeActionsOnSave": {
-		"source.fixAll.biome": "explicit"
-	},
-	"editor.defaultFormatter": "biomejs.biome",
-	"editor.formatOnSave": true,
-	"editor.insertSpaces": true,
-	"editor.tabSize": 2,
-	"i18n-ally.defaultNamespace": "",
-	"i18n-ally.extract.autoDetect": true,
-	"i18n-ally.keystyle": "nested",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.biome": "explicit"
+  },
+  "i18n-ally.defaultNamespace": "",
+  "i18n-ally.extract.autoDetect": true,
+  "i18n-ally.keystyle": "nested",
 
-	"i18n-ally.pathMatcher": "{locale}/messages.json",
-	"i18n-ally.sourceLanguage": "ar",
-	"i18n-ally.localesPaths": ["public/locales"],
+  "i18n-ally.pathMatcher": "{locale}/messages.json",
+  "i18n-ally.sourceLanguage": "ar",
+  "i18n-ally.localesPaths": ["public/locales"],
 
-	"json.schemas": [
-		{
-			"fileMatch": ["manifest.json"],
-			"url": "https://json.schemastore.org/chrome-manifest.json"
-		}
-	]
+  "json.schemas": [
+    {
+      "fileMatch": ["manifest.json"],
+      "url": "https://json.schemastore.org/chrome-manifest.json"
+    }
+  ]
 }
