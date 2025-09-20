@@ -3,6 +3,8 @@ import bcrypt from 'bcryptjs';
 import { env } from '@/env';
 
 export async function seedRootAdmin(prisma: PrismaClient) {
+  console.log('🌱', 'Seeding root admin');
+
   const username = env.ROOT_USERNAME;
   const password = env.ROOT_PASSWORD;
 
@@ -16,6 +18,7 @@ export async function seedRootAdmin(prisma: PrismaClient) {
       password: bcrypt.hashSync(password, 12),
       name: 'المستخدم الاساسي',
       phone: '+9647701234567',
+      gender: 'Male',
       isRoot: true,
     },
   });

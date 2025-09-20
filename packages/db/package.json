@@ -21,6 +21,7 @@
     "zod": "^4.1.9"
   },
   "devDependencies": {
+    "@faker-js/faker": "^10.0.0",
     "@repo/tsconfig": "workspace:*",
     "@types/node": "^24.5.2",
     "dayjs": "^1.11.18",

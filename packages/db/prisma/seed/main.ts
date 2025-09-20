@@ -2,6 +2,12 @@ import { PrismaClient } from '@prisma/client';
 import { env } from '@/env';
 import { seedFiles } from './tables/files';
 import { seedRootAdmin } from './tables/root-admin';
+import { seedKeywordCategory } from './tables/keyword-category';
+import { seedKeywordNature } from './tables/keyword-nature';
+import { seedKeywords } from './tables/keywords';
+import { seedChapters } from './tables/chapters';
+import { seedNovels } from './tables/novels';
+import { seedKeywordReplacement } from './tables/keyword-replacement';
 
 const prisma = new PrismaClient();
 
@@ -10,6 +16,12 @@ async function main() {
 
   if (env.NODE_ENV === 'development') {
     await seedFiles(prisma);
+    await seedKeywordCategory(prisma);
+    await seedKeywordNature(prisma);
+    await seedNovels(prisma);
+    await seedChapters(prisma);
+    await seedKeywords(prisma);
+    await seedKeywordReplacement(prisma);
   }
 }
 

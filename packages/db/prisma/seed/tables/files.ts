@@ -1,6 +1,8 @@
 import type { PrismaClient } from '@prisma/client';
 
 export async function seedFiles(prisma: PrismaClient) {
+  console.log('🌱', 'Seeding files');
+
   await prisma.file.createMany({
     data: [
       { key: 'avatar-male-1.webp', size: 0, type: 'Image' },

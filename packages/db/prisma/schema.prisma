@@ -29,6 +29,7 @@ model Admin {
   name      String
   phone     String
   birthDate DateTime?
+  gender    Gender?
 
   avatarId String?
   avatar   File?   @relation(fields: [avatarId], references: [id], name: "AdminAvatars")
@@ -99,7 +100,7 @@ model Novel {
   name String
   description String
 
-  imageId String
+  imageId String?
   image File? @relation(fields: [imageId], references: [id], name: "NovelImages")
 
   // Metadata
@@ -119,7 +120,7 @@ model Chapter {
   description String?
 
   novelId String
-  novel Novel? @relation(fields: [novelId], references: [id], name: "NovelChapters")
+  novel Novel @relation(fields: [novelId], references: [id], name: "NovelChapters")
 
   // Metadata
   createdAt DateTime @default(now())
@@ -129,41 +130,10 @@ model Chapter {
   keywords Keyword[] @relation("KeywordsChapters")
 }
 
-model Keyword {
-  id String @id @default(uuid())
-
-  name String
-  description String
-
-  typeId String
-  type KeywordCategory? @relation(fields: [typeId], references: [id], name: "KeywordCategories")
-
-  natureId String
-  nature KeywordNature? @relation(fields: [natureId], references: [id], name: "KeywordNatures")
-
-  imageId String
-  image File? @relation(fields: [imageId], references: [id], name: "KeywordImages")
-
-  parentId String?
-  parent Keyword? @relation(fields: [parentId], references: [id], name: "KeywordParents")
-
-  novelId String
-  novel Novel? @relation(fields: [novelId], references: [id], name: "NovelKeywords")
-
-  // Metadata
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // Relations
-  children Keyword[] @relation("KeywordParents")
-  chapters Chapter[] @relation("KeywordsChapters")
-  replacements KeywordReplacement[] @relation("KeywordReplacements")
-}
-
 model KeywordCategory{
   id String @id @default(uuid())
 
-  category String
+  name String
   color String
 
   // Metadata
@@ -177,7 +147,7 @@ model KeywordCategory{
 model KeywordNature{
   id String @id @default(uuid())
 
-  nature String
+  name String
   color String
 
   // Metadata
@@ -188,12 +158,44 @@ model KeywordNature{
   keywords Keyword[] @relation("KeywordNatures")
 }
 
-model KeywordReplacement{
+model Keyword {
+  id String @id @default(uuid())
+
+  name String
+  description String
+
+  categoryId String
+  category KeywordCategory @relation(fields: [categoryId], references: [id], name: "KeywordCategories")
+
+  natureId String
+  nature KeywordNature @relation(fields: [natureId], references: [id], name: "KeywordNatures")
+
+  imageId String?
+  image File? @relation(fields: [imageId], references: [id], name: "KeywordImages")
+
+  parentId String?
+  parent Keyword? @relation(fields: [parentId], references: [id], name: "KeywordParents")
+
+  novelId String
+  novel Novel @relation(fields: [novelId], references: [id], name: "NovelKeywords")
+
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  children Keyword[] @relation("KeywordParents")
+  chapters Chapter[] @relation("KeywordsChapters")
+  replacements Replacement[] @relation("KeywordReplacements")
+}
+
+model Replacement{
   id String @id @default(uuid())
 
   replacement String
+  
   keywordId String
-  keyword Keyword? @relation(fields: [keywordId], references: [id], name: "KeywordReplacements")
+  keyword Keyword @relation(fields: [keywordId], references: [id], name: "KeywordReplacements")
 
   // Metadata
   createdAt DateTime @default(now())
