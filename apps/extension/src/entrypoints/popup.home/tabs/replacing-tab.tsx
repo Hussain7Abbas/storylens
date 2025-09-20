@@ -1,7 +1,9 @@
-import React from 'react';
-import { Button, TextInput, Group, ScrollArea, Text } from '@mantine/core';
+import { Button, TextInput, Group, ScrollArea, Text, Stack } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { useTranslation } from 'react-i18next';
+
 export function ReplacingTab() {
+  const { t } = useTranslation();
   const form = useForm({
     initialValues: {
       repName: '',
@@ -9,17 +11,21 @@ export function ReplacingTab() {
       search: '',
     },
   });
+
   return (
-    <>
-      <TextInput label="الاسم" {...form.getInputProps('repName')} />
-      <TextInput label="استبدال بـ" {...form.getInputProps('repWith')} />
+    <Stack gap="xs">
+      <TextInput label={t('replaces.name')} {...form.getInputProps('repName')} />
+      <TextInput
+        label={t('replaces.replaceWith')}
+        {...form.getInputProps('repWith')}
+      />
 
       <Group mt="md" grow>
         <Button variant="light" color="green.7">
-          اضافة استبدال
+          {t('_.add')}
         </Button>
         <Button variant="light" color="red.7">
-          حذف استبدال
+          {t('_.delete')}
         </Button>
       </Group>
 
@@ -27,6 +33,6 @@ export function ReplacingTab() {
       <ScrollArea h={150} mt="md">
         <Text ta="center">(عرض الكلمات المستبدلة هنا)</Text>
       </ScrollArea>
-    </>
+    </Stack>
   );
 }

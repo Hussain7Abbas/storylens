@@ -1,7 +1,17 @@
-import { Button, Group, ScrollArea, Select, Text, TextInput } from '@mantine/core';
+import {
+  Button,
+  Group,
+  ScrollArea,
+  Select,
+  Stack,
+  Text,
+  TextInput,
+} from '@mantine/core';
 import { useForm } from '@mantine/form';
-import React from 'react';
+import { useTranslation } from 'react-i18next';
+
 export function ColoringTab() {
+  const { t } = useTranslation();
   const form = useForm({
     initialValues: {
       image: '',
@@ -11,34 +21,33 @@ export function ColoringTab() {
       search: '',
     },
   });
+
   return (
-    <>
-      <TextInput label="الاسم" {...form.getInputProps('name')} />
+    <Stack gap="xs">
+      <TextInput label={t('coloring.name')} {...form.getInputProps('name')} />
       <Select
-        label="الدور"
+        label={t('coloring.role')}
+        allowDeselect={false}
         data={['بطل', 'صديق', 'عدو', 'انثى', 'مهارة', 'مدرب', 'طائفة']}
         {...form.getInputProps('role')}
       />
-      <TextInput label="وصف" {...form.getInputProps('info')} />
-      <TextInput label="الصورة" {...form.getInputProps('image')} />
+      <TextInput label={t('coloring.info')} {...form.getInputProps('info')} />
+      <TextInput label={t('coloring.image')} {...form.getInputProps('image')} />
 
       <Group mt="md" grow>
         <Button variant="light" color="green.7">
-          اضافة شخصية
+          {t('_.add')}
         </Button>
         <Button variant="light" color="red.7">
-          حذف شخصية
+          {t('_.delete')}
         </Button>
       </Group>
 
-      <Text size="sm" ta="center" mt="sm">
-        آخر تعديل:
-      </Text>
-      <TextInput placeholder="نص البحث" {...form.getInputProps('search')} />
+      <TextInput placeholder={t('_.search')} {...form.getInputProps('search')} />
 
       <ScrollArea h={150} mt="md">
-        <Text ta="center">(عرض الشخصيات هنا)</Text>
+        <Text ta="center">{t('_.view')}</Text>
       </ScrollArea>
-    </>
+    </Stack>
   );
 }

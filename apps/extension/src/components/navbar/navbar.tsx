@@ -43,7 +43,7 @@ export function Navbar() {
       <Group wrap="nowrap">
         <Image src={icon} alt="Logo" width={32} height={32} />
         <Title order={4} textWrap="nowrap">
-          {t('extName')}
+          {t('navbar.extName')}
         </Title>
       </Group>
       {!isLoggedIn && <LoginButton t={t} />}
@@ -59,7 +59,7 @@ export function Navbar() {
 
 export function LoginButton({ t }: { t: TFunction }) {
   return (
-    <Tooltip label={t('login')} withArrow>
+    <Tooltip label={t('navbar.login')} withArrow>
       <Box>
         <ActionIcon variant="transparent">
           <IconLogin />
@@ -76,7 +76,7 @@ export function ToggleColorScheme({ t }: { t: TFunction }) {
   });
 
   return (
-    <Tooltip label={t('toggleColorScheme')} withArrow>
+    <Tooltip label={t('navbar.toggleColorScheme')} withArrow>
       <ActionIcon
         onClick={() =>
           setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')
@@ -108,24 +108,28 @@ function ActionsMenu({ t }: { t: TFunction }) {
       </Menu.Target>
 
       <Menu.Dropdown>
-        <Menu.Label>{t('user')}</Menu.Label>
+        <Menu.Label>{t('navbar.user')}</Menu.Label>
         <Menu.Item leftSection={<IconUser size={14} />} onClick={() => go('profile')}>
-          {t('profile')}
+          {t('navbar.profile')}
         </Menu.Item>
         <Menu.Item
           leftSection={<IconSettings size={14} />}
           onClick={() => go('settings')}
         >
-          {t('settings')}
+          {t('navbar.settings')}
         </Menu.Item>
 
         <Menu.Divider />
-        <Menu.Label>{t('application')}</Menu.Label>
+        <Menu.Label>{t('navbar.application')}</Menu.Label>
 
-        <Menu.Item leftSection={<IconDownload size={14} />}>{t('import')}</Menu.Item>
-        <Menu.Item leftSection={<IconUpload size={14} />}>{t('export')}</Menu.Item>
+        <Menu.Item leftSection={<IconDownload size={14} />}>
+          {t('navbar.import')}
+        </Menu.Item>
+        <Menu.Item leftSection={<IconUpload size={14} />}>
+          {t('navbar.export')}
+        </Menu.Item>
         <Menu.Item color="red" leftSection={<IconUpload size={14} />}>
-          {t('logout')}
+          {t('navbar.logout')}
         </Menu.Item>
       </Menu.Dropdown>
     </Menu>

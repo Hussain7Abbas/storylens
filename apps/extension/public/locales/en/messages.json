@@ -1,14 +1,35 @@
 {
   "extName": "StoryLens",
   "extDescription": "StoryLens is a browser extension that Colorize, rename, and track characters, places, and techniques in web novels. Personalize your reading experience and never lose track of key elements in each chapter.",
-  "helloWorld": "Hello world!",
-  "login": "Login",
-  "toggleColorScheme": "Toggle Color Scheme",
-  "user": "User",
-  "profile": "Profile",
-  "settings": "Settings",
-  "application": "Application",
-  "import": "Import",
-  "export": "Export",
-  "logout": "Logout"
+  "_": {
+    "search": "البحث",
+    "add": "اضافة",
+    "delete": "حذف",
+    "view": "عرض"
+  },
+  "navbar": {
+    "login": "Login",
+    "toggleColorScheme": "Toggle Color Scheme",
+    "user": "User",
+    "profile": "Profile",
+    "settings": "Settings",
+    "application": "Application",
+    "import": "Import",
+    "export": "Export",
+    "logout": "Logout"
+  },
+  "tabs": {
+    "coloring": "Coloring",
+    "replacing": "Replacing"
+  },
+  "coloring": {
+    "name": "Name",
+    "role": "الدور",
+    "info": "Description",
+    "image": "Image"
+  },
+  "replaces": {
+    "name": "Name",
+    "replaceWith": "Replace With"
+  }
 }
