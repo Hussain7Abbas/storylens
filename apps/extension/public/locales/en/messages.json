@@ -24,7 +24,8 @@
   },
   "coloring": {
     "name": "Name",
-    "role": "الدور",
+    "category": "Category",
+    "nature": "Nature",
     "info": "Description",
     "image": "Image"
   },

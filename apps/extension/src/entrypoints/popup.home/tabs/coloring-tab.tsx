@@ -12,12 +12,16 @@ import { useTranslation } from 'react-i18next';
 
 export function ColoringTab() {
   const { t } = useTranslation();
+  const categories = ['شخصية', 'مهارة', 'مكان'];
+  const natures = ['بطل', 'صديق', 'عدو', 'انثى', 'مدرب', 'طائفة'];
+
   const form = useForm({
     initialValues: {
       image: '',
       info: '',
       name: '',
-      role: '',
+      category: categories[0],
+      nature: natures[0],
       search: '',
     },
   });
@@ -26,10 +30,16 @@ export function ColoringTab() {
     <Stack gap="xs">
       <TextInput label={t('coloring.name')} {...form.getInputProps('name')} />
       <Select
-        label={t('coloring.role')}
+        label={t('coloring.category')}
         allowDeselect={false}
-        data={['بطل', 'صديق', 'عدو', 'انثى', 'مهارة', 'مدرب', 'طائفة']}
-        {...form.getInputProps('role')}
+        data={categories}
+        {...form.getInputProps('category')}
+      />
+      <Select
+        label={t('coloring.nature')}
+        allowDeselect={false}
+        data={natures}
+        {...form.getInputProps('nature')}
       />
       <TextInput label={t('coloring.info')} {...form.getInputProps('info')} />
       <TextInput label={t('coloring.image')} {...form.getInputProps('image')} />

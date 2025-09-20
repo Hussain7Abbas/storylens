@@ -3,12 +3,13 @@ import { useTranslation } from 'react-i18next';
 
 export function SettingsPage() {
   const { i18n } = useTranslation();
+  function handleChangeLanguage() {
+    i18n.changeLanguage(i18n.language === 'ar' ? 'en' : 'ar');
+  }
 
   return (
     <Container p="md" dir="rtl">
-      <Button
-        onClick={() => i18n.changeLanguage(i18n.language === 'ar' ? 'en' : 'ar')}
-      >
+      <Button onClick={handleChangeLanguage}>
         {i18n.language === 'ar' ? 'English' : 'Arabic'}
       </Button>
     </Container>

@@ -10,6 +10,7 @@ import {
   useMantineColorScheme,
 } from '@mantine/core';
 import {
+  IconChevronLeft,
   IconChevronRight,
   IconDotsVertical,
   IconDownload,
@@ -29,7 +30,8 @@ import classes from './navbar.module.css';
 
 export function Navbar() {
   const isLoggedIn = true;
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const dir = i18n.language === 'ar' ? 'rtl' : 'ltr';
 
   return (
     <Group
@@ -43,14 +45,14 @@ export function Navbar() {
       <Group wrap="nowrap">
         <Image src={icon} alt="Logo" width={32} height={32} />
         <Title order={4} textWrap="nowrap">
-          {t('navbar.extName')}
+          {t('extName')}
         </Title>
       </Group>
       {!isLoggedIn && <LoginButton t={t} />}
       {isLoggedIn && (
         <Group>
           <ToggleColorScheme t={t} />
-          <ActionsMenu t={t} />
+          <ActionsMenu t={t} dir={dir} />
         </Group>
       )}
     </Group>
@@ -92,12 +94,12 @@ export function ToggleColorScheme({ t }: { t: TFunction }) {
   );
 }
 
-function ActionsMenu({ t }: { t: TFunction }) {
+function ActionsMenu({ t, dir }: { t: TFunction; dir: 'rtl' | 'ltr' }) {
   const { go, back, routes } = useRoutes();
 
   return routes.length > 1 ? (
     <ActionIcon variant="transparent" onClick={() => back()}>
-      <IconChevronRight />
+      {dir === 'rtl' ? <IconChevronLeft /> : <IconChevronRight />}
     </ActionIcon>
   ) : (
     <Menu shadow="md" width={200}>
