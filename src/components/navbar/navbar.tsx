@@ -6,18 +6,25 @@ import {
 	Menu,
 	Title,
 	Tooltip,
+	useComputedColorScheme,
+	useMantineColorScheme,
 } from "@mantine/core";
 import {
 	IconChevronRight,
 	IconDotsVertical,
 	IconDownload,
 	IconLogin,
+	IconMoon,
 	IconSettings,
+	IconSun,
 	IconUpload,
 	IconUser,
 } from "@tabler/icons-react";
+import cx from "clsx";
 import icon from "@/assets/icon.png";
 import { useRoutes } from "@/hooks/useRoutes";
+import classes from "./navbar.module.css";
+
 export function Navbar() {
 	const isLoggedIn = true;
 
@@ -37,7 +44,12 @@ export function Navbar() {
 				</Title>
 			</Group>
 			{!isLoggedIn && <LoginButton />}
-			{isLoggedIn && <ActionsMenu />}
+			{isLoggedIn && (
+				<Group>
+					<ToggleColorScheme />
+					<ActionsMenu />
+				</Group>
+			)}
 		</Group>
 	);
 }
@@ -50,6 +62,29 @@ export function LoginButton() {
 					<IconLogin />
 				</ActionIcon>
 			</Box>
+		</Tooltip>
+	);
+}
+
+export function ToggleColorScheme() {
+	const { setColorScheme } = useMantineColorScheme();
+	const computedColorScheme = useComputedColorScheme("light", {
+		getInitialValueInEffect: true,
+	});
+
+	return (
+		<Tooltip label="Toggle Color Scheme" withArrow>
+			<ActionIcon
+				onClick={() =>
+					setColorScheme(computedColorScheme === "light" ? "dark" : "light")
+				}
+				variant="transparent"
+				size="lg"
+				aria-label="Toggle color scheme"
+			>
+				<IconSun className={cx(classes.icon, classes.light)} stroke={1.5} />
+				<IconMoon className={cx(classes.icon, classes.dark)} stroke={1.5} />
+			</ActionIcon>
 		</Tooltip>
 	);
 }
