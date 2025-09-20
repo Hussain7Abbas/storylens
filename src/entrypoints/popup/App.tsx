@@ -1,50 +1,27 @@
-import { useState } from "react";
-import logo from "@/assets/icon.png";
-import "./App.css";
-import { useAppConfig } from "#imports";
 import "@/utils/i18n";
-import { useTranslation } from "react-i18next";
 import "@mantine/core/styles.css";
-import { Button, MantineProvider } from "@mantine/core";
+import "@/styles/global.css";
+import "./App.css";
+import { Center, MantineProvider, ScrollArea, Stack } from "@mantine/core";
 
-function App() {
-	const [count, setCount] = useState(0);
-	console.log(
-		"ff",
-		useAppConfig().skipWelcome,
-		import.meta.env.WXT_SKIP_WELCOME,
-	);
-	const { t, i18n } = useTranslation();
+import { Navbar } from "@/components/navbar";
+import { Router } from "./routers";
 
-	const changeLanguage = (lng: string) => {
-		i18n.changeLanguage(lng); // triggers lazy load from JSON
-	};
-
+function App({ type }: { type: "popup" | "options" }) {
 	return (
 		<MantineProvider>
-			<Button
-				onClick={() => changeLanguage(i18n.language === "ar" ? "en" : "ar")}
-			>
-				{i18n.language === "ar" ? "English" : "Arabic"}
-			</Button>
-			<p>{t("helloWorld")}dd</p>
-			<div>
-				<a href="https://wxt.dev" target="_blank" rel="noopener noreferrer">
-					<img src={logo} className="logo" alt="WXT logo" />
-				</a>
-			</div>
-			<h1>WXT + React</h1>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)} type="button">
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the WXT and React logos to learn more
-			</p>
+			<Center w="100vw" h="100vh">
+				<Stack
+					h={type === "popup" ? "30rem" : "100vh"}
+					w={type === "popup" ? "20rem" : "25rem"}
+					gap="xs"
+				>
+					<Navbar />
+					<ScrollArea>
+						<Router />
+					</ScrollArea>
+				</Stack>
+			</Center>
 		</MantineProvider>
 	);
 }
