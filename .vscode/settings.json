@@ -20,8 +20,9 @@
 	"i18n-ally.extract.autoDetect": true,
 	"i18n-ally.keystyle": "nested",
 
-	"i18n-ally.pathMatcher": "{locale}.json",
+	"i18n-ally.pathMatcher": "{locale}/messages.json",
 	"i18n-ally.sourceLanguage": "ar",
+	"i18n-ally.localesPaths": ["public/locales"],
 
 	"json.schemas": [
 		{

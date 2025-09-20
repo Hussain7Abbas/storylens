@@ -2,7 +2,7 @@ import { Button, Container } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 
 export function SettingsPage() {
-	const { t, i18n } = useTranslation();
+	const { i18n } = useTranslation();
 
 	return (
 		<Container p="md" dir="rtl">

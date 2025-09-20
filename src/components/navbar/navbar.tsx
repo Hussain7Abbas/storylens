@@ -21,12 +21,15 @@ import {
 	IconUser,
 } from "@tabler/icons-react";
 import cx from "clsx";
+import type { TFunction } from "i18next";
+import { useTranslation } from "react-i18next";
 import icon from "@/assets/icon.png";
 import { useRoutes } from "@/hooks/useRoutes";
 import classes from "./navbar.module.css";
 
 export function Navbar() {
 	const isLoggedIn = true;
+	const { t } = useTranslation();
 
 	return (
 		<Group
@@ -39,24 +42,24 @@ export function Navbar() {
 		>
 			<Group wrap="nowrap">
 				<Image src={icon} alt="Logo" width={32} height={32} />
-				<Title order={4} flex={1}>
-					StoryLens
+				<Title order={4} textWrap="nowrap">
+					{t("extName")}
 				</Title>
 			</Group>
-			{!isLoggedIn && <LoginButton />}
+			{!isLoggedIn && <LoginButton t={t} />}
 			{isLoggedIn && (
 				<Group>
-					<ToggleColorScheme />
-					<ActionsMenu />
+					<ToggleColorScheme t={t} />
+					<ActionsMenu t={t} />
 				</Group>
 			)}
 		</Group>
 	);
 }
 
-export function LoginButton() {
+export function LoginButton({ t }: { t: TFunction }) {
 	return (
-		<Tooltip label="Login" withArrow>
+		<Tooltip label={t("login")} withArrow>
 			<Box>
 				<ActionIcon variant="transparent">
 					<IconLogin />
@@ -66,14 +69,14 @@ export function LoginButton() {
 	);
 }
 
-export function ToggleColorScheme() {
+export function ToggleColorScheme({ t }: { t: TFunction }) {
 	const { setColorScheme } = useMantineColorScheme();
 	const computedColorScheme = useComputedColorScheme("light", {
 		getInitialValueInEffect: true,
 	});
 
 	return (
-		<Tooltip label="Toggle Color Scheme" withArrow>
+		<Tooltip label={t("toggleColorScheme")} withArrow>
 			<ActionIcon
 				onClick={() =>
 					setColorScheme(computedColorScheme === "light" ? "dark" : "light")
@@ -89,7 +92,7 @@ export function ToggleColorScheme() {
 	);
 }
 
-function ActionsMenu() {
+function ActionsMenu({ t }: { t: TFunction }) {
 	const { go, back, routes } = useRoutes();
 
 	return routes.length > 1 ? (
@@ -105,27 +108,31 @@ function ActionsMenu() {
 			</Menu.Target>
 
 			<Menu.Dropdown>
-				<Menu.Label>User</Menu.Label>
+				<Menu.Label>{t("user")}</Menu.Label>
 				<Menu.Item
 					leftSection={<IconUser size={14} />}
 					onClick={() => go("profile")}
 				>
-					Profile
+					{t("profile")}
 				</Menu.Item>
 				<Menu.Item
 					leftSection={<IconSettings size={14} />}
 					onClick={() => go("settings")}
 				>
-					Settings
+					{t("settings")}
 				</Menu.Item>
 
 				<Menu.Divider />
-				<Menu.Label>Application</Menu.Label>
+				<Menu.Label>{t("application")}</Menu.Label>
 
-				<Menu.Item leftSection={<IconDownload size={14} />}>Import</Menu.Item>
-				<Menu.Item leftSection={<IconUpload size={14} />}>Export</Menu.Item>
+				<Menu.Item leftSection={<IconDownload size={14} />}>
+					{t("import")}
+				</Menu.Item>
+				<Menu.Item leftSection={<IconUpload size={14} />}>
+					{t("export")}
+				</Menu.Item>
 				<Menu.Item color="red" leftSection={<IconUpload size={14} />}>
-					Log out
+					{t("logout")}
 				</Menu.Item>
 			</Menu.Dropdown>
 		</Menu>
