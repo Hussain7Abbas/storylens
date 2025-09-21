@@ -36,11 +36,6 @@ export async function seedKeywords(prisma: PrismaClient) {
             novelId: novel.id,
             categoryId: fakerAR.helpers.arrayElement(keywordCategories)?.id,
             natureId: fakerAR.helpers.arrayElement(keywordNatures)?.id,
-            chapters: {
-              connect: {
-                id: fakerAR.helpers.arrayElement(chapters).id,
-              },
-            },
           },
         }),
       );

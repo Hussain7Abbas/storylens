@@ -65,6 +65,17 @@ CREATE TABLE "public"."Keyword" (
 );
 
 -- CreateTable
+CREATE TABLE "public"."KeywordsChapters" (
+    "id" TEXT NOT NULL,
+    "keywordId" TEXT NOT NULL,
+    "chapterId" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "KeywordsChapters_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "public"."Replacement" (
     "id" TEXT NOT NULL,
     "replacement" TEXT NOT NULL,
@@ -75,16 +86,17 @@ CREATE TABLE "public"."Replacement" (
     CONSTRAINT "Replacement_pkey" PRIMARY KEY ("id")
 );
 
--- CreateTable
-CREATE TABLE "public"."_KeywordsChapters" (
-    "A" TEXT NOT NULL,
-    "B" TEXT NOT NULL,
-
-    CONSTRAINT "_KeywordsChapters_AB_pkey" PRIMARY KEY ("A","B")
-);
+-- CreateIndex
+CREATE INDEX "Novel_name_idx" ON "public"."Novel"("name");
 
 -- CreateIndex
-CREATE INDEX "_KeywordsChapters_B_index" ON "public"."_KeywordsChapters"("B");
+CREATE INDEX "Chapter_novelId_idx" ON "public"."Chapter"("novelId");
+
+-- CreateIndex
+CREATE INDEX "Keyword_name_idx" ON "public"."Keyword"("name");
+
+-- CreateIndex
+CREATE INDEX "KeywordsChapters_keywordId_chapterId_idx" ON "public"."KeywordsChapters"("keywordId", "chapterId");
 
 -- AddForeignKey
 ALTER TABLE "public"."Novel" ADD CONSTRAINT "Novel_imageId_fkey" FOREIGN KEY ("imageId") REFERENCES "public"."File"("id") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -108,10 +120,10 @@ ALTER TABLE "public"."Keyword" ADD CONSTRAINT "Keyword_parentId_fkey" FOREIGN KE
 ALTER TABLE "public"."Keyword" ADD CONSTRAINT "Keyword_novelId_fkey" FOREIGN KEY ("novelId") REFERENCES "public"."Novel"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "public"."KeywordsChapters" ADD CONSTRAINT "KeywordsChapters_keywordId_fkey" FOREIGN KEY ("keywordId") REFERENCES "public"."Keyword"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "public"."KeywordsChapters" ADD CONSTRAINT "KeywordsChapters_chapterId_fkey" FOREIGN KEY ("chapterId") REFERENCES "public"."Chapter"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "public"."Replacement" ADD CONSTRAINT "Replacement_keywordId_fkey" FOREIGN KEY ("keywordId") REFERENCES "public"."Keyword"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "public"."_KeywordsChapters" ADD CONSTRAINT "_KeywordsChapters_A_fkey" FOREIGN KEY ("A") REFERENCES "public"."Chapter"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "public"."_KeywordsChapters" ADD CONSTRAINT "_KeywordsChapters_B_fkey" FOREIGN KEY ("B") REFERENCES "public"."Keyword"("id") ON DELETE CASCADE ON UPDATE CASCADE;

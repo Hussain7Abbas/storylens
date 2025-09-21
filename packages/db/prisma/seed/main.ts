@@ -8,6 +8,7 @@ import { seedKeywords } from './tables/keywords';
 import { seedChapters } from './tables/chapters';
 import { seedNovels } from './tables/novels';
 import { seedKeywordReplacement } from './tables/keyword-replacement';
+import { seedKeywordsChapters } from './tables/keywords-chapters';
 
 const prisma = new PrismaClient();
 
@@ -21,6 +22,7 @@ async function main() {
     await seedNovels(prisma);
     await seedChapters(prisma);
     await seedKeywords(prisma);
+    await seedKeywordsChapters(prisma);
     await seedKeywordReplacement(prisma);
   }
 }

@@ -4,7 +4,7 @@ import { fakerAR } from '@faker-js/faker';
 export async function seedKeywordCategory(prisma: PrismaClient) {
   console.log('🌱', 'Seeding keyword categories');
 
-  const keywordCategoriesNumbers = fakerAR.number.int({ min: 1, max: 10 });
+  const keywordCategoriesNumbers = 10;
 
   const promises = [];
   for (let i = 0; i < keywordCategoriesNumbers; i++) {

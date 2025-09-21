@@ -110,6 +110,8 @@ model Novel {
   // Relations
   Keywords Keyword[] @relation("NovelKeywords")
   chapters Chapter[] @relation("NovelChapters")
+
+  @@index([name])
 }
 
 model Chapter {
@@ -127,7 +129,9 @@ model Chapter {
   updatedAt DateTime @updatedAt
 
   // Relations
-  keywords Keyword[] @relation("KeywordsChapters")
+  KeywordsChapters KeywordsChapters[] @relation("KeywordsChapters")
+
+  @@index([novelId])
 }
 
 model KeywordCategory{
@@ -185,8 +189,26 @@ model Keyword {
 
   // Relations
   children Keyword[] @relation("KeywordParents")
-  chapters Chapter[] @relation("KeywordsChapters")
+  KeywordsChapters KeywordsChapters[] @relation("KeywordsChapters")
   replacements Replacement[] @relation("KeywordReplacements")
+
+  @@index([name])
+}
+
+model KeywordsChapters{
+  id String @id @default(uuid())
+
+  keywordId String
+  keyword Keyword @relation(fields: [keywordId], references: [id], name: "KeywordsChapters")
+
+  chapterId String
+  chapter Chapter @relation(fields: [chapterId], references: [id], name: "KeywordsChapters")
+
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([keywordId, chapterId])
 }
 
 model Replacement{
