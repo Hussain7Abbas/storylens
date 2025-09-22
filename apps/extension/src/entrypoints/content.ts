@@ -1,3 +1,5 @@
+import { defineContentScript } from '#imports';
+
 export default defineContentScript({
   main() {
     console.log('Hello content.');
