@@ -12,7 +12,7 @@ export const answers = {
 
   backendPort: await input({
     message: 'Backend Port',
-    default: '6000',
+    default: '7000',
   }),
 
   extensionPort: await input({
