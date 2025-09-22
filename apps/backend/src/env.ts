@@ -8,6 +8,7 @@ export const env = createEnv({
   server: {
     JWT_SECRET_KEY: z.string(),
     AUTH_TOKEN_EXPIRATION: z.string(),
+    STORAGE_IMGBB_API_KEY: z.string(),
     PORT: z.coerce.number().default(3000),
     NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
   },
