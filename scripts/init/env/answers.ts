@@ -15,11 +15,6 @@ export const answers = {
     default: '7000',
   }),
 
-  extensionPort: await input({
-    message: 'Extension Port',
-    default: '6001',
-  }),
-
   jwtSecretKey: generateSecretKey(16),
 
   rootUsername: await input({

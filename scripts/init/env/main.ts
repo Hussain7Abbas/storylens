@@ -9,7 +9,6 @@ for (const exampleEnvFilePath of exampleEnvFilesPaths) {
     { old: 'NODE-ENV', new: answers.nodeEnv },
 
     { old: 'BACKEND-PORT', new: answers.backendPort },
-    { old: 'EXTENSION-PORT', new: answers.extensionPort },
 
     { old: 'ROOT-USERNAME', new: answers.rootUsername },
     { old: 'ROOT-PASSWORD', new: answers.rootPassword },
