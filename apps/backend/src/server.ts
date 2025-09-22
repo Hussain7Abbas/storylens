@@ -2,7 +2,7 @@ import chalk from 'chalk';
 import { Elysia, status } from 'elysia';
 import { env } from './env';
 import { cors, crons, logger, openapi } from './plugins';
-import { accounts } from './routes/accounts';
+// import { accounts } from './routes/accounts';
 import { chapters } from './routes/chapters';
 import { files } from './routes/files';
 import { keywordCategories } from './routes/keyword-categories';
@@ -35,7 +35,7 @@ export const app = new Elysia()
     message: 'Made with ❤️ by Hussain Abbas, for docs checkout /docs',
   }))
 
-  .use(accounts)
+  // .use(accounts)
   .use(files)
   .use(novels)
   .use(chapters)

@@ -9,10 +9,11 @@ export async function authenticate({
   errorMessage: string;
 }) {
   if (!token) {
-    throw new HttpError({
-      statusCode: 401,
-      message: errorMessage,
-    });
+    return;
+    // throw new HttpError({
+    //   statusCode: 401,
+    //   message: errorMessage,
+    // });
   }
 
   try {

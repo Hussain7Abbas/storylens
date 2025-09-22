@@ -29,7 +29,7 @@ export const files = new Elysia({ prefix: '/files', tags: ['Files'] })
             url: uploadedImage.url,
             provider_image_id: uploadedImage.id,
             delete_url: uploadedImage.delete_url,
-            userId: user.id,
+            userId: user?.id,
             type: body.type,
           },
         });
@@ -45,7 +45,7 @@ export const files = new Elysia({ prefix: '/files', tags: ['Files'] })
             url: uploadedVideo.url,
             provider_image_id: uploadedVideo.id,
             delete_url: uploadedVideo.delete_url,
-            userId: user.id,
+            userId: user?.id,
             type: body.type,
           },
         });
