@@ -1,0 +1,66 @@
+---
+alwaysApply: true
+description: Project structure and architecture guidelines for the Novzella Extension monorepo
+---
+
+# Novzella Extension - Project Structure & Architecture
+
+This is a **monorepo** using **Turbo** and **Bun** for a browser extension project called "Story Lens" (Novzella Extension).
+
+## Project Architecture
+
+### Root Structure
+
+- **Monorepo**: Uses Turbo for build orchestration and Bun as package manager
+- **Main entry**: [package.json](mdc:package.json) - Root workspace configuration
+- **Build config**: [turbo.json](mdc:turbo.json) - Turbo build pipeline
+- **Code quality**: [biome.json](mdc:biome.json) - Biome linter/formatter config
+
+### Applications (`apps/`)
+
+#### Extension App (`apps/extension/`)
+
+- **Main config**: [apps/extension/wxt.config.ts](mdc:apps/extension/wxt.config.ts) - WXT framework config for browser extension
+- **Package**: [apps/extension/package.json](mdc:apps/extension/package.json) - Extension dependencies
+- **Entry points**: `apps/extension/src/entrypoints/` - Browser extension entry points (popup, background, content, options)
+- **Components**: `apps/extension/src/components/` - Reusable React components
+- **Localization**: `apps/extension/public/_locales/` - i18n message files
+
+#### Backend App (`apps/backend/`)
+
+- **Server**: [apps/backend/src/server.ts](mdc:apps/backend/src/server.ts) - Elysia.js API server
+- **Package**: [apps/backend/package.json](mdc:apps/backend/package.json) - Backend dependencies
+- **Routes**: `apps/backend/src/routes/` - API route handlers
+- **Plugins**: `apps/backend/src/plugins/` - Elysia plugins (CORS, OpenAPI, etc.)
+
+### Packages (`packages/`)
+
+#### Database Package (`packages/db/`)
+
+- **Schema**: [packages/db/prisma/schema.prisma](mdc:packages/db/prisma/schema.prisma) - Prisma database schema
+- **Migrations**: `packages/db/prisma/migrations/` - Database migration files
+- **Seed**: `packages/db/prisma/seed/` - Database seeding scripts
+
+#### Storage Package (`packages/storage/`)
+
+- **Client**: [packages/storage/src/client.ts](mdc:packages/storage/src/client.ts) - File storage client
+
+#### Utils Package (`packages/utils/`)
+
+- **Schemas**: [packages/utils/src/schemas.ts](mdc:packages/utils/src/schemas.ts) - Shared Zod schemas
+- **Types**: [packages/utils/src/types.ts](mdc:packages/utils/src/types.ts) - Shared TypeScript types
+
+### Configs (`configs/`)
+
+#### TypeScript Configs (`configs/typescript/`)
+
+- **Base**: [configs/typescript/base.json](mdc:configs/typescript/base.json) - Base TypeScript configuration
+- **React**: [configs/typescript/react-library.json](mdc:configs/typescript/react-library.json) - React-specific config
+
+## Key Technologies
+
+- **Frontend**: React 19, Mantine UI, Jotai (state), React Router, i18next
+- **Backend**: Elysia.js, Prisma ORM, PostgreSQL, JWT auth
+- **Extension**: WXT framework for cross-browser extension development
+- **Build**: Turbo monorepo, Bun package manager
+- **Code Quality**: Biome (linting/formatting), TypeScript strict mode

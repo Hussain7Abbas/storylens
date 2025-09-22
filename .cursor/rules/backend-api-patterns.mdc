@@ -1,0 +1,140 @@
+---
+globs: apps/backend/**/*.ts
+description: Backend API patterns and Elysia.js best practices
+---
+
+# Backend API Patterns
+
+## Framework - Elysia.js
+
+### Server Setup
+
+- Main server: [apps/backend/src/server.ts](mdc:apps/backend/src/server.ts)
+- Setup utilities: [apps/backend/src/setup.ts](mdc:apps/backend/src/setup.ts)
+- Environment config: [apps/backend/src/env.ts](mdc:apps/backend/src/env.ts)
+
+### Plugin Architecture
+
+Plugins located in `apps/backend/src/plugins/`:
+
+- **CORS**: [apps/backend/src/plugins/cors.ts](mdc:apps/backend/src/plugins/cors.ts)
+- **OpenAPI**: [apps/backend/src/plugins/openapi.ts](mdc:apps/backend/src/plugins/openapi.ts)
+- **Logger**: [apps/backend/src/plugins/logger.ts](mdc:apps/backend/src/plugins/logger.ts)
+- **Crons**: [apps/backend/src/plugins/crons.ts](mdc:apps/backend/src/plugins/crons.ts)
+
+### Route Organization
+
+Routes in `apps/backend/src/routes/`:
+
+- [apps/backend/src/routes/accounts.ts](mdc:apps/backend/src/routes/accounts.ts) - User/admin management
+- [apps/backend/src/routes/files.ts](mdc:apps/backend/src/routes/files.ts) - File upload/management
+
+## API Patterns
+
+### Route Definition
+
+```typescript
+import { Elysia } from "elysia";
+
+export const routePlugin = new Elysia({ prefix: "/api/v1" })
+  .get("/endpoint", async ({ query }) => {
+    // Handler logic
+    return { data: result };
+  })
+  .post("/endpoint", async ({ body }) => {
+    // Handler logic
+    return { success: true };
+  });
+```
+
+### Error Handling
+
+- Centralized error utilities in [apps/backend/src/utils/errors.ts](mdc:apps/backend/src/utils/errors.ts)
+- Use consistent error response format
+- Leverage Elysia's built-in error handling
+
+### Authentication
+
+- Auth utilities in [apps/backend/src/utils/auth.ts](mdc:apps/backend/src/utils/auth.ts)
+- JWT token management with `jose` library
+- Bearer token plugin: `@elysiajs/bearer`
+
+## Data Validation
+
+### Schema Validation
+
+- Use Zod schemas from `@repo/utils` package
+- Validate request bodies and query parameters
+- Type-safe request/response handling
+
+### Database Integration
+
+```typescript
+import { db } from '@repo/db';
+
+// Use Prisma client for database operations
+const users = await db.user.findMany({
+  where: { ... },
+  include: { ... },
+});
+```
+
+## Utilities
+
+### Helper Functions
+
+- Common utilities in [apps/backend/src/utils/helpers.ts](mdc:apps/backend/src/utils/helpers.ts)
+- Password hashing with `bcryptjs`
+- Date manipulation with `dayjs`
+
+### Type Definitions
+
+- Shared types in [apps/backend/src/types.ts](mdc:apps/backend/src/types.ts)
+- Extend Elysia context types as needed
+
+## Development
+
+### Development Server
+
+```bash
+# Watch mode development
+bun run dev
+
+# Production build
+bun run build
+
+# Start production server
+bun run start
+```
+
+### Testing
+
+- Test files in `apps/backend/test/`
+- Use Bun's built-in test runner
+- Test API endpoints and business logic
+
+### Environment Variables
+
+- Use `@t3-oss/env-core` for environment validation
+- Define schema in [apps/backend/src/env.ts](mdc:apps/backend/src/env.ts)
+- Validate at startup
+
+## Security
+
+### CORS Configuration
+
+- Configured in CORS plugin
+- Environment-specific origins
+- Proper credential handling
+
+### Authentication Flow
+
+- JWT-based authentication
+- Secure token storage
+- Role-based access control (admin vs user)
+
+### File Upload Security
+
+- File type validation
+- Size limits
+- Secure file storage integration

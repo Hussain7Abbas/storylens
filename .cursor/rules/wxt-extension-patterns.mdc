@@ -1,0 +1,207 @@
+---
+globs: apps/extension/**/*.ts,apps/extension/**/*.tsx
+description: WXT framework patterns for browser extension development
+---
+
+# WXT Framework Patterns
+
+## Framework Configuration
+
+### WXT Config
+
+- Main config: [apps/extension/wxt.config.ts](mdc:apps/extension/wxt.config.ts)
+- Modules: `@wxt-dev/module-react`, `@wxt-dev/auto-icons`
+- Imports disabled: `imports: false` (manual imports required)
+
+### Entry Points Structure
+
+Entry points in `apps/extension/src/entrypoints/`:
+
+- `background.ts` - Service worker/background script
+- `content.ts` - Content script for page injection
+- `popup/` - Main popup interface
+- `options/` - Extension options page
+
+## WXT Global Functions
+
+### Background Scripts
+
+```typescript
+// defineBackground is globally available (no import needed)
+export default defineBackground(() => {
+  console.log("Background script loaded");
+
+  // Access browser APIs (globally available)
+  browser.runtime.onMessage.addListener((message) => {
+    // Handle messages
+  });
+});
+```
+
+### Content Scripts
+
+```typescript
+// defineContentScript is globally available (no import needed)
+export default defineContentScript({
+  matches: ["*://*/*"],
+  main() {
+    console.log("Content script loaded");
+
+    // DOM manipulation
+    // Message passing with background
+  },
+});
+```
+
+### Popup Scripts
+
+```typescript
+// Regular React components for popup
+import { createRoot } from "react-dom/client";
+import App from "./App";
+
+const root = createRoot(document.getElementById("root")!);
+root.render(<App />);
+```
+
+## Browser Extension APIs
+
+### Runtime API
+
+```typescript
+// Message passing between scripts
+browser.runtime.sendMessage({ type: "ACTION", data });
+
+// Listen for messages
+browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  // Handle message
+  sendResponse({ success: true });
+});
+```
+
+### Storage API
+
+```typescript
+// Extension storage
+await browser.storage.local.set({ key: "value" });
+const result = await browser.storage.local.get(["key"]);
+```
+
+### Tabs API
+
+```typescript
+// Tab management (requires permissions)
+const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+await browser.tabs.executeScript(tabId, { code: 'console.log("injected");' });
+```
+
+## Manifest Configuration
+
+### Internationalization
+
+- Manifest uses i18n keys: `__MSG_extName__`, `__MSG_extDescription__`
+- Default locale: `'en'`
+- Locales in `apps/extension/public/_locales/`
+
+### Permissions
+
+Define required permissions in manifest:
+
+- `storage` - For extension storage
+- `activeTab` - For current tab access
+- `tabs` - For tab management
+- Host permissions for content scripts
+
+## Development Workflow
+
+### Development Commands
+
+```bash
+# Chrome development
+bun run dev
+
+# Firefox development
+bun run dev:firefox
+
+# Production builds
+bun run build
+bun run build:firefox
+```
+
+### Hot Reload
+
+- WXT provides hot reload in development
+- Background scripts restart automatically
+- Content scripts require page refresh
+- Popup updates instantly
+
+## Extension Architecture Patterns
+
+### Multi-Entry Popup
+
+Example from project structure:
+
+- `popup/` - Main popup with routing
+- `popup.home/` - Home page with tabs
+- `popup.profile/` - Profile management
+- `popup.settings/` - Settings configuration
+
+### Tab-based Navigation
+
+```typescript
+// Use React Router for popup navigation
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/settings" element={<Settings />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+```
+
+### State Management
+
+- Use Jotai for cross-component state
+- Browser storage for persistence
+- Message passing for cross-script communication
+
+## Build & Distribution
+
+### Build Output
+
+- Chrome: Standard extension format
+- Firefox: Firefox-specific build with `-b firefox`
+- ZIP packaging: `bun run zip` / `bun run zip:firefox`
+
+### Asset Handling
+
+- Icons processed by `@wxt-dev/auto-icons`
+- Static assets in `apps/extension/public/`
+- Localization files automatically included
+
+## TypeScript Integration
+
+### Type Definitions
+
+- WXT provides global types for `defineBackground`, `defineContentScript`
+- Browser API types from `@types/webextension-polyfill`
+- Custom types for extension-specific interfaces
+
+### Global Functions
+
+```typescript
+// WXT functions are globally available (no imports needed)
+// - defineBackground
+// - defineContentScript
+// - browser (Web Extension APIs)
+
+// Regular React imports for popup components
+import React from "react";
+import { createRoot } from "react-dom/client";
+```

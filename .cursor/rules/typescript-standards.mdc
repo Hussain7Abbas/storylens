@@ -1,0 +1,84 @@
+---
+globs: *.ts,*.tsx
+description: TypeScript coding standards and best practices for the Novzella Extension project
+---
+
+# TypeScript Coding Standards
+
+## Core Rules
+
+### Type Safety
+
+- **NEVER use `any` type** - User rule: "don't use any type"
+- Use strict TypeScript configuration from [configs/typescript/base.json](mdc:configs/typescript/base.json)
+- Enable `noUncheckedIndexedAccess` and `strictNullChecks`
+- Always use explicit return types for functions
+- Prefer type assertions with `as const` for literal types
+
+### Code Quality
+
+- **Always run typecheck after completion** - User rule: "always typecheck after complete to fix issues"
+- **Never use eslint-disable comments** - User rule: "don't use eslint-disable ignore comments"
+- Use Biome for linting and formatting (configured in [biome.json](mdc:biome.json))
+- Follow strict Biome rules: `useBlockStatements`, `noParameterAssign`, `useAsConstAssertion`
+
+## TypeScript Configuration
+
+### Base Configuration
+
+All packages extend from [configs/typescript/base.json](mdc:configs/typescript/base.json):
+
+- Target: ES2023
+- Module: ESNext with Bundler resolution
+- Strict mode enabled
+- JSX: preserve (for React components)
+
+### Package-Specific Configs
+
+- Extension: Uses React-specific TypeScript config
+- Backend: Uses base config with Node.js types
+- Packages: Individual tsconfig.json files in each package
+
+## Import/Export Patterns
+
+### Imports
+
+```typescript
+// Prefer named imports
+import { Button, Stack } from "@mantine/core";
+
+// Use type-only imports when needed
+import type { ComponentProps } from "react";
+
+// Workspace imports
+import { schema } from "@repo/utils";
+import { db } from "@repo/db";
+```
+
+### Exports
+
+```typescript
+// Prefer named exports
+export function ComponentName() {}
+
+// Use index.ts files for clean re-exports
+export { ComponentName } from "./component-name";
+```
+
+## Type Definitions
+
+### Interface vs Type
+
+- Use `interface` for object shapes that might be extended
+- Use `type` for unions, primitives, and computed types
+
+### Utility Types
+
+- Leverage built-in utility types: `Partial<T>`, `Pick<T, K>`, `Omit<T, K>`
+- Create custom utility types in [packages/utils/src/types.ts](mdc:packages/utils/src/types.ts)
+
+## Error Handling
+
+- Use discriminated unions for error states
+- Prefer Result/Either patterns over throwing exceptions
+- Always handle async operations with proper error boundaries

@@ -1,0 +1,127 @@
+---
+alwaysApply: true
+description: Overview of all Cursor rules for the Novzella Extension project
+---
+
+# Cursor Rules Overview
+
+This directory contains comprehensive Cursor rules for the **Novzella Extension** (Story Lens) project. These rules provide context and guidelines for AI-assisted development.
+
+## Available Rules
+
+### 📁 [project-structure.mdc](mdc:project-structure.mdc)
+
+**Always Applied** - Project architecture and monorepo structure
+
+- Turbo + Bun monorepo setup
+- Apps: Extension (WXT) + Backend (Elysia.js)
+- Packages: Database (Prisma), Storage, Utils
+- Key file locations and entry points
+
+### 🎯 [typescript-standards.mdc](mdc:typescript-standards.mdc)
+
+**Applied to:** `*.ts`, `*.tsx` files
+
+- **Never use `any` type** (user rule)
+- **Always typecheck after completion** (user rule)
+- **No eslint-disable comments** (user rule)
+- Strict TypeScript configuration
+- Import/export patterns
+
+### ⚛️ [react-patterns.mdc](mdc:react-patterns.mdc)
+
+**Applied to:** `*.tsx`, `*.jsx` files
+
+- React component structure and naming
+- Mantine UI framework usage
+- i18n with react-i18next
+- State management with Jotai
+- Form handling patterns
+
+### 🔧 [package-management.mdc](mdc:package-management.mdc)
+
+**Always Applied** - Tooling and development workflow
+
+- **Always use Bun** (user rule)
+- Turbo build system
+- Biome for linting/formatting
+- Development and build commands
+
+### 🗄️ [database-patterns.mdc](mdc:database-patterns.mdc)
+
+**Applied to:** `*.prisma`, database-related files
+
+- Prisma schema patterns
+- Database seeding structure
+- Query patterns and relationships
+- Migration workflow
+
+### 🌐 [backend-api-patterns.mdc](mdc:backend-api-patterns.mdc)
+
+**Applied to:** `apps/backend/**/*.ts`
+
+- Elysia.js framework patterns
+- Plugin architecture
+- Authentication and security
+- Error handling
+
+### 🔌 [wxt-extension-patterns.mdc](mdc:wxt-extension-patterns.mdc)
+
+**Applied to:** Extension TypeScript files
+
+- WXT framework configuration
+- Browser extension entry points
+- Global functions (no imports needed)
+- Extension-specific patterns
+
+## User Rules Integration
+
+The following user preferences are enforced across all rules:
+
+- ❌ **Don't use `any` type**
+- ✅ **Always use Bun** for package management
+- 🔍 **Always typecheck after completion** to fix issues
+- 🚫 **Don't use eslint-disable ignore comments**
+
+## Quick Reference
+
+### Key Technologies
+
+- **Frontend**: React 19, Mantine UI, Jotai, React Router
+- **Backend**: Elysia.js, Prisma ORM, PostgreSQL
+- **Extension**: WXT framework, Web Extensions API
+- **Build**: Turbo monorepo, Bun package manager
+- **Quality**: Biome linting/formatting
+
+### Common Commands
+
+```bash
+# Development
+bun run dev              # Start all dev servers
+bun run typecheck        # TypeScript checking
+
+# Extension
+bun run dev              # Chrome development
+bun run dev:firefox      # Firefox development
+
+# Database
+bun run db:migrate:dev   # Run migrations
+bun run db:seed          # Seed database
+```
+
+### File Structure Quick Guide
+
+```
+apps/
+├── extension/           # Browser extension (WXT + React)
+│   ├── src/entrypoints/ # Extension entry points
+│   └── src/components/  # React components
+└── backend/             # API server (Elysia.js)
+    ├── src/routes/      # API routes
+    └── src/plugins/     # Elysia plugins
+
+packages/
+├── db/                  # Database (Prisma)
+├── storage/             # File storage
+└── utils/               # Shared utilities
+```

@@ -1,0 +1,137 @@
+---
+description: React component patterns and best practices for the browser extension
+globs: *.tsx
+alwaysApply: false
+---
+
+# React Component Patterns
+
+## Component Structure
+
+### File Organization
+
+- Components in `apps/extension/src/components/` for shared components
+- Page-specific components in respective entrypoint directories
+- Example structure from [apps/extension/src/components/navbar/](mdc:apps/extension/src/components/navbar/):
+  ```
+  navbar/
+    ├── index.ts        # Re-exports
+    ├── navbar.tsx      # Component implementation
+    └── navbar.module.css # Component styles
+  ```
+
+### Component Definition
+
+```typescript
+// Use function declarations for components
+export function ComponentName() {
+  // Component logic
+}
+
+// Avoid default exports, prefer named exports
+```
+
+## State Management
+
+### Local State
+
+- Use `useState` for component-local state
+- Use `useForm` from Mantine for form state (as seen in [apps/extension/src/entrypoints/popup.home/tabs/coloring-tab.tsx](mdc:apps/extension/src/entrypoints/popup.home/tabs/coloring-tab.tsx))
+
+### Global State
+
+- Use **Jotai** for global state management
+- Create atoms for shared state across components
+- Prefer atomic state over large global stores
+
+### Form Handling
+
+```typescript
+import { useForm } from "@mantine/form";
+
+const form = useForm({
+  initialValues: {
+    name: "",
+    category: "",
+  },
+});
+
+// Use form.getInputProps() for input binding
+<TextInput {...form.getInputProps("name")} />;
+```
+
+## UI Framework - Mantine
+
+### Component Usage
+
+- Use Mantine components consistently (Button, Stack, Group, TextInput, Select)
+- Follow Mantine's spacing system with `gap` props
+- Use Mantine's color system: `color="green.7"`, `color="red.7"`
+
+### Layout Patterns
+
+```typescript
+// Use Stack for vertical layouts
+<Stack gap="xs">
+  <TextInput />
+  <Select />
+</Stack>
+
+// Use Group for horizontal layouts
+<Group mt="md" grow>
+  <Button />
+  <Button />
+</Group>
+```
+
+## Internationalization (i18n)
+
+### Translation Hook
+
+```typescript
+import { useTranslation } from "react-i18next";
+
+export function Component() {
+  const { t } = useTranslation();
+
+  return <Button>{t("_.add")}</Button>;
+}
+```
+
+### Translation Keys
+
+- Use nested keys: `t('coloring.name')`, `t('coloring.category')`
+- Common actions under `_` namespace: `t('_.add')`, `t('_.delete')`, `t('_.search')`
+- Translation files in `apps/extension/public/_locales/`
+
+## Browser Extension Patterns
+
+### Entry Points
+
+Extension has multiple entry points in `apps/extension/src/entrypoints/`:
+
+- `popup/` - Main extension popup
+- `popup.home/` - Home tab with sub-tabs
+- `popup.profile/` - Profile page
+- `popup.settings/` - Settings page
+- `background.ts` - Background script
+- `content.ts` - Content script
+
+### Routing
+
+- Use React Router for navigation within popup
+- Route configuration in [apps/extension/src/entrypoints/popup/routers.tsx](mdc:apps/extension/src/entrypoints/popup/routers.tsx)
+- Custom routing hook in [apps/extension/src/hooks/useRoutes.tsx](mdc:apps/extension/src/hooks/useRoutes.tsx)
+
+## Performance
+
+### Component Optimization
+
+- Use `React.memo()` for expensive components
+- Prefer `useCallback` and `useMemo` for expensive computations
+- Avoid creating objects/functions in render
+
+### Bundle Size
+
+- Import only needed components: `import { Button } from '@mantine/core'`
+- Use dynamic imports for code splitting when appropriate

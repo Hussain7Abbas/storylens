@@ -1,0 +1,208 @@
+---
+globs: *.prisma,**/seed/**/*.ts,**/db/**/*.ts
+description: Database schema patterns and Prisma best practices
+---
+
+# Database & Prisma Patterns
+
+## Database Schema
+
+### Schema Location
+
+- Main schema: [packages/db/prisma/schema.prisma](mdc:packages/db/prisma/schema.prisma)
+- Database: PostgreSQL
+- Client generation: ESM modules
+
+### Core Models
+
+#### User Management
+
+- `Admin` - Administrative users with root flag
+- `User` - Regular application users
+- Both have profile fields: name, phone, birthDate, gender, avatar
+
+#### Content Management
+
+- `Novel` - Main content entity with name, description, image
+- `Chapter` - Novel chapters with number and description
+- `File` - File storage (images/videos) with type enum
+
+#### Keyword System
+
+- `Keyword` - Main keyword entity with category, nature, image
+- `KeywordCategory` - Categories with colors (شخصية, مهارة, مكان)
+- `KeywordNature` - Natures with colors (بطل, صديق, عدو, انثى, مدرب, طائفة)
+- `KeywordsChapters` - Many-to-many relationship
+- `Replacement` - Keyword replacement strings
+
+### Schema Patterns
+
+#### Model Structure
+
+```prisma
+model ModelName {
+  id String @id @default(uuid())
+
+  // Core fields
+  name String
+
+  // Relations
+  relationId String
+  relation   RelatedModel @relation(fields: [relationId], references: [id])
+
+  // Metadata (always include)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Indexes
+  @@index([name])
+}
+```
+
+#### Enums
+
+- Use PascalCase: `FileType`, `Gender`
+- Values in PascalCase: `Male`, `Female`, `Image`, `Video`
+
+#### Relations
+
+- Use descriptive relation names: `"AdminAvatars"`, `"NovelKeywords"`
+- Self-relations: `"KeywordParents"` for hierarchical data
+- Many-to-many: Explicit junction tables like `KeywordsChapters`
+
+## Database Operations
+
+### Prisma Client
+
+```typescript
+import { db } from "@repo/db";
+
+// Generated client available as 'db'
+const users = await db.user.findMany();
+```
+
+### Migration Workflow
+
+```bash
+# Development migrations
+bun run db:migrate:dev
+
+# Production deployment
+bun run db:migrate:deploy
+
+# Reset database
+bun run db:migrate:reset
+```
+
+## Database Seeding
+
+### Seed Structure
+
+- Main seed file: [packages/db/prisma/seed/main.ts](mdc:packages/db/prisma/seed/main.ts)
+- Table-specific seeds in `packages/db/prisma/seed/tables/`
+- Utilities in `packages/db/prisma/seed/utils/`
+
+### Seed Patterns
+
+```typescript
+// Example from keyword-category.ts
+import { db } from "../../src";
+
+export async function seedKeywordCategories() {
+  await db.keywordCategory.createMany({
+    data: [
+      { name: "شخصية", color: "#FF6B6B" },
+      { name: "مهارة", color: "#4ECDC4" },
+      { name: "مكان", color: "#45B7D1" },
+    ],
+    skipDuplicates: true,
+  });
+}
+```
+
+### Seed Execution
+
+```bash
+# Run all seeds
+bun run db:seed
+
+# Individual seed files are imported in main.ts
+```
+
+## Query Patterns
+
+### Relationships
+
+```typescript
+// Include related data
+const novelWithChapters = await db.novel.findUnique({
+  where: { id },
+  include: {
+    chapters: true,
+    Keywords: {
+      include: {
+        category: true,
+        nature: true,
+      },
+    },
+  },
+});
+```
+
+### Filtering & Searching
+
+```typescript
+// Search with indexes
+const novels = await db.novel.findMany({
+  where: {
+    name: {
+      contains: searchTerm,
+      mode: "insensitive",
+    },
+  },
+  orderBy: {
+    createdAt: "desc",
+  },
+});
+```
+
+### Transactions
+
+```typescript
+// Use transactions for related operations
+await db.$transaction(async (tx) => {
+  const keyword = await tx.keyword.create({
+    data: keywordData,
+  });
+
+  await tx.keywordsChapters.createMany({
+    data: chapterIds.map((chapterId) => ({
+      keywordId: keyword.id,
+      chapterId,
+    })),
+  });
+});
+```
+
+## File Storage Integration
+
+### File Model
+
+- Links to storage package via `key` field
+- Type enum for different file types
+- Public/private flag for access control
+- Relations to users, admins, novels, keywords
+
+### Usage Pattern
+
+```typescript
+// Create file record after upload
+const file = await db.file.create({
+  data: {
+    key: uploadedFileKey,
+    size: fileSize,
+    type: "Image",
+    userId: currentUserId,
+  },
+});
+```

@@ -1,0 +1,132 @@
+---
+alwaysApply: true
+description: Package management, tooling, and development workflow guidelines
+---
+
+# Package Management & Tooling
+
+## Package Manager
+
+### Bun Usage
+
+- **Always use Bun** - User rule: "always use bun"
+- Package manager: `bun@1.2.22` (specified in [package.json](mdc:package.json))
+- Install dependencies: `bun install`
+- Run scripts: `bun run <script>`
+- Add packages: `bun add <package>`
+
+### Workspace Configuration
+
+- Monorepo workspaces defined in root [package.json](mdc:package.json):
+  ```json
+  "workspaces": [
+    "configs/*",
+    "packages/*",
+    "apps/*"
+  ]
+  ```
+
+## Build System - Turbo
+
+### Turbo Configuration
+
+- Build orchestration via [turbo.json](mdc:turbo.json)
+- Available tasks: `dev`, `build`, `test`, `typecheck`, `i18n:parse`
+- Parallel execution with dependency management
+- Caching for improved performance
+
+### Common Commands
+
+```bash
+# Development
+bun run dev          # Start all dev servers
+turbo dev            # Alternative turbo command
+
+# Building
+bun run build        # Build all packages/apps
+turbo build          # Alternative turbo command
+
+# Testing & Quality
+bun run test         # Run all tests
+bun run typecheck    # TypeScript checking
+bun run check        # Biome linting/formatting
+```
+
+## Code Quality Tools
+
+### Biome Configuration
+
+- Unified linter and formatter configured in [biome.json](mdc:biome.json)
+- Line width: 86 characters
+- Quote style: single quotes
+- Indent: 2 spaces
+- **Never use eslint-disable comments** - User rule
+
+### Quality Scripts
+
+```bash
+bun run format      # Format code with Biome
+bun run lint        # Lint code with Biome
+bun run check       # Both lint and format
+```
+
+## Development Workflow
+
+### Extension Development
+
+```bash
+# Extension-specific commands (from apps/extension/)
+bun run dev              # Development with Chrome
+bun run dev:firefox      # Development with Firefox
+bun run build            # Production build
+bun run build:firefox    # Firefox build
+```
+
+### Backend Development
+
+```bash
+# Backend-specific commands (from apps/backend/)
+bun run dev     # Development server with watch
+bun run build   # Production build
+bun run start   # Start production server
+```
+
+### Database Operations
+
+```bash
+# Database commands (run from root)
+bun run db:generate      # Generate Prisma client
+bun run db:migrate:dev   # Run development migrations
+bun run db:seed          # Seed database
+bun run db:studio        # Open Prisma Studio
+```
+
+## Package Dependencies
+
+### Shared Dependencies
+
+- TypeScript configurations from `@repo/tsconfig`
+- Database client from `@repo/db`
+- Utilities from `@repo/utils`
+- Storage client from `@repo/storage`
+
+### Version Management
+
+- Use exact versions in package.json when possible
+- Workspace dependencies use `workspace:*` protocol
+- Keep major versions aligned across packages
+
+## Scripts & Automation
+
+### Utility Scripts
+
+- `bun run scripts:cleanup` - Clean build artifacts
+- `bun run scripts:reinstall` - Fresh install
+- `bun run scripts:update` - Update dependencies
+- `bun run scripts:init:env` - Environment setup
+
+### Git Hooks
+
+- Husky for Git hooks
+- Commitlint for conventional commits
+- Lint-staged for pre-commit checks
