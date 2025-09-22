@@ -12,17 +12,12 @@ export const answers = {
 
   backendPort: await input({
     message: 'Backend Port',
-    default: '3000',
+    default: '6000',
   }),
 
-  dashboardPort: await input({
-    message: 'Dashboard Port',
-    default: '3001',
-  }),
-
-  websitePort: await input({
-    message: 'Website Port',
-    default: '3002',
+  extensionPort: await input({
+    message: 'Extension Port',
+    default: '6001',
   }),
 
   jwtSecretKey: generateSecretKey(16),

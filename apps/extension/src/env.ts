@@ -7,6 +7,6 @@ export const env = createEnv({
   clientPrefix: 'WXT_',
 
   client: {
-    WXT_API_URL: z.string(),
+    WXT_API_URL: z.coerce.string(),
   },
 });

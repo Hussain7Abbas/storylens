@@ -21,9 +21,9 @@ export default defineConfig({
 
   webExt: {
     binaries: {
-      chrome: '/usr/bin/google-chrome',
+      chromium: '/usr/bin/chromium',
     },
-    chromiumArgs: ['--user-data-dir=./.wxt/chrome-data'],
+    chromiumArgs: ['--user-data-dir=./.wxt/chromium-data'],
     keepProfileChanges: true,
   },
 });
