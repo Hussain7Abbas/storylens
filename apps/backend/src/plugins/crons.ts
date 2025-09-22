@@ -1,7 +1,7 @@
 import { cron as elysiaCron } from '@elysiajs/cron';
 import type { Prisma } from '@prisma/client';
 import { prisma } from '@repo/db';
-import { deleteObjects } from '@repo/storage';
+import { deleteFile } from '@repo/storage';
 import { env } from '@/env';
 
 export const crons = elysiaCron({
@@ -17,9 +17,10 @@ export const crons = elysiaCron({
 
     const files = await prisma.file.findMany({ where });
 
-    await deleteObjects(
-      env.STORAGE_BUCKET_NAME,
-      files.map((file) => file.key),
+    Promise.all(
+      files.map(async (file) => {
+        await deleteFile(file.provider_image_id);
+      }),
     );
 
     await prisma.file.deleteMany({ where });

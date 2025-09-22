@@ -13,7 +13,7 @@ const client = axios.create({
   baseURL: 'https://api.imgbb.com/1',
 });
 
-export async function deleteObjects(imageId: string) {
+export async function deleteFile(imageId: string) {
   const imgbbDeleteParams: ImgBBDeleteRequest = {
     key: env.STORAGE_IMGBB_API_KEY,
     image_id: imageId,
