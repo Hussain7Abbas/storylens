@@ -3,7 +3,7 @@ import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
 import { authenticate } from '@/utils/helpers';
 
-export const chapters = new Elysia({ prefix: '/chapters' })
+export const chapters = new Elysia({ prefix: '/chapters', tags: ['Chapters'] })
   .use(setup)
 
   // Get all chapters for a novel

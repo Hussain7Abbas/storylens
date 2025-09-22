@@ -3,7 +3,7 @@ import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
 import { authenticate } from '@/utils/helpers';
 
-export const keywords = new Elysia({ prefix: '/keywords' })
+export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
   .use(setup)
 
   // Get all keywords with filters

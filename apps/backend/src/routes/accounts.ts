@@ -6,7 +6,7 @@ import { signJwt } from '@/utils/auth';
 import { HttpError } from '@/utils/errors';
 import { authenticate } from '@/utils/helpers';
 
-export const accounts = new Elysia({ prefix: '/accounts' })
+export const accounts = new Elysia({ prefix: '/accounts', tags: ['Accounts'] })
   .use(setup)
 
   .post(

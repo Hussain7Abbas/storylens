@@ -3,7 +3,10 @@ import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
 import { authenticate } from '@/utils/helpers';
 
-export const replacements = new Elysia({ prefix: '/replacements' })
+export const replacements = new Elysia({
+  prefix: '/replacements',
+  tags: ['Replacements'],
+})
   .use(setup)
 
   // Get all replacements for a keyword

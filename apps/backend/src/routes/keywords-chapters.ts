@@ -3,7 +3,10 @@ import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
 import { authenticate } from '@/utils/helpers';
 
-export const keywordsChapters = new Elysia({ prefix: '/keywords-chapters' })
+export const keywordsChapters = new Elysia({
+  prefix: '/keywords-chapters',
+  tags: ['KeywordsChapters'],
+})
   .use(setup)
 
   // Get all keyword-chapter relationships for a specific chapter

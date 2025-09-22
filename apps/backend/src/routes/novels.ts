@@ -3,7 +3,10 @@ import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
 import { authenticate } from '@/utils/helpers';
 
-export const novels = new Elysia({ prefix: '/novels' })
+export const novels = new Elysia({
+  prefix: '/novels',
+  tags: ['Novels'],
+})
   .use(setup)
 
   // Get all novels with pagination

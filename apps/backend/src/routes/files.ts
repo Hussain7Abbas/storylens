@@ -5,7 +5,7 @@ import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
 import { authenticate } from '@/utils/helpers';
 
-export const files = new Elysia({ prefix: '/files' })
+export const files = new Elysia({ prefix: '/files', tags: ['Files'] })
   .use(setup)
 
   .post(

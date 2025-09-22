@@ -3,7 +3,10 @@ import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
 import { authenticate } from '@/utils/helpers';
 
-export const keywordCategories = new Elysia({ prefix: '/keyword-categories' })
+export const keywordCategories = new Elysia({
+  prefix: '/keyword-categories',
+  tags: ['KeywordCategories'],
+})
   .use(setup)
 
   // Get all keyword categories
