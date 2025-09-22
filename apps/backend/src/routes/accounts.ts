@@ -96,7 +96,7 @@ export const accounts = new Elysia({ prefix: '/accounts' })
 
       const profile = await prisma.user.findUnique({
         where: { id: user.id },
-        include: { avatar: { select: { key: true } } },
+        include: { avatar: { select: { url: true } } },
       });
 
       if (!profile) {

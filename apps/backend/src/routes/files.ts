@@ -1,7 +1,6 @@
 import { FileType } from '@prisma/client';
 import { uploadImage, uploadVideo } from '@repo/storage';
 import { Elysia, t } from 'elysia';
-import { env } from '@/env';
 import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
 import { authenticate } from '@/utils/helpers';
@@ -19,20 +18,17 @@ export const files = new Elysia({ prefix: '/files' })
           ar: 'مطلوب التحقق من الهوية',
         }),
       });
-      const isPublic = body.isPublic === 'true';
 
       if (body.type === 'Image') {
-        const { key, size } = await uploadImage({
+        const uploadedImage = await uploadImage({
           file: body.file,
-          bucketName: env.STORAGE_BUCKET_NAME,
-          isPublic,
         });
 
         return prisma.file.create({
           data: {
-            key,
-            size,
-            isPublic,
+            url: uploadedImage.url,
+            provider_image_id: uploadedImage.id,
+            delete_url: uploadedImage.delete_url,
             userId: user.id,
             type: body.type,
           },
@@ -40,19 +36,17 @@ export const files = new Elysia({ prefix: '/files' })
       }
 
       if (body.type === 'Video') {
-        const { key, size } = await uploadVideo({
+        const uploadedVideo = await uploadVideo({
           file: body.file,
-          bucketName: env.STORAGE_BUCKET_NAME,
-          isPublic,
         });
 
         return prisma.file.create({
           data: {
-            key,
-            size,
-            isPublic,
-            type: body.type,
+            url: uploadedVideo.url,
+            provider_image_id: uploadedVideo.id,
+            delete_url: uploadedVideo.delete_url,
             userId: user.id,
+            type: body.type,
           },
         });
       }
@@ -68,7 +62,6 @@ export const files = new Elysia({ prefix: '/files' })
       body: t.Object({
         file: t.File(),
         type: t.Enum(FileType),
-        isPublic: t.Union([t.Literal('true'), t.Literal('false')]),
       }),
     },
   );

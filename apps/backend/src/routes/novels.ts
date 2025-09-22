@@ -40,9 +40,8 @@ export const novels = new Elysia({ prefix: '/novels' })
           include: {
             image: {
               select: {
-                key: true,
+                url: true,
                 type: true,
-                isPublic: true,
               },
             },
             _count: {
@@ -87,9 +86,8 @@ export const novels = new Elysia({ prefix: '/novels' })
         include: {
           image: {
             select: {
-              key: true,
+              url: true,
               type: true,
-              isPublic: true,
             },
           },
           chapters: {
@@ -110,9 +108,8 @@ export const novels = new Elysia({ prefix: '/novels' })
               nature: true,
               image: {
                 select: {
-                  key: true,
+                  url: true,
                   type: true,
-                  isPublic: true,
                 },
               },
               _count: {
@@ -166,9 +163,8 @@ export const novels = new Elysia({ prefix: '/novels' })
         include: {
           image: {
             select: {
-              key: true,
+              url: true,
               type: true,
-              isPublic: true,
             },
           },
         },
@@ -221,9 +217,8 @@ export const novels = new Elysia({ prefix: '/novels' })
         include: {
           image: {
             select: {
-              key: true,
+              url: true,
               type: true,
-              isPublic: true,
             },
           },
         },

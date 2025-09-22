@@ -23,10 +23,6 @@ for (const exampleEnvFilePath of exampleEnvFilesPaths) {
     { old: 'POSTGRES-DOMAIN', new: answers.dbDomain },
     { old: 'POSTGRES-PORT', new: answers.dbPort },
 
-    { old: 'STORAGE-REGION', new: answers.storageRegion },
-    { old: 'STORAGE-ENDPOINT', new: answers.storageEndpoint },
-    { old: 'STORAGE-ACCESS-KEY', new: answers.storageAccessKey },
-    { old: 'STORAGE-SECRET-KEY', new: answers.storageSecretKey },
-    { old: 'STORAGE-BUCKET-NAME', new: answers.storageBucketName },
+    { old: 'STORAGE-IMGBB-API-KEY', new: answers.storageImgbbApiKey },
   ]);
 }

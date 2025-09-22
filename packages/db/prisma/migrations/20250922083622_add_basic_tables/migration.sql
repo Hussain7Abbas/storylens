@@ -1,5 +1,29 @@
+/*
+  Warnings:
+
+  - You are about to drop the column `isPublic` on the `File` table. All the data in the column will be lost.
+  - You are about to drop the column `key` on the `File` table. All the data in the column will be lost.
+  - You are about to drop the column `size` on the `File` table. All the data in the column will be lost.
+  - A unique constraint covering the columns `[url]` on the table `File` will be added. If there are existing duplicate values, this will fail.
+  - A unique constraint covering the columns `[provider_image_id]` on the table `File` will be added. If there are existing duplicate values, this will fail.
+  - Added the required column `delete_url` to the `File` table without a default value. This is not possible if the table is not empty.
+  - Added the required column `provider_image_id` to the `File` table without a default value. This is not possible if the table is not empty.
+  - Added the required column `url` to the `File` table without a default value. This is not possible if the table is not empty.
+
+*/
+-- DropIndex
+DROP INDEX "public"."File_key_key";
+
 -- AlterTable
 ALTER TABLE "public"."Admin" ADD COLUMN     "gender" "public"."Gender";
+
+-- AlterTable
+ALTER TABLE "public"."File" DROP COLUMN "isPublic",
+DROP COLUMN "key",
+DROP COLUMN "size",
+ADD COLUMN     "delete_url" TEXT NOT NULL,
+ADD COLUMN     "provider_image_id" TEXT NOT NULL,
+ADD COLUMN     "url" TEXT NOT NULL;
 
 -- CreateTable
 CREATE TABLE "public"."Novel" (
@@ -97,6 +121,12 @@ CREATE INDEX "Keyword_name_idx" ON "public"."Keyword"("name");
 
 -- CreateIndex
 CREATE INDEX "KeywordsChapters_keywordId_chapterId_idx" ON "public"."KeywordsChapters"("keywordId", "chapterId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "File_url_key" ON "public"."File"("url");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "File_provider_image_id_key" ON "public"."File"("provider_image_id");
 
 -- AddForeignKey
 ALTER TABLE "public"."Novel" ADD CONSTRAINT "Novel_imageId_fkey" FOREIGN KEY ("imageId") REFERENCES "public"."File"("id") ON DELETE SET NULL ON UPDATE CASCADE;

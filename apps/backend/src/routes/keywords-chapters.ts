@@ -52,9 +52,8 @@ export const keywordsChapters = new Elysia({ prefix: '/keywords-chapters' })
                 },
                 image: {
                   select: {
-                    key: true,
+                    url: true,
                     type: true,
-                    isPublic: true,
                   },
                 },
               },
@@ -194,9 +193,8 @@ export const keywordsChapters = new Elysia({ prefix: '/keywords-chapters' })
               },
               image: {
                 select: {
-                  key: true,
+                  url: true,
                   type: true,
-                  isPublic: true,
                 },
               },
             },

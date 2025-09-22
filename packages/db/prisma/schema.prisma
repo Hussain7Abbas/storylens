@@ -72,10 +72,10 @@ model User {
 model File {
   id String @id @default(uuid())
 
-  key      String   @unique
-  size     Int
+  url      String   @unique
   type     FileType
-  isPublic Boolean  @default(false)
+  provider_image_id String @unique
+  delete_url String
 
   userId String?
   user   User?   @relation(fields: [userId], references: [id])

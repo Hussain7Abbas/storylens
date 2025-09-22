@@ -89,9 +89,8 @@ export const chapters = new Elysia({ prefix: '/chapters' })
                   nature: true,
                   image: {
                     select: {
-                      key: true,
+                      url: true,
                       type: true,
-                      isPublic: true,
                     },
                   },
                 },

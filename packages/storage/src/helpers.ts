@@ -1,35 +1,44 @@
 import * as path from 'node:path';
-import { DeleteObjectsCommand, PutObjectCommand } from '@aws-sdk/client-s3';
 import sharp from 'sharp';
-import { storage } from './client';
+import axios from 'axios';
+import { env } from './env';
+import type {
+  ImageData,
+  ImgBBDeleteRequest,
+  ImgBBUploadRequest,
+  ImgBBUploadResponse,
+} from './types';
 
-export async function deleteObjects(bucketName: string, files: string[]) {
-  const command = new DeleteObjectsCommand({
-    Bucket: bucketName,
-    Delete: { Objects: files.map((file) => ({ Key: file })) },
-  });
+const client = axios.create({
+  baseURL: 'https://api.imgbb.com/1',
+});
 
-  await storage.send(command);
+export async function deleteObjects(imageId: string) {
+  const imgbbDeleteParams: ImgBBDeleteRequest = {
+    key: env.STORAGE_IMGBB_API_KEY,
+    image_id: imageId,
+  };
+
+  await client.get('/delete', { params: imgbbDeleteParams });
 }
 
-export async function uploadObject(
-  bucketName: string,
-  key: string,
-  file: Buffer,
-  contentType: string,
-  fileSize: number,
-  isPublic: boolean,
-): Promise<void> {
-  const command = new PutObjectCommand({
-    Bucket: bucketName,
-    Key: key,
-    Body: file,
-    ContentType: contentType,
-    ContentLength: fileSize,
-    ACL: isPublic ? 'public-read' : 'private',
-  });
+export async function uploadFile(file: Buffer, fileName: string): Promise<ImageData> {
+  const imgbbUploadBody: ImgBBUploadRequest = {
+    key: env.STORAGE_IMGBB_API_KEY,
+    image: file,
+    name: fileName,
+    expiration: 60 * 60 * 24 * 30,
+  };
+  const imgbbResponse: ImgBBUploadResponse = await client.post(
+    '/upload',
+    imgbbUploadBody,
+  );
 
-  await storage.send(command);
+  if (!imgbbResponse.success) {
+    throw new Error('Failed to upload image', { cause: imgbbResponse });
+  }
+
+  return imgbbResponse.data;
 }
 
 async function compressImage(imageFile: File, fileName: string): Promise<File> {
@@ -51,38 +60,28 @@ function replaceFileExtension(fileName: string, newExtension: string): string {
 
 export async function uploadImage({
   file,
-  bucketName,
-  isPublic,
   useNameAsKey = false,
 }: {
   file: File;
-  bucketName: string;
-  isPublic: boolean;
   useNameAsKey?: boolean;
 }) {
   const key = useNameAsKey
     ? replaceFileExtension(file.name, 'webp')
     : `${crypto.randomUUID()}.webp`;
 
-  const f = await compressImage(file, key);
+  const compressedFile = await compressImage(file, key);
 
-  const arrayBuffer = await f.arrayBuffer();
+  const arrayBuffer = await compressedFile.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
 
-  await uploadObject(bucketName, key, buffer, f.type, f.size, isPublic);
-
-  return { key: key, size: f.size };
+  return await uploadFile(buffer, key);
 }
 
 export async function uploadVideo({
   file,
-  bucketName,
-  isPublic,
   useNameAsKey = false,
 }: {
   file: File;
-  bucketName: string;
-  isPublic: boolean;
   useNameAsKey?: boolean;
 }) {
   const ext = path.extname(file.name);
@@ -91,7 +90,5 @@ export async function uploadVideo({
   const arrayBuffer = await file.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
 
-  await uploadObject(bucketName, key, buffer, file.type, file.size, isPublic);
-
-  return { key, size: file.size };
+  return await uploadFile(buffer, key);
 }

@@ -47,9 +47,8 @@ export const keywords = new Elysia({ prefix: '/keywords' })
             nature: true,
             image: {
               select: {
-                key: true,
+                url: true,
                 type: true,
-                isPublic: true,
               },
             },
             parent: {
@@ -106,9 +105,8 @@ export const keywords = new Elysia({ prefix: '/keywords' })
           nature: true,
           image: {
             select: {
-              key: true,
+              url: true,
               type: true,
-              isPublic: true,
             },
           },
           parent: {
@@ -246,9 +244,8 @@ export const keywords = new Elysia({ prefix: '/keywords' })
           nature: true,
           image: {
             select: {
-              key: true,
+              url: true,
               type: true,
-              isPublic: true,
             },
           },
           parent: {
@@ -368,9 +365,8 @@ export const keywords = new Elysia({ prefix: '/keywords' })
           nature: true,
           image: {
             select: {
-              key: true,
+              url: true,
               type: true,
-              isPublic: true,
             },
           },
           parent: {

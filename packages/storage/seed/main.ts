@@ -1,5 +1,4 @@
 import { readdir } from 'node:fs/promises';
-import { env } from '@/env';
 import { uploadImage } from '@/helpers';
 
 const paths = ['./seed/assets/avatars'];
@@ -16,9 +15,7 @@ for (const path of paths) {
 
     const promise = uploadImage({
       file,
-      isPublic: true,
       useNameAsKey: true,
-      bucketName: env.STORAGE_BUCKET_NAME,
     });
 
     promises.push(promise);

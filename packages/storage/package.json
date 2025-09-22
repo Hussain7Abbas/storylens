@@ -10,8 +10,8 @@
     "seed": "bun run seed/main.ts"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.893.0",
     "@t3-oss/env-core": "^0.13.8",
+    "axios": "^1.12.2",
     "sharp": "^0.34.4",
     "zod": "^4.1.9"
   },

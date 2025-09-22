@@ -1,6 +1,5 @@
 import { PrismaClient } from '@prisma/client';
 import { env } from '@/env';
-import { seedFiles } from './tables/files';
 import { seedRootAdmin } from './tables/root-admin';
 import { seedKeywordCategory } from './tables/keyword-category';
 import { seedKeywordNature } from './tables/keyword-nature';
@@ -16,7 +15,6 @@ async function main() {
   await seedRootAdmin(prisma);
 
   if (env.NODE_ENV === 'development') {
-    await seedFiles(prisma);
     await seedKeywordCategory(prisma);
     await seedKeywordNature(prisma);
     await seedNovels(prisma);

@@ -66,24 +66,7 @@ export const answers = {
     default: '5432',
   }),
 
-  storageBucketName: await input({
-    message: 'Storage Bucket Name',
-    default: 'bucket',
-  }),
-
-  storageRegion: await input({
-    message: 'Storage Region',
-  }),
-
-  storageEndpoint: await input({
-    message: 'Storage Endpoint',
-  }),
-
-  storageAccessKey: await input({
-    message: 'Storage Access Key',
-  }),
-
-  storageSecretKey: await password({
-    message: 'Storage Secret Key',
+  storageImgbbApiKey: await password({
+    message: 'Storage Imgbb API Key',
   }),
 };
