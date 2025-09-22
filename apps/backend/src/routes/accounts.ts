@@ -86,7 +86,13 @@ export const accounts = new Elysia({ prefix: '/accounts' })
   .get(
     '/profile',
     async ({ t, prisma, bearer }) => {
-      const user = await authenticate(bearer);
+      const user = await authenticate({
+        token: bearer || '',
+        errorMessage: t({
+          en: 'Authentication required',
+          ar: 'مطلوب التحقق من الهوية',
+        }),
+      });
 
       const profile = await prisma.user.findUnique({
         where: { id: user.id },

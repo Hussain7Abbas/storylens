@@ -12,7 +12,13 @@ export const files = new Elysia({ prefix: '/files' })
   .post(
     '/upload',
     async ({ bearer, body, prisma, t }) => {
-      const user = await authenticate(bearer);
+      const user = await authenticate({
+        token: bearer || '',
+        errorMessage: t({
+          en: 'Authentication required',
+          ar: 'مطلوب التحقق من الهوية',
+        }),
+      });
       const isPublic = body.isPublic === 'true';
 
       if (body.type === 'Image') {
