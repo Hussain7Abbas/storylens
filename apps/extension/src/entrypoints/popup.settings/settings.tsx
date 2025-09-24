@@ -1,16 +1,18 @@
+import { localeAtom } from '@/store/locale';
 import { Button, Container } from '@mantine/core';
-import { useTranslation } from 'react-i18next';
+import { useAtom } from 'jotai';
 
 export function SettingsPage() {
-  const { i18n } = useTranslation();
+  const [locale, setLocale] = useAtom(localeAtom);
+
   function handleChangeLanguage() {
-    i18n.changeLanguage(i18n.language === 'ar' ? 'en' : 'ar');
+    setLocale(locale === 'ar' ? 'en' : 'ar');
   }
 
   return (
     <Container p="md" dir="rtl">
       <Button onClick={handleChangeLanguage}>
-        {i18n.language === 'ar' ? 'English' : 'Arabic'}
+        {locale === 'ar' ? 'English' : 'Arabic'}
       </Button>
     </Container>
   );
