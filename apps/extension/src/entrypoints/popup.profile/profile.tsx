@@ -21,7 +21,7 @@ export function ProfilePage() {
   });
 
   return (
-    <Container p="md" dir="rtl">
+    <Container p="md">
       <Center>
         <Avatar src={form.values.avatar} size={120} radius={120} />
       </Center>

@@ -13,9 +13,10 @@ import { useEffect } from 'react';
 
 function App({ type = 'popup' }: { type: 'popup' | 'options' }) {
   const { i18n } = useTranslation();
-  const [locale] = useAtomValue(localeAtom);
+  const locale = useAtomValue(localeAtom);
 
   useEffect(() => {
+    console.log('✅locale', { locale });
     i18n.changeLanguage(locale);
   }, [locale]);
 

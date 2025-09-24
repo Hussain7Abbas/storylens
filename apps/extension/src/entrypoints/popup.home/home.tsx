@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 export function HomePage() {
   const { t } = useTranslation();
   return (
-    <Container p="md" dir="rtl">
+    <Container p="md">
       <Tabs defaultValue="coloring" variant="outline">
         <Tabs.List grow>
           <Tabs.Tab value="coloring">{t('tabs.coloring')}</Tabs.Tab>

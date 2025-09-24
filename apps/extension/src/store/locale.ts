@@ -1,3 +1,3 @@
 import { atomWithStorage } from 'jotai/utils';
 
-export const localeAtom = atomWithStorage('locale', 'en');
+export const localeAtom = atomWithStorage<string>('locale', 'en');
