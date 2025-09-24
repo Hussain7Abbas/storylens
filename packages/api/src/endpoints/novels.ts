@@ -39,7 +39,7 @@ type AwaitedInput<T> = PromiseLike<T> | T;
 type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 
 export const getNovels = (
-  params?: GetNovelsParams,
+  params: GetNovelsParams,
   options?: AxiosRequestConfig,
 ): Promise<AxiosResponse<unknown>> => {
   return axios.get('http://localhost:7000/novels/', {
@@ -56,7 +56,7 @@ export const getGetNovelsQueryOptions = <
   TData = Awaited<ReturnType<typeof getNovels>>,
   TError = AxiosError<unknown>,
 >(
-  params?: GetNovelsParams,
+  params: GetNovelsParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getNovels>>, TError, TData>
@@ -86,7 +86,7 @@ export function useGetNovels<
   TData = Awaited<ReturnType<typeof getNovels>>,
   TError = AxiosError<unknown>,
 >(
-  params: undefined | GetNovelsParams,
+  params: GetNovelsParams,
   options: {
     query: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getNovels>>, TError, TData>
@@ -109,7 +109,7 @@ export function useGetNovels<
   TData = Awaited<ReturnType<typeof getNovels>>,
   TError = AxiosError<unknown>,
 >(
-  params?: GetNovelsParams,
+  params: GetNovelsParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getNovels>>, TError, TData>
@@ -130,7 +130,7 @@ export function useGetNovels<
   TData = Awaited<ReturnType<typeof getNovels>>,
   TError = AxiosError<unknown>,
 >(
-  params?: GetNovelsParams,
+  params: GetNovelsParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getNovels>>, TError, TData>
@@ -144,7 +144,7 @@ export function useGetNovels<
   TData = Awaited<ReturnType<typeof getNovels>>,
   TError = AxiosError<unknown>,
 >(
-  params?: GetNovelsParams,
+  params: GetNovelsParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getNovels>>, TError, TData>

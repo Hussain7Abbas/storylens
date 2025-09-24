@@ -2,7 +2,7 @@ import { t } from 'elysia';
 
 export const paginationSchema = t.Object({
   page: t.Number(),
-  limit: t.Number(),
+  pageSize: t.Number(),
 });
 
 export const sortingSchema = t.Object({

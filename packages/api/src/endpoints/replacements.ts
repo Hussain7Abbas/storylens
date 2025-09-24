@@ -40,7 +40,7 @@ type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 
 export const getReplacementsKeywordByKeywordId = (
   keywordId: string,
-  params?: GetReplacementsKeywordByKeywordIdParams,
+  params: GetReplacementsKeywordByKeywordIdParams,
   options?: AxiosRequestConfig,
 ): Promise<AxiosResponse<unknown>> => {
   return axios.get(`http://localhost:7000/replacements/keyword/${keywordId}`, {
@@ -64,7 +64,7 @@ export const getGetReplacementsKeywordByKeywordIdQueryOptions = <
   TError = AxiosError<unknown>,
 >(
   keywordId: string,
-  params?: GetReplacementsKeywordByKeywordIdParams,
+  params: GetReplacementsKeywordByKeywordIdParams,
   options?: {
     query?: Partial<
       UseQueryOptions<
@@ -109,7 +109,7 @@ export function useGetReplacementsKeywordByKeywordId<
   TError = AxiosError<unknown>,
 >(
   keywordId: string,
-  params: undefined | GetReplacementsKeywordByKeywordIdParams,
+  params: GetReplacementsKeywordByKeywordIdParams,
   options: {
     query: Partial<
       UseQueryOptions<
@@ -137,7 +137,7 @@ export function useGetReplacementsKeywordByKeywordId<
   TError = AxiosError<unknown>,
 >(
   keywordId: string,
-  params?: GetReplacementsKeywordByKeywordIdParams,
+  params: GetReplacementsKeywordByKeywordIdParams,
   options?: {
     query?: Partial<
       UseQueryOptions<
@@ -163,7 +163,7 @@ export function useGetReplacementsKeywordByKeywordId<
   TError = AxiosError<unknown>,
 >(
   keywordId: string,
-  params?: GetReplacementsKeywordByKeywordIdParams,
+  params: GetReplacementsKeywordByKeywordIdParams,
   options?: {
     query?: Partial<
       UseQueryOptions<
@@ -182,7 +182,7 @@ export function useGetReplacementsKeywordByKeywordId<
   TError = AxiosError<unknown>,
 >(
   keywordId: string,
-  params?: GetReplacementsKeywordByKeywordIdParams,
+  params: GetReplacementsKeywordByKeywordIdParams,
   options?: {
     query?: Partial<
       UseQueryOptions<

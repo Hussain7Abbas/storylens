@@ -5,10 +5,17 @@
  * Development documentation
  * OpenAPI spec version: 0.0.0
  */
+import type { GetKeywordsSortingDirection } from './getKeywordsSortingDirection';
 
 export type GetKeywordsParams = {
-  page?: string;
-  limit?: string;
+  pagination: {
+    page: number;
+    pageSize: number;
+  };
+  sorting: {
+    column: string;
+    direction: GetKeywordsSortingDirection;
+  };
   search?: string;
   categoryId?: string;
   natureId?: string;

@@ -1,7 +1,12 @@
 import { Elysia, t } from 'elysia';
+import { paginationSchema, sortingSchema } from '@/schemas/common';
 import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
-import { authenticate } from '@/utils/helpers';
+import {
+  authenticate,
+  getNestedColumnObject,
+  parsePaginationProps,
+} from '@/utils/helpers';
 
 export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
   .use(setup)
@@ -11,10 +16,9 @@ export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
     '/',
     async ({
       prisma,
-      query: { page = 1, limit = 10, search, categoryId, natureId, novelId },
+      query: { pagination, search, categoryId, natureId, novelId, sorting },
     }) => {
-      const skip = (Number(page) - 1) * Number(limit);
-      const take = Number(limit);
+      const { skip, take } = parsePaginationProps(pagination);
 
       const where: Record<string, unknown> = {};
 
@@ -65,27 +69,20 @@ export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
               },
             },
           },
-          orderBy: {
-            createdAt: 'desc',
-          },
+          orderBy: getNestedColumnObject(sorting?.column, sorting?.direction),
         }),
         prisma.keyword.count({ where }),
       ]);
 
       return {
         data: keywords,
-        pagination: {
-          page: Number(page),
-          limit: Number(limit),
-          total,
-          totalPages: Math.ceil(total / Number(limit)),
-        },
+        total,
       };
     },
     {
       query: t.Object({
-        page: t.Optional(t.String()),
-        limit: t.Optional(t.String()),
+        pagination: paginationSchema,
+        sorting: sortingSchema,
         search: t.Optional(t.String()),
         categoryId: t.Optional(t.String({ format: 'uuid' })),
         natureId: t.Optional(t.String({ format: 'uuid' })),

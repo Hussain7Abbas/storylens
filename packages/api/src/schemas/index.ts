@@ -7,13 +7,21 @@
  */
 
 export * from './getChaptersNovelByNovelIdParams';
+export * from './getChaptersNovelByNovelIdSortingDirection';
 export * from './getKeywordCategoriesParams';
+export * from './getKeywordCategoriesSortingDirection';
 export * from './getKeywordNaturesParams';
+export * from './getKeywordNaturesSortingDirection';
 export * from './getKeywordsChaptersChapterByChapterIdParams';
+export * from './getKeywordsChaptersChapterByChapterIdSortingDirection';
 export * from './getKeywordsChaptersKeywordByKeywordIdParams';
+export * from './getKeywordsChaptersKeywordByKeywordIdSortingDirection';
 export * from './getKeywordsParams';
+export * from './getKeywordsSortingDirection';
 export * from './getNovelsParams';
+export * from './getNovelsSortingDirection';
 export * from './getReplacementsKeywordByKeywordIdParams';
+export * from './getReplacementsKeywordByKeywordIdSortingDirection';
 export * from './postChaptersBodyOne';
 export * from './postChaptersBodyThree';
 export * from './postChaptersBodyTwo';

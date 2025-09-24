@@ -39,7 +39,7 @@ type AwaitedInput<T> = PromiseLike<T> | T;
 type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 
 export const getKeywords = (
-  params?: GetKeywordsParams,
+  params: GetKeywordsParams,
   options?: AxiosRequestConfig,
 ): Promise<AxiosResponse<unknown>> => {
   return axios.get('http://localhost:7000/keywords/', {
@@ -56,7 +56,7 @@ export const getGetKeywordsQueryOptions = <
   TData = Awaited<ReturnType<typeof getKeywords>>,
   TError = AxiosError<unknown>,
 >(
-  params?: GetKeywordsParams,
+  params: GetKeywordsParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywords>>, TError, TData>
@@ -88,7 +88,7 @@ export function useGetKeywords<
   TData = Awaited<ReturnType<typeof getKeywords>>,
   TError = AxiosError<unknown>,
 >(
-  params: undefined | GetKeywordsParams,
+  params: GetKeywordsParams,
   options: {
     query: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywords>>, TError, TData>
@@ -111,7 +111,7 @@ export function useGetKeywords<
   TData = Awaited<ReturnType<typeof getKeywords>>,
   TError = AxiosError<unknown>,
 >(
-  params?: GetKeywordsParams,
+  params: GetKeywordsParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywords>>, TError, TData>
@@ -132,7 +132,7 @@ export function useGetKeywords<
   TData = Awaited<ReturnType<typeof getKeywords>>,
   TError = AxiosError<unknown>,
 >(
-  params?: GetKeywordsParams,
+  params: GetKeywordsParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywords>>, TError, TData>
@@ -146,7 +146,7 @@ export function useGetKeywords<
   TData = Awaited<ReturnType<typeof getKeywords>>,
   TError = AxiosError<unknown>,
 >(
-  params?: GetKeywordsParams,
+  params: GetKeywordsParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywords>>, TError, TData>

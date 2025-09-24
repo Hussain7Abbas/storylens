@@ -1,7 +1,12 @@
 import { Elysia, t } from 'elysia';
+import { paginationSchema, sortingSchema } from '@/schemas/common';
 import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
-import { authenticate } from '@/utils/helpers';
+import {
+  authenticate,
+  getNestedColumnObject,
+  parsePaginationProps,
+} from '@/utils/helpers';
 
 export const chapters = new Elysia({ prefix: '/chapters', tags: ['Chapters'] })
   .use(setup)
@@ -9,9 +14,8 @@ export const chapters = new Elysia({ prefix: '/chapters', tags: ['Chapters'] })
   // Get all chapters for a novel
   .get(
     '/novel/:novelId',
-    async ({ t, prisma, params: { novelId }, query: { page = 1, limit = 10 } }) => {
-      const skip = (Number(page) - 1) * Number(limit);
-      const take = Number(limit);
+    async ({ t, prisma, params: { novelId }, query: { pagination, sorting } }) => {
+      const { skip, take } = parsePaginationProps(pagination);
 
       // Verify novel exists
       const novel = await prisma.novel.findUnique({
@@ -40,21 +44,14 @@ export const chapters = new Elysia({ prefix: '/chapters', tags: ['Chapters'] })
               },
             },
           },
-          orderBy: {
-            number: 'asc',
-          },
+          orderBy: getNestedColumnObject(sorting?.column, sorting?.direction),
         }),
         prisma.chapter.count({ where: { novelId } }),
       ]);
 
       return {
         data: chapters,
-        pagination: {
-          page: Number(page),
-          limit: Number(limit),
-          total,
-          totalPages: Math.ceil(total / Number(limit)),
-        },
+        total,
       };
     },
     {
@@ -62,8 +59,8 @@ export const chapters = new Elysia({ prefix: '/chapters', tags: ['Chapters'] })
         novelId: t.String({ format: 'uuid' }),
       }),
       query: t.Object({
-        page: t.Optional(t.String()),
-        limit: t.Optional(t.String()),
+        pagination: paginationSchema,
+        sorting: sortingSchema,
       }),
     },
   )

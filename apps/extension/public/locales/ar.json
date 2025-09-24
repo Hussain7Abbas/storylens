@@ -20,11 +20,14 @@
   },
   "tabs": {
     "coloring": "تلوين",
-    "replacing": "استبدال"
+    "replacing": "استبدال",
+    "category": "التصنيف",
+    "nature": "الطبيعة",
+    "general": "عام"
   },
   "coloring": {
     "name": "الاسم",
-    "category": "الدور",
+    "category": "التصنيف",
     "nature": "الطبيعة",
     "info": "الوصف",
     "image": "الصورة",
@@ -33,5 +36,56 @@
   "replaces": {
     "name": "الاسم",
     "replaceWith": "استبدال بـ"
+  },
+  "home": {
+    "title": "إدارة الكلمات المفتاحية",
+    "selectNovel": "اختر الرواية",
+    "selectNovelPlaceholder": "اختر رواية لإدارة الكلمات المفتاحية",
+    "selectNovelFirst": "يرجى اختيار رواية أولاً",
+    "keywords": "الكلمات المفتاحية",
+    "addKeyword": "إضافة كلمة مفتاحية",
+    "editKeyword": "تعديل الكلمة المفتاحية",
+    "name": "الاسم",
+    "description": "الوصف",
+    "category": "الفئة",
+    "nature": "الطبيعة",
+    "nameRequired": "الاسم مطلوب",
+    "descriptionRequired": "الوصف مطلوب",
+    "categoryRequired": "الفئة مطلوبة",
+    "natureRequired": "الطبيعة مطلوبة",
+    "confirmDelete": "هل أنت متأكد من حذف هذه الكلمة المفتاحية؟",
+    "noKeywords": "لا توجد كلمات مفتاحية لهذه الرواية",
+    "cancel": "إلغاء",
+    "create": "إنشاء",
+    "update": "تحديث"
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "language": "اللغة",
+    "languageDescription": "اختر لغتك المفضلة",
+    "categories": "الفئات",
+    "natures": "الطبيعة",
+    "name": "الاسم",
+    "color": "اللون",
+    "keywords": "الكلمات المفتاحية",
+    "actions": "الإجراءات",
+    "addCategory": "إضافة فئة",
+    "editCategory": "تعديل الفئة",
+    "addNature": "إضافة طبيعة",
+    "editNature": "تعديل الطبيعة",
+    "nameRequired": "الاسم مطلوب",
+    "invalidColor": "تنسيق اللون غير صحيح",
+    "confirmDelete": "هل أنت متأكد من حذف هذا العنصر؟",
+    "loading": "جاري التحميل...",
+    "cancel": "إلغاء",
+    "create": "إنشاء",
+    "update": "تحديث"
+  },
+  "category": {
+    "noRecords": "لا توجد تصنيفات لعرضها"
+  },
+  "dataTable": {
+    "noRecords": "لا توجد سجلات لعرضها",
+    "recordsPerPageLabel": "عدد السجلات لكل صفحة"
   }
 }

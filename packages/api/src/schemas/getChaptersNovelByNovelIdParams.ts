@@ -5,8 +5,15 @@
  * Development documentation
  * OpenAPI spec version: 0.0.0
  */
+import type { GetChaptersNovelByNovelIdSortingDirection } from './getChaptersNovelByNovelIdSortingDirection';
 
 export type GetChaptersNovelByNovelIdParams = {
-  page?: string;
-  limit?: string;
+  pagination: {
+    page: number;
+    pageSize: number;
+  };
+  sorting: {
+    column: string;
+    direction: GetChaptersNovelByNovelIdSortingDirection;
+  };
 };

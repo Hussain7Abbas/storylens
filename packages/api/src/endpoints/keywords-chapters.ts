@@ -38,7 +38,7 @@ type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 
 export const getKeywordsChaptersChapterByChapterId = (
   chapterId: string,
-  params?: GetKeywordsChaptersChapterByChapterIdParams,
+  params: GetKeywordsChaptersChapterByChapterIdParams,
   options?: AxiosRequestConfig,
 ): Promise<AxiosResponse<unknown>> => {
   return axios.get(`http://localhost:7000/keywords-chapters/chapter/${chapterId}`, {
@@ -62,7 +62,7 @@ export const getGetKeywordsChaptersChapterByChapterIdQueryOptions = <
   TError = AxiosError<unknown>,
 >(
   chapterId: string,
-  params?: GetKeywordsChaptersChapterByChapterIdParams,
+  params: GetKeywordsChaptersChapterByChapterIdParams,
   options?: {
     query?: Partial<
       UseQueryOptions<
@@ -110,7 +110,7 @@ export function useGetKeywordsChaptersChapterByChapterId<
   TError = AxiosError<unknown>,
 >(
   chapterId: string,
-  params: undefined | GetKeywordsChaptersChapterByChapterIdParams,
+  params: GetKeywordsChaptersChapterByChapterIdParams,
   options: {
     query: Partial<
       UseQueryOptions<
@@ -138,7 +138,7 @@ export function useGetKeywordsChaptersChapterByChapterId<
   TError = AxiosError<unknown>,
 >(
   chapterId: string,
-  params?: GetKeywordsChaptersChapterByChapterIdParams,
+  params: GetKeywordsChaptersChapterByChapterIdParams,
   options?: {
     query?: Partial<
       UseQueryOptions<
@@ -164,7 +164,7 @@ export function useGetKeywordsChaptersChapterByChapterId<
   TError = AxiosError<unknown>,
 >(
   chapterId: string,
-  params?: GetKeywordsChaptersChapterByChapterIdParams,
+  params: GetKeywordsChaptersChapterByChapterIdParams,
   options?: {
     query?: Partial<
       UseQueryOptions<
@@ -183,7 +183,7 @@ export function useGetKeywordsChaptersChapterByChapterId<
   TError = AxiosError<unknown>,
 >(
   chapterId: string,
-  params?: GetKeywordsChaptersChapterByChapterIdParams,
+  params: GetKeywordsChaptersChapterByChapterIdParams,
   options?: {
     query?: Partial<
       UseQueryOptions<
@@ -214,7 +214,7 @@ export function useGetKeywordsChaptersChapterByChapterId<
 
 export const getKeywordsChaptersKeywordByKeywordId = (
   keywordId: string,
-  params?: GetKeywordsChaptersKeywordByKeywordIdParams,
+  params: GetKeywordsChaptersKeywordByKeywordIdParams,
   options?: AxiosRequestConfig,
 ): Promise<AxiosResponse<unknown>> => {
   return axios.get(`http://localhost:7000/keywords-chapters/keyword/${keywordId}`, {
@@ -238,7 +238,7 @@ export const getGetKeywordsChaptersKeywordByKeywordIdQueryOptions = <
   TError = AxiosError<unknown>,
 >(
   keywordId: string,
-  params?: GetKeywordsChaptersKeywordByKeywordIdParams,
+  params: GetKeywordsChaptersKeywordByKeywordIdParams,
   options?: {
     query?: Partial<
       UseQueryOptions<
@@ -286,7 +286,7 @@ export function useGetKeywordsChaptersKeywordByKeywordId<
   TError = AxiosError<unknown>,
 >(
   keywordId: string,
-  params: undefined | GetKeywordsChaptersKeywordByKeywordIdParams,
+  params: GetKeywordsChaptersKeywordByKeywordIdParams,
   options: {
     query: Partial<
       UseQueryOptions<
@@ -314,7 +314,7 @@ export function useGetKeywordsChaptersKeywordByKeywordId<
   TError = AxiosError<unknown>,
 >(
   keywordId: string,
-  params?: GetKeywordsChaptersKeywordByKeywordIdParams,
+  params: GetKeywordsChaptersKeywordByKeywordIdParams,
   options?: {
     query?: Partial<
       UseQueryOptions<
@@ -340,7 +340,7 @@ export function useGetKeywordsChaptersKeywordByKeywordId<
   TError = AxiosError<unknown>,
 >(
   keywordId: string,
-  params?: GetKeywordsChaptersKeywordByKeywordIdParams,
+  params: GetKeywordsChaptersKeywordByKeywordIdParams,
   options?: {
     query?: Partial<
       UseQueryOptions<
@@ -359,7 +359,7 @@ export function useGetKeywordsChaptersKeywordByKeywordId<
   TError = AxiosError<unknown>,
 >(
   keywordId: string,
-  params?: GetKeywordsChaptersKeywordByKeywordIdParams,
+  params: GetKeywordsChaptersKeywordByKeywordIdParams,
   options?: {
     query?: Partial<
       UseQueryOptions<

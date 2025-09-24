@@ -1,7 +1,12 @@
 import { Elysia, t } from 'elysia';
+import { paginationSchema, sortingSchema } from '@/schemas/common';
 import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
-import { authenticate } from '@/utils/helpers';
+import {
+  authenticate,
+  getNestedColumnObject,
+  parsePaginationProps,
+} from '@/utils/helpers';
 
 export const keywordsChapters = new Elysia({
   prefix: '/keywords-chapters',
@@ -12,9 +17,8 @@ export const keywordsChapters = new Elysia({
   // Get all keyword-chapter relationships for a specific chapter
   .get(
     '/chapter/:chapterId',
-    async ({ t, prisma, params: { chapterId }, query: { page = 1, limit = 10 } }) => {
-      const skip = (Number(page) - 1) * Number(limit);
-      const take = Number(limit);
+    async ({ t, prisma, params: { chapterId }, query: { pagination, sorting } }) => {
+      const { skip, take } = parsePaginationProps(pagination);
 
       // Verify chapter exists
       const chapter = await prisma.chapter.findUnique({
@@ -69,21 +73,14 @@ export const keywordsChapters = new Elysia({
               },
             },
           },
-          orderBy: {
-            createdAt: 'desc',
-          },
+          orderBy: getNestedColumnObject(sorting?.column, sorting?.direction),
         }),
         prisma.keywordsChapters.count({ where: { chapterId } }),
       ]);
 
       return {
         relationships,
-        pagination: {
-          page: Number(page),
-          limit: Number(limit),
-          total,
-          totalPages: Math.ceil(total / Number(limit)),
-        },
+        total,
       };
     },
     {
@@ -91,8 +88,8 @@ export const keywordsChapters = new Elysia({
         chapterId: t.String({ format: 'uuid' }),
       }),
       query: t.Object({
-        page: t.Optional(t.String()),
-        limit: t.Optional(t.String()),
+        pagination: paginationSchema,
+        sorting: sortingSchema,
       }),
     },
   )
@@ -100,9 +97,8 @@ export const keywordsChapters = new Elysia({
   // Get all keyword-chapter relationships for a specific keyword
   .get(
     '/keyword/:keywordId',
-    async ({ t, prisma, params: { keywordId }, query: { page = 1, limit = 10 } }) => {
-      const skip = (Number(page) - 1) * Number(limit);
-      const take = Number(limit);
+    async ({ t, prisma, params: { keywordId }, query: { pagination } }) => {
+      const { skip, take } = parsePaginationProps(pagination);
 
       // Verify keyword exists
       const keyword = await prisma.keyword.findUnique({
@@ -152,12 +148,7 @@ export const keywordsChapters = new Elysia({
 
       return {
         data: relationships,
-        pagination: {
-          page: Number(page),
-          limit: Number(limit),
-          total,
-          totalPages: Math.ceil(total / Number(limit)),
-        },
+        total,
       };
     },
     {
@@ -165,8 +156,8 @@ export const keywordsChapters = new Elysia({
         keywordId: t.String({ format: 'uuid' }),
       }),
       query: t.Object({
-        page: t.Optional(t.String()),
-        limit: t.Optional(t.String()),
+        pagination: paginationSchema,
+        sorting: sortingSchema,
       }),
     },
   )

@@ -1,7 +1,12 @@
 import { Elysia, t } from 'elysia';
+import { paginationSchema, sortingSchema } from '@/schemas/common';
 import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
-import { authenticate } from '@/utils/helpers';
+import {
+  authenticate,
+  getNestedColumnObject,
+  parsePaginationProps,
+} from '@/utils/helpers';
 
 export const keywordCategories = new Elysia({
   prefix: '/keyword-categories',
@@ -12,9 +17,8 @@ export const keywordCategories = new Elysia({
   // Get all keyword categories
   .get(
     '/',
-    async ({ prisma, query: { page = 1, limit = 10 } }) => {
-      const skip = (Number(page) - 1) * Number(limit);
-      const take = Number(limit);
+    async ({ prisma, query: { pagination, sorting } }) => {
+      const { skip, take } = parsePaginationProps(pagination);
 
       const [categories, total] = await Promise.all([
         prisma.keywordCategory.findMany({
@@ -27,27 +31,20 @@ export const keywordCategories = new Elysia({
               },
             },
           },
-          orderBy: {
-            createdAt: 'desc',
-          },
+          orderBy: getNestedColumnObject(sorting?.column, sorting?.direction),
         }),
         prisma.keywordCategory.count(),
       ]);
 
       return {
         data: categories,
-        pagination: {
-          page: Number(page),
-          limit: Number(limit),
-          total,
-          totalPages: Math.ceil(total / Number(limit)),
-        },
+        total,
       };
     },
     {
       query: t.Object({
-        page: t.Optional(t.String()),
-        limit: t.Optional(t.String()),
+        pagination: paginationSchema,
+        sorting: sortingSchema,
       }),
     },
   )

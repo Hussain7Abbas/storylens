@@ -39,7 +39,7 @@ type AwaitedInput<T> = PromiseLike<T> | T;
 type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 
 export const getKeywordCategories = (
-  params?: GetKeywordCategoriesParams,
+  params: GetKeywordCategoriesParams,
   options?: AxiosRequestConfig,
 ): Promise<AxiosResponse<unknown>> => {
   return axios.get('http://localhost:7000/keyword-categories/', {
@@ -61,7 +61,7 @@ export const getGetKeywordCategoriesQueryOptions = <
   TData = Awaited<ReturnType<typeof getKeywordCategories>>,
   TError = AxiosError<unknown>,
 >(
-  params?: GetKeywordCategoriesParams,
+  params: GetKeywordCategoriesParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywordCategories>>, TError, TData>
@@ -93,7 +93,7 @@ export function useGetKeywordCategories<
   TData = Awaited<ReturnType<typeof getKeywordCategories>>,
   TError = AxiosError<unknown>,
 >(
-  params: undefined | GetKeywordCategoriesParams,
+  params: GetKeywordCategoriesParams,
   options: {
     query: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywordCategories>>, TError, TData>
@@ -116,7 +116,7 @@ export function useGetKeywordCategories<
   TData = Awaited<ReturnType<typeof getKeywordCategories>>,
   TError = AxiosError<unknown>,
 >(
-  params?: GetKeywordCategoriesParams,
+  params: GetKeywordCategoriesParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywordCategories>>, TError, TData>
@@ -137,7 +137,7 @@ export function useGetKeywordCategories<
   TData = Awaited<ReturnType<typeof getKeywordCategories>>,
   TError = AxiosError<unknown>,
 >(
-  params?: GetKeywordCategoriesParams,
+  params: GetKeywordCategoriesParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywordCategories>>, TError, TData>
@@ -151,7 +151,7 @@ export function useGetKeywordCategories<
   TData = Awaited<ReturnType<typeof getKeywordCategories>>,
   TError = AxiosError<unknown>,
 >(
-  params?: GetKeywordCategoriesParams,
+  params: GetKeywordCategoriesParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywordCategories>>, TError, TData>

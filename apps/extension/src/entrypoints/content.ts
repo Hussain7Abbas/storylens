@@ -7,5 +7,11 @@ export default defineContentScript({
 });
 
 async function main() {
-  console.log('Hello content.', await getNovels({ page: '2', limit: '5' }));
+  console.log(
+    'Hello content.',
+    await getNovels({
+      pagination: { page: 2, pageSize: 5 },
+      sorting: { column: 'name', direction: 'asc' },
+    }),
+  );
 }

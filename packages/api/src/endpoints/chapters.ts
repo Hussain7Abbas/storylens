@@ -40,7 +40,7 @@ type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 
 export const getChaptersNovelByNovelId = (
   novelId: string,
-  params?: GetChaptersNovelByNovelIdParams,
+  params: GetChaptersNovelByNovelIdParams,
   options?: AxiosRequestConfig,
 ): Promise<AxiosResponse<unknown>> => {
   return axios.get(`http://localhost:7000/chapters/novel/${novelId}`, {
@@ -64,7 +64,7 @@ export const getGetChaptersNovelByNovelIdQueryOptions = <
   TError = AxiosError<unknown>,
 >(
   novelId: string,
-  params?: GetChaptersNovelByNovelIdParams,
+  params: GetChaptersNovelByNovelIdParams,
   options?: {
     query?: Partial<
       UseQueryOptions<
@@ -108,7 +108,7 @@ export function useGetChaptersNovelByNovelId<
   TError = AxiosError<unknown>,
 >(
   novelId: string,
-  params: undefined | GetChaptersNovelByNovelIdParams,
+  params: GetChaptersNovelByNovelIdParams,
   options: {
     query: Partial<
       UseQueryOptions<
@@ -136,7 +136,7 @@ export function useGetChaptersNovelByNovelId<
   TError = AxiosError<unknown>,
 >(
   novelId: string,
-  params?: GetChaptersNovelByNovelIdParams,
+  params: GetChaptersNovelByNovelIdParams,
   options?: {
     query?: Partial<
       UseQueryOptions<
@@ -162,7 +162,7 @@ export function useGetChaptersNovelByNovelId<
   TError = AxiosError<unknown>,
 >(
   novelId: string,
-  params?: GetChaptersNovelByNovelIdParams,
+  params: GetChaptersNovelByNovelIdParams,
   options?: {
     query?: Partial<
       UseQueryOptions<
@@ -181,7 +181,7 @@ export function useGetChaptersNovelByNovelId<
   TError = AxiosError<unknown>,
 >(
   novelId: string,
-  params?: GetChaptersNovelByNovelIdParams,
+  params: GetChaptersNovelByNovelIdParams,
   options?: {
     query?: Partial<
       UseQueryOptions<

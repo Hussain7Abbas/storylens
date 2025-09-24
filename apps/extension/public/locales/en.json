@@ -2,10 +2,10 @@
   "extName": "StoryLens",
   "extDescription": "StoryLens is a browser extension that Colorize, rename, and track characters, places, and techniques in web novels. Personalize your reading experience and never lose track of key elements in each chapter.",
   "_": {
-    "search": "البحث",
-    "add": "اضافة",
-    "delete": "حذف",
-    "view": "عرض"
+    "search": "Search",
+    "add": "Add",
+    "delete": "Delete",
+    "view": "View"
   },
   "navbar": {
     "login": "Login",
@@ -20,7 +20,10 @@
   },
   "tabs": {
     "coloring": "Coloring",
-    "replacing": "Replacing"
+    "replacing": "Replacing",
+    "category": "Category",
+    "nature": "Nature",
+    "general": "General"
   },
   "coloring": {
     "name": "Name",
@@ -33,5 +36,56 @@
   "replaces": {
     "name": "Name",
     "replaceWith": "Replace With"
+  },
+  "home": {
+    "title": "Keywords Management",
+    "selectNovel": "Select Novel",
+    "selectNovelPlaceholder": "Choose a novel to manage keywords",
+    "selectNovelFirst": "Please select a novel first",
+    "keywords": "Keywords",
+    "addKeyword": "Add Keyword",
+    "editKeyword": "Edit Keyword",
+    "name": "Name",
+    "description": "Description",
+    "category": "Category",
+    "nature": "Nature",
+    "nameRequired": "Name is required",
+    "descriptionRequired": "Description is required",
+    "categoryRequired": "Category is required",
+    "natureRequired": "Nature is required",
+    "confirmDelete": "Are you sure you want to delete this keyword?",
+    "noKeywords": "No keywords found for this novel",
+    "cancel": "Cancel",
+    "create": "Create",
+    "update": "Update"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "languageDescription": "Choose your preferred language",
+    "categories": "Categories",
+    "natures": "Natures",
+    "name": "Name",
+    "color": "Color",
+    "keywords": "Keywords",
+    "actions": "Actions",
+    "addCategory": "Add Category",
+    "editCategory": "Edit Category",
+    "addNature": "Add Nature",
+    "editNature": "Edit Nature",
+    "nameRequired": "Name is required",
+    "invalidColor": "Invalid color format",
+    "confirmDelete": "Are you sure you want to delete this item?",
+    "loading": "Loading...",
+    "cancel": "Cancel",
+    "create": "Create",
+    "update": "Update"
+  },
+  "category": {
+    "noRecords": "There is no categories to show"
+  },
+  "dataTable": {
+    "noRecords": "There is no records to show",
+    "recordsPerPageLabel": "Number of records per page"
   }
 }

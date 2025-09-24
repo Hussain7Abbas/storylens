@@ -1,7 +1,12 @@
 import { Elysia, t } from 'elysia';
+import { paginationSchema, sortingSchema } from '@/schemas/common';
 import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
-import { authenticate } from '@/utils/helpers';
+import {
+  authenticate,
+  getNestedColumnObject,
+  parsePaginationProps,
+} from '@/utils/helpers';
 
 export const novels = new Elysia({
   prefix: '/novels',
@@ -12,9 +17,8 @@ export const novels = new Elysia({
   // Get all novels with pagination
   .get(
     '/',
-    async ({ prisma, query: { page = 1, limit = 10, search } }) => {
-      const skip = (Number(page) - 1) * Number(limit);
-      const take = Number(limit);
+    async ({ prisma, query: { pagination, search, sorting } }) => {
+      const { skip, take } = parsePaginationProps(pagination);
 
       const where = search
         ? {
@@ -54,27 +58,20 @@ export const novels = new Elysia({
               },
             },
           },
-          orderBy: {
-            createdAt: 'desc',
-          },
+          orderBy: getNestedColumnObject(sorting?.column, sorting?.direction),
         }),
         prisma.novel.count({ where }),
       ]);
 
       return {
         data: novels,
-        pagination: {
-          page: Number(page),
-          limit: Number(limit),
-          total,
-          totalPages: Math.ceil(total / Number(limit)),
-        },
+        total,
       };
     },
     {
       query: t.Object({
-        page: t.Optional(t.String()),
-        limit: t.Optional(t.String()),
+        pagination: paginationSchema,
+        sorting: sortingSchema,
         search: t.Optional(t.String()),
       }),
     },

@@ -5,9 +5,16 @@
  * Development documentation
  * OpenAPI spec version: 0.0.0
  */
+import type { GetNovelsSortingDirection } from './getNovelsSortingDirection';
 
 export type GetNovelsParams = {
-  page?: string;
-  limit?: string;
+  pagination: {
+    page: number;
+    pageSize: number;
+  };
+  sorting: {
+    column: string;
+    direction: GetNovelsSortingDirection;
+  };
   search?: string;
 };

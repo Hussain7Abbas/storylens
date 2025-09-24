@@ -39,7 +39,7 @@ type AwaitedInput<T> = PromiseLike<T> | T;
 type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 
 export const getKeywordNatures = (
-  params?: GetKeywordNaturesParams,
+  params: GetKeywordNaturesParams,
   options?: AxiosRequestConfig,
 ): Promise<AxiosResponse<unknown>> => {
   return axios.get('http://localhost:7000/keyword-natures/', {
@@ -59,7 +59,7 @@ export const getGetKeywordNaturesQueryOptions = <
   TData = Awaited<ReturnType<typeof getKeywordNatures>>,
   TError = AxiosError<unknown>,
 >(
-  params?: GetKeywordNaturesParams,
+  params: GetKeywordNaturesParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywordNatures>>, TError, TData>
@@ -91,7 +91,7 @@ export function useGetKeywordNatures<
   TData = Awaited<ReturnType<typeof getKeywordNatures>>,
   TError = AxiosError<unknown>,
 >(
-  params: undefined | GetKeywordNaturesParams,
+  params: GetKeywordNaturesParams,
   options: {
     query: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywordNatures>>, TError, TData>
@@ -114,7 +114,7 @@ export function useGetKeywordNatures<
   TData = Awaited<ReturnType<typeof getKeywordNatures>>,
   TError = AxiosError<unknown>,
 >(
-  params?: GetKeywordNaturesParams,
+  params: GetKeywordNaturesParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywordNatures>>, TError, TData>
@@ -135,7 +135,7 @@ export function useGetKeywordNatures<
   TData = Awaited<ReturnType<typeof getKeywordNatures>>,
   TError = AxiosError<unknown>,
 >(
-  params?: GetKeywordNaturesParams,
+  params: GetKeywordNaturesParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywordNatures>>, TError, TData>
@@ -149,7 +149,7 @@ export function useGetKeywordNatures<
   TData = Awaited<ReturnType<typeof getKeywordNatures>>,
   TError = AxiosError<unknown>,
 >(
-  params?: GetKeywordNaturesParams,
+  params: GetKeywordNaturesParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywordNatures>>, TError, TData>
