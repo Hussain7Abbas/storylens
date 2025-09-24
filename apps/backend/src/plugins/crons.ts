@@ -2,7 +2,6 @@ import { cron as elysiaCron } from '@elysiajs/cron';
 import type { Prisma } from '@prisma/client';
 import { prisma } from '@repo/db';
 import { deleteFile } from '@repo/storage';
-import { env } from '@/env';
 
 export const crons = elysiaCron({
   name: 'storage-cleaner',
