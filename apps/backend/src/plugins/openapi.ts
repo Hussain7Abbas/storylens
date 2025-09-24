@@ -9,8 +9,22 @@ export const openapi =
     : elysiaOpenapi({
         references: fromTypes('src/server.ts'),
         path: '/docs',
+        specPath: '/openapi.json',
         documentation: {
           tags: [],
+          servers: [
+            {
+              url: '{server}:7000',
+              description: 'Server URL',
+              variables: {
+                server: {
+                  default: 'http://localhost',
+                  description: 'The server URL',
+                  enum: ['http://localhost', 'https://storylens-api.iscoded.com'],
+                },
+              },
+            },
+          ],
           components: {
             securitySchemes: {
               'Bearer Auth': {

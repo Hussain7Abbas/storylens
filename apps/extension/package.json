@@ -1,6 +1,8 @@
 {
   "name": "storylens",
   "dependencies": {
+    "@repo/tsconfig": "workspace:*",
+    "@repo/api": "workspace:*",
     "@mantine/core": "^8.3.1",
     "@mantine/form": "^8.3.1",
     "@mantine/hooks": "^8.3.1",
@@ -15,8 +17,8 @@
   },
   "description": "manifest.json description",
   "devDependencies": {
-    "@repo/tsconfig": "workspace:*",
     "@biomejs/biome": "2.2.4",
+    "@repo/tsconfig": "workspace:*",
     "@types/react": "^19.1.12",
     "@types/react-dom": "^19.1.9",
     "@wxt-dev/auto-icons": "^1.1.0",
