@@ -3,7 +3,6 @@ import {
   Box,
   Group,
   Image,
-  Menu,
   Title,
   Tooltip,
   useComputedColorScheme,
@@ -12,14 +11,10 @@ import {
 import {
   IconChevronLeft,
   IconChevronRight,
-  IconDotsVertical,
-  IconDownload,
   IconLogin,
   IconMoon,
   IconSettings,
   IconSun,
-  IconUpload,
-  IconUser,
 } from '@tabler/icons-react';
 import cx from 'clsx';
 import type { TFunction } from 'i18next';
@@ -102,38 +97,44 @@ function ActionsMenu({ t, dir }: { t: TFunction; dir: 'rtl' | 'ltr' }) {
       {dir === 'rtl' ? <IconChevronLeft /> : <IconChevronRight />}
     </ActionIcon>
   ) : (
-    <Menu shadow="md" width={200}>
-      <Menu.Target>
-        <ActionIcon variant="transparent">
-          <IconDotsVertical />
-        </ActionIcon>
-      </Menu.Target>
+    <Tooltip label={t('navbar.settings')} withArrow>
+      <ActionIcon variant="transparent" onClick={() => go('settings')}>
+        <IconSettings />
+      </ActionIcon>
+    </Tooltip>
+    // FIXME: use this later after applying auth
+    //    <Menu shadow="md" width={200}>
+    //    <Menu.Target>
+    //      <ActionIcon variant="transparent">
+    //        <IconDotsVertical />
+    //      </ActionIcon>
+    //    </Menu.Target>
 
-      <Menu.Dropdown>
-        <Menu.Label>{t('navbar.user')}</Menu.Label>
-        <Menu.Item leftSection={<IconUser size={14} />} onClick={() => go('profile')}>
-          {t('navbar.profile')}
-        </Menu.Item>
-        <Menu.Item
-          leftSection={<IconSettings size={14} />}
-          onClick={() => go('settings')}
-        >
-          {t('navbar.settings')}
-        </Menu.Item>
+    //    <Menu.Dropdown>
+    //      <Menu.Label>{t('navbar.user')}</Menu.Label>
+    //      <Menu.Item leftSection={<IconUser size={14} />} onClick={() => go('profile')}>
+    //        {t('navbar.profile')}
+    //      </Menu.Item>
+    //      <Menu.Item
+    //        leftSection={<IconSettings size={14} />}
+    //        onClick={() => go('settings')}
+    //      >
+    //        {t('navbar.settings')}
+    //      </Menu.Item>
 
-        <Menu.Divider />
-        <Menu.Label>{t('navbar.application')}</Menu.Label>
+    //      <Menu.Divider />
+    //      <Menu.Label>{t('navbar.application')}</Menu.Label>
 
-        <Menu.Item leftSection={<IconDownload size={14} />}>
-          {t('navbar.import')}
-        </Menu.Item>
-        <Menu.Item leftSection={<IconUpload size={14} />}>
-          {t('navbar.export')}
-        </Menu.Item>
-        <Menu.Item color="red" leftSection={<IconUpload size={14} />}>
-          {t('navbar.logout')}
-        </Menu.Item>
-      </Menu.Dropdown>
-    </Menu>
+    //      <Menu.Item leftSection={<IconDownload size={14} />}>
+    //        {t('navbar.import')}
+    //      </Menu.Item>
+    //      <Menu.Item leftSection={<IconUpload size={14} />}>
+    //        {t('navbar.export')}
+    //      </Menu.Item>
+    //      <Menu.Item color="red" leftSection={<IconUpload size={14} />}>
+    //        {t('navbar.logout')}
+    //      </Menu.Item>
+    //    </Menu.Dropdown>
+    //  </Menu>
   );
 }
