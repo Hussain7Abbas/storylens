@@ -14,6 +14,7 @@ export function ColoringTab() {
   const { t } = useTranslation();
   const categories = ['شخصية', 'مهارة', 'مكان'];
   const natures = ['بطل', 'صديق', 'عدو', 'انثى', 'مدرب', 'طائفة'];
+  const novels = ['الكتاب الأول', 'الكتاب الثاني', 'الكتاب الثالث'];
 
   const form = useForm({
     initialValues: {
@@ -28,6 +29,12 @@ export function ColoringTab() {
 
   return (
     <Stack gap="xs">
+      <Select
+        label={t('coloring.novel')}
+        allowDeselect={false}
+        data={novels}
+        {...form.getInputProps('novel')}
+      />
       <TextInput label={t('coloring.name')} {...form.getInputProps('name')} />
       <Select
         label={t('coloring.category')}

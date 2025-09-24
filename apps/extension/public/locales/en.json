@@ -27,7 +27,8 @@
     "category": "Category",
     "nature": "Nature",
     "info": "Description",
-    "image": "Image"
+    "image": "Image",
+    "novel": "Novel"
   },
   "replaces": {
     "name": "Name",

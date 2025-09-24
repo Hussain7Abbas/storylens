@@ -1,9 +1,18 @@
-import { Button, TextInput, Group, ScrollArea, Text, Stack } from '@mantine/core';
+import {
+  Button,
+  TextInput,
+  Group,
+  ScrollArea,
+  Text,
+  Stack,
+  Select,
+} from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useTranslation } from 'react-i18next';
 
 export function ReplacingTab() {
   const { t } = useTranslation();
+  const novels = ['الكتاب الأول', 'الكتاب الثاني', 'الكتاب الثالث'];
   const form = useForm({
     initialValues: {
       repName: '',
@@ -14,6 +23,12 @@ export function ReplacingTab() {
 
   return (
     <Stack gap="xs">
+      <Select
+        label={t('coloring.novel')}
+        allowDeselect={false}
+        data={novels}
+        {...form.getInputProps('novel')}
+      />
       <TextInput label={t('replaces.name')} {...form.getInputProps('repName')} />
       <TextInput
         label={t('replaces.replaceWith')}

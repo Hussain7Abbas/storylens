@@ -1,6 +1,4 @@
-import type { Chapter } from '@prisma/client';
 import { Elysia, t } from 'elysia';
-import { errorSchema, paginationSchema } from '@/schemas/common';
 import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
 import { authenticate } from '@/utils/helpers';
