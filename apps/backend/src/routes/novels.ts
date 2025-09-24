@@ -62,7 +62,7 @@ export const novels = new Elysia({
       ]);
 
       return {
-        novels,
+        data: novels,
         pagination: {
           page: Number(page),
           limit: Number(limit),

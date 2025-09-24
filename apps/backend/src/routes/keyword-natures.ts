@@ -35,7 +35,7 @@ export const keywordNatures = new Elysia({
       ]);
 
       return {
-        natures,
+        data: natures,
         pagination: {
           page: Number(page),
           limit: Number(limit),

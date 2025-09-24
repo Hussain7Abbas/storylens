@@ -73,7 +73,7 @@ export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
       ]);
 
       return {
-        keywords,
+        data: keywords,
         pagination: {
           page: Number(page),
           limit: Number(limit),

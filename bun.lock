@@ -33,7 +33,6 @@
         "dayjs": "^1.11.18",
         "elysia": "^1.4.6",
         "jose": "^6.1.0",
-        "zod": "^4.1.11",
       },
       "devDependencies": {
         "@repo/tsconfig": "workspace:*",
@@ -49,6 +48,7 @@
         "@repo/api": "workspace:*",
         "@repo/tsconfig": "workspace:*",
         "@tabler/icons-react": "^3.35.0",
+        "@tanstack/react-query": "^5.90.2",
         "i18next": "^25.5.2",
         "i18next-http-backend": "^3.0.2",
         "jotai": "^2.14.0",
@@ -82,7 +82,6 @@
       "dependencies": {
         "@tanstack/react-query": "^5.90.2",
         "axios": "^1.12.2",
-        "zod": "^4.1.11",
       },
       "devDependencies": {
         "@repo/tsconfig": "workspace:*",

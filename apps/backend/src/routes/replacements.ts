@@ -52,7 +52,7 @@ export const replacements = new Elysia({
       ]);
 
       return {
-        replacements,
+        data: replacements,
         pagination: {
           page: Number(page),
           limit: Number(limit),

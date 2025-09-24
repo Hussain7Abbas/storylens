@@ -10,10 +10,13 @@ import { useTranslation } from 'react-i18next';
 import { useAtomValue } from 'jotai';
 import { localeAtom } from '@/store/locale';
 import { useEffect } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function App({ type = 'popup' }: { type: 'popup' | 'options' }) {
   const { i18n } = useTranslation();
   const locale = useAtomValue(localeAtom);
+
+  const queryClient = new QueryClient();
 
   useEffect(() => {
     console.log('✅locale', { locale });
@@ -24,17 +27,19 @@ function App({ type = 'popup' }: { type: 'popup' | 'options' }) {
     <>
       <ColorSchemeScript defaultColorScheme="auto" />
       <MantineProvider defaultColorScheme="auto">
-        <Stack
-          h={type === 'popup' ? '30rem' : '100vh'}
-          w={type === 'popup' ? '20rem' : '100vw'}
-          gap="xs"
-          dir={locale === 'ar' ? 'rtl' : 'ltr'}
-        >
-          <Navbar />
-          <ScrollArea>
-            <Router />
-          </ScrollArea>
-        </Stack>
+        <QueryClientProvider client={queryClient}>
+          <Stack
+            h={type === 'popup' ? '30rem' : '100vh'}
+            w={type === 'popup' ? '20rem' : '100vw'}
+            gap="xs"
+            dir={locale === 'ar' ? 'rtl' : 'ltr'}
+          >
+            <Navbar />
+            <ScrollArea>
+              <Router />
+            </ScrollArea>
+          </Stack>
+        </QueryClientProvider>
       </MantineProvider>
     </>
   );

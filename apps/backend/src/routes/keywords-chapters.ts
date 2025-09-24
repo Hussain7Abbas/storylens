@@ -151,7 +151,7 @@ export const keywordsChapters = new Elysia({
       ]);
 
       return {
-        relationships,
+        data: relationships,
         pagination: {
           page: Number(page),
           limit: Number(limit),
