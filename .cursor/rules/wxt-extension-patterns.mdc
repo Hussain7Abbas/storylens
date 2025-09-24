@@ -205,3 +205,115 @@ function App() {
 import React from "react";
 import { createRoot } from "react-dom/client";
 ```
+
+## API Integration in Extensions
+
+### Popup Components with React Query
+
+```typescript
+// In popup components - use React Query hooks
+import { useGetKeywords } from "@repo/api/keywords.js";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import type { Keyword } from "@prisma/client";
+
+// Setup QueryClient in App component
+function App() {
+  const queryClient = new QueryClient();
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ComponentWithAPI />
+    </QueryClientProvider>
+  );
+}
+
+// Use API hooks in components
+function ComponentWithAPI() {
+  const { isLoading, data } = useGetKeywords<{ data: { data: Keyword[] } }>({
+    page: "1",
+    limit: "10",
+  });
+
+  return (
+    <div>
+      {isLoading && <Loader />}
+      {data?.data?.data?.map((item) => (
+        <div key={item.id}>{item.name}</div>
+      ))}
+    </div>
+  );
+}
+```
+
+### Content Scripts with Direct API Calls
+
+```typescript
+// In content scripts - use direct API functions
+import { getNovels } from "@repo/api/novels.ts";
+
+export default defineContentScript({
+  matches: ["*://*/*"],
+  main() {
+    // Direct API calls (no React Query)
+    const fetchData = async () => {
+      try {
+        const response = await getNovels();
+        console.log("Novels:", response.data);
+      } catch (error) {
+        console.error("API Error:", error);
+      }
+    };
+
+    fetchData();
+  },
+});
+```
+
+### Background Scripts with API Integration
+
+```typescript
+// In background scripts - handle API calls and message passing
+import { getKeywords } from "@repo/api/keywords.ts";
+
+export default defineBackground(() => {
+  // Listen for messages from popup/content scripts
+  browser.runtime.onMessage.addListener(
+    async (message, sender, sendResponse) => {
+      if (message.type === "FETCH_KEYWORDS") {
+        try {
+          const response = await getKeywords(message.params);
+          sendResponse({ success: true, data: response.data });
+        } catch (error) {
+          sendResponse({ success: false, error: error.message });
+        }
+      }
+    }
+  );
+});
+```
+
+### Message Passing for API Data
+
+```typescript
+// In popup - send messages to background for API calls
+const fetchKeywords = async () => {
+  const response = await browser.runtime.sendMessage({
+    type: "FETCH_KEYWORDS",
+    params: { page: "1", limit: "10" },
+  });
+
+  if (response.success) {
+    setKeywords(response.data);
+  } else {
+    console.error("Failed to fetch keywords:", response.error);
+  }
+};
+
+// In content script - communicate with popup
+const sendDataToPopup = async (data) => {
+  await browser.runtime.sendMessage({
+    type: "UPDATE_CONTENT",
+    data: data,
+  });
+};
+```

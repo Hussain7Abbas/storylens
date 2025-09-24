@@ -123,6 +123,72 @@ Extension has multiple entry points in `apps/extension/src/entrypoints/`:
 - Route configuration in [apps/extension/src/entrypoints/popup/routers.tsx](mdc:apps/extension/src/entrypoints/popup/routers.tsx)
 - Custom routing hook in [apps/extension/src/hooks/useRoutes.tsx](mdc:apps/extension/src/hooks/useRoutes.tsx)
 
+## API Integration
+
+### React Query Hooks
+
+```typescript
+import { useGetKeywords } from "@repo/api/keywords.js";
+import type { Keyword } from "@prisma/client";
+
+// Type the response data for better type safety
+const { isLoading, data, error } = useGetKeywords<{
+  data: { data: Keyword[] };
+}>({
+  page: "2",
+  limit: "5",
+  search: "keyword",
+});
+
+// Safe data access with optional chaining
+{
+  data?.data?.data?.map((keyword) => (
+    <Text key={keyword.id}>{keyword.name}</Text>
+  ));
+}
+```
+
+### Mutation Hooks
+
+```typescript
+import { usePostKeywords } from "@repo/api/keywords.js";
+
+const mutation = usePostKeywords({
+  mutation: {
+    onSuccess: () => {
+      // Invalidate queries to refetch data
+      queryClient.invalidateQueries({ queryKey: ["keywords"] });
+    },
+  },
+});
+
+// Handle form submission
+const handleSubmit = (values: KeywordFormData) => {
+  mutation.mutate({ data: values });
+};
+```
+
+### Loading States
+
+```typescript
+// Query loading states
+{
+  isLoading && <Loader />;
+}
+{
+  isFetching && <Text>Refreshing...</Text>;
+}
+
+// Mutation loading states
+<Button
+  loading={mutation.isPending}
+  disabled={mutation.isPending}
+  onClick={handleSubmit}
+>
+  Submit
+</Button>;
+```
+
 ## Performance
 
 ### Component Optimization

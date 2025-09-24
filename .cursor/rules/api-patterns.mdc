@@ -1,0 +1,387 @@
+---
+globs: apps/extension/**/*.ts,apps/extension/**/*.tsx,packages/api/**/*.ts
+description: API integration patterns and best practices for @repo/api usage
+---
+
+# API Integration Patterns
+
+## API Package Structure
+
+### Orval Configuration
+
+- **Config**: [packages/api/orval.config.ts](mdc:packages/api/orval.config.ts)
+- **Generated from**: Backend OpenAPI spec at `http://localhost:7000/openapi.json`
+- **Output mode**: `tags` - Separate files per endpoint group
+- **Client**: `react-query` with TanStack Query hooks
+- **Base URL**: Auto-detected from OpenAPI specification
+
+### Package Exports
+
+- **Endpoints**: `@repo/api/keywords`, `@repo/api/novels`, etc.
+- **Schemas**: `@repo/api/schemas` for TypeScript types
+- **Generated hooks**: `useGetKeywords`, `usePostKeywords`, etc.
+
+## React Query Integration
+
+### QueryClient Setup
+
+```typescript
+// In App.tsx - [apps/extension/src/entrypoints/popup/App.tsx]
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+function App() {
+  const queryClient = new QueryClient();
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      {/* App content */}
+    </QueryClientProvider>
+  );
+}
+```
+
+### Hook Usage Patterns
+
+#### GET Requests (Queries)
+
+```typescript
+import { useGetKeywords } from "@repo/api/keywords.js";
+import type { Keyword } from "@prisma/client";
+
+// Basic usage with parameters
+const { isLoading, data, error } = useGetKeywords({
+  page: "2",
+  limit: "5",
+  search: "keyword",
+  categoryId: "cat-123",
+  natureId: "nat-456",
+  novelId: "novel-789",
+});
+
+// With custom type parameter
+const { isLoading, data } = useGetKeywords<{ data: { data: Keyword[] } }>({
+  page: "2",
+  limit: "5",
+});
+
+// Accessing nested data structure
+{
+  data?.data?.data?.map((keyword) => (
+    <Text key={keyword.id}>{keyword.name}</Text>
+  ));
+}
+```
+
+#### POST/PUT/DELETE Requests (Mutations)
+
+```typescript
+import {
+  usePostKeywords,
+  usePutKeywordsById,
+  useDeleteKeywordsById,
+} from "@repo/api/keywords.js";
+
+// Create operation
+const createKeyword = usePostKeywords({
+  mutation: {
+    onSuccess: (data) => {
+      // Handle success
+      queryClient.invalidateQueries({ queryKey: ["keywords"] });
+    },
+    onError: (error) => {
+      // Handle error
+    },
+  },
+});
+
+// Usage
+const handleCreate = () => {
+  createKeyword.mutate({
+    data: {
+      name: "New Keyword",
+      categoryId: "cat-123",
+      natureId: "nat-456",
+    },
+  });
+};
+
+// Update operation
+const updateKeyword = usePutKeywordsById();
+
+// Delete operation
+const deleteKeyword = useDeleteKeywordsById();
+```
+
+## Type Safety
+
+### Parameter Types
+
+```typescript
+// Import parameter types from generated schemas
+import type { GetKeywordsParams } from "@repo/api/schemas";
+
+// Use with strict typing
+const params: GetKeywordsParams = {
+  page: "1",
+  limit: "10",
+  search: "query",
+  categoryId: "cat-123",
+  natureId: "nat-456",
+  novelId: "novel-789",
+};
+```
+
+### Response Types
+
+```typescript
+// Import Prisma types for database models
+import type { Keyword, Novel, Chapter } from "@prisma/client";
+
+// Type the response data
+const { data } = useGetKeywords<{ data: { data: Keyword[] } }>();
+
+// Type individual items
+const keyword: Keyword = data?.data?.data?.[0];
+```
+
+## Error Handling
+
+### Query Error Handling
+
+```typescript
+const { isLoading, data, error, isError } = useGetKeywords(params);
+
+if (isError) {
+  return <Text color="red">Error: {error?.message}</Text>;
+}
+
+if (isLoading) {
+  return <Loader />;
+}
+```
+
+### Mutation Error Handling
+
+```typescript
+const mutation = usePostKeywords({
+  mutation: {
+    onError: (error) => {
+      console.error("Failed to create keyword:", error);
+      // Show user-friendly error message
+    },
+  },
+});
+
+// Access error state
+if (mutation.isError) {
+  return <Text color="red">Failed to create keyword</Text>;
+}
+```
+
+## Loading States
+
+### Query Loading States
+
+```typescript
+const { isLoading, isFetching, isPending } = useGetKeywords(params);
+
+// Use appropriate loading state
+{
+  isLoading && <Loader />;
+}
+{
+  isFetching && <Text>Refreshing...</Text>;
+}
+```
+
+### Mutation Loading States
+
+```typescript
+const mutation = usePostKeywords();
+
+// Disable button during mutation
+<Button
+  loading={mutation.isPending}
+  disabled={mutation.isPending}
+  onClick={handleSubmit}
+>
+  Create Keyword
+</Button>;
+```
+
+## Query Invalidation
+
+### Manual Invalidation
+
+```typescript
+import { useQueryClient } from "@tanstack/react-query";
+
+const queryClient = useQueryClient();
+
+// Invalidate specific query
+queryClient.invalidateQueries({ queryKey: ["keywords"] });
+
+// Invalidate all queries
+queryClient.invalidateQueries();
+```
+
+### Automatic Invalidation
+
+```typescript
+const mutation = usePostKeywords({
+  mutation: {
+    onSuccess: () => {
+      // Automatically refetch keywords after creation
+      queryClient.invalidateQueries({ queryKey: ["keywords"] });
+    },
+  },
+});
+```
+
+## Extension-Specific Patterns
+
+### Content Script API Usage
+
+```typescript
+// In content scripts - [apps/extension/src/entrypoints/content.ts]
+import { getNovels } from "@repo/api/novels.ts";
+
+// Direct API calls (no React Query hooks)
+const fetchNovels = async () => {
+  try {
+    const response = await getNovels();
+    return response.data;
+  } catch (error) {
+    console.error("Failed to fetch novels:", error);
+  }
+};
+```
+
+### Background Script API Usage
+
+```typescript
+// In background scripts
+export default defineBackground(() => {
+  // Direct API calls for background operations
+  browser.runtime.onMessage.addListener(async (message) => {
+    if (message.type === "FETCH_KEYWORDS") {
+      try {
+        const response = await getKeywords(message.params);
+        return { success: true, data: response.data };
+      } catch (error) {
+        return { success: false, error: error.message };
+      }
+    }
+  });
+});
+```
+
+## Best Practices
+
+### Import Patterns
+
+```typescript
+// Prefer specific endpoint imports
+import { useGetKeywords } from "@repo/api/keywords.js";
+import { useGetNovels } from "@repo/api/novels.js";
+
+// Import types separately
+import type { GetKeywordsParams } from "@repo/api/schemas";
+import type { Keyword } from "@prisma/client";
+```
+
+### Parameter Handling
+
+```typescript
+// Always provide parameters as objects
+const { data } = useGetKeywords({
+  page: "1",
+  limit: "10",
+});
+
+// Use string values for query parameters
+const params = {
+  page: currentPage.toString(),
+  limit: pageSize.toString(),
+  search: searchTerm.trim(),
+};
+```
+
+### Data Access Patterns
+
+```typescript
+// Safe data access with optional chaining
+const keywords = data?.data?.data ?? [];
+const firstKeyword = keywords[0];
+
+// Type guards for better safety
+if (data?.data?.data && Array.isArray(data.data.data)) {
+  data.data.data.forEach((keyword) => {
+    // Process keyword
+  });
+}
+```
+
+## Development Workflow
+
+### API Generation
+
+```bash
+# Generate API client from backend OpenAPI spec
+bun run oeval
+
+# This runs: orval --config ./orval.config.ts
+```
+
+### Type Checking
+
+```bash
+# Type check API package
+bun run typecheck
+
+# Type check extension with API usage
+bun run typecheck
+```
+
+## Common Patterns
+
+### Pagination
+
+```typescript
+const [page, setPage] = useState(1);
+const [limit] = useState(10);
+
+const { data, isLoading } = useGetKeywords({
+  page: page.toString(),
+  limit: limit.toString(),
+});
+
+const totalPages = Math.ceil((data?.data?.total ?? 0) / limit);
+```
+
+### Search with Debouncing
+
+```typescript
+import { useDebouncedValue } from "@mantine/hooks";
+
+const [searchTerm, setSearchTerm] = useState("");
+const [debouncedSearch] = useDebouncedValue(searchTerm, 500);
+
+const { data } = useGetKeywords({
+  search: debouncedSearch,
+  page: "1",
+  limit: "10",
+});
+```
+
+### Conditional Queries
+
+```typescript
+const { data } = useGetKeywords(params, {
+  query: {
+    enabled: !!categoryId && !!natureId, // Only run when required params exist
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    refetchOnWindowFocus: false,
+  },
+});
+```

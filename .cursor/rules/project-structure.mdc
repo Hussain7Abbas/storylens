@@ -50,6 +50,14 @@ This is a **monorepo** using **Turbo** and **Bun** for a browser extension proje
 - **Schemas**: [packages/utils/src/schemas.ts](mdc:packages/utils/src/schemas.ts) - Shared Zod schemas
 - **Types**: [packages/utils/src/types.ts](mdc:packages/utils/src/types.ts) - Shared TypeScript types
 
+#### API Package (`packages/api/`)
+
+- **Generated Client**: Auto-generated from backend OpenAPI spec using Orval
+- **Configuration**: [packages/api/orval.config.ts](mdc:packages/api/orval.config.ts) - Orval config for API generation
+- **Endpoints**: `packages/api/src/endpoints/` - Generated React Query hooks for each endpoint group
+- **Schemas**: `packages/api/src/schemas/` - Generated TypeScript types from OpenAPI spec
+- **Usage**: `@repo/api/keywords`, `@repo/api/novels`, etc. - Import specific endpoint hooks
+
 ### Configs (`configs/`)
 
 #### TypeScript Configs (`configs/typescript/`)
@@ -62,5 +70,6 @@ This is a **monorepo** using **Turbo** and **Bun** for a browser extension proje
 - **Frontend**: React 19, Mantine UI, Jotai (state), React Router, i18next
 - **Backend**: Elysia.js, Prisma ORM, PostgreSQL, JWT auth
 - **Extension**: WXT framework for cross-browser extension development
+- **API Client**: Orval-generated React Query hooks from OpenAPI spec
 - **Build**: Turbo monorepo, Bun package manager
 - **Code Quality**: Biome (linting/formatting), TypeScript strict mode

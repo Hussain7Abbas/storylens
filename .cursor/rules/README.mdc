@@ -73,6 +73,17 @@ This directory contains comprehensive Cursor rules for the **Novzella Extension*
 - Browser extension entry points
 - Global functions (no imports needed)
 - Extension-specific patterns
+- API integration in extensions
+
+### 🌐 [api-patterns.mdc](mdc:api-patterns.mdc)
+
+**Applied to:** Extension and API package files
+
+- Orval-generated React Query hooks
+- API client usage patterns
+- Type safety with generated schemas
+- Error handling and loading states
+- Extension-specific API integration
 
 ## User Rules Integration
 
@@ -90,6 +101,7 @@ The following user preferences are enforced across all rules:
 - **Frontend**: React 19, Mantine UI, Jotai, React Router
 - **Backend**: Elysia.js, Prisma ORM, PostgreSQL
 - **Extension**: WXT framework, Web Extensions API
+- **API Client**: Orval-generated React Query hooks
 - **Build**: Turbo monorepo, Bun package manager
 - **Quality**: Biome linting/formatting
 
@@ -121,6 +133,7 @@ apps/
     └── src/plugins/     # Elysia plugins
 
 packages/
+├── api/                 # Generated API client (Orval + React Query)
 ├── db/                  # Database (Prisma)
 ├── storage/             # File storage
 └── utils/               # Shared utilities
