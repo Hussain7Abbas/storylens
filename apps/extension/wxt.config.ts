@@ -25,5 +25,8 @@ export default defineConfig({
     },
     chromiumArgs: ['--user-data-dir=./.wxt/chromium-data'],
     keepProfileChanges: true,
+    startUrls: [
+      '/home/hussain7abbas/projects/storylens/apps/extension/public/chapter-sample.html',
+    ],
   },
 });
