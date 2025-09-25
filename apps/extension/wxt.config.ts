@@ -3,7 +3,11 @@ import { defineConfig } from 'wxt';
 // See https://wxt.dev/api/config.html
 export default defineConfig({
   imports: false,
-  modules: ['@wxt-dev/module-react', '@wxt-dev/auto-icons'],
+  modules: [
+    '@wxt-dev/module-react',
+    '@wxt-dev/auto-icons',
+    '@wxt-dev/webextension-polyfill',
+  ],
   srcDir: 'src',
   hooks: {
     'build:manifestGenerated': (wxt, manifest) => {

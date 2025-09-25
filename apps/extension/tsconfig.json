@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "allowImportingTsExtensions": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "types": ["@types/webextension-polyfill"]
   },
   "extends": "./.wxt/tsconfig.json",
   "exclude": ["node_modules"]

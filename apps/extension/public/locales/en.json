@@ -29,7 +29,7 @@
     "name": "Name",
     "category": "Category",
     "nature": "Nature",
-    "info": "Description",
+    "description": "Description",
     "image": "Image",
     "novel": "Novel"
   },

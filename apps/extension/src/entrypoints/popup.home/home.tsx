@@ -7,8 +7,8 @@ import type { Keyword } from '@prisma/client';
 export function HomePage() {
   const { t } = useTranslation();
   const { isLoading, data } = useGetKeywords<{ data: { data: Keyword[] } }>({
-    page: '2',
-    limit: '5',
+    pagination: { page: 2, pageSize: 5 },
+    sorting: { column: 'name', direction: 'asc' },
   });
 
   return (
