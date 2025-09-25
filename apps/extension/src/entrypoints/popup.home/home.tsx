@@ -1,16 +1,9 @@
-import { Container, Loader, Tabs, Text } from '@mantine/core';
+import { Container, Tabs } from '@mantine/core';
 import { ColoringTab, ReplacingTab } from './tabs';
 import { useTranslation } from 'react-i18next';
-import { useGetKeywords } from '@repo/api/keywords.js';
-import type { Keyword } from '@prisma/client';
 
 export function HomePage() {
   const { t } = useTranslation();
-  const { isLoading, data } = useGetKeywords<{ data: { data: Keyword[] } }>({
-    pagination: { page: 2, pageSize: 5 },
-    sorting: { column: 'name', direction: 'asc' },
-  });
-
   return (
     <Container p="md">
       <Tabs defaultValue="coloring" variant="outline">
@@ -25,10 +18,6 @@ export function HomePage() {
           <ReplacingTab />
         </Tabs.Panel>
       </Tabs>
-      {isLoading && <Loader />}
-      {data?.data?.data?.map((keyword) => (
-        <Text key={keyword.id}>{keyword.name}</Text>
-      ))}
     </Container>
   );
 }

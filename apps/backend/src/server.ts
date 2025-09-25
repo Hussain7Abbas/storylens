@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import { Elysia, status } from 'elysia';
 import { env } from './env';
-import { cors, crons, logger, openapi } from './plugins';
+import { cors, crons, logger, openapi, queryParser } from './plugins';
 // import { accounts } from './routes/accounts';
 import { chapters } from './routes/chapters';
 import { files } from './routes/files';
@@ -18,6 +18,7 @@ export const app = new Elysia()
   .use(cors)
   .use(openapi)
   .use(crons)
+  .use(queryParser)
 
   .error({ HttpError, AuthError })
   .onError(({ code, error }) => {

@@ -14,31 +14,28 @@ export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
   // Get all keywords with filters
   .get(
     '/',
-    async ({
-      prisma,
-      query: { pagination, search, categoryId, natureId, novelId, sorting },
-    }) => {
+    async ({ prisma, query: { pagination, query, sorting } }) => {
       const { skip, take } = parsePaginationProps(pagination);
 
       const where: Record<string, unknown> = {};
 
-      if (search) {
+      if (query?.search) {
         where.name = {
-          contains: search,
+          contains: query.search,
           mode: 'insensitive' as const,
         };
       }
 
-      if (categoryId) {
-        where.categoryId = categoryId;
+      if (query?.categoryId) {
+        where.categoryId = query.categoryId;
       }
 
-      if (natureId) {
-        where.natureId = natureId;
+      if (query?.natureId) {
+        where.natureId = query.natureId;
       }
 
-      if (novelId) {
-        where.novelId = novelId;
+      if (query?.novelId) {
+        where.novelId = query.novelId;
       }
 
       const [keywords, total] = await Promise.all([
@@ -83,10 +80,14 @@ export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
       query: t.Object({
         pagination: paginationSchema,
         sorting: sortingSchema,
-        search: t.Optional(t.String()),
-        categoryId: t.Optional(t.String({ format: 'uuid' })),
-        natureId: t.Optional(t.String({ format: 'uuid' })),
-        novelId: t.Optional(t.String({ format: 'uuid' })),
+        query: t.Optional(
+          t.Object({
+            search: t.Optional(t.String()),
+            categoryId: t.Optional(t.String({ format: 'uuid' })),
+            natureId: t.Optional(t.String({ format: 'uuid' })),
+            novelId: t.Optional(t.String({ format: 'uuid' })),
+          }),
+        ),
       }),
     },
   )

@@ -28,22 +28,26 @@ export function ReplacingTab() {
   const [replacements, setReplacements] = useState<Replacement[]>([]);
 
   // API hooks
-  const { data: novelsData, isLoading: novelsLoading } = useGetNovels({
+  const { data: novelsData, isLoading: novelsLoading } = useGetNovels<{
+    data: { data: Novel[] };
+  }>({
     pagination: { page: 1, pageSize: 100 },
     sorting: { column: 'name', direction: 'asc' },
   });
 
-  const { data: keywordsData, isLoading: keywordsLoading } = useGetKeywords({
+  const { data: keywordsData, isLoading: keywordsLoading } = useGetKeywords<{
+    data: { data: Keyword[] };
+  }>({
     pagination: { page: 1, pageSize: 100 },
     sorting: { column: 'name', direction: 'asc' },
-    novelId: selectedNovel,
+    query: selectedNovel ? { novelId: selectedNovel } : undefined,
   });
 
   const {
     data: replacementsData,
     isLoading: replacementsLoading,
     refetch: refetchReplacements,
-  } = useGetReplacementsKeywordByKeywordId(
+  } = useGetReplacementsKeywordByKeywordId<{ data: { data: Replacement[] } }>(
     selectedKeyword,
     {
       pagination: { page: 1, pageSize: 100 },
@@ -77,7 +81,7 @@ export function ReplacingTab() {
   // Update replacements when data changes
   useEffect(() => {
     if (replacementsData?.data) {
-      setReplacements(replacementsData.data as Replacement[]);
+      setReplacements(replacementsData.data.data);
     }
   }, [replacementsData]);
 
@@ -125,9 +129,6 @@ export function ReplacingTab() {
     return <Loader />;
   }
 
-  const novels = (novelsData?.data as Novel[]) || [];
-  const keywords = (keywordsData?.data as Keyword[]) || [];
-
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
       <Stack gap="xs">
@@ -135,7 +136,7 @@ export function ReplacingTab() {
           label={t('coloring.novel')}
           placeholder="Select a novel"
           allowDeselect={false}
-          data={novels.map((novel: Novel) => ({
+          data={novelsData?.data?.data?.map((novel: Novel) => ({
             value: novel.id,
             label: novel.name,
           }))}
@@ -151,7 +152,7 @@ export function ReplacingTab() {
           label="Select Keyword"
           placeholder="Select a keyword"
           allowDeselect={false}
-          data={keywords.map((keyword: Keyword) => ({
+          data={keywordsData?.data?.data?.map((keyword: Keyword) => ({
             value: keyword.id,
             label: keyword.name,
           }))}

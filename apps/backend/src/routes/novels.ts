@@ -17,21 +17,21 @@ export const novels = new Elysia({
   // Get all novels with pagination
   .get(
     '/',
-    async ({ prisma, query: { pagination, search, sorting } }) => {
+    async ({ prisma, query: { pagination, query, sorting } }) => {
       const { skip, take } = parsePaginationProps(pagination);
 
-      const where = search
+      const where = query?.search
         ? {
             OR: [
               {
                 name: {
-                  contains: search,
+                  contains: query?.search,
                   mode: 'insensitive' as const,
                 },
               },
               {
                 description: {
-                  contains: search,
+                  contains: query?.search,
                   mode: 'insensitive' as const,
                 },
               },
@@ -72,7 +72,11 @@ export const novels = new Elysia({
       query: t.Object({
         pagination: paginationSchema,
         sorting: sortingSchema,
-        search: t.Optional(t.String()),
+        query: t.Optional(
+          t.Object({
+            search: t.Optional(t.String()),
+          }),
+        ),
       }),
     },
   )

@@ -16,5 +16,7 @@ export type GetNovelsParams = {
     column: string;
     direction: GetNovelsSortingDirection;
   };
-  search?: string;
+  query?: {
+    search?: string;
+  };
 };

@@ -25,18 +25,22 @@ export function ColoringTab() {
   const [keywords, setKeywords] = useState<Keyword[]>([]);
 
   // API hooks
-  const { data: novelsData, isLoading: novelsLoading } = useGetNovels({
+  const { data: novelsData, isLoading: novelsLoading } = useGetNovels<{
+    data: { data: Novel[] };
+  }>({
     pagination: { page: 1, pageSize: 100 },
     sorting: { column: 'name', direction: 'asc' },
   });
 
   const { data: categoriesData, isLoading: categoriesLoading } =
-    useGetKeywordCategories({
+    useGetKeywordCategories<{ data: { data: KeywordCategory[] } }>({
       pagination: { page: 1, pageSize: 100 },
       sorting: { column: 'name', direction: 'asc' },
     });
 
-  const { data: naturesData, isLoading: naturesLoading } = useGetKeywordNatures({
+  const { data: naturesData, isLoading: naturesLoading } = useGetKeywordNatures<{
+    data: { data: KeywordNature[] };
+  }>({
     pagination: { page: 1, pageSize: 100 },
     sorting: { column: 'name', direction: 'asc' },
   });
@@ -45,10 +49,10 @@ export function ColoringTab() {
     data: keywordsData,
     isLoading: keywordsLoading,
     refetch: refetchKeywords,
-  } = useGetKeywords({
+  } = useGetKeywords<{ data: { data: Keyword[] } }>({
     pagination: { page: 1, pageSize: 100 },
     sorting: { column: 'name', direction: 'asc' },
-    novelId: selectedNovel,
+    query: selectedNovel ? { novelId: selectedNovel } : undefined,
   });
 
   const createKeywordMutation = usePostKeywords({
@@ -79,7 +83,7 @@ export function ColoringTab() {
   // Update keywords when data changes
   useEffect(() => {
     if (keywordsData?.data) {
-      setKeywords(keywordsData.data as Keyword[]);
+      setKeywords(keywordsData.data.data);
     }
   }, [keywordsData]);
 
@@ -131,10 +135,6 @@ export function ColoringTab() {
     return <Loader />;
   }
 
-  const novels = (novelsData?.data as Novel[]) || [];
-  const categories = (categoriesData?.data as KeywordCategory[]) || [];
-  const natures = (naturesData?.data as KeywordNature[]) || [];
-
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
       <Stack gap="xs">
@@ -142,7 +142,7 @@ export function ColoringTab() {
           label={t('coloring.novel')}
           placeholder="Select a novel"
           allowDeselect={false}
-          data={novels.map((novel: Novel) => ({
+          data={novelsData?.data?.data?.map((novel: Novel) => ({
             value: novel.id,
             label: novel.name,
           }))}
@@ -161,7 +161,7 @@ export function ColoringTab() {
           label={t('coloring.category')}
           placeholder="Select category"
           allowDeselect={false}
-          data={categories.map((cat: KeywordCategory) => ({
+          data={categoriesData?.data?.data?.map((cat: KeywordCategory) => ({
             value: cat.id,
             label: cat.name,
           }))}
@@ -173,7 +173,7 @@ export function ColoringTab() {
           label={t('coloring.nature')}
           placeholder="Select nature"
           allowDeselect={false}
-          data={natures.map((nature: KeywordNature) => ({
+          data={naturesData?.data?.data?.map((nature: KeywordNature) => ({
             value: nature.id,
             label: nature.name,
           }))}
@@ -216,10 +216,12 @@ export function ColoringTab() {
           ) : keywords.length > 0 ? (
             <Stack gap="xs">
               {keywords.map((keyword) => {
-                const category = categories.find(
+                const category = categoriesData?.data?.data?.find(
                   (cat) => cat.id === keyword.categoryId,
                 );
-                const nature = natures.find((nat) => nat.id === keyword.natureId);
+                const nature = naturesData?.data?.data?.find(
+                  (nat) => nat.id === keyword.natureId,
+                );
 
                 return (
                   <Group

@@ -16,8 +16,10 @@ export type GetKeywordsParams = {
     column: string;
     direction: GetKeywordsSortingDirection;
   };
-  search?: string;
-  categoryId?: string;
-  natureId?: string;
-  novelId?: string;
+  query?: {
+    search?: string;
+    categoryId?: string;
+    natureId?: string;
+    novelId?: string;
+  };
 };
