@@ -7,27 +7,27 @@ import { NodeSelectorTable } from './node-selector-table';
 export function NodeSelector() {
   const { t } = useTranslation();
   const [showForm, setShowForm] = useState(false);
-  const [currentWebsite, setCurrentWebsite] = useState<string | undefined>(undefined);
+  const [editedWebsite, setEditedWebsite] = useState<string | undefined>(undefined);
 
   function handleShowForm() {
     setShowForm(true);
-    setCurrentWebsite(undefined);
+    setEditedWebsite(undefined);
   }
 
   function handleCloseForm() {
     setShowForm(false);
-    setCurrentWebsite(undefined);
+    setEditedWebsite(undefined);
   }
 
   function handleEdit(website: string) {
-    setCurrentWebsite(website);
+    setEditedWebsite(website);
     setShowForm(true);
   }
 
   return (
     <Stack gap="xs">
       {showForm && (
-        <NodeSelectorForm onClose={handleCloseForm} currentWebsite={currentWebsite} />
+        <NodeSelectorForm onClose={handleCloseForm} editedWebsite={editedWebsite} />
       )}
       {!showForm && <Button onClick={handleShowForm}>{t('_.add')}</Button>}
       <NodeSelectorTable onEdit={handleEdit} />

@@ -1,4 +1,4 @@
-import { defineContentScript } from '#imports';
+import { type ContentScriptContext, defineContentScript } from '#imports';
 import {
   getSiteName,
   getNovelName,
@@ -10,20 +10,22 @@ import type { ContentScriptMessage } from '../../types/content';
 import './content.css';
 
 // Import browser types and API
-import browser, { type Runtime } from 'webextension-polyfill';
+import browser, { windows, type Runtime } from 'webextension-polyfill';
 import { WEBSITES_SELECTORS_KEY } from '@/components/node-selector/constants';
 import { getConfigsByKey } from '@repo/api/configs.js';
 import type { AxiosResponse } from 'axios';
 
 export default defineContentScript({
+  matches: ['<all_urls>'],
   main,
-  matches: ['*://*/*'],
 });
 
 /**
  * Main content script function
  */
-async function main(): Promise<void> {
+async function main(ctx: ContentScriptContext): Promise<void> {
+  console.log('🔥', 'ctx', ctx);
+
   console.log('StoryLens content script loaded');
 
   const websiteSelectorData = (await getConfigsByKey(
@@ -34,14 +36,35 @@ async function main(): Promise<void> {
 
   const website = getSiteName();
   console.log('🔥', 'website', website);
+  if (!website) {
+    console.log('Not a supported website, skipping content processing');
+    return;
+  }
 
   const websiteSelector = websiteSelectorData?.data?.value
     ? JSON.parse(websiteSelectorData.data.value)[website]
     : {};
-  console.log('🔥', 'websiteSelector', websiteSelector);
+  console.log('🔥', 'websiteSelector', {
+    websiteSelector,
+    websiteSelectorData,
+    ss: websiteSelectorData.data.value,
+  });
+  if (!websiteSelector) {
+    console.log('Not a supported website selector, skipping content processing');
+    return;
+  }
+
+  const novel = getNovelName(websiteSelector);
+  if (!novel) {
+    console.log('Not a novel page, skipping content processing');
+    return;
+  }
 
   const chapter = getChapterName(websiteSelector);
-  const novel = getNovelName(websiteSelector);
+  if (!chapter) {
+    console.log('Not a novel chapter page, skipping content processing');
+    return;
+  }
 
   // Only run on novel pages
   if (!novel) {

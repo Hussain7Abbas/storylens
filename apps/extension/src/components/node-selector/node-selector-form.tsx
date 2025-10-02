@@ -1,4 +1,4 @@
-import { Button, Group, Stack, TextInput } from '@mantine/core';
+import { Button, Group, lighten, Stack, TextInput } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import type { websiteSelector, websiteSelectors } from '@/types/configs';
@@ -9,14 +9,14 @@ import { WEBSITES_SELECTORS_KEY } from './constants';
 
 interface NodeSelectorFormProps {
   onClose: () => void;
-  currentWebsite?: string;
+  editedWebsite?: string;
 }
 
-export function NodeSelectorForm({ onClose, currentWebsite }: NodeSelectorFormProps) {
+export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormProps) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
 
-  const isEdit = !!currentWebsite;
+  const isEdit = !!editedWebsite;
 
   // Fetch existing config
   const { data: configData } = useGetConfigsByKey<{
@@ -27,7 +27,21 @@ export function NodeSelectorForm({ onClose, currentWebsite }: NodeSelectorFormPr
     },
   });
 
-  const form = useForm();
+  const form = useForm({
+    initialValues: {
+      website: editedWebsite || window.location.hostname,
+      novelXpath: '',
+      novelXpathRegex: '',
+      novelUrl: '',
+      novelUrlRegex: '',
+      chapterXpath: '',
+      chapterXpathRegex: '',
+      chapterUrl: '',
+      chapterUrlRegex: '',
+    },
+  });
+
+  console.log(window.location.hostname);
 
   const updateConfig = usePutConfigs({
     mutation: {
@@ -77,12 +91,12 @@ export function NodeSelectorForm({ onClose, currentWebsite }: NodeSelectorFormPr
   }
 
   useEffect(() => {
-    console.log({ currentWebsite, configData });
-    if (!currentWebsite) {
+    console.log({ editedWebsite, configData });
+    if (!editedWebsite) {
       return;
     }
     const existingSelector: websiteSelector = configData?.data?.value
-      ? JSON.parse(configData.data.value)[currentWebsite]
+      ? JSON.parse(configData.data.value)[editedWebsite]
       : {};
     console.log({
       existingSelectors: JSON.parse(configData?.data?.value || '{}'),
@@ -90,7 +104,7 @@ export function NodeSelectorForm({ onClose, currentWebsite }: NodeSelectorFormPr
     });
 
     form.setValues({
-      website: currentWebsite,
+      website: existingSelector.website,
       novelXpath: existingSelector.novel?.xpath?.value || '',
       novelXpathRegex: existingSelector.novel?.xpath?.regex || '',
       novelUrl: existingSelector.novel?.url?.value || '',

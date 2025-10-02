@@ -4,7 +4,7 @@ import type { websiteSelector } from '@/types/configs';
  * Detects the site name based on the xpath or url
  */
 export function getSiteName(): string {
-  return window.location.hostname;
+  return window.location.hostname || 'local';
 }
 
 /**
