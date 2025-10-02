@@ -48,13 +48,22 @@ export function NodeSelectorForm({ onClose, currentWebsite }: NodeSelectorFormPr
 
     // Update with new website selector
     currentSelectors[values.website] = {
+      website: values.website,
       novel: {
-        xpath: values.novelXpath,
-        url: values.novelUrl || null,
+        xpath: values.novelXpath
+          ? { value: values.novelXpath, regex: values.novelXpathRegex }
+          : null,
+        url: values.novelUrl
+          ? { value: values.novelUrl, regex: values.novelUrlRegex }
+          : null,
       },
       chapter: {
-        xpath: values.chapterXpath || null,
-        url: values.chapterUrl || null,
+        xpath: values.chapterXpath
+          ? { value: values.chapterXpath, regex: values.chapterXpathRegex }
+          : null,
+        url: values.chapterUrl
+          ? { value: values.chapterUrl, regex: values.chapterUrlRegex }
+          : null,
       },
     };
 
@@ -82,10 +91,14 @@ export function NodeSelectorForm({ onClose, currentWebsite }: NodeSelectorFormPr
 
     form.setValues({
       website: currentWebsite,
-      novelXpath: existingSelector.novel?.xpath || '',
-      novelUrl: existingSelector.novel?.url || '',
-      chapterXpath: existingSelector.chapter?.xpath || '',
-      chapterUrl: existingSelector.chapter?.url || '',
+      novelXpath: existingSelector.novel?.xpath?.value || '',
+      novelXpathRegex: existingSelector.novel?.xpath?.regex || '',
+      novelUrl: existingSelector.novel?.url?.value || '',
+      novelUrlRegex: existingSelector.novel?.url?.regex || '',
+      chapterXpath: existingSelector.chapter?.xpath?.value || '',
+      chapterXpathRegex: existingSelector.chapter?.xpath?.regex || '',
+      chapterUrl: existingSelector.chapter?.url?.value || '',
+      chapterUrlRegex: existingSelector.chapter?.url?.regex || '',
     });
   }, [configData?.data?.value]);
 
@@ -97,25 +110,56 @@ export function NodeSelectorForm({ onClose, currentWebsite }: NodeSelectorFormPr
         {...form.getInputProps('website')}
         disabled={!!isEdit}
       />
+      {/* Novel Name */}
+      {/* XPath */}
       <TextInput
         label={t('nodeSelector.novelXpath')}
         placeholder="/html/body/div[1]/main"
         {...form.getInputProps('novelXpath')}
       />
       <TextInput
+        label={t('nodeSelector.novelXpathRegex')}
+        placeholder={t('nodeSelector.novelXpathRegex')}
+        defaultValue={'.*'}
+        {...form.getInputProps('novelXpathRegex')}
+      />
+      {/* URL */}
+      <TextInput
         label={t('nodeSelector.novelUrl')}
-        placeholder={t('nodeSelector.optionalRegex')}
+        placeholder={t('nodeSelector.novelUrl')}
         {...form.getInputProps('novelUrl')}
       />
       <TextInput
+        label={t('nodeSelector.novelUrlRegex')}
+        placeholder={t('nodeSelector.novelUrlRegex')}
+        defaultValue={'.*'}
+        {...form.getInputProps('novelUrlRegex')}
+      />
+
+      {/* Chapter */}
+      {/* XPath */}
+      <TextInput
         label={t('nodeSelector.chapterXpath')}
-        placeholder={t('nodeSelector.optionalXpath')}
+        placeholder={t('nodeSelector.chapterXpath')}
         {...form.getInputProps('chapterXpath')}
       />
       <TextInput
+        label={t('nodeSelector.chapterXpathRegex')}
+        placeholder={t('nodeSelector.chapterXpathRegex')}
+        defaultValue={'^D*(d+)'}
+        {...form.getInputProps('chapterXpathRegex')}
+      />
+      {/* URL */}
+      <TextInput
         label={t('nodeSelector.chapterUrl')}
-        placeholder={t('nodeSelector.optionalRegex')}
+        placeholder={t('nodeSelector.chapterUrl')}
         {...form.getInputProps('chapterUrl')}
+      />
+      <TextInput
+        label={t('nodeSelector.chapterUrlRegex')}
+        placeholder={t('nodeSelector.chapterUrlRegex')}
+        defaultValue={'^D*(d+)'}
+        {...form.getInputProps('chapterUrlRegex')}
       />
       <Group grow>
         <Button variant="outline" onClick={onClose}>

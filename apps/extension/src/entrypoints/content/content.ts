@@ -2,15 +2,18 @@ import { defineContentScript } from '#imports';
 import {
   getSiteName,
   getNovelName,
-  isNovelChapterPage,
+  getChapterName,
 } from '../../utils/site-detection';
 import { NovelStorage } from '../../utils/storage';
 import { KeywordReplacer } from '../../utils/character-replacement';
-import type { ContentScriptMessage, Keyword, Replacement } from '../../types/content';
+import type { ContentScriptMessage } from '../../types/content';
 import './content.css';
 
 // Import browser types and API
 import browser, { type Runtime } from 'webextension-polyfill';
+import { WEBSITES_SELECTORS_KEY } from '@/components/node-selector/constants';
+import { getConfigsByKey } from '@repo/api/configs.js';
+import type { AxiosResponse } from 'axios';
 
 export default defineContentScript({
   main,
@@ -23,24 +26,42 @@ export default defineContentScript({
 async function main(): Promise<void> {
   console.log('StoryLens content script loaded');
 
+  const websiteSelectorData = (await getConfigsByKey(
+    WEBSITES_SELECTORS_KEY,
+  )) as AxiosResponse<{
+    value: string;
+  }>;
+
+  const website = getSiteName();
+  console.log('🔥', 'website', website);
+
+  const websiteSelector = websiteSelectorData?.data?.value
+    ? JSON.parse(websiteSelectorData.data.value)[website]
+    : {};
+  console.log('🔥', 'websiteSelector', websiteSelector);
+
+  const chapter = getChapterName(websiteSelector);
+  const novel = getNovelName(websiteSelector);
+
+  // Only run on novel pages
+  if (!novel) {
+    console.log('Not a novel page, skipping content processing');
+    return;
+  }
+
   // Only run on novel chapter pages
-  if (!isNovelChapterPage()) {
+  if (!chapter) {
     console.log('Not a novel chapter page, skipping content processing');
     return;
   }
 
-  // Initialize keyword replacer
-  const urlParts = window.location.href.split('/');
-  const siteName = getSiteName(urlParts);
-  const novelName = getNovelName(urlParts);
-
-  const replacer = new KeywordReplacer(siteName);
+  const replacer = new KeywordReplacer(website);
 
   // Load initial data
-  await loadAndProcessData(novelName, replacer);
+  await loadAndProcessData(novel, replacer);
 
   // Listen for messages from popup/background
-  setupMessageListener(novelName, replacer);
+  setupMessageListener(novel, replacer);
 
   // Set up mutation observer for dynamic content
   setupMutationObserver(replacer);
@@ -50,16 +71,16 @@ async function main(): Promise<void> {
  * Loads data from storage and processes the content
  */
 async function loadAndProcessData(
-  novelName: string,
+  novel: string,
   replacer: KeywordReplacer,
 ): Promise<void> {
   try {
-    const novelData = await NovelStorage.loadNovelData(novelName);
+    const novelData = await NovelStorage.loadNovelData(novel);
 
     replacer.updateData(novelData.keywords, novelData.replacements);
     replacer.processContent();
 
-    console.log(`✅ Loaded data for novel: ${novelName}`, {
+    console.log(`✅ Loaded data for novel: ${novel}`, {
       keywords: Object.keys(novelData.keywords).length,
       replacements: Object.keys(novelData.replacements).length,
     });
@@ -71,7 +92,7 @@ async function loadAndProcessData(
 /**
  * Sets up message listener for communication with popup/background
  */
-function setupMessageListener(novelName: string, replacer: KeywordReplacer): void {
+function setupMessageListener(novel: string, replacer: KeywordReplacer): void {
   browser.runtime.onMessage.addListener(
     (
       message: unknown,

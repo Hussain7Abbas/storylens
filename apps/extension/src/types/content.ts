@@ -49,8 +49,6 @@ export interface NovelsData {
   [novelName: string]: NovelData;
 }
 
-export type SiteName = 'kolnovel' | 'riwyat' | 'other';
-
 export interface ContentScriptMessage {
   type: 'UPDATE_KEYWORDS' | 'UPDATE_REPLACEMENTS' | 'ADD_KEYWORD' | 'DELETE_KEYWORD';
   keywords?: Record<string, Keyword>;

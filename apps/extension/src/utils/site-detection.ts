@@ -1,45 +1,74 @@
-import type { SiteName } from '../types/content';
+import type { websiteSelector } from '@/types/configs';
 
 /**
- * Detects the site name based on the current URL
+ * Detects the site name based on the xpath or url
  */
-export function getSiteName(urlParts: string[]): SiteName {
-  const hostname = window.location.hostname.toLowerCase();
-
-  if (hostname.includes('kolnovel')) {
-    return 'kolnovel';
-  }
-
-  if (hostname.includes('riwyat')) {
-    return 'riwyat';
-  }
-
-  return 'other';
+export function getSiteName(): string {
+  return window.location.hostname;
 }
 
 /**
  * Extracts novel name from URL
  */
-export function getNovelName(urlParts: string[]): string {
-  // Extract novel name from URL - this might need adjustment based on site structure
-  const pathParts = window.location.pathname.split('/').filter(Boolean);
+export function getNovelName(websiteSelector: websiteSelector): string | null {
+  if (websiteSelector.novel.xpath) {
+    return extractFromXpath(
+      websiteSelector.novel.xpath.value,
+      websiteSelector.novel.xpath.regex,
+    );
+  }
 
-  // For most novel sites, the novel name is usually in the path
-  // This is a generic implementation that might need site-specific adjustments
-  return pathParts[pathParts.length - 1] || 'unknown';
+  if (websiteSelector.novel.url) {
+    return extractFromUrl(
+      websiteSelector.novel.url.value,
+      websiteSelector.novel.url.regex,
+    );
+  }
+
+  return null;
 }
 
 /**
  * Checks if the current page is a novel chapter page
  */
-export function isNovelChapterPage(): boolean {
-  const pathname = window.location.pathname.toLowerCase();
+export function getChapterName(websiteSelector: websiteSelector): string | null {
+  if (websiteSelector.novel.xpath) {
+    return extractFromXpath(
+      websiteSelector.novel.xpath.value,
+      websiteSelector.novel.xpath.regex,
+    );
+  }
 
-  // Common patterns for novel chapter pages
-  return (
-    pathname.includes('/chapter/') ||
-    pathname.includes('/ch/') ||
-    pathname.includes('/read/') ||
-    pathname.includes('/novel/')
+  if (websiteSelector.novel.url) {
+    return extractFromUrl(
+      websiteSelector.novel.url.value,
+      websiteSelector.novel.url.regex,
+    );
+  }
+
+  return null;
+}
+
+/**
+ * Extracts text from an xpath
+ */
+export function extractFromXpath(xpath: string, regex: string): string | null {
+  const element = document.evaluate(
+    xpath,
+    document,
+    null,
+    XPathResult.FIRST_ORDERED_NODE_TYPE,
+    null,
   );
+  const textContent = element.singleNodeValue?.textContent || '';
+  const match = textContent.match(regex);
+  return match ? match[1] : null;
+}
+
+/**
+ * Extracts text from a url
+ */
+export function extractFromUrl(url: string, regex: string): string | null {
+  const match = url.match(regex);
+  return match ? match[1] : null;
 }

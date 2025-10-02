@@ -97,10 +97,12 @@
     "nodeSelectorPlaceholder": "xpath (مثل //*[@id='novel-title'])",
     "website": "الموقع",
     "novelXpath": "مسار XPath للرواية",
+    "novelXpathRegex": "نمط Regex لمسار XPath للرواية",
     "novelUrl": "نمط رابط الرواية",
+    "novelUrlRegex": "نمط Regex للرابط للرواية",
     "chapterXpath": "مسار XPath للفصل",
+    "chapterXpathRegex": "نمط Regex لمسار XPath للفصل",
     "chapterUrl": "نمط رابط الفصل",
-    "optionalXpath": "اختياري - مسار XPath لمحتوى الفصل",
-    "optionalRegex": "اختياري - نمط Regex للرابط"
+    "chapterUrlRegex": "نمط Regex للرابط للفصل"
   }
 }

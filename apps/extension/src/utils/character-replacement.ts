@@ -1,9 +1,4 @@
-import type {
-  Keyword,
-  Replacement,
-  SiteName,
-  TooltipElement,
-} from '../types/content';
+import type { Keyword, Replacement } from '../types/content';
 
 /**
  * Keyword replacement utilities for content processing
@@ -11,9 +6,9 @@ import type {
 export class KeywordReplacer {
   private keywords: Record<string, Keyword> = {};
   private replacements: Record<string, Replacement> = {};
-  private siteName: SiteName;
+  private siteName: string;
 
-  constructor(siteName: SiteName) {
+  constructor(siteName: string) {
     this.siteName = siteName;
   }
 

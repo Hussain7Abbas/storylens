@@ -1,11 +1,24 @@
 export interface websiteSelector {
+  website: string;
   novel: {
-    xpath?: string | null;
-    url?: string | null;
+    xpath?: {
+      value: string;
+      regex: string;
+    } | null;
+    url?: {
+      value: string;
+      regex: string;
+    } | null;
   };
   chapter: {
-    xpath?: string | null;
-    url?: string | null;
+    xpath?: {
+      value: string;
+      regex: string;
+    } | null;
+    url?: {
+      value: string;
+      regex: string;
+    } | null;
   };
 }
 
