@@ -5,7 +5,11 @@
     "search": "البحث",
     "add": "اضافة",
     "delete": "حذف",
-    "view": "عرض"
+    "view": "عرض",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "edit": "تعديل",
+    "actions": "الإجراءات"
   },
   "navbar": {
     "login": "تسجيل الدخول",
@@ -87,5 +91,16 @@
   "dataTable": {
     "noRecords": "لا توجد سجلات لعرضها",
     "recordsPerPageLabel": "عدد السجلات لكل صفحة"
+  },
+  "nodeSelector": {
+    "nodeSelector": "محدد العنصر",
+    "nodeSelectorPlaceholder": "xpath (مثل //*[@id='novel-title'])",
+    "website": "الموقع",
+    "novelXpath": "مسار XPath للرواية",
+    "novelUrl": "نمط رابط الرواية",
+    "chapterXpath": "مسار XPath للفصل",
+    "chapterUrl": "نمط رابط الفصل",
+    "optionalXpath": "اختياري - مسار XPath لمحتوى الفصل",
+    "optionalRegex": "اختياري - نمط Regex للرابط"
   }
 }

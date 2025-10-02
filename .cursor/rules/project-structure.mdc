@@ -24,7 +24,7 @@ This is a **monorepo** using **Turbo** and **Bun** for a browser extension proje
 - **Package**: [apps/extension/package.json](mdc:apps/extension/package.json) - Extension dependencies
 - **Entry points**: `apps/extension/src/entrypoints/` - Browser extension entry points (popup, background, content, options)
 - **Components**: `apps/extension/src/components/` - Reusable React components
-- **Localization**: `apps/extension/public/_locales/` - i18n message files
+- **Localization**: `apps/extension/public/locales/` - i18n message files
 
 #### Backend App (`apps/backend/`)
 

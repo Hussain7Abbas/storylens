@@ -4,6 +4,7 @@ import { env } from './env';
 import { cors, crons, logger, openapi, queryParser } from './plugins';
 // import { accounts } from './routes/accounts';
 import { chapters } from './routes/chapters';
+import { configs } from './routes/configs';
 import { files } from './routes/files';
 import { keywordCategories } from './routes/keyword-categories';
 import { keywordNatures } from './routes/keyword-natures';
@@ -38,6 +39,7 @@ export const app = new Elysia()
 
   // .use(accounts)
   .use(files)
+  .use(configs)
   .use(novels)
   .use(chapters)
   .use(keywords)

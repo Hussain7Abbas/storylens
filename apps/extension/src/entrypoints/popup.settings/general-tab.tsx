@@ -1,7 +1,8 @@
-import { Button, Group, Stack, Text } from '@mantine/core';
+import { Button, Fieldset, Group, Stack, Text } from '@mantine/core';
 import { useAtom } from 'jotai';
 import { localeAtom } from '@/store/locale';
 import { useTranslation } from 'react-i18next';
+import { NodeSelector } from '../../components/node-selector/node-selector';
 
 export function GeneralTab() {
   const { t } = useTranslation();
@@ -17,6 +18,9 @@ export function GeneralTab() {
           {locale === 'ar' ? 'English' : 'Arabic'}
         </Button>
       </Group>
+      <Fieldset legend={t('nodeSelector.nodeSelector')}>
+        <NodeSelector />
+      </Fieldset>
     </Stack>
   );
 }

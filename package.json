@@ -28,7 +28,8 @@
     "db:migrate:reset": "cd packages/db && bunx prisma migrate reset",
     "db:seed": "cd packages/db && bunx prisma db seed",
     "db:studio": "cd packages/db && bunx prisma studio",
-    "prepare": "husky"
+    "prepare": "husky",
+    "orval": "cd packages/api && bun run oeval"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.4",

@@ -5,7 +5,11 @@
     "search": "Search",
     "add": "Add",
     "delete": "Delete",
-    "view": "View"
+    "view": "View",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "actions": "Actions"
   },
   "navbar": {
     "login": "Login",
@@ -87,5 +91,16 @@
   "dataTable": {
     "noRecords": "There is no records to show",
     "recordsPerPageLabel": "Number of records per page"
+  },
+  "nodeSelector": {
+    "nodeSelector": "Node Selector",
+    "nodeSelectorPlaceholder": "xpath (e.g., //*[@id='novel-title'])",
+    "website": "Website",
+    "novelXpath": "Novel XPath",
+    "novelUrl": "Novel URL Pattern",
+    "chapterXpath": "Chapter XPath",
+    "chapterUrl": "Chapter URL Pattern",
+    "optionalXpath": "Optional - XPath for chapter content",
+    "optionalRegex": "Optional - Regex pattern for URL"
   }
 }
