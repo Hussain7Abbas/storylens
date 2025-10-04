@@ -11,6 +11,7 @@ import { useAtomValue } from 'jotai';
 import { localeAtom } from '@/store/locale';
 import { useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from 'react-hot-toast';
 
 function App({ type = 'popup' }: { type: 'popup' | 'options' }) {
   const { i18n } = useTranslation();
@@ -39,6 +40,7 @@ function App({ type = 'popup' }: { type: 'popup' | 'options' }) {
               <Router />
             </ScrollArea>
           </Stack>
+          <Toaster />
         </QueryClientProvider>
       </MantineProvider>
     </>
