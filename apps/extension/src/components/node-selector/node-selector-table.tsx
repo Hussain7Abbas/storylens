@@ -38,10 +38,14 @@ export function NodeSelectorTable({ onEdit }: NodeSelectorTableProps) {
 
   const tableData = Object.entries(selectors).map(([website, config]) => ({
     website,
-    novelXpath: config.novel.xpath,
-    novelUrl: config.novel.url || '-',
-    chapterXpath: config.chapter.xpath || '-',
-    chapterUrl: config.chapter.url || '-',
+    novelXpath: config.novel.xpath?.value || '-',
+    novelXpathRegex: config.novel.xpath?.regex || '-',
+    novelUrl: config.novel.url?.value || '-',
+    novelUrlRegex: config.novel.url?.regex || '-',
+    chapterXpath: config.chapter.xpath?.value || '-',
+    chapterXpathRegex: config.chapter.xpath?.regex || '-',
+    chapterUrl: config.chapter.url?.value || '-',
+    chapterUrlRegex: config.chapter.url?.regex || '-',
   }));
 
   console.log({ tableData, selectors, configData });
@@ -71,9 +75,16 @@ export function NodeSelectorTable({ onEdit }: NodeSelectorTableProps) {
         columns={[
           { accessor: 'website', title: t('nodeSelector.website') },
           { accessor: 'novelXpath', title: t('nodeSelector.novelXpath') },
+          { accessor: 'novelXpathRegex', title: t('nodeSelector.novelXpathRegex') },
           { accessor: 'novelUrl', title: t('nodeSelector.novelUrl') },
+          { accessor: 'novelUrlRegex', title: t('nodeSelector.novelUrlRegex') },
           { accessor: 'chapterXpath', title: t('nodeSelector.chapterXpath') },
+          {
+            accessor: 'chapterXpathRegex',
+            title: t('nodeSelector.chapterXpathRegex'),
+          },
           { accessor: 'chapterUrl', title: t('nodeSelector.chapterUrl') },
+          { accessor: 'chapterUrlRegex', title: t('nodeSelector.chapterUrlRegex') },
           {
             accessor: 'actions',
             title: t('_.actions'),
