@@ -1,4 +1,4 @@
-import { Button, Group, lighten, Stack, TextInput } from '@mantine/core';
+import { Button, Group, Stack, TextInput } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import type { websiteSelector, websiteSelectors } from '@/types/configs';
@@ -6,6 +6,7 @@ import { useGetConfigsByKey, usePutConfigs } from '@repo/api/configs.js';
 import { useForm } from '@mantine/form';
 import { useQueryClient } from '@tanstack/react-query';
 import { WEBSITES_SELECTORS_KEY } from './constants';
+import { browser } from '#imports';
 
 interface NodeSelectorFormProps {
   onClose: () => void;
@@ -15,6 +16,21 @@ interface NodeSelectorFormProps {
 export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormProps) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (!isEdit) {
+      const getActiveTab = async () => {
+        const activeTab = await browser.tabs.query({
+          active: true,
+          currentWindow: true,
+        });
+        form.setValues({
+          website: new URL(activeTab?.[0].url || '').hostname,
+        });
+      };
+      getActiveTab();
+    }
+  }, []);
 
   const isEdit = !!editedWebsite;
 
@@ -29,7 +45,7 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
 
   const form = useForm({
     initialValues: {
-      website: editedWebsite || window.location.hostname,
+      website: editedWebsite || '',
       novelXpath: '',
       novelXpathRegex: '',
       novelUrl: '',
@@ -40,8 +56,6 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
       chapterUrlRegex: '',
     },
   });
-
-  console.log(window.location.hostname);
 
   const updateConfig = usePutConfigs({
     mutation: {
