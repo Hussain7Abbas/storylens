@@ -98,11 +98,11 @@
     "website": "الموقع",
     "novelXpath": "مسار XPath للرواية",
     "novelXpathRegex": "نمط Regex لمسار XPath للرواية",
-    "novelUrl": "نمط رابط الرواية",
+    "novelUrl": "رابط الرواية",
     "novelUrlRegex": "نمط Regex للرابط للرواية",
     "chapterXpath": "مسار XPath للفصل",
     "chapterXpathRegex": "نمط Regex لمسار XPath للفصل",
-    "chapterUrl": "نمط رابط الفصل",
+    "chapterUrl": "رابط الفصل",
     "chapterUrlRegex": "نمط Regex للرابط للفصل"
   }
 }

@@ -52,23 +52,13 @@ async function main(ctx: ContentScriptContext): Promise<void> {
   }
 
   const novel = getNovelName(websiteSelector);
-  if (!novel) {
-    console.log('Not a novel page, skipping content processing');
-    return;
-  }
-
-  const chapter = getChapterName(websiteSelector);
-  if (!chapter) {
-    console.log('Not a novel chapter page, skipping content processing');
-    return;
-  }
-
   // Only run on novel pages
   if (!novel) {
     console.log('Not a novel page, skipping content processing');
     return;
   }
 
+  const chapter = getChapterName(websiteSelector);
   // Only run on novel chapter pages
   if (!chapter) {
     console.log('Not a novel chapter page, skipping content processing');

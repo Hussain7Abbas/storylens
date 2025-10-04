@@ -97,9 +97,9 @@
     "nodeSelectorPlaceholder": "xpath (e.g., //*[@id='novel-title'])",
     "website": "Website",
     "novelXpath": "Novel XPath",
-    "novelUrl": "Novel URL Pattern",
+    "novelUrl": "Novel URL",
     "chapterXpath": "Chapter XPath",
-    "chapterUrl": "Chapter URL Pattern",
+    "chapterUrl": "Chapter URL",
     "optionalXpath": "Optional - XPath for chapter content",
     "optionalRegex": "Optional - Regex pattern for URL"
   }

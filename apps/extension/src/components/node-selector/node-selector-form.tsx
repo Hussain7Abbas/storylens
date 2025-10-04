@@ -119,14 +119,14 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
 
     form.setValues({
       website: existingSelector.website,
-      novelXpath: existingSelector.novel?.xpath?.value || '',
-      novelXpathRegex: existingSelector.novel?.xpath?.regex || '',
-      novelUrl: existingSelector.novel?.url?.value || '',
-      novelUrlRegex: existingSelector.novel?.url?.regex || '',
-      chapterXpath: existingSelector.chapter?.xpath?.value || '',
-      chapterXpathRegex: existingSelector.chapter?.xpath?.regex || '',
-      chapterUrl: existingSelector.chapter?.url?.value || '',
-      chapterUrlRegex: existingSelector.chapter?.url?.regex || '',
+      novelXpath: existingSelector.novel?.xpath?.value,
+      novelXpathRegex: existingSelector.novel?.xpath?.regex,
+      novelUrl: existingSelector.novel?.url?.value,
+      novelUrlRegex: existingSelector.novel?.url?.regex,
+      chapterXpath: existingSelector.chapter?.xpath?.value,
+      chapterXpathRegex: existingSelector.chapter?.xpath?.regex,
+      chapterUrl: existingSelector.chapter?.url?.value,
+      chapterUrlRegex: existingSelector.chapter?.url?.regex,
     });
   }, [configData?.data?.value]);
 
@@ -143,6 +143,7 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
       <TextInput
         label={t('nodeSelector.novelXpath')}
         placeholder="/html/body/div[1]/main"
+        defaultValue=".*"
         {...form.getInputProps('novelXpath')}
       />
       <TextInput
