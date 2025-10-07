@@ -1,6 +1,6 @@
 import { Button, Group, Stack, TextInput } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import type { websiteSelector, websiteSelectors } from '@/types/configs';
 import { useGetConfigsByKey, usePutConfigs } from '@repo/api/configs.js';
 import { useForm } from '@mantine/form';
@@ -43,6 +43,11 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
     },
   });
 
+  const existingSelectors: websiteSelectors = useMemo(
+    () => (configData?.data?.value ? JSON.parse(configData.data.value) : {}),
+    [configData?.data?.value],
+  );
+
   const form = useForm({
     initialValues: {
       website: editedWebsite || '',
@@ -69,37 +74,45 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
   });
 
   function handleSubmit(values: typeof form.values) {
-    // Get current selectors or initialize empty object
-    const currentSelectors: websiteSelectors = configData?.data?.value
-      ? JSON.parse(configData.data.value)
-      : {};
+    console.log('🔥', 'handleSubmit', {
+      values,
+      existingSelectors,
+    });
+
+    let newSelectors: websiteSelectors = { ...existingSelectors };
 
     // Update with new website selector
-    currentSelectors[values.website] = {
-      website: values.website,
-      novel: {
-        xpath: values.novelXpath
-          ? { value: values.novelXpath, regex: values.novelXpathRegex }
-          : null,
-        url: values.novelUrl
-          ? { value: values.novelUrl, regex: values.novelUrlRegex }
-          : null,
-      },
-      chapter: {
-        xpath: values.chapterXpath
-          ? { value: values.chapterXpath, regex: values.chapterXpathRegex }
-          : null,
-        url: values.chapterUrl
-          ? { value: values.chapterUrl, regex: values.chapterUrlRegex }
-          : null,
+    newSelectors = {
+      ...newSelectors,
+      [values.website]: {
+        website: values.website,
+        novel: {
+          xpath: values.novelXpath
+            ? { value: values.novelXpath, regex: values.novelXpathRegex }
+            : null,
+          url: values.novelUrl
+            ? { value: values.novelUrl, regex: values.novelUrlRegex }
+            : null,
+        },
+        chapter: {
+          xpath: values.chapterXpath
+            ? { value: values.chapterXpath, regex: values.chapterXpathRegex }
+            : null,
+          url: values.chapterUrl
+            ? { value: values.chapterUrl, regex: values.chapterUrlRegex }
+            : null,
+        },
       },
     };
 
-    // Save to config
+    console.log('🔥', 'currentSelectors', {
+      newSelectors,
+    });
+
     updateConfig.mutate({
       data: {
         key: WEBSITES_SELECTORS_KEY,
-        value: JSON.stringify(currentSelectors),
+        value: JSON.stringify(newSelectors),
       },
     });
   }
@@ -109,13 +122,9 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
     if (!editedWebsite) {
       return;
     }
-    const existingSelector: websiteSelector = configData?.data?.value
-      ? JSON.parse(configData.data.value)[editedWebsite]
-      : {};
-    console.log({
-      existingSelectors: JSON.parse(configData?.data?.value || '{}'),
-      existingSelector,
-    });
+    const existingSelector = {
+      ...existingSelectors[editedWebsite],
+    };
 
     form.setValues({
       website: existingSelector.website,
