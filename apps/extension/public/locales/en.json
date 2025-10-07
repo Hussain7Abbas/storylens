@@ -96,6 +96,7 @@
     "nodeSelector": "Node Selector",
     "nodeSelectorPlaceholder": "xpath (e.g., //*[@id='novel-title'])",
     "website": "Website",
+    "websites": "Websites",
     "novelXpath": "Novel XPath",
     "novelUrl": "Novel URL",
     "chapterXpath": "Chapter XPath",
@@ -105,6 +106,7 @@
     "websiteSavedSuccess": "Website saved successfully",
     "websiteSavedFailed": "Website saved failed",
     "websiteDeleteSuccess": "Website deleted successfully",
-    "websiteDeleteFailed": "Failed to delete website"
+    "websiteDeleteFailed": "Failed to delete website",
+    "noData": "There is no websites to show"
   }
 }

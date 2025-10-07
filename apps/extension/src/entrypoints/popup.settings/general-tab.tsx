@@ -11,7 +11,7 @@ export function GeneralTab() {
     setLocale(locale === 'ar' ? 'en' : 'ar');
   }
   return (
-    <Stack gap="xs">
+    <Stack gap="xs" p="md">
       <Group>
         <Text>{t('settings.language')}:</Text>
         <Button onClick={handleChangeLanguage}>

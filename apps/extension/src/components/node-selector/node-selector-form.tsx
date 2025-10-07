@@ -1,4 +1,4 @@
-import { Button, Group, Stack, TextInput } from '@mantine/core';
+import { ActionIcon, Button, Group, Stack, TextInput } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useMemo } from 'react';
 import type { websiteSelectors } from '@/types/configs';
@@ -8,6 +8,7 @@ import { WEBSITES_SELECTORS_KEY } from './constants';
 import { browser } from '#imports';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router';
+import { IconTrash } from '@tabler/icons-react';
 
 interface NodeSelectorFormProps {
   onClose: () => void;
@@ -72,6 +73,28 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
     },
   });
 
+  const deleteConfig = usePutConfigs({
+    mutation: {
+      onSuccess: () => {
+        navigate(0);
+        toast.success(t('nodeSelector.websiteDeleteSuccess'));
+      },
+      onError: () => {
+        toast.error(t('nodeSelector.websiteDeleteFailed'));
+      },
+    },
+  });
+
+  function handleDelete(website: string) {
+    const currentSelectors = { ...existingSelectors };
+    delete currentSelectors[website];
+
+    // Otherwise update with remaining websites
+    deleteConfig.mutate({
+      data: { key: WEBSITES_SELECTORS_KEY, value: JSON.stringify(currentSelectors) },
+    });
+  }
+
   function handleSubmit(values: typeof form.values) {
     let newSelectors: websiteSelectors = { ...existingSelectors };
 
@@ -134,7 +157,7 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
   }, [configData?.data?.value]);
 
   return (
-    <Stack gap="xs">
+    <Stack p="sm" gap="xs">
       <TextInput
         label={t('nodeSelector.website')}
         placeholder="example.com"
@@ -193,16 +216,26 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
         defaultValue={'^D*(d+)'}
         {...form.getInputProps('chapterUrlRegex')}
       />
-      <Group grow>
-        <Button variant="outline" onClick={onClose}>
-          {t('_.cancel')}
-        </Button>
-        <Button
-          onClick={() => handleSubmit(form.values)}
-          loading={updateConfig.isPending}
+      <Group justify="space-between" mt="md">
+        <ActionIcon
+          variant="transparent"
+          color="red"
+          size="lg"
+          onClick={() => handleDelete(form.values.website)}
         >
-          {t('_.save')}
-        </Button>
+          <IconTrash />
+        </ActionIcon>
+        <Group>
+          <Button variant="outline" onClick={onClose}>
+            {t('_.cancel')}
+          </Button>
+          <Button
+            onClick={() => handleSubmit(form.values)}
+            loading={updateConfig.isPending}
+          >
+            {t('_.save')}
+          </Button>
+        </Group>
       </Group>
     </Stack>
   );

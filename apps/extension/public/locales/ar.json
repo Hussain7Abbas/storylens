@@ -96,6 +96,7 @@
     "nodeSelector": "محدد العنصر",
     "nodeSelectorPlaceholder": "xpath (مثل //*[@id='novel-title'])",
     "website": "الموقع",
+    "websites": "المواقع",
     "novelXpath": "مسار XPath للرواية",
     "novelXpathRegex": "نمط Regex لمسار XPath للرواية",
     "novelUrl": "رابط الرواية",
@@ -107,6 +108,7 @@
     "websiteSavedSuccess": "تم حفظ الموقع بنجاح",
     "websiteSavedFailed": "فشل حفظ الموقع",
     "websiteDeleteSuccess": "تم حذف الموقع بنجاح",
-    "websiteDeleteFailed": "فشل حذف الموقع"
+    "websiteDeleteFailed": "فشل حذف الموقع",
+    "noData": "لا توجد مواقع لعرضها"
   }
 }

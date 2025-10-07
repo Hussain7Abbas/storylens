@@ -1,4 +1,4 @@
-import { Button, Stack } from '@mantine/core';
+import { Button, Group, Stack, Title } from '@mantine/core';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NodeSelectorForm } from './node-selector-form';
@@ -26,11 +26,17 @@ export function NodeSelector() {
 
   return (
     <Stack gap="xs">
-      {showForm && (
+      {showForm ? (
         <NodeSelectorForm onClose={handleCloseForm} editedWebsite={editedWebsite} />
+      ) : (
+        <>
+          <Group justify="space-between">
+            <Title order={4}>{t('nodeSelector.websites')}</Title>
+            <Button onClick={handleShowForm}>{t('_.add')}</Button>
+          </Group>
+          <NodeSelectorTable onEdit={handleEdit} />
+        </>
       )}
-      {!showForm && <Button onClick={handleShowForm}>{t('_.add')}</Button>}
-      <NodeSelectorTable onEdit={handleEdit} />
     </Stack>
   );
 }
