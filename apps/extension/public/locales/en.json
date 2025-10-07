@@ -101,6 +101,10 @@
     "chapterXpath": "Chapter XPath",
     "chapterUrl": "Chapter URL",
     "optionalXpath": "Optional - XPath for chapter content",
-    "optionalRegex": "Optional - Regex pattern for URL"
+    "optionalRegex": "Optional - Regex pattern for URL",
+    "websiteSavedSuccess": "Website saved successfully",
+    "websiteSavedFailed": "Website saved failed",
+    "websiteDeleteSuccess": "Website deleted successfully",
+    "websiteDeleteFailed": "Failed to delete website"
   }
 }

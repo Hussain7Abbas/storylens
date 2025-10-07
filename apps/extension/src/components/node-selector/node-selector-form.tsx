@@ -1,12 +1,13 @@
 import { Button, Group, Stack, TextInput } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useMemo } from 'react';
-import type { websiteSelector, websiteSelectors } from '@/types/configs';
+import type { websiteSelectors } from '@/types/configs';
 import { useGetConfigsByKey, usePutConfigs } from '@repo/api/configs.js';
 import { useForm } from '@mantine/form';
-import { useQueryClient } from '@tanstack/react-query';
 import { WEBSITES_SELECTORS_KEY } from './constants';
 import { browser } from '#imports';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router';
 
 interface NodeSelectorFormProps {
   onClose: () => void;
@@ -15,7 +16,7 @@ interface NodeSelectorFormProps {
 
 export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormProps) {
   const { t } = useTranslation();
-  const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!isEdit) {
@@ -37,11 +38,7 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
   // Fetch existing config
   const { data: configData } = useGetConfigsByKey<{
     data: { key: string; value: string };
-  }>(isEdit ? WEBSITES_SELECTORS_KEY : '', {
-    query: {
-      enabled: !!isEdit,
-    },
-  });
+  }>(WEBSITES_SELECTORS_KEY);
 
   const existingSelectors: websiteSelectors = useMemo(
     () => (configData?.data?.value ? JSON.parse(configData.data.value) : {}),
@@ -65,20 +62,17 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
   const updateConfig = usePutConfigs({
     mutation: {
       onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: ['configs', WEBSITES_SELECTORS_KEY],
-        });
+        navigate(0);
+        toast.success(t('nodeSelector.websiteSavedSuccess'));
         onClose();
+      },
+      onError: () => {
+        toast.error(t('nodeSelector.websiteSavedFailed'));
       },
     },
   });
 
   function handleSubmit(values: typeof form.values) {
-    console.log('🔥', 'handleSubmit', {
-      values,
-      existingSelectors,
-    });
-
     let newSelectors: websiteSelectors = { ...existingSelectors };
 
     // Update with new website selector

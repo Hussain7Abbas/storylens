@@ -103,6 +103,10 @@
     "chapterXpath": "مسار XPath للفصل",
     "chapterXpathRegex": "نمط Regex لمسار XPath للفصل",
     "chapterUrl": "رابط الفصل",
-    "chapterUrlRegex": "نمط Regex للرابط للفصل"
+    "chapterUrlRegex": "نمط Regex للرابط للفصل",
+    "websiteSavedSuccess": "تم حفظ الموقع بنجاح",
+    "websiteSavedFailed": "فشل حفظ الموقع",
+    "websiteDeleteSuccess": "تم حذف الموقع بنجاح",
+    "websiteDeleteFailed": "فشل حذف الموقع"
   }
 }

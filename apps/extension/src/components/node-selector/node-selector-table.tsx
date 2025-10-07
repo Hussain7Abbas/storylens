@@ -2,9 +2,10 @@ import { Button, Group, Stack } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { DataTable } from 'mantine-datatable';
 import type { websiteSelectors } from '@/types/configs';
-import { useGetConfigsByKey, useDeleteConfigsByKey } from '@repo/api/configs.js';
-import { useQueryClient } from '@tanstack/react-query';
+import { useGetConfigsByKey, usePutConfigs } from '@repo/api/configs.js';
 import { WEBSITES_SELECTORS_KEY } from './constants';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router';
 
 interface NodeSelectorTableProps {
   onEdit: (website: string) => void;
@@ -12,7 +13,7 @@ interface NodeSelectorTableProps {
 
 export function NodeSelectorTable({ onEdit }: NodeSelectorTableProps) {
   const { t } = useTranslation();
-  const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const { data: configData, isLoading } = useGetConfigsByKey<{
     data: {
@@ -20,16 +21,6 @@ export function NodeSelectorTable({ onEdit }: NodeSelectorTableProps) {
       value: string;
     };
   }>(WEBSITES_SELECTORS_KEY);
-
-  const deleteConfig = useDeleteConfigsByKey({
-    mutation: {
-      onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: ['configs', WEBSITES_SELECTORS_KEY],
-        });
-      },
-    },
-  });
 
   // Parse selectors from config
   const selectors: websiteSelectors = configData?.data?.value
@@ -48,22 +39,26 @@ export function NodeSelectorTable({ onEdit }: NodeSelectorTableProps) {
     chapterUrlRegex: config.chapter.url?.regex || '-',
   }));
 
-  console.log({ tableData, selectors, configData });
+  const updateConfig = usePutConfigs({
+    mutation: {
+      onSuccess: () => {
+        navigate(0);
+        toast.success(t('nodeSelector.websiteDeleteSuccess'));
+      },
+      onError: () => {
+        toast.error(t('nodeSelector.websiteDeleteFailed'));
+      },
+    },
+  });
 
   function handleDelete(website: string) {
     const currentSelectors = { ...selectors };
     delete currentSelectors[website];
 
-    // If no websites left, delete the config entirely
-    if (Object.keys(currentSelectors).length === 0) {
-      deleteConfig.mutate({ key: WEBSITES_SELECTORS_KEY });
-    } else {
-      // Otherwise update with remaining websites
-      queryClient.setQueryData(['configs', WEBSITES_SELECTORS_KEY], {
-        key: WEBSITES_SELECTORS_KEY,
-        value: JSON.stringify(currentSelectors),
-      });
-    }
+    // Otherwise update with remaining websites
+    updateConfig.mutate({
+      data: { key: WEBSITES_SELECTORS_KEY, value: JSON.stringify(currentSelectors) },
+    });
   }
 
   return (

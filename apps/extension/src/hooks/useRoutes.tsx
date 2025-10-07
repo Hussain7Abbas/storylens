@@ -40,6 +40,11 @@ export function useRoutes() {
     return prevRoute;
   }
 
+  function refresh() {
+    push('home');
+    pop();
+  }
+
   return {
     back,
     current: routes[routes.length - 1],
@@ -49,5 +54,6 @@ export function useRoutes() {
     push,
     replace,
     routes,
+    refresh,
   };
 }
