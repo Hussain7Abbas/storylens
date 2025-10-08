@@ -15,22 +15,12 @@ import { useState, useEffect } from 'react';
 import { useGetKeywords, usePostKeywords } from '@repo/api/keywords.js';
 import { useGetKeywordCategories } from '@repo/api/keyword-categories.js';
 import { useGetKeywordNatures } from '@repo/api/keyword-natures.js';
-import { useGetNovels } from '@repo/api/novels.js';
-import type { Keyword, KeywordCategory, KeywordNature, Novel } from '@prisma/client';
+import type { Keyword, KeywordCategory, KeywordNature } from '@prisma/client';
 import browser from 'webextension-polyfill';
 
-export function ColoringTab() {
+export function ColoringTab({ selectedNovel }: { selectedNovel: string }) {
   const { t } = useTranslation();
-  const [selectedNovel, setSelectedNovel] = useState<string>('');
   const [keywords, setKeywords] = useState<Keyword[]>([]);
-
-  // API hooks
-  const { data: novelsData, isLoading: novelsLoading } = useGetNovels<{
-    data: { data: Novel[] };
-  }>({
-    pagination: { page: 1, pageSize: 100 },
-    sorting: { column: 'name', direction: 'asc' },
-  });
 
   const { data: categoriesData, isLoading: categoriesLoading } =
     useGetKeywordCategories<{ data: { data: KeywordCategory[] } }>({
@@ -131,26 +121,13 @@ export function ColoringTab() {
     });
   };
 
-  if (novelsLoading || categoriesLoading || naturesLoading) {
+  if (keywordsLoading || categoriesLoading || naturesLoading) {
     return <Loader />;
   }
 
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
-      <Stack gap="xs">
-        <Select
-          label={t('coloring.novel')}
-          placeholder="Select a novel"
-          allowDeselect={false}
-          data={novelsData?.data?.data?.map((novel: Novel) => ({
-            value: novel.id,
-            label: novel.name,
-          }))}
-          value={selectedNovel}
-          onChange={(value) => setSelectedNovel(value || '')}
-          required
-        />
-
+      <Stack gap="xs" p="xs">
         <TextInput
           label={t('coloring.name')}
           {...form.getInputProps('name')}

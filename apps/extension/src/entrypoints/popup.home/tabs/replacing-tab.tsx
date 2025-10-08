@@ -17,23 +17,13 @@ import {
   usePostReplacements,
 } from '@repo/api/replacements.js';
 import { useGetKeywords } from '@repo/api/keywords.js';
-import { useGetNovels } from '@repo/api/novels.js';
-import type { Replacement, Keyword, Novel } from '@prisma/client';
+import type { Replacement, Keyword } from '@prisma/client';
 import browser from 'webextension-polyfill';
 
-export function ReplacingTab() {
+export function ReplacingTab({ selectedNovel }: { selectedNovel: string }) {
   const { t } = useTranslation();
-  const [selectedNovel, setSelectedNovel] = useState<string>('');
   const [selectedKeyword, setSelectedKeyword] = useState<string>('');
   const [replacements, setReplacements] = useState<Replacement[]>([]);
-
-  // API hooks
-  const { data: novelsData, isLoading: novelsLoading } = useGetNovels<{
-    data: { data: Novel[] };
-  }>({
-    pagination: { page: 1, pageSize: 100 },
-    sorting: { column: 'name', direction: 'asc' },
-  });
 
   const { data: keywordsData, isLoading: keywordsLoading } = useGetKeywords<{
     data: { data: Keyword[] };
@@ -125,29 +115,13 @@ export function ReplacingTab() {
     });
   };
 
-  if (novelsLoading || keywordsLoading) {
+  if (keywordsLoading) {
     return <Loader />;
   }
 
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
-      <Stack gap="xs">
-        <Select
-          label={t('coloring.novel')}
-          placeholder="Select a novel"
-          allowDeselect={false}
-          data={novelsData?.data?.data?.map((novel: Novel) => ({
-            value: novel.id,
-            label: novel.name,
-          }))}
-          value={selectedNovel}
-          onChange={(value) => {
-            setSelectedNovel(value || '');
-            setSelectedKeyword('');
-          }}
-          required
-        />
-
+      <Stack gap="xs" p="xs">
         <Select
           label="Select Keyword"
           placeholder="Select a keyword"
