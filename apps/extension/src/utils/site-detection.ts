@@ -11,17 +11,17 @@ export function getSiteName(): string {
  * Extracts novel name from URL
  */
 export function getNovelName(websiteSelector: websiteSelector): string | null {
-  if (websiteSelector.novel.xpath) {
+  if (websiteSelector.novel?.xpath) {
     return extractFromXpath(
-      websiteSelector.novel.xpath.value,
-      websiteSelector.novel.xpath.regex,
+      websiteSelector.novel?.xpath?.value || '',
+      websiteSelector.novel?.xpath?.regex || '',
     );
   }
 
-  if (websiteSelector.novel.url) {
+  if (websiteSelector.novel?.url) {
     return extractFromUrl(
-      websiteSelector.novel.url.value,
-      websiteSelector.novel.url.regex,
+      websiteSelector.novel?.url?.value || '',
+      websiteSelector.novel?.url?.regex || '',
     );
   }
 
@@ -32,17 +32,17 @@ export function getNovelName(websiteSelector: websiteSelector): string | null {
  * Checks if the current page is a novel chapter page
  */
 export function getChapterName(websiteSelector: websiteSelector): string | null {
-  if (websiteSelector.chapter.xpath) {
+  if (websiteSelector.chapter?.xpath) {
     return extractFromXpath(
-      websiteSelector.chapter.xpath.value,
-      websiteSelector.chapter.xpath.regex,
+      websiteSelector.chapter?.xpath?.value || '',
+      websiteSelector.chapter?.xpath?.regex || '',
     );
   }
 
   if (websiteSelector.chapter.url) {
     return extractFromUrl(
-      websiteSelector.chapter.url.value,
-      websiteSelector.chapter.url.regex,
+      websiteSelector.chapter?.url?.value || '',
+      websiteSelector.chapter?.url?.regex || '',
     );
   }
 
@@ -72,4 +72,34 @@ export function extractFromXpath(xpath: string, regex: string): string | null {
 export function extractFromUrl(url: string, regex: string): string | null {
   const match = url.match(regex);
   return match ? match[1] : null;
+}
+
+export function getAllNovelData(
+  websiteSelectorData: string | undefined,
+  website: string | undefined,
+) {
+  const websiteSelector = websiteSelectorData
+    ? JSON.parse(websiteSelectorData || '{}')[website || '']
+    : {};
+  // only parse if websiteSelectorData.data.value is not null
+  if (!websiteSelector) {
+    console.log('Not a supported website selector, skipping content processing');
+    return;
+  }
+
+  const novel = getNovelName(websiteSelector);
+  // Only run on novel pages
+  if (!novel) {
+    console.log('Not a novel page, skipping content processing');
+    return;
+  }
+
+  const chapter = getChapterName(websiteSelector);
+  // Only run on novel chapter pages
+  if (!chapter) {
+    console.log('Not a novel chapter page, skipping content processing');
+    return;
+  }
+
+  return { novel, chapter };
 }

@@ -1,9 +1,5 @@
 import { type ContentScriptContext, defineContentScript } from '#imports';
-import {
-  getSiteName,
-  getNovelName,
-  getChapterName,
-} from '../../utils/site-detection';
+import { getSiteName, getAllNovelData } from '../../utils/site-detection';
 import './content.css';
 
 // Import browser types and API
@@ -20,9 +16,7 @@ export default defineContentScript({
  * Main content script function
  */
 async function main(ctx: ContentScriptContext): Promise<void> {
-  console.log('🔥', 'ctx', ctx);
-
-  console.log('StoryLens content script loaded');
+  console.log('🔥', 'StoryLens content script loaded');
 
   const websiteSelectorData = (await getConfigsByKey(
     WEBSITES_SELECTORS_KEY,
@@ -37,33 +31,14 @@ async function main(ctx: ContentScriptContext): Promise<void> {
     return;
   }
 
-  const websiteSelector = websiteSelectorData?.data?.value
-    ? JSON.parse(websiteSelectorData.data.value)[website]
-    : {};
-  console.log('🔥', 'websiteSelector', {
-    websiteSelector,
-    websiteSelectorData,
-    rawValue: websiteSelectorData.data.value,
-    parsedValue: JSON.parse(websiteSelectorData.data.value),
+  const novelData = getAllNovelData(websiteSelectorData?.data?.value, website);
+  if (!novelData) {
+    return;
+  }
+
+  console.log('🔥', 'Processing content for', {
+    website,
+    novel: novelData?.novel,
+    chapter: novelData?.chapter,
   });
-  if (!websiteSelector) {
-    console.log('Not a supported website selector, skipping content processing');
-    return;
-  }
-
-  const novel = getNovelName(websiteSelector);
-  // Only run on novel pages
-  if (!novel) {
-    console.log('Not a novel page, skipping content processing');
-    return;
-  }
-
-  const chapter = getChapterName(websiteSelector);
-  // Only run on novel chapter pages
-  if (!chapter) {
-    console.log('Not a novel chapter page, skipping content processing');
-    return;
-  }
-
-  console.log('🔥', 'Processing content for', { website, novel, chapter });
 }
