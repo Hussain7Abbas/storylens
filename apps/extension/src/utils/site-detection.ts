@@ -60,7 +60,8 @@ export function extractFromXpath(xpath: string, regex: string): string | null {
     XPathResult.FIRST_ORDERED_NODE_TYPE,
     null,
   );
-  const textContent = element.singleNodeValue?.textContent || '';
+  const textContent =
+    element.singleNodeValue?.textContent?.replaceAll('\n', '').trim() || '';
   const match = textContent.match(regex);
   return match ? match[0] : null;
 }

@@ -50,13 +50,13 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
     initialValues: {
       website: editedWebsite || '',
       novelXpath: '',
-      novelXpathRegex: '',
+      novelXpathRegex: '.*',
       novelUrl: '',
-      novelUrlRegex: '',
+      novelUrlRegex: '/^(?:[^/]*/){2}([^/]+)/',
       chapterXpath: '',
-      chapterXpathRegex: '',
+      chapterXpathRegex: 'd+',
       chapterUrl: '',
-      chapterUrlRegex: '',
+      chapterUrlRegex: '(d+)(?!.*d)',
     },
   });
 
@@ -169,13 +169,11 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
       <TextInput
         label={t('nodeSelector.novelXpath')}
         placeholder="/html/body/div[1]/main"
-        defaultValue=".*"
         {...form.getInputProps('novelXpath')}
       />
       <TextInput
         label={t('nodeSelector.novelXpathRegex')}
         placeholder={t('nodeSelector.novelXpathRegex')}
-        defaultValue={'.*'}
         {...form.getInputProps('novelXpathRegex')}
       />
       {/* URL */}
@@ -187,7 +185,6 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
       <TextInput
         label={t('nodeSelector.novelUrlRegex')}
         placeholder={t('nodeSelector.novelUrlRegex')}
-        defaultValue={'.*'}
         {...form.getInputProps('novelUrlRegex')}
       />
 
@@ -201,7 +198,6 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
       <TextInput
         label={t('nodeSelector.chapterXpathRegex')}
         placeholder={t('nodeSelector.chapterXpathRegex')}
-        defaultValue={'^D*(d+)'}
         {...form.getInputProps('chapterXpathRegex')}
       />
       {/* URL */}
@@ -213,7 +209,6 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
       <TextInput
         label={t('nodeSelector.chapterUrlRegex')}
         placeholder={t('nodeSelector.chapterUrlRegex')}
-        defaultValue={'^D*(d+)'}
         {...form.getInputProps('chapterUrlRegex')}
       />
       <Group justify="space-between" mt="md">

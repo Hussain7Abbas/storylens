@@ -30,6 +30,6 @@ export default defineConfig({
     },
     chromiumArgs: ['--user-data-dir=./.wxt/chromium-data'],
     keepProfileChanges: true,
-    startUrls: [`${process.cwd()}/public/chapter-sample.html`],
+    startUrls: ['https://rewayat.club/novel/hail-the-king/72'],
   },
 });
