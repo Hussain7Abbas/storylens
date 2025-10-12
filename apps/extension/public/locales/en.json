@@ -61,7 +61,13 @@
     "noKeywords": "No keywords found for this novel",
     "cancel": "Cancel",
     "create": "Create",
-    "update": "Update"
+    "update": "Update",
+    "novelAddedSuccessfully": "Novel added successfully",
+    "novelAddedFailed": "Failed to add novel",
+    "novelUpdatedSuccessfully": "Novel updated successfully",
+    "novelUpdatedFailed": "Failed to update novel",
+    "novelDeletedSuccessfully": "Novel deleted successfully",
+    "novelDeletedFailed": "Failed to delete novel"
   },
   "settings": {
     "title": "Settings",

@@ -98,7 +98,7 @@ model Novel {
   id String @id @default(uuid())
 
   name String
-  description String
+  description String?
 
   imageId String?
   image File? @relation(fields: [imageId], references: [id], name: "NovelImages")

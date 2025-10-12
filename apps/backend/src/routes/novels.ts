@@ -2,11 +2,7 @@ import { Elysia, t } from 'elysia';
 import { paginationSchema, sortingSchema } from '@/schemas/common';
 import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
-import {
-  authenticate,
-  getNestedColumnObject,
-  parsePaginationProps,
-} from '@/utils/helpers';
+import { getNestedColumnObject, parsePaginationProps } from '@/utils/helpers';
 
 export const novels = new Elysia({
   prefix: '/novels',
@@ -149,15 +145,7 @@ export const novels = new Elysia({
   // Create novel (User only)
   .post(
     '/',
-    async ({ t, prisma, bearer, body }) => {
-      await authenticate({
-        token: bearer || '',
-        errorMessage: t({
-          en: 'Authentication required',
-          ar: 'مطلوب التحقق من الهوية',
-        }),
-      });
-
+    async ({ prisma, body }) => {
       const novel = await prisma.novel.create({
         data: {
           name: body.name,
@@ -179,7 +167,7 @@ export const novels = new Elysia({
     {
       body: t.Object({
         name: t.String({ minLength: 1 }),
-        description: t.String({ minLength: 1 }),
+        description: t.Optional(t.String({ minLength: 1 })),
         imageId: t.Optional(t.String({ format: 'uuid' })),
       }),
     },
@@ -188,15 +176,7 @@ export const novels = new Elysia({
   // Update novel (User only)
   .put(
     '/:id',
-    async ({ t, prisma, bearer, params: { id }, body }) => {
-      await authenticate({
-        token: bearer || '',
-        errorMessage: t({
-          en: 'Authentication required',
-          ar: 'مطلوب التحقق من الهوية',
-        }),
-      });
-
+    async ({ t, prisma, params: { id }, body }) => {
       const existingNovel = await prisma.novel.findUnique({
         where: { id },
       });
@@ -236,7 +216,7 @@ export const novels = new Elysia({
       }),
       body: t.Object({
         name: t.String({ minLength: 1 }),
-        description: t.String({ minLength: 1 }),
+        description: t.Optional(t.String({ minLength: 1 })),
         imageId: t.Optional(t.String({ format: 'uuid' })),
       }),
     },
@@ -245,15 +225,7 @@ export const novels = new Elysia({
   // Delete novel (User only)
   .delete(
     '/:id',
-    async ({ t, prisma, bearer, params: { id } }) => {
-      await authenticate({
-        token: bearer || '',
-        errorMessage: t({
-          en: 'Authentication required',
-          ar: 'مطلوب التحقق من الهوية',
-        }),
-      });
-
+    async ({ t, prisma, params: { id } }) => {
       const existingNovel = await prisma.novel.findUnique({
         where: { id },
       });

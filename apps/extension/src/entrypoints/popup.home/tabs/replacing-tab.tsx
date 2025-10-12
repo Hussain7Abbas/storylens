@@ -20,7 +20,7 @@ import { useGetKeywords } from '@repo/api/keywords.js';
 import type { Replacement, Keyword } from '@prisma/client';
 import browser from 'webextension-polyfill';
 
-export function ReplacingTab({ selectedNovel }: { selectedNovel: string }) {
+export function ReplacingTab({ selectedNovelId }: { selectedNovelId?: string }) {
   const { t } = useTranslation();
   const [selectedKeyword, setSelectedKeyword] = useState<string>('');
   const [replacements, setReplacements] = useState<Replacement[]>([]);
@@ -30,7 +30,7 @@ export function ReplacingTab({ selectedNovel }: { selectedNovel: string }) {
   }>({
     pagination: { page: 1, pageSize: 100 },
     sorting: { column: 'name', direction: 'asc' },
-    query: selectedNovel ? { novelId: selectedNovel } : undefined,
+    query: selectedNovelId ? { novelId: selectedNovelId } : undefined,
   });
 
   const {
@@ -132,7 +132,7 @@ export function ReplacingTab({ selectedNovel }: { selectedNovel: string }) {
           }))}
           value={selectedKeyword}
           onChange={(value) => setSelectedKeyword(value || '')}
-          disabled={!selectedNovel}
+          disabled={!selectedNovelId}
           required
         />
 

@@ -18,7 +18,7 @@ import { useGetKeywordNatures } from '@repo/api/keyword-natures.js';
 import type { Keyword, KeywordCategory, KeywordNature } from '@prisma/client';
 import browser from 'webextension-polyfill';
 
-export function ColoringTab({ selectedNovel }: { selectedNovel: string }) {
+export function ColoringTab({ selectedNovelId }: { selectedNovelId?: string }) {
   const { t } = useTranslation();
   const [keywords, setKeywords] = useState<Keyword[]>([]);
 
@@ -42,7 +42,7 @@ export function ColoringTab({ selectedNovel }: { selectedNovel: string }) {
   } = useGetKeywords<{ data: { data: Keyword[] } }>({
     pagination: { page: 1, pageSize: 100 },
     sorting: { column: 'name', direction: 'asc' },
-    query: selectedNovel ? { novelId: selectedNovel } : undefined,
+    query: selectedNovelId ? { novelId: selectedNovelId } : undefined,
   });
 
   const createKeywordMutation = usePostKeywords({
@@ -104,7 +104,7 @@ export function ColoringTab({ selectedNovel }: { selectedNovel: string }) {
   };
 
   const handleSubmit = (values: typeof form.values) => {
-    if (!selectedNovel) {
+    if (!selectedNovelId) {
       form.setFieldError('novel', 'Please select a novel');
       return;
     }
@@ -115,7 +115,7 @@ export function ColoringTab({ selectedNovel }: { selectedNovel: string }) {
         description: values.description,
         categoryId: values.categoryId,
         natureId: values.natureId,
-        novelId: selectedNovel,
+        novelId: selectedNovelId,
         imageId: values.imageId || undefined,
       },
     });

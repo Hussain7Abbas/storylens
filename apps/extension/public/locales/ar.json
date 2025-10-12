@@ -61,7 +61,13 @@
     "noKeywords": "لا توجد كلمات مفتاحية لهذه الرواية",
     "cancel": "إلغاء",
     "create": "إنشاء",
-    "update": "تحديث"
+    "update": "تحديث",
+    "novelAddedSuccessfully": "تم إضافة الرواية بنجاح",
+    "novelAddedFailed": "فشل إضافة الرواية",
+    "novelUpdatedSuccessfully": "تم تحديث الرواية بنجاح",
+    "novelUpdatedFailed": "فشل تحديث الرواية",
+    "novelDeletedSuccessfully": "تم حذف الرواية بنجاح",
+    "novelDeletedFailed": "فشل حذف الرواية"
   },
   "settings": {
     "title": "الإعدادات",

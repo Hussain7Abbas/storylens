@@ -1,11 +1,10 @@
 import { type ContentScriptContext, defineContentScript } from '#imports';
-import { getSiteName, getAllNovelData } from '../../utils/site-detection';
 import './content.css';
-
-// Import browser types and API
 import { WEBSITES_SELECTORS_KEY } from '@/components/node-selector/constants';
+import { getAllNovelData } from '@/utils/site-detection';
 import { getConfigsByKey } from '@repo/api/configs.js';
 import type { AxiosResponse } from 'axios';
+import { onMessage } from '../background/messaging';
 
 export default defineContentScript({
   matches: ['<all_urls>'],
@@ -15,30 +14,39 @@ export default defineContentScript({
 /**
  * Main content script function
  */
-async function main(ctx: ContentScriptContext): Promise<void> {
+async function main(_ctx: ContentScriptContext): Promise<void> {
   console.log('🔥', 'StoryLens content script loaded');
 
+  // Fetch website selectors configuration
   const websiteSelectorData = (await getConfigsByKey(
     WEBSITES_SELECTORS_KEY,
   )) as AxiosResponse<{
     value: string;
   }>;
 
-  const website = getSiteName();
+  const website = window.location.hostname;
   console.log('🔥', 'website', website);
+
   if (!website) {
     console.log('Not a supported website, skipping content processing');
     return;
   }
 
-  const novelData = getAllNovelData(websiteSelectorData?.data?.value, website);
-  if (!novelData) {
+  // Extract novel and chapter data using the page's document
+  const siteDetails = getAllNovelData(
+    websiteSelectorData?.data?.value,
+    website,
+    document,
+  );
+
+  if (!siteDetails) {
+    console.log('Not a supported website, skipping content processing');
     return;
   }
 
-  console.log('🔥', 'Processing content for', {
-    website,
-    novel: novelData?.novel,
-    chapter: novelData?.chapter,
+  onMessage('getCurrentNovel', () => {
+    return siteDetails;
   });
+
+  console.log('🔥', 'siteDetails', siteDetails);
 }
