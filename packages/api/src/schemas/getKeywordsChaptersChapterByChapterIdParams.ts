@@ -8,12 +8,12 @@
 import type { GetKeywordsChaptersChapterByChapterIdSortingDirection } from './getKeywordsChaptersChapterByChapterIdSortingDirection';
 
 export type GetKeywordsChaptersChapterByChapterIdParams = {
-  pagination: {
+  pagination?: {
     page: number;
     pageSize: number;
   };
-  sorting: {
+  sorting?: {
     column: string;
-    direction: GetKeywordsChaptersChapterByChapterIdSortingDirection;
+    direction?: GetKeywordsChaptersChapterByChapterIdSortingDirection;
   };
 };

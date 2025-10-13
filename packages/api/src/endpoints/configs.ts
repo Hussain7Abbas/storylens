@@ -25,6 +25,18 @@ import axios from 'axios';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import type {
+  DeleteConfigsByKey200,
+  DeleteConfigsByKey404,
+  DeleteConfigsByKey500,
+  GetConfigs200,
+  GetConfigs404,
+  GetConfigs500,
+  GetConfigsByKey200,
+  GetConfigsByKey404,
+  GetConfigsByKey500,
+  PutConfigs200,
+  PutConfigs404,
+  PutConfigs500,
   PutConfigsBodyOne,
   PutConfigsBodyThree,
   PutConfigsBodyTwo,
@@ -36,7 +48,7 @@ type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 
 export const getConfigs = (
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<GetConfigs200>> => {
   return axios.get('http://localhost:7000/configs/', options);
 };
 
@@ -46,7 +58,7 @@ export const getGetConfigsQueryKey = () => {
 
 export const getGetConfigsQueryOptions = <
   TData = Awaited<ReturnType<typeof getConfigs>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetConfigs404 | GetConfigs500>,
 >(options?: {
   query?: Partial<
     UseQueryOptions<Awaited<ReturnType<typeof getConfigs>>, TError, TData>
@@ -71,11 +83,11 @@ export const getGetConfigsQueryOptions = <
 export type GetConfigsQueryResult = NonNullable<
   Awaited<ReturnType<typeof getConfigs>>
 >;
-export type GetConfigsQueryError = AxiosError<unknown>;
+export type GetConfigsQueryError = AxiosError<GetConfigs404 | GetConfigs500>;
 
 export function useGetConfigs<
   TData = Awaited<ReturnType<typeof getConfigs>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetConfigs404 | GetConfigs500>,
 >(
   options: {
     query: Partial<
@@ -97,7 +109,7 @@ export function useGetConfigs<
 };
 export function useGetConfigs<
   TData = Awaited<ReturnType<typeof getConfigs>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetConfigs404 | GetConfigs500>,
 >(
   options?: {
     query?: Partial<
@@ -117,7 +129,7 @@ export function useGetConfigs<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetConfigs<
   TData = Awaited<ReturnType<typeof getConfigs>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetConfigs404 | GetConfigs500>,
 >(
   options?: {
     query?: Partial<
@@ -130,7 +142,7 @@ export function useGetConfigs<
 
 export function useGetConfigs<
   TData = Awaited<ReturnType<typeof getConfigs>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetConfigs404 | GetConfigs500>,
 >(
   options?: {
     query?: Partial<
@@ -155,12 +167,12 @@ export function useGetConfigs<
 export const putConfigs = (
   putConfigsBody: PutConfigsBodyOne | PutConfigsBodyTwo | PutConfigsBodyThree,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<PutConfigs200>> => {
   return axios.put('http://localhost:7000/configs/', putConfigsBody, options);
 };
 
 export const getPutConfigsMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PutConfigs404 | PutConfigs500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -204,9 +216,12 @@ export type PutConfigsMutationBody =
   | PutConfigsBodyOne
   | PutConfigsBodyTwo
   | PutConfigsBodyThree;
-export type PutConfigsMutationError = AxiosError<unknown>;
+export type PutConfigsMutationError = AxiosError<PutConfigs404 | PutConfigs500>;
 
-export const usePutConfigs = <TError = AxiosError<unknown>, TContext = unknown>(
+export const usePutConfigs = <
+  TError = AxiosError<PutConfigs404 | PutConfigs500>,
+  TContext = unknown,
+>(
   options?: {
     mutation?: UseMutationOptions<
       Awaited<ReturnType<typeof putConfigs>>,
@@ -230,7 +245,7 @@ export const usePutConfigs = <TError = AxiosError<unknown>, TContext = unknown>(
 export const getConfigsByKey = (
   key: string,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<GetConfigsByKey200>> => {
   return axios.get(`http://localhost:7000/configs/${key}`, options);
 };
 
@@ -240,7 +255,7 @@ export const getGetConfigsByKeyQueryKey = (key?: string) => {
 
 export const getGetConfigsByKeyQueryOptions = <
   TData = Awaited<ReturnType<typeof getConfigsByKey>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetConfigsByKey404 | GetConfigsByKey500>,
 >(
   key: string,
   options?: {
@@ -268,11 +283,13 @@ export const getGetConfigsByKeyQueryOptions = <
 export type GetConfigsByKeyQueryResult = NonNullable<
   Awaited<ReturnType<typeof getConfigsByKey>>
 >;
-export type GetConfigsByKeyQueryError = AxiosError<unknown>;
+export type GetConfigsByKeyQueryError = AxiosError<
+  GetConfigsByKey404 | GetConfigsByKey500
+>;
 
 export function useGetConfigsByKey<
   TData = Awaited<ReturnType<typeof getConfigsByKey>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetConfigsByKey404 | GetConfigsByKey500>,
 >(
   key: string,
   options: {
@@ -295,7 +312,7 @@ export function useGetConfigsByKey<
 };
 export function useGetConfigsByKey<
   TData = Awaited<ReturnType<typeof getConfigsByKey>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetConfigsByKey404 | GetConfigsByKey500>,
 >(
   key: string,
   options?: {
@@ -316,7 +333,7 @@ export function useGetConfigsByKey<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetConfigsByKey<
   TData = Awaited<ReturnType<typeof getConfigsByKey>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetConfigsByKey404 | GetConfigsByKey500>,
 >(
   key: string,
   options?: {
@@ -330,7 +347,7 @@ export function useGetConfigsByKey<
 
 export function useGetConfigsByKey<
   TData = Awaited<ReturnType<typeof getConfigsByKey>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetConfigsByKey404 | GetConfigsByKey500>,
 >(
   key: string,
   options?: {
@@ -356,12 +373,12 @@ export function useGetConfigsByKey<
 export const deleteConfigsByKey = (
   key: string,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<DeleteConfigsByKey200>> => {
   return axios.delete(`http://localhost:7000/configs/${key}`, options);
 };
 
 export const getDeleteConfigsByKeyMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<DeleteConfigsByKey404 | DeleteConfigsByKey500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -402,10 +419,12 @@ export type DeleteConfigsByKeyMutationResult = NonNullable<
   Awaited<ReturnType<typeof deleteConfigsByKey>>
 >;
 
-export type DeleteConfigsByKeyMutationError = AxiosError<unknown>;
+export type DeleteConfigsByKeyMutationError = AxiosError<
+  DeleteConfigsByKey404 | DeleteConfigsByKey500
+>;
 
 export const useDeleteConfigsByKey = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<DeleteConfigsByKey404 | DeleteConfigsByKey500>,
   TContext = unknown,
 >(
   options?: {

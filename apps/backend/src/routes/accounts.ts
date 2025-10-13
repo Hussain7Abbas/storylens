@@ -1,6 +1,7 @@
 // import { omit } from '@repo/utils/helpers';
 // import bcrypt from 'bcryptjs';
-// import { Elysia, t } from 'elysia';
+// import { Elysia} from 'elysia';
+// import { z } from 'zod';
 // import { setup } from '@/setup';
 // import { signJwt } from '@/utils/auth';
 // import { HttpError } from '@/utils/errors';
@@ -39,9 +40,9 @@
 //       return { token };
 //     },
 //     {
-//       body: t.Object({
-//         username: t.String(),
-//         password: t.String(),
+//       body: z.object({
+//         username: z.string(),
+//         password: z.string(),
 //       }),
 //     },
 //   )
@@ -72,13 +73,13 @@
 //       });
 //     },
 //     {
-//       body: t.Object({
-//         username: t.String(),
-//         password: t.String(),
-//         name: t.String(),
-//         phone: t.String(),
+//       body: z.object({
+//         username: z.string(),
+//         password: z.string(),
+//         name: z.string(),
+//         phone: z.string(),
 //         birthDate: t.Date(),
-//         avatarId: t.Optional(t.String({ format: 'uuid' })),
+//         avatarId: t.Optional(z.uuid()),
 //       }),
 //     },
 //   )

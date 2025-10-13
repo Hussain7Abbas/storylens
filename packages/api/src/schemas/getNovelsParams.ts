@@ -8,13 +8,13 @@
 import type { GetNovelsSortingDirection } from './getNovelsSortingDirection';
 
 export type GetNovelsParams = {
-  pagination: {
+  pagination?: {
     page: number;
     pageSize: number;
   };
-  sorting: {
+  sorting?: {
     column: string;
-    direction: GetNovelsSortingDirection;
+    direction?: GetNovelsSortingDirection;
   };
   query?: {
     search?: string;

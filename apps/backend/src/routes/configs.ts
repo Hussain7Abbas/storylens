@@ -1,3 +1,4 @@
+import { ConfigPlain } from '@repo/db';
 import { Elysia, t } from 'elysia';
 import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
@@ -14,17 +15,27 @@ export const configs = new Elysia({
   /**
    * Get all configs
    */
-  .get('/', async ({ prisma }) => {
-    const configs = await prisma.config.findMany({
-      orderBy: {
-        key: 'asc',
-      },
-    });
+  .get(
+    '/',
+    async ({ prisma }) => {
+      const configs = await prisma.config.findMany({
+        orderBy: {
+          key: 'asc',
+        },
+      });
 
-    return {
-      data: configs,
-    };
-  })
+      return {
+        data: configs,
+      };
+    },
+    {
+      response: {
+        200: t.Object({
+          data: t.Array(ConfigPlain),
+        }),
+      },
+    },
+  )
 
   /**
    * Get config by key
@@ -46,6 +57,9 @@ export const configs = new Elysia({
       params: t.Object({
         key: t.String(),
       }),
+      response: {
+        200: ConfigPlain,
+      },
     },
   )
 
@@ -73,6 +87,9 @@ export const configs = new Elysia({
         key: t.String(),
         value: t.String(),
       }),
+      response: {
+        200: ConfigPlain,
+      },
     },
   )
 
@@ -82,21 +99,26 @@ export const configs = new Elysia({
   .delete(
     '/:key',
     async ({ prisma, params: { key } }) => {
-      try {
-        await prisma.config.delete({
-          where: { key },
-        });
+      const existingConfig = await prisma.config.findUnique({
+        where: { key },
+      });
 
-        return {
-          success: true,
-        };
-      } catch (_) {
+      if (!existingConfig) {
         throw new HttpError({ message: 'Config not found', statusCode: 404 });
       }
+
+      await prisma.config.delete({
+        where: { key },
+      });
+
+      return existingConfig;
     },
     {
       params: t.Object({
         key: t.String(),
       }),
+      response: {
+        200: ConfigPlain,
+      },
     },
   );

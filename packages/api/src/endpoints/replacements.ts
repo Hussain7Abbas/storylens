@@ -25,10 +25,25 @@ import axios from 'axios';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import type {
+  DeleteReplacementsById200,
+  DeleteReplacementsById404,
+  DeleteReplacementsById500,
+  GetReplacementsById200,
+  GetReplacementsById404,
+  GetReplacementsById500,
+  GetReplacementsKeywordByKeywordId200,
+  GetReplacementsKeywordByKeywordId404,
+  GetReplacementsKeywordByKeywordId500,
   GetReplacementsKeywordByKeywordIdParams,
+  PostReplacements200,
+  PostReplacements404,
+  PostReplacements500,
   PostReplacementsBodyOne,
   PostReplacementsBodyThree,
   PostReplacementsBodyTwo,
+  PutReplacementsById200,
+  PutReplacementsById404,
+  PutReplacementsById500,
   PutReplacementsByIdBodyOne,
   PutReplacementsByIdBodyThree,
   PutReplacementsByIdBodyTwo,
@@ -42,7 +57,7 @@ export const getReplacementsKeywordByKeywordId = (
   keywordId: string,
   params: GetReplacementsKeywordByKeywordIdParams,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<GetReplacementsKeywordByKeywordId200>> => {
   return axios.get(`http://localhost:7000/replacements/keyword/${keywordId}`, {
     ...options,
     params: { ...params, ...options?.params },
@@ -61,7 +76,9 @@ export const getGetReplacementsKeywordByKeywordIdQueryKey = (
 
 export const getGetReplacementsKeywordByKeywordIdQueryOptions = <
   TData = Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<
+    GetReplacementsKeywordByKeywordId404 | GetReplacementsKeywordByKeywordId500
+  >,
 >(
   keywordId: string,
   params: GetReplacementsKeywordByKeywordIdParams,
@@ -102,11 +119,15 @@ export const getGetReplacementsKeywordByKeywordIdQueryOptions = <
 export type GetReplacementsKeywordByKeywordIdQueryResult = NonNullable<
   Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>
 >;
-export type GetReplacementsKeywordByKeywordIdQueryError = AxiosError<unknown>;
+export type GetReplacementsKeywordByKeywordIdQueryError = AxiosError<
+  GetReplacementsKeywordByKeywordId404 | GetReplacementsKeywordByKeywordId500
+>;
 
 export function useGetReplacementsKeywordByKeywordId<
   TData = Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<
+    GetReplacementsKeywordByKeywordId404 | GetReplacementsKeywordByKeywordId500
+  >,
 >(
   keywordId: string,
   params: GetReplacementsKeywordByKeywordIdParams,
@@ -134,7 +155,9 @@ export function useGetReplacementsKeywordByKeywordId<
 };
 export function useGetReplacementsKeywordByKeywordId<
   TData = Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<
+    GetReplacementsKeywordByKeywordId404 | GetReplacementsKeywordByKeywordId500
+  >,
 >(
   keywordId: string,
   params: GetReplacementsKeywordByKeywordIdParams,
@@ -160,7 +183,9 @@ export function useGetReplacementsKeywordByKeywordId<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetReplacementsKeywordByKeywordId<
   TData = Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<
+    GetReplacementsKeywordByKeywordId404 | GetReplacementsKeywordByKeywordId500
+  >,
 >(
   keywordId: string,
   params: GetReplacementsKeywordByKeywordIdParams,
@@ -179,7 +204,9 @@ export function useGetReplacementsKeywordByKeywordId<
 
 export function useGetReplacementsKeywordByKeywordId<
   TData = Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<
+    GetReplacementsKeywordByKeywordId404 | GetReplacementsKeywordByKeywordId500
+  >,
 >(
   keywordId: string,
   params: GetReplacementsKeywordByKeywordIdParams,
@@ -214,7 +241,7 @@ export function useGetReplacementsKeywordByKeywordId<
 export const getReplacementsById = (
   id: string,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<GetReplacementsById200>> => {
   return axios.get(`http://localhost:7000/replacements/${id}`, options);
 };
 
@@ -224,7 +251,7 @@ export const getGetReplacementsByIdQueryKey = (id?: string) => {
 
 export const getGetReplacementsByIdQueryOptions = <
   TData = Awaited<ReturnType<typeof getReplacementsById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetReplacementsById404 | GetReplacementsById500>,
 >(
   id: string,
   options?: {
@@ -252,11 +279,13 @@ export const getGetReplacementsByIdQueryOptions = <
 export type GetReplacementsByIdQueryResult = NonNullable<
   Awaited<ReturnType<typeof getReplacementsById>>
 >;
-export type GetReplacementsByIdQueryError = AxiosError<unknown>;
+export type GetReplacementsByIdQueryError = AxiosError<
+  GetReplacementsById404 | GetReplacementsById500
+>;
 
 export function useGetReplacementsById<
   TData = Awaited<ReturnType<typeof getReplacementsById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetReplacementsById404 | GetReplacementsById500>,
 >(
   id: string,
   options: {
@@ -279,7 +308,7 @@ export function useGetReplacementsById<
 };
 export function useGetReplacementsById<
   TData = Awaited<ReturnType<typeof getReplacementsById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetReplacementsById404 | GetReplacementsById500>,
 >(
   id: string,
   options?: {
@@ -300,7 +329,7 @@ export function useGetReplacementsById<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetReplacementsById<
   TData = Awaited<ReturnType<typeof getReplacementsById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetReplacementsById404 | GetReplacementsById500>,
 >(
   id: string,
   options?: {
@@ -314,7 +343,7 @@ export function useGetReplacementsById<
 
 export function useGetReplacementsById<
   TData = Awaited<ReturnType<typeof getReplacementsById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetReplacementsById404 | GetReplacementsById500>,
 >(
   id: string,
   options?: {
@@ -344,7 +373,7 @@ export const putReplacementsById = (
     | PutReplacementsByIdBodyTwo
     | PutReplacementsByIdBodyThree,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<PutReplacementsById200>> => {
   return axios.put(
     `http://localhost:7000/replacements/${id}`,
     putReplacementsByIdBody,
@@ -353,7 +382,7 @@ export const putReplacementsById = (
 };
 
 export const getPutReplacementsByIdMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PutReplacementsById404 | PutReplacementsById500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -415,10 +444,12 @@ export type PutReplacementsByIdMutationBody =
   | PutReplacementsByIdBodyOne
   | PutReplacementsByIdBodyTwo
   | PutReplacementsByIdBodyThree;
-export type PutReplacementsByIdMutationError = AxiosError<unknown>;
+export type PutReplacementsByIdMutationError = AxiosError<
+  PutReplacementsById404 | PutReplacementsById500
+>;
 
 export const usePutReplacementsById = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PutReplacementsById404 | PutReplacementsById500>,
   TContext = unknown,
 >(
   options?: {
@@ -456,12 +487,12 @@ export const usePutReplacementsById = <
 export const deleteReplacementsById = (
   id: string,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<DeleteReplacementsById200>> => {
   return axios.delete(`http://localhost:7000/replacements/${id}`, options);
 };
 
 export const getDeleteReplacementsByIdMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<DeleteReplacementsById404 | DeleteReplacementsById500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -502,10 +533,12 @@ export type DeleteReplacementsByIdMutationResult = NonNullable<
   Awaited<ReturnType<typeof deleteReplacementsById>>
 >;
 
-export type DeleteReplacementsByIdMutationError = AxiosError<unknown>;
+export type DeleteReplacementsByIdMutationError = AxiosError<
+  DeleteReplacementsById404 | DeleteReplacementsById500
+>;
 
 export const useDeleteReplacementsById = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<DeleteReplacementsById404 | DeleteReplacementsById500>,
   TContext = unknown,
 >(
   options?: {
@@ -534,7 +567,7 @@ export const postReplacements = (
     | PostReplacementsBodyTwo
     | PostReplacementsBodyThree,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<PostReplacements200>> => {
   return axios.post(
     'http://localhost:7000/replacements/',
     postReplacementsBody,
@@ -543,7 +576,7 @@ export const postReplacements = (
 };
 
 export const getPostReplacementsMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PostReplacements404 | PostReplacements500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -602,9 +635,14 @@ export type PostReplacementsMutationBody =
   | PostReplacementsBodyOne
   | PostReplacementsBodyTwo
   | PostReplacementsBodyThree;
-export type PostReplacementsMutationError = AxiosError<unknown>;
+export type PostReplacementsMutationError = AxiosError<
+  PostReplacements404 | PostReplacements500
+>;
 
-export const usePostReplacements = <TError = AxiosError<unknown>, TContext = unknown>(
+export const usePostReplacements = <
+  TError = AxiosError<PostReplacements404 | PostReplacements500>,
+  TContext = unknown,
+>(
   options?: {
     mutation?: UseMutationOptions<
       Awaited<ReturnType<typeof postReplacements>>,

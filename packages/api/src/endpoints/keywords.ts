@@ -25,10 +25,25 @@ import axios from 'axios';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import type {
+  DeleteKeywordsById200,
+  DeleteKeywordsById404,
+  DeleteKeywordsById500,
+  GetKeywords200,
+  GetKeywords404,
+  GetKeywords500,
+  GetKeywordsById200,
+  GetKeywordsById404,
+  GetKeywordsById500,
   GetKeywordsParams,
+  PostKeywords200,
+  PostKeywords404,
+  PostKeywords500,
   PostKeywordsBodyOne,
   PostKeywordsBodyThree,
   PostKeywordsBodyTwo,
+  PutKeywordsById200,
+  PutKeywordsById404,
+  PutKeywordsById500,
   PutKeywordsByIdBodyOne,
   PutKeywordsByIdBodyThree,
   PutKeywordsByIdBodyTwo,
@@ -41,7 +56,7 @@ type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 export const getKeywords = (
   params: GetKeywordsParams,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<GetKeywords200>> => {
   return axios.get('http://localhost:7000/keywords/', {
     ...options,
     params: { ...params, ...options?.params },
@@ -54,7 +69,7 @@ export const getGetKeywordsQueryKey = (params?: GetKeywordsParams) => {
 
 export const getGetKeywordsQueryOptions = <
   TData = Awaited<ReturnType<typeof getKeywords>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywords404 | GetKeywords500>,
 >(
   params: GetKeywordsParams,
   options?: {
@@ -82,11 +97,11 @@ export const getGetKeywordsQueryOptions = <
 export type GetKeywordsQueryResult = NonNullable<
   Awaited<ReturnType<typeof getKeywords>>
 >;
-export type GetKeywordsQueryError = AxiosError<unknown>;
+export type GetKeywordsQueryError = AxiosError<GetKeywords404 | GetKeywords500>;
 
 export function useGetKeywords<
   TData = Awaited<ReturnType<typeof getKeywords>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywords404 | GetKeywords500>,
 >(
   params: GetKeywordsParams,
   options: {
@@ -109,7 +124,7 @@ export function useGetKeywords<
 };
 export function useGetKeywords<
   TData = Awaited<ReturnType<typeof getKeywords>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywords404 | GetKeywords500>,
 >(
   params: GetKeywordsParams,
   options?: {
@@ -130,7 +145,7 @@ export function useGetKeywords<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetKeywords<
   TData = Awaited<ReturnType<typeof getKeywords>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywords404 | GetKeywords500>,
 >(
   params: GetKeywordsParams,
   options?: {
@@ -144,7 +159,7 @@ export function useGetKeywords<
 
 export function useGetKeywords<
   TData = Awaited<ReturnType<typeof getKeywords>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywords404 | GetKeywords500>,
 >(
   params: GetKeywordsParams,
   options?: {
@@ -170,12 +185,12 @@ export function useGetKeywords<
 export const postKeywords = (
   postKeywordsBody: PostKeywordsBodyOne | PostKeywordsBodyTwo | PostKeywordsBodyThree,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<PostKeywords200>> => {
   return axios.post('http://localhost:7000/keywords/', postKeywordsBody, options);
 };
 
 export const getPostKeywordsMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PostKeywords404 | PostKeywords500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -219,9 +234,12 @@ export type PostKeywordsMutationBody =
   | PostKeywordsBodyOne
   | PostKeywordsBodyTwo
   | PostKeywordsBodyThree;
-export type PostKeywordsMutationError = AxiosError<unknown>;
+export type PostKeywordsMutationError = AxiosError<PostKeywords404 | PostKeywords500>;
 
-export const usePostKeywords = <TError = AxiosError<unknown>, TContext = unknown>(
+export const usePostKeywords = <
+  TError = AxiosError<PostKeywords404 | PostKeywords500>,
+  TContext = unknown,
+>(
   options?: {
     mutation?: UseMutationOptions<
       Awaited<ReturnType<typeof postKeywords>>,
@@ -245,7 +263,7 @@ export const usePostKeywords = <TError = AxiosError<unknown>, TContext = unknown
 export const getKeywordsById = (
   id: string,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<GetKeywordsById200>> => {
   return axios.get(`http://localhost:7000/keywords/${id}`, options);
 };
 
@@ -255,7 +273,7 @@ export const getGetKeywordsByIdQueryKey = (id?: string) => {
 
 export const getGetKeywordsByIdQueryOptions = <
   TData = Awaited<ReturnType<typeof getKeywordsById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordsById404 | GetKeywordsById500>,
 >(
   id: string,
   options?: {
@@ -283,11 +301,13 @@ export const getGetKeywordsByIdQueryOptions = <
 export type GetKeywordsByIdQueryResult = NonNullable<
   Awaited<ReturnType<typeof getKeywordsById>>
 >;
-export type GetKeywordsByIdQueryError = AxiosError<unknown>;
+export type GetKeywordsByIdQueryError = AxiosError<
+  GetKeywordsById404 | GetKeywordsById500
+>;
 
 export function useGetKeywordsById<
   TData = Awaited<ReturnType<typeof getKeywordsById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordsById404 | GetKeywordsById500>,
 >(
   id: string,
   options: {
@@ -310,7 +330,7 @@ export function useGetKeywordsById<
 };
 export function useGetKeywordsById<
   TData = Awaited<ReturnType<typeof getKeywordsById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordsById404 | GetKeywordsById500>,
 >(
   id: string,
   options?: {
@@ -331,7 +351,7 @@ export function useGetKeywordsById<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetKeywordsById<
   TData = Awaited<ReturnType<typeof getKeywordsById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordsById404 | GetKeywordsById500>,
 >(
   id: string,
   options?: {
@@ -345,7 +365,7 @@ export function useGetKeywordsById<
 
 export function useGetKeywordsById<
   TData = Awaited<ReturnType<typeof getKeywordsById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordsById404 | GetKeywordsById500>,
 >(
   id: string,
   options?: {
@@ -375,7 +395,7 @@ export const putKeywordsById = (
     | PutKeywordsByIdBodyTwo
     | PutKeywordsByIdBodyThree,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<PutKeywordsById200>> => {
   return axios.put(
     `http://localhost:7000/keywords/${id}`,
     putKeywordsByIdBody,
@@ -384,7 +404,7 @@ export const putKeywordsById = (
 };
 
 export const getPutKeywordsByIdMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PutKeywordsById404 | PutKeywordsById500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -443,9 +463,14 @@ export type PutKeywordsByIdMutationBody =
   | PutKeywordsByIdBodyOne
   | PutKeywordsByIdBodyTwo
   | PutKeywordsByIdBodyThree;
-export type PutKeywordsByIdMutationError = AxiosError<unknown>;
+export type PutKeywordsByIdMutationError = AxiosError<
+  PutKeywordsById404 | PutKeywordsById500
+>;
 
-export const usePutKeywordsById = <TError = AxiosError<unknown>, TContext = unknown>(
+export const usePutKeywordsById = <
+  TError = AxiosError<PutKeywordsById404 | PutKeywordsById500>,
+  TContext = unknown,
+>(
   options?: {
     mutation?: UseMutationOptions<
       Awaited<ReturnType<typeof putKeywordsById>>,
@@ -478,12 +503,12 @@ export const usePutKeywordsById = <TError = AxiosError<unknown>, TContext = unkn
 export const deleteKeywordsById = (
   id: string,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<DeleteKeywordsById200>> => {
   return axios.delete(`http://localhost:7000/keywords/${id}`, options);
 };
 
 export const getDeleteKeywordsByIdMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<DeleteKeywordsById404 | DeleteKeywordsById500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -524,10 +549,12 @@ export type DeleteKeywordsByIdMutationResult = NonNullable<
   Awaited<ReturnType<typeof deleteKeywordsById>>
 >;
 
-export type DeleteKeywordsByIdMutationError = AxiosError<unknown>;
+export type DeleteKeywordsByIdMutationError = AxiosError<
+  DeleteKeywordsById404 | DeleteKeywordsById500
+>;
 
 export const useDeleteKeywordsById = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<DeleteKeywordsById404 | DeleteKeywordsById500>,
   TContext = unknown,
 >(
   options?: {

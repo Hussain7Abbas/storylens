@@ -1,12 +1,17 @@
+import {
+  ChapterPlain,
+  FilePlain,
+  KeywordCategoryPlain,
+  KeywordNaturePlain,
+  KeywordPlain,
+  KeywordsChaptersPlain,
+  NovelPlain,
+} from '@repo/db';
 import { Elysia, t } from 'elysia';
 import { paginationSchema, sortingSchema } from '@/schemas/common';
 import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
-import {
-  authenticate,
-  getNestedColumnObject,
-  parsePaginationProps,
-} from '@/utils/helpers';
+import { getNestedColumnObject, parsePaginationProps } from '@/utils/helpers';
 
 export const keywordsChapters = new Elysia({
   prefix: '/keywords-chapters',
@@ -43,35 +48,12 @@ export const keywordsChapters = new Elysia({
           include: {
             keyword: {
               include: {
-                category: {
-                  select: {
-                    id: true,
-                    name: true,
-                    color: true,
-                  },
-                },
-                nature: {
-                  select: {
-                    id: true,
-                    name: true,
-                    color: true,
-                  },
-                },
-                image: {
-                  select: {
-                    url: true,
-                    type: true,
-                  },
-                },
+                category: true,
+                nature: true,
+                image: true,
               },
             },
-            chapter: {
-              select: {
-                id: true,
-                name: true,
-                number: true,
-              },
-            },
+            chapter: true,
           },
           orderBy: getNestedColumnObject(sorting?.column, sorting?.direction),
         }),
@@ -79,7 +61,7 @@ export const keywordsChapters = new Elysia({
       ]);
 
       return {
-        relationships,
+        data: relationships,
         total,
       };
     },
@@ -91,6 +73,12 @@ export const keywordsChapters = new Elysia({
         pagination: paginationSchema,
         sorting: sortingSchema,
       }),
+      response: {
+        200: t.Object({
+          data: t.Array(KeywordsChaptersPlain),
+          total: t.Number(),
+        }),
+      },
     },
   )
 
@@ -121,21 +109,10 @@ export const keywordsChapters = new Elysia({
           skip,
           take,
           include: {
-            keyword: {
-              select: {
-                id: true,
-                name: true,
-                description: true,
-              },
-            },
+            keyword: true,
             chapter: {
               include: {
-                novel: {
-                  select: {
-                    id: true,
-                    name: true,
-                  },
-                },
+                novel: true,
               },
             },
           },
@@ -159,6 +136,12 @@ export const keywordsChapters = new Elysia({
         pagination: paginationSchema,
         sorting: sortingSchema,
       }),
+      response: {
+        200: t.Object({
+          data: t.Array(KeywordsChaptersPlain),
+          total: t.Number(),
+        }),
+      },
     },
   )
 
@@ -171,36 +154,14 @@ export const keywordsChapters = new Elysia({
         include: {
           keyword: {
             include: {
-              category: {
-                select: {
-                  id: true,
-                  name: true,
-                  color: true,
-                },
-              },
-              nature: {
-                select: {
-                  id: true,
-                  name: true,
-                  color: true,
-                },
-              },
-              image: {
-                select: {
-                  url: true,
-                  type: true,
-                },
-              },
+              category: true,
+              nature: true,
+              image: true,
             },
           },
           chapter: {
             include: {
-              novel: {
-                select: {
-                  id: true,
-                  name: true,
-                },
-              },
+              novel: true,
             },
           },
         },
@@ -222,21 +183,34 @@ export const keywordsChapters = new Elysia({
       params: t.Object({
         id: t.String({ format: 'uuid' }),
       }),
+      response: {
+        200: t.Composite([
+          KeywordsChaptersPlain,
+          t.Object({
+            keyword: t.Composite([
+              KeywordPlain,
+              t.Object({
+                category: KeywordCategoryPlain,
+                nature: KeywordNaturePlain,
+                image: t.Nullable(FilePlain),
+              }),
+            ]),
+            chapter: t.Composite([
+              ChapterPlain,
+              t.Object({
+                novel: NovelPlain,
+              }),
+            ]),
+          }),
+        ]),
+      },
     },
   )
 
   // Create keyword-chapter relationship (User only)
   .post(
     '/',
-    async ({ t, prisma, bearer, body }) => {
-      await authenticate({
-        token: bearer || '',
-        errorMessage: t({
-          en: 'Authentication required',
-          ar: 'مطلوب التحقق من الهوية',
-        }),
-      });
-
+    async ({ t, prisma, body }) => {
       // Verify both keyword and chapter exist
       const [keyword, chapter] = await Promise.all([
         prisma.keyword.findUnique({ where: { id: body.keywordId } }),
@@ -286,19 +260,8 @@ export const keywordsChapters = new Elysia({
           chapterId: body.chapterId,
         },
         include: {
-          keyword: {
-            select: {
-              id: true,
-              name: true,
-            },
-          },
-          chapter: {
-            select: {
-              id: true,
-              name: true,
-              number: true,
-            },
-          },
+          keyword: true,
+          chapter: true,
         },
       });
 
@@ -309,21 +272,22 @@ export const keywordsChapters = new Elysia({
         keywordId: t.String({ format: 'uuid' }),
         chapterId: t.String({ format: 'uuid' }),
       }),
+      response: {
+        200: t.Composite([
+          KeywordsChaptersPlain,
+          t.Object({
+            keyword: KeywordPlain,
+            chapter: ChapterPlain,
+          }),
+        ]),
+      },
     },
   )
 
   // Delete keyword-chapter relationship (User only)
   .delete(
     '/:id',
-    async ({ t, prisma, bearer, params: { id } }) => {
-      await authenticate({
-        token: bearer || '',
-        errorMessage: t({
-          en: 'Authentication required',
-          ar: 'مطلوب التحقق من الهوية',
-        }),
-      });
-
+    async ({ t, prisma, params: { id } }) => {
       const existingRelationship = await prisma.keywordsChapters.findUnique({
         where: { id },
       });
@@ -342,16 +306,14 @@ export const keywordsChapters = new Elysia({
         where: { id },
       });
 
-      return {
-        message: t({
-          en: 'Relationship deleted successfully',
-          ar: 'تم حذف العلاقة بنجاح',
-        }),
-      };
+      return existingRelationship;
     },
     {
       params: t.Object({
         id: t.String({ format: 'uuid' }),
       }),
+      response: {
+        200: KeywordsChaptersPlain,
+      },
     },
   );

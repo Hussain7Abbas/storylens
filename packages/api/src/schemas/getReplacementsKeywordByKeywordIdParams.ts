@@ -8,12 +8,12 @@
 import type { GetReplacementsKeywordByKeywordIdSortingDirection } from './getReplacementsKeywordByKeywordIdSortingDirection';
 
 export type GetReplacementsKeywordByKeywordIdParams = {
-  pagination: {
+  pagination?: {
     page: number;
     pageSize: number;
   };
-  sorting: {
+  sorting?: {
     column: string;
-    direction: GetReplacementsKeywordByKeywordIdSortingDirection;
+    direction?: GetReplacementsKeywordByKeywordIdSortingDirection;
   };
 };

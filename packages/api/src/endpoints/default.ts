@@ -21,6 +21,8 @@ import type {
 import axios from 'axios';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
+import type { GetIndex404, GetIndex500 } from '../schemas';
+
 type AwaitedInput<T> = PromiseLike<T> | T;
 
 type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
@@ -37,7 +39,7 @@ export const getGetIndexQueryKey = () => {
 
 export const getGetIndexQueryOptions = <
   TData = Awaited<ReturnType<typeof getIndex>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetIndex404 | GetIndex500>,
 >(options?: {
   query?: Partial<
     UseQueryOptions<Awaited<ReturnType<typeof getIndex>>, TError, TData>
@@ -59,11 +61,11 @@ export const getGetIndexQueryOptions = <
 };
 
 export type GetIndexQueryResult = NonNullable<Awaited<ReturnType<typeof getIndex>>>;
-export type GetIndexQueryError = AxiosError<unknown>;
+export type GetIndexQueryError = AxiosError<GetIndex404 | GetIndex500>;
 
 export function useGetIndex<
   TData = Awaited<ReturnType<typeof getIndex>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetIndex404 | GetIndex500>,
 >(
   options: {
     query: Partial<
@@ -85,7 +87,7 @@ export function useGetIndex<
 };
 export function useGetIndex<
   TData = Awaited<ReturnType<typeof getIndex>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetIndex404 | GetIndex500>,
 >(
   options?: {
     query?: Partial<
@@ -105,7 +107,7 @@ export function useGetIndex<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetIndex<
   TData = Awaited<ReturnType<typeof getIndex>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetIndex404 | GetIndex500>,
 >(
   options?: {
     query?: Partial<
@@ -118,7 +120,7 @@ export function useGetIndex<
 
 export function useGetIndex<
   TData = Awaited<ReturnType<typeof getIndex>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetIndex404 | GetIndex500>,
 >(
   options?: {
     query?: Partial<

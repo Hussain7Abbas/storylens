@@ -25,10 +25,25 @@ import axios from 'axios';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import type {
+  DeleteKeywordCategoriesById200,
+  DeleteKeywordCategoriesById404,
+  DeleteKeywordCategoriesById500,
+  GetKeywordCategories200,
+  GetKeywordCategories404,
+  GetKeywordCategories500,
+  GetKeywordCategoriesById200,
+  GetKeywordCategoriesById404,
+  GetKeywordCategoriesById500,
   GetKeywordCategoriesParams,
+  PostKeywordCategories200,
+  PostKeywordCategories404,
+  PostKeywordCategories500,
   PostKeywordCategoriesBodyOne,
   PostKeywordCategoriesBodyThree,
   PostKeywordCategoriesBodyTwo,
+  PutKeywordCategoriesById200,
+  PutKeywordCategoriesById404,
+  PutKeywordCategoriesById500,
   PutKeywordCategoriesByIdBodyOne,
   PutKeywordCategoriesByIdBodyThree,
   PutKeywordCategoriesByIdBodyTwo,
@@ -41,7 +56,7 @@ type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 export const getKeywordCategories = (
   params: GetKeywordCategoriesParams,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<GetKeywordCategories200>> => {
   return axios.get('http://localhost:7000/keyword-categories/', {
     ...options,
     params: { ...params, ...options?.params },
@@ -59,7 +74,7 @@ export const getGetKeywordCategoriesQueryKey = (
 
 export const getGetKeywordCategoriesQueryOptions = <
   TData = Awaited<ReturnType<typeof getKeywordCategories>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordCategories404 | GetKeywordCategories500>,
 >(
   params: GetKeywordCategoriesParams,
   options?: {
@@ -87,11 +102,13 @@ export const getGetKeywordCategoriesQueryOptions = <
 export type GetKeywordCategoriesQueryResult = NonNullable<
   Awaited<ReturnType<typeof getKeywordCategories>>
 >;
-export type GetKeywordCategoriesQueryError = AxiosError<unknown>;
+export type GetKeywordCategoriesQueryError = AxiosError<
+  GetKeywordCategories404 | GetKeywordCategories500
+>;
 
 export function useGetKeywordCategories<
   TData = Awaited<ReturnType<typeof getKeywordCategories>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordCategories404 | GetKeywordCategories500>,
 >(
   params: GetKeywordCategoriesParams,
   options: {
@@ -114,7 +131,7 @@ export function useGetKeywordCategories<
 };
 export function useGetKeywordCategories<
   TData = Awaited<ReturnType<typeof getKeywordCategories>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordCategories404 | GetKeywordCategories500>,
 >(
   params: GetKeywordCategoriesParams,
   options?: {
@@ -135,7 +152,7 @@ export function useGetKeywordCategories<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetKeywordCategories<
   TData = Awaited<ReturnType<typeof getKeywordCategories>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordCategories404 | GetKeywordCategories500>,
 >(
   params: GetKeywordCategoriesParams,
   options?: {
@@ -149,7 +166,7 @@ export function useGetKeywordCategories<
 
 export function useGetKeywordCategories<
   TData = Awaited<ReturnType<typeof getKeywordCategories>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordCategories404 | GetKeywordCategories500>,
 >(
   params: GetKeywordCategoriesParams,
   options?: {
@@ -178,7 +195,7 @@ export const postKeywordCategories = (
     | PostKeywordCategoriesBodyTwo
     | PostKeywordCategoriesBodyThree,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<PostKeywordCategories200>> => {
   return axios.post(
     'http://localhost:7000/keyword-categories/',
     postKeywordCategoriesBody,
@@ -187,7 +204,7 @@ export const postKeywordCategories = (
 };
 
 export const getPostKeywordCategoriesMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PostKeywordCategories404 | PostKeywordCategories500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -246,10 +263,12 @@ export type PostKeywordCategoriesMutationBody =
   | PostKeywordCategoriesBodyOne
   | PostKeywordCategoriesBodyTwo
   | PostKeywordCategoriesBodyThree;
-export type PostKeywordCategoriesMutationError = AxiosError<unknown>;
+export type PostKeywordCategoriesMutationError = AxiosError<
+  PostKeywordCategories404 | PostKeywordCategories500
+>;
 
 export const usePostKeywordCategories = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PostKeywordCategories404 | PostKeywordCategories500>,
   TContext = unknown,
 >(
   options?: {
@@ -285,7 +304,7 @@ export const usePostKeywordCategories = <
 export const getKeywordCategoriesById = (
   id: string,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<GetKeywordCategoriesById200>> => {
   return axios.get(`http://localhost:7000/keyword-categories/${id}`, options);
 };
 
@@ -295,7 +314,7 @@ export const getGetKeywordCategoriesByIdQueryKey = (id?: string) => {
 
 export const getGetKeywordCategoriesByIdQueryOptions = <
   TData = Awaited<ReturnType<typeof getKeywordCategoriesById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordCategoriesById404 | GetKeywordCategoriesById500>,
 >(
   id: string,
   options?: {
@@ -327,11 +346,13 @@ export const getGetKeywordCategoriesByIdQueryOptions = <
 export type GetKeywordCategoriesByIdQueryResult = NonNullable<
   Awaited<ReturnType<typeof getKeywordCategoriesById>>
 >;
-export type GetKeywordCategoriesByIdQueryError = AxiosError<unknown>;
+export type GetKeywordCategoriesByIdQueryError = AxiosError<
+  GetKeywordCategoriesById404 | GetKeywordCategoriesById500
+>;
 
 export function useGetKeywordCategoriesById<
   TData = Awaited<ReturnType<typeof getKeywordCategoriesById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordCategoriesById404 | GetKeywordCategoriesById500>,
 >(
   id: string,
   options: {
@@ -358,7 +379,7 @@ export function useGetKeywordCategoriesById<
 };
 export function useGetKeywordCategoriesById<
   TData = Awaited<ReturnType<typeof getKeywordCategoriesById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordCategoriesById404 | GetKeywordCategoriesById500>,
 >(
   id: string,
   options?: {
@@ -383,7 +404,7 @@ export function useGetKeywordCategoriesById<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetKeywordCategoriesById<
   TData = Awaited<ReturnType<typeof getKeywordCategoriesById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordCategoriesById404 | GetKeywordCategoriesById500>,
 >(
   id: string,
   options?: {
@@ -401,7 +422,7 @@ export function useGetKeywordCategoriesById<
 
 export function useGetKeywordCategoriesById<
   TData = Awaited<ReturnType<typeof getKeywordCategoriesById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordCategoriesById404 | GetKeywordCategoriesById500>,
 >(
   id: string,
   options?: {
@@ -435,7 +456,7 @@ export const putKeywordCategoriesById = (
     | PutKeywordCategoriesByIdBodyTwo
     | PutKeywordCategoriesByIdBodyThree,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<PutKeywordCategoriesById200>> => {
   return axios.put(
     `http://localhost:7000/keyword-categories/${id}`,
     putKeywordCategoriesByIdBody,
@@ -444,7 +465,7 @@ export const putKeywordCategoriesById = (
 };
 
 export const getPutKeywordCategoriesByIdMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PutKeywordCategoriesById404 | PutKeywordCategoriesById500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -506,10 +527,12 @@ export type PutKeywordCategoriesByIdMutationBody =
   | PutKeywordCategoriesByIdBodyOne
   | PutKeywordCategoriesByIdBodyTwo
   | PutKeywordCategoriesByIdBodyThree;
-export type PutKeywordCategoriesByIdMutationError = AxiosError<unknown>;
+export type PutKeywordCategoriesByIdMutationError = AxiosError<
+  PutKeywordCategoriesById404 | PutKeywordCategoriesById500
+>;
 
 export const usePutKeywordCategoriesById = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PutKeywordCategoriesById404 | PutKeywordCategoriesById500>,
   TContext = unknown,
 >(
   options?: {
@@ -547,12 +570,14 @@ export const usePutKeywordCategoriesById = <
 export const deleteKeywordCategoriesById = (
   id: string,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<DeleteKeywordCategoriesById200>> => {
   return axios.delete(`http://localhost:7000/keyword-categories/${id}`, options);
 };
 
 export const getDeleteKeywordCategoriesByIdMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<
+    DeleteKeywordCategoriesById404 | DeleteKeywordCategoriesById500
+  >,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -593,10 +618,14 @@ export type DeleteKeywordCategoriesByIdMutationResult = NonNullable<
   Awaited<ReturnType<typeof deleteKeywordCategoriesById>>
 >;
 
-export type DeleteKeywordCategoriesByIdMutationError = AxiosError<unknown>;
+export type DeleteKeywordCategoriesByIdMutationError = AxiosError<
+  DeleteKeywordCategoriesById404 | DeleteKeywordCategoriesById500
+>;
 
 export const useDeleteKeywordCategoriesById = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<
+    DeleteKeywordCategoriesById404 | DeleteKeywordCategoriesById500
+  >,
   TContext = unknown,
 >(
   options?: {

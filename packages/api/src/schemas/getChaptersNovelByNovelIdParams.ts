@@ -8,12 +8,12 @@
 import type { GetChaptersNovelByNovelIdSortingDirection } from './getChaptersNovelByNovelIdSortingDirection';
 
 export type GetChaptersNovelByNovelIdParams = {
-  pagination: {
+  pagination?: {
     page: number;
     pageSize: number;
   };
-  sorting: {
+  sorting?: {
     column: string;
-    direction: GetChaptersNovelByNovelIdSortingDirection;
+    direction?: GetChaptersNovelByNovelIdSortingDirection;
   };
 };

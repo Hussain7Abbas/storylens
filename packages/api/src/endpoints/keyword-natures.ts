@@ -25,10 +25,25 @@ import axios from 'axios';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import type {
+  DeleteKeywordNaturesById200,
+  DeleteKeywordNaturesById404,
+  DeleteKeywordNaturesById500,
+  GetKeywordNatures200,
+  GetKeywordNatures404,
+  GetKeywordNatures500,
+  GetKeywordNaturesById200,
+  GetKeywordNaturesById404,
+  GetKeywordNaturesById500,
   GetKeywordNaturesParams,
+  PostKeywordNatures200,
+  PostKeywordNatures404,
+  PostKeywordNatures500,
   PostKeywordNaturesBodyOne,
   PostKeywordNaturesBodyThree,
   PostKeywordNaturesBodyTwo,
+  PutKeywordNaturesById200,
+  PutKeywordNaturesById404,
+  PutKeywordNaturesById500,
   PutKeywordNaturesByIdBodyOne,
   PutKeywordNaturesByIdBodyThree,
   PutKeywordNaturesByIdBodyTwo,
@@ -41,7 +56,7 @@ type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 export const getKeywordNatures = (
   params: GetKeywordNaturesParams,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<GetKeywordNatures200>> => {
   return axios.get('http://localhost:7000/keyword-natures/', {
     ...options,
     params: { ...params, ...options?.params },
@@ -57,7 +72,7 @@ export const getGetKeywordNaturesQueryKey = (params?: GetKeywordNaturesParams) =
 
 export const getGetKeywordNaturesQueryOptions = <
   TData = Awaited<ReturnType<typeof getKeywordNatures>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordNatures404 | GetKeywordNatures500>,
 >(
   params: GetKeywordNaturesParams,
   options?: {
@@ -85,11 +100,13 @@ export const getGetKeywordNaturesQueryOptions = <
 export type GetKeywordNaturesQueryResult = NonNullable<
   Awaited<ReturnType<typeof getKeywordNatures>>
 >;
-export type GetKeywordNaturesQueryError = AxiosError<unknown>;
+export type GetKeywordNaturesQueryError = AxiosError<
+  GetKeywordNatures404 | GetKeywordNatures500
+>;
 
 export function useGetKeywordNatures<
   TData = Awaited<ReturnType<typeof getKeywordNatures>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordNatures404 | GetKeywordNatures500>,
 >(
   params: GetKeywordNaturesParams,
   options: {
@@ -112,7 +129,7 @@ export function useGetKeywordNatures<
 };
 export function useGetKeywordNatures<
   TData = Awaited<ReturnType<typeof getKeywordNatures>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordNatures404 | GetKeywordNatures500>,
 >(
   params: GetKeywordNaturesParams,
   options?: {
@@ -133,7 +150,7 @@ export function useGetKeywordNatures<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetKeywordNatures<
   TData = Awaited<ReturnType<typeof getKeywordNatures>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordNatures404 | GetKeywordNatures500>,
 >(
   params: GetKeywordNaturesParams,
   options?: {
@@ -147,7 +164,7 @@ export function useGetKeywordNatures<
 
 export function useGetKeywordNatures<
   TData = Awaited<ReturnType<typeof getKeywordNatures>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordNatures404 | GetKeywordNatures500>,
 >(
   params: GetKeywordNaturesParams,
   options?: {
@@ -176,7 +193,7 @@ export const postKeywordNatures = (
     | PostKeywordNaturesBodyTwo
     | PostKeywordNaturesBodyThree,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<PostKeywordNatures200>> => {
   return axios.post(
     'http://localhost:7000/keyword-natures/',
     postKeywordNaturesBody,
@@ -185,7 +202,7 @@ export const postKeywordNatures = (
 };
 
 export const getPostKeywordNaturesMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PostKeywordNatures404 | PostKeywordNatures500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -244,10 +261,12 @@ export type PostKeywordNaturesMutationBody =
   | PostKeywordNaturesBodyOne
   | PostKeywordNaturesBodyTwo
   | PostKeywordNaturesBodyThree;
-export type PostKeywordNaturesMutationError = AxiosError<unknown>;
+export type PostKeywordNaturesMutationError = AxiosError<
+  PostKeywordNatures404 | PostKeywordNatures500
+>;
 
 export const usePostKeywordNatures = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PostKeywordNatures404 | PostKeywordNatures500>,
   TContext = unknown,
 >(
   options?: {
@@ -283,7 +302,7 @@ export const usePostKeywordNatures = <
 export const getKeywordNaturesById = (
   id: string,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<GetKeywordNaturesById200>> => {
   return axios.get(`http://localhost:7000/keyword-natures/${id}`, options);
 };
 
@@ -293,7 +312,7 @@ export const getGetKeywordNaturesByIdQueryKey = (id?: string) => {
 
 export const getGetKeywordNaturesByIdQueryOptions = <
   TData = Awaited<ReturnType<typeof getKeywordNaturesById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordNaturesById404 | GetKeywordNaturesById500>,
 >(
   id: string,
   options?: {
@@ -325,11 +344,13 @@ export const getGetKeywordNaturesByIdQueryOptions = <
 export type GetKeywordNaturesByIdQueryResult = NonNullable<
   Awaited<ReturnType<typeof getKeywordNaturesById>>
 >;
-export type GetKeywordNaturesByIdQueryError = AxiosError<unknown>;
+export type GetKeywordNaturesByIdQueryError = AxiosError<
+  GetKeywordNaturesById404 | GetKeywordNaturesById500
+>;
 
 export function useGetKeywordNaturesById<
   TData = Awaited<ReturnType<typeof getKeywordNaturesById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordNaturesById404 | GetKeywordNaturesById500>,
 >(
   id: string,
   options: {
@@ -356,7 +377,7 @@ export function useGetKeywordNaturesById<
 };
 export function useGetKeywordNaturesById<
   TData = Awaited<ReturnType<typeof getKeywordNaturesById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordNaturesById404 | GetKeywordNaturesById500>,
 >(
   id: string,
   options?: {
@@ -381,7 +402,7 @@ export function useGetKeywordNaturesById<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetKeywordNaturesById<
   TData = Awaited<ReturnType<typeof getKeywordNaturesById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordNaturesById404 | GetKeywordNaturesById500>,
 >(
   id: string,
   options?: {
@@ -399,7 +420,7 @@ export function useGetKeywordNaturesById<
 
 export function useGetKeywordNaturesById<
   TData = Awaited<ReturnType<typeof getKeywordNaturesById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordNaturesById404 | GetKeywordNaturesById500>,
 >(
   id: string,
   options?: {
@@ -433,7 +454,7 @@ export const putKeywordNaturesById = (
     | PutKeywordNaturesByIdBodyTwo
     | PutKeywordNaturesByIdBodyThree,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<PutKeywordNaturesById200>> => {
   return axios.put(
     `http://localhost:7000/keyword-natures/${id}`,
     putKeywordNaturesByIdBody,
@@ -442,7 +463,7 @@ export const putKeywordNaturesById = (
 };
 
 export const getPutKeywordNaturesByIdMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PutKeywordNaturesById404 | PutKeywordNaturesById500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -504,10 +525,12 @@ export type PutKeywordNaturesByIdMutationBody =
   | PutKeywordNaturesByIdBodyOne
   | PutKeywordNaturesByIdBodyTwo
   | PutKeywordNaturesByIdBodyThree;
-export type PutKeywordNaturesByIdMutationError = AxiosError<unknown>;
+export type PutKeywordNaturesByIdMutationError = AxiosError<
+  PutKeywordNaturesById404 | PutKeywordNaturesById500
+>;
 
 export const usePutKeywordNaturesById = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PutKeywordNaturesById404 | PutKeywordNaturesById500>,
   TContext = unknown,
 >(
   options?: {
@@ -545,12 +568,12 @@ export const usePutKeywordNaturesById = <
 export const deleteKeywordNaturesById = (
   id: string,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<DeleteKeywordNaturesById200>> => {
   return axios.delete(`http://localhost:7000/keyword-natures/${id}`, options);
 };
 
 export const getDeleteKeywordNaturesByIdMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<DeleteKeywordNaturesById404 | DeleteKeywordNaturesById500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -591,10 +614,12 @@ export type DeleteKeywordNaturesByIdMutationResult = NonNullable<
   Awaited<ReturnType<typeof deleteKeywordNaturesById>>
 >;
 
-export type DeleteKeywordNaturesByIdMutationError = AxiosError<unknown>;
+export type DeleteKeywordNaturesByIdMutationError = AxiosError<
+  DeleteKeywordNaturesById404 | DeleteKeywordNaturesById500
+>;
 
 export const useDeleteKeywordNaturesById = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<DeleteKeywordNaturesById404 | DeleteKeywordNaturesById500>,
   TContext = unknown,
 >(
   options?: {

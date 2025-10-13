@@ -25,10 +25,25 @@ import axios from 'axios';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import type {
+  DeleteNovelsById200,
+  DeleteNovelsById404,
+  DeleteNovelsById500,
+  GetNovels200,
+  GetNovels404,
+  GetNovels500,
+  GetNovelsById200,
+  GetNovelsById404,
+  GetNovelsById500,
   GetNovelsParams,
+  PostNovels200,
+  PostNovels404,
+  PostNovels500,
   PostNovelsBodyOne,
   PostNovelsBodyThree,
   PostNovelsBodyTwo,
+  PutNovelsById200,
+  PutNovelsById404,
+  PutNovelsById500,
   PutNovelsByIdBodyOne,
   PutNovelsByIdBodyThree,
   PutNovelsByIdBodyTwo,
@@ -41,7 +56,7 @@ type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 export const getNovels = (
   params: GetNovelsParams,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<GetNovels200>> => {
   return axios.get('http://localhost:7000/novels/', {
     ...options,
     params: { ...params, ...options?.params },
@@ -54,7 +69,7 @@ export const getGetNovelsQueryKey = (params?: GetNovelsParams) => {
 
 export const getGetNovelsQueryOptions = <
   TData = Awaited<ReturnType<typeof getNovels>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetNovels404 | GetNovels500>,
 >(
   params: GetNovelsParams,
   options?: {
@@ -80,11 +95,11 @@ export const getGetNovelsQueryOptions = <
 };
 
 export type GetNovelsQueryResult = NonNullable<Awaited<ReturnType<typeof getNovels>>>;
-export type GetNovelsQueryError = AxiosError<unknown>;
+export type GetNovelsQueryError = AxiosError<GetNovels404 | GetNovels500>;
 
 export function useGetNovels<
   TData = Awaited<ReturnType<typeof getNovels>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetNovels404 | GetNovels500>,
 >(
   params: GetNovelsParams,
   options: {
@@ -107,7 +122,7 @@ export function useGetNovels<
 };
 export function useGetNovels<
   TData = Awaited<ReturnType<typeof getNovels>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetNovels404 | GetNovels500>,
 >(
   params: GetNovelsParams,
   options?: {
@@ -128,7 +143,7 @@ export function useGetNovels<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetNovels<
   TData = Awaited<ReturnType<typeof getNovels>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetNovels404 | GetNovels500>,
 >(
   params: GetNovelsParams,
   options?: {
@@ -142,7 +157,7 @@ export function useGetNovels<
 
 export function useGetNovels<
   TData = Awaited<ReturnType<typeof getNovels>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetNovels404 | GetNovels500>,
 >(
   params: GetNovelsParams,
   options?: {
@@ -168,12 +183,12 @@ export function useGetNovels<
 export const postNovels = (
   postNovelsBody: PostNovelsBodyOne | PostNovelsBodyTwo | PostNovelsBodyThree,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<PostNovels200>> => {
   return axios.post('http://localhost:7000/novels/', postNovelsBody, options);
 };
 
 export const getPostNovelsMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PostNovels404 | PostNovels500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -217,9 +232,12 @@ export type PostNovelsMutationBody =
   | PostNovelsBodyOne
   | PostNovelsBodyTwo
   | PostNovelsBodyThree;
-export type PostNovelsMutationError = AxiosError<unknown>;
+export type PostNovelsMutationError = AxiosError<PostNovels404 | PostNovels500>;
 
-export const usePostNovels = <TError = AxiosError<unknown>, TContext = unknown>(
+export const usePostNovels = <
+  TError = AxiosError<PostNovels404 | PostNovels500>,
+  TContext = unknown,
+>(
   options?: {
     mutation?: UseMutationOptions<
       Awaited<ReturnType<typeof postNovels>>,
@@ -243,7 +261,7 @@ export const usePostNovels = <TError = AxiosError<unknown>, TContext = unknown>(
 export const getNovelsById = (
   id: string,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<GetNovelsById200>> => {
   return axios.get(`http://localhost:7000/novels/${id}`, options);
 };
 
@@ -253,7 +271,7 @@ export const getGetNovelsByIdQueryKey = (id?: string) => {
 
 export const getGetNovelsByIdQueryOptions = <
   TData = Awaited<ReturnType<typeof getNovelsById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetNovelsById404 | GetNovelsById500>,
 >(
   id: string,
   options?: {
@@ -281,11 +299,11 @@ export const getGetNovelsByIdQueryOptions = <
 export type GetNovelsByIdQueryResult = NonNullable<
   Awaited<ReturnType<typeof getNovelsById>>
 >;
-export type GetNovelsByIdQueryError = AxiosError<unknown>;
+export type GetNovelsByIdQueryError = AxiosError<GetNovelsById404 | GetNovelsById500>;
 
 export function useGetNovelsById<
   TData = Awaited<ReturnType<typeof getNovelsById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetNovelsById404 | GetNovelsById500>,
 >(
   id: string,
   options: {
@@ -308,7 +326,7 @@ export function useGetNovelsById<
 };
 export function useGetNovelsById<
   TData = Awaited<ReturnType<typeof getNovelsById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetNovelsById404 | GetNovelsById500>,
 >(
   id: string,
   options?: {
@@ -329,7 +347,7 @@ export function useGetNovelsById<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetNovelsById<
   TData = Awaited<ReturnType<typeof getNovelsById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetNovelsById404 | GetNovelsById500>,
 >(
   id: string,
   options?: {
@@ -343,7 +361,7 @@ export function useGetNovelsById<
 
 export function useGetNovelsById<
   TData = Awaited<ReturnType<typeof getNovelsById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetNovelsById404 | GetNovelsById500>,
 >(
   id: string,
   options?: {
@@ -373,12 +391,12 @@ export const putNovelsById = (
     | PutNovelsByIdBodyTwo
     | PutNovelsByIdBodyThree,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<PutNovelsById200>> => {
   return axios.put(`http://localhost:7000/novels/${id}`, putNovelsByIdBody, options);
 };
 
 export const getPutNovelsByIdMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PutNovelsById404 | PutNovelsById500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -431,9 +449,14 @@ export type PutNovelsByIdMutationBody =
   | PutNovelsByIdBodyOne
   | PutNovelsByIdBodyTwo
   | PutNovelsByIdBodyThree;
-export type PutNovelsByIdMutationError = AxiosError<unknown>;
+export type PutNovelsByIdMutationError = AxiosError<
+  PutNovelsById404 | PutNovelsById500
+>;
 
-export const usePutNovelsById = <TError = AxiosError<unknown>, TContext = unknown>(
+export const usePutNovelsById = <
+  TError = AxiosError<PutNovelsById404 | PutNovelsById500>,
+  TContext = unknown,
+>(
   options?: {
     mutation?: UseMutationOptions<
       Awaited<ReturnType<typeof putNovelsById>>,
@@ -463,12 +486,12 @@ export const usePutNovelsById = <TError = AxiosError<unknown>, TContext = unknow
 export const deleteNovelsById = (
   id: string,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<DeleteNovelsById200>> => {
   return axios.delete(`http://localhost:7000/novels/${id}`, options);
 };
 
 export const getDeleteNovelsByIdMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<DeleteNovelsById404 | DeleteNovelsById500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -509,9 +532,14 @@ export type DeleteNovelsByIdMutationResult = NonNullable<
   Awaited<ReturnType<typeof deleteNovelsById>>
 >;
 
-export type DeleteNovelsByIdMutationError = AxiosError<unknown>;
+export type DeleteNovelsByIdMutationError = AxiosError<
+  DeleteNovelsById404 | DeleteNovelsById500
+>;
 
-export const useDeleteNovelsById = <TError = AxiosError<unknown>, TContext = unknown>(
+export const useDeleteNovelsById = <
+  TError = AxiosError<DeleteNovelsById404 | DeleteNovelsById500>,
+  TContext = unknown,
+>(
   options?: {
     mutation?: UseMutationOptions<
       Awaited<ReturnType<typeof deleteNovelsById>>,

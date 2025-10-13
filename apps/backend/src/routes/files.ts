@@ -1,24 +1,16 @@
 import { FileType } from '@prisma/client';
+import { FilePlain } from '@repo/db';
 import { uploadImage, uploadVideo } from '@repo/storage';
 import { Elysia, t } from 'elysia';
 import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
-import { authenticate } from '@/utils/helpers';
 
 export const files = new Elysia({ prefix: '/files', tags: ['Files'] })
   .use(setup)
 
   .post(
     '/upload',
-    async ({ bearer, body, prisma, t }) => {
-      const user = await authenticate({
-        token: bearer || '',
-        errorMessage: t({
-          en: 'Authentication required',
-          ar: 'مطلوب التحقق من الهوية',
-        }),
-      });
-
+    async ({ body, prisma, t }) => {
       if (body.type === 'Image') {
         const uploadedImage = await uploadImage({
           file: body.file,
@@ -61,7 +53,10 @@ export const files = new Elysia({ prefix: '/files', tags: ['Files'] })
     {
       body: t.Object({
         file: t.File(),
-        type: t.Enum(FileType),
+        type: t.Union([t.Literal('Image'), t.Literal('Video')]),
       }),
+      response: {
+        200: FilePlain,
+      },
     },
   );

@@ -1,12 +1,18 @@
+import {
+  ChapterPlain,
+  FilePlain,
+  KeywordCategoryPlain,
+  KeywordNaturePlain,
+  KeywordPlain,
+  KeywordsChaptersPlain,
+  NovelPlain,
+  ReplacementPlain,
+} from '@repo/db';
 import { Elysia, t } from 'elysia';
 import { paginationSchema, sortingSchema } from '@/schemas/common';
 import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
-import {
-  authenticate,
-  getNestedColumnObject,
-  parsePaginationProps,
-} from '@/utils/helpers';
+import { getNestedColumnObject, parsePaginationProps } from '@/utils/helpers';
 
 export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
   .use(setup)
@@ -46,18 +52,8 @@ export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
           include: {
             category: true,
             nature: true,
-            image: {
-              select: {
-                url: true,
-                type: true,
-              },
-            },
-            parent: {
-              select: {
-                id: true,
-                name: true,
-              },
-            },
+            image: true,
+            parent: true,
             _count: {
               select: {
                 children: true,
@@ -80,15 +76,19 @@ export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
       query: t.Object({
         pagination: paginationSchema,
         sorting: sortingSchema,
-        query: t.Optional(
-          t.Object({
-            search: t.Optional(t.String()),
-            categoryId: t.Optional(t.String({ format: 'uuid' })),
-            natureId: t.Optional(t.String({ format: 'uuid' })),
-            novelId: t.Optional(t.String({ format: 'uuid' })),
-          }),
-        ),
+        query: t.Object({
+          search: t.Optional(t.String()),
+          categoryId: t.Optional(t.String({ format: 'uuid' })),
+          natureId: t.Optional(t.String({ format: 'uuid' })),
+          novelId: t.Optional(t.String({ format: 'uuid' })),
+        }),
       }),
+      response: {
+        200: t.Object({
+          data: t.Array(KeywordPlain),
+          total: t.Number(),
+        }),
+      },
     },
   )
 
@@ -101,41 +101,18 @@ export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
         include: {
           category: true,
           nature: true,
-          image: {
-            select: {
-              url: true,
-              type: true,
-            },
-          },
-          parent: {
-            select: {
-              id: true,
-              name: true,
-            },
-          },
+          image: true,
+          parent: true,
           children: {
-            select: {
-              id: true,
-              name: true,
+            include: {
               category: true,
               nature: true,
             },
           },
-          novel: {
-            select: {
-              id: true,
-              name: true,
-            },
-          },
+          novel: true,
           KeywordsChapters: {
             include: {
-              chapter: {
-                select: {
-                  id: true,
-                  name: true,
-                  number: true,
-                },
-              },
+              chapter: true,
             },
           },
           replacements: true,
@@ -158,21 +135,43 @@ export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
       params: t.Object({
         id: t.String({ format: 'uuid' }),
       }),
+      response: {
+        200: t.Composite([
+          KeywordPlain,
+          t.Object({
+            category: KeywordCategoryPlain,
+            nature: KeywordNaturePlain,
+            image: t.Nullable(FilePlain),
+            parent: t.Nullable(KeywordPlain),
+            children: t.Array(
+              t.Composite([
+                KeywordPlain,
+                t.Object({
+                  category: KeywordCategoryPlain,
+                  nature: KeywordNaturePlain,
+                }),
+              ]),
+            ),
+            novel: t.Nullable(NovelPlain),
+            KeywordsChapters: t.Array(
+              t.Composite([
+                KeywordsChaptersPlain,
+                t.Object({
+                  chapter: ChapterPlain,
+                }),
+              ]),
+            ),
+            replacements: t.Array(ReplacementPlain),
+          }),
+        ]),
+      },
     },
   )
 
   // Create keyword (User only)
   .post(
     '/',
-    async ({ t, prisma, bearer, body }) => {
-      await authenticate({
-        token: bearer || '',
-        errorMessage: t({
-          en: 'Authentication required',
-          ar: 'مطلوب التحقق من الهوية',
-        }),
-      });
-
+    async ({ t, prisma, body }) => {
       // Verify related entities exist
       const [category, nature, novel] = await Promise.all([
         prisma.keywordCategory.findUnique({ where: { id: body.categoryId } }),
@@ -240,18 +239,8 @@ export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
         include: {
           category: true,
           nature: true,
-          image: {
-            select: {
-              url: true,
-              type: true,
-            },
-          },
-          parent: {
-            select: {
-              id: true,
-              name: true,
-            },
-          },
+          image: true,
+          parent: true,
         },
       });
 
@@ -267,21 +256,24 @@ export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
         parentId: t.Optional(t.String({ format: 'uuid' })),
         novelId: t.String({ format: 'uuid' }),
       }),
+      response: {
+        200: t.Composite([
+          KeywordPlain,
+          t.Object({
+            category: KeywordCategoryPlain,
+            nature: KeywordNaturePlain,
+            image: t.Nullable(FilePlain),
+            parent: t.Nullable(KeywordPlain),
+          }),
+        ]),
+      },
     },
   )
 
   // Update keyword (User only)
   .put(
     '/:id',
-    async ({ t, prisma, bearer, params: { id }, body }) => {
-      await authenticate({
-        token: bearer || '',
-        errorMessage: t({
-          en: 'Authentication required',
-          ar: 'مطلوب التحقق من الهوية',
-        }),
-      });
-
+    async ({ t, prisma, params: { id }, body }) => {
       const existingKeyword = await prisma.keyword.findUnique({
         where: { id },
       });
@@ -361,18 +353,8 @@ export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
         include: {
           category: true,
           nature: true,
-          image: {
-            select: {
-              url: true,
-              type: true,
-            },
-          },
-          parent: {
-            select: {
-              id: true,
-              name: true,
-            },
-          },
+          image: true,
+          parent: true,
         },
       });
 
@@ -390,21 +372,24 @@ export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
         imageId: t.Optional(t.String({ format: 'uuid' })),
         parentId: t.Optional(t.String({ format: 'uuid' })),
       }),
+      response: {
+        200: t.Composite([
+          KeywordPlain,
+          t.Object({
+            category: KeywordCategoryPlain,
+            nature: KeywordNaturePlain,
+            image: t.Nullable(FilePlain),
+            parent: t.Nullable(KeywordPlain),
+          }),
+        ]),
+      },
     },
   )
 
   // Delete keyword (User only)
   .delete(
     '/:id',
-    async ({ t, prisma, bearer, params: { id } }) => {
-      await authenticate({
-        token: bearer || '',
-        errorMessage: t({
-          en: 'Authentication required',
-          ar: 'مطلوب التحقق من الهوية',
-        }),
-      });
-
+    async ({ t, prisma, params: { id } }) => {
       const existingKeyword = await prisma.keyword.findUnique({
         where: { id },
         include: {
@@ -442,16 +427,14 @@ export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
         where: { id },
       });
 
-      return {
-        message: t({
-          en: 'Keyword deleted successfully',
-          ar: 'تم حذف الكلمة المفتاحية بنجاح',
-        }),
-      };
+      return existingKeyword;
     },
     {
       params: t.Object({
         id: t.String({ format: 'uuid' }),
       }),
+      response: {
+        200: KeywordPlain,
+      },
     },
   );

@@ -1,12 +1,14 @@
+import {
+  KeywordCategoryPlain,
+  KeywordNaturePlain,
+  KeywordPlain,
+  ReplacementPlain,
+} from '@repo/db';
 import { Elysia, t } from 'elysia';
 import { paginationSchema, sortingSchema } from '@/schemas/common';
 import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
-import {
-  authenticate,
-  getNestedColumnObject,
-  parsePaginationProps,
-} from '@/utils/helpers';
+import { getNestedColumnObject, parsePaginationProps } from '@/utils/helpers';
 
 export const replacements = new Elysia({
   prefix: '/replacements',
@@ -41,12 +43,7 @@ export const replacements = new Elysia({
           skip,
           take,
           include: {
-            keyword: {
-              select: {
-                id: true,
-                name: true,
-              },
-            },
+            keyword: true,
           },
           orderBy: getNestedColumnObject(sorting?.column, sorting?.direction),
         }),
@@ -66,6 +63,12 @@ export const replacements = new Elysia({
         pagination: paginationSchema,
         sorting: sortingSchema,
       }),
+      response: {
+        200: t.Object({
+          data: t.Array(ReplacementPlain),
+          total: t.Number(),
+        }),
+      },
     },
   )
 
@@ -77,24 +80,9 @@ export const replacements = new Elysia({
         where: { id },
         include: {
           keyword: {
-            select: {
-              id: true,
-              name: true,
-              description: true,
-              category: {
-                select: {
-                  id: true,
-                  name: true,
-                  color: true,
-                },
-              },
-              nature: {
-                select: {
-                  id: true,
-                  name: true,
-                  color: true,
-                },
-              },
+            include: {
+              category: true,
+              nature: true,
             },
           },
         },
@@ -116,21 +104,29 @@ export const replacements = new Elysia({
       params: t.Object({
         id: t.String({ format: 'uuid' }),
       }),
+      response: {
+        200: t.Composite([
+          ReplacementPlain,
+          t.Object({
+            keyword: t.Nullable(
+              t.Composite([
+                KeywordPlain,
+                t.Object({
+                  category: KeywordCategoryPlain,
+                  nature: KeywordNaturePlain,
+                }),
+              ]),
+            ),
+          }),
+        ]),
+      },
     },
   )
 
   // Create replacement (User only)
   .post(
     '/',
-    async ({ t, prisma, bearer, body }) => {
-      await authenticate({
-        token: bearer || '',
-        errorMessage: t({
-          en: 'Authentication required',
-          ar: 'مطلوب التحقق من الهوية',
-        }),
-      });
-
+    async ({ t, prisma, body }) => {
       // Verify keyword exists
       const keyword = await prisma.keyword.findUnique({
         where: { id: body.keywordId },
@@ -167,14 +163,10 @@ export const replacements = new Elysia({
         data: {
           replacement: body.replacement,
           keywordId: body.keywordId,
+          novelId: body.novelId,
         },
         include: {
-          keyword: {
-            select: {
-              id: true,
-              name: true,
-            },
-          },
+          keyword: true,
         },
       });
 
@@ -184,22 +176,23 @@ export const replacements = new Elysia({
       body: t.Object({
         replacement: t.String({ minLength: 1 }),
         keywordId: t.String({ format: 'uuid' }),
+        novelId: t.String({ format: 'uuid' }),
       }),
+      response: {
+        200: t.Composite([
+          ReplacementPlain,
+          t.Object({
+            keyword: t.Nullable(KeywordPlain),
+          }),
+        ]),
+      },
     },
   )
 
   // Update replacement (User only)
   .put(
     '/:id',
-    async ({ t, prisma, bearer, params: { id }, body }) => {
-      await authenticate({
-        token: bearer || '',
-        errorMessage: t({
-          en: 'Authentication required',
-          ar: 'مطلوب التحقق من الهوية',
-        }),
-      });
-
+    async ({ t, prisma, params: { id }, body }) => {
       const existingReplacement = await prisma.replacement.findUnique({
         where: { id },
       });
@@ -240,12 +233,7 @@ export const replacements = new Elysia({
           replacement: body.replacement,
         },
         include: {
-          keyword: {
-            select: {
-              id: true,
-              name: true,
-            },
-          },
+          keyword: true,
         },
       });
 
@@ -258,21 +246,21 @@ export const replacements = new Elysia({
       body: t.Object({
         replacement: t.String({ minLength: 1 }),
       }),
+      response: {
+        200: t.Composite([
+          ReplacementPlain,
+          t.Object({
+            keyword: t.Nullable(KeywordPlain),
+          }),
+        ]),
+      },
     },
   )
 
   // Delete replacement (User only)
   .delete(
     '/:id',
-    async ({ t, prisma, bearer, params: { id } }) => {
-      await authenticate({
-        token: bearer || '',
-        errorMessage: t({
-          en: 'Authentication required',
-          ar: 'مطلوب التحقق من الهوية',
-        }),
-      });
-
+    async ({ t, prisma, params: { id } }) => {
       const existingReplacement = await prisma.replacement.findUnique({
         where: { id },
       });
@@ -291,16 +279,14 @@ export const replacements = new Elysia({
         where: { id },
       });
 
-      return {
-        message: t({
-          en: 'Replacement deleted successfully',
-          ar: 'تم حذف البديل بنجاح',
-        }),
-      };
+      return existingReplacement;
     },
     {
       params: t.Object({
         id: t.String({ format: 'uuid' }),
       }),
+      response: {
+        200: ReplacementPlain,
+      },
     },
   );

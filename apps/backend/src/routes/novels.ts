@@ -1,3 +1,4 @@
+import { ChapterPlain, FilePlain, NovelPlain } from '@repo/db';
 import { Elysia, t } from 'elysia';
 import { paginationSchema, sortingSchema } from '@/schemas/common';
 import { setup } from '@/setup';
@@ -41,12 +42,7 @@ export const novels = new Elysia({
           skip,
           take,
           include: {
-            image: {
-              select: {
-                url: true,
-                type: true,
-              },
-            },
+            image: true,
             _count: {
               select: {
                 chapters: true,
@@ -74,6 +70,12 @@ export const novels = new Elysia({
           }),
         ),
       }),
+      response: {
+        200: t.Object({
+          data: t.Array(NovelPlain),
+          total: t.Number(),
+        }),
+      },
     },
   )
 
@@ -84,12 +86,7 @@ export const novels = new Elysia({
       const novel = await prisma.novel.findUnique({
         where: { id },
         include: {
-          image: {
-            select: {
-              url: true,
-              type: true,
-            },
-          },
+          image: true,
           chapters: {
             orderBy: {
               number: 'asc',
@@ -98,24 +95,6 @@ export const novels = new Elysia({
               _count: {
                 select: {
                   KeywordsChapters: true,
-                },
-              },
-            },
-          },
-          Keywords: {
-            include: {
-              category: true,
-              nature: true,
-              image: {
-                select: {
-                  url: true,
-                  type: true,
-                },
-              },
-              _count: {
-                select: {
-                  replacements: true,
-                  children: true,
                 },
               },
             },
@@ -139,6 +118,15 @@ export const novels = new Elysia({
       params: t.Object({
         id: t.String({ format: 'uuid' }),
       }),
+      response: {
+        200: t.Composite([
+          NovelPlain,
+          t.Object({
+            image: t.Nullable(FilePlain),
+            chapters: t.Array(ChapterPlain),
+          }),
+        ]),
+      },
     },
   )
 
@@ -153,12 +141,7 @@ export const novels = new Elysia({
           imageId: body.imageId,
         },
         include: {
-          image: {
-            select: {
-              url: true,
-              type: true,
-            },
-          },
+          image: true,
         },
       });
 
@@ -167,9 +150,17 @@ export const novels = new Elysia({
     {
       body: t.Object({
         name: t.String({ minLength: 1 }),
-        description: t.Optional(t.String({ minLength: 1 })),
+        description: t.String({ minLength: 1 }),
         imageId: t.Optional(t.String({ format: 'uuid' })),
       }),
+      response: {
+        200: t.Composite([
+          NovelPlain,
+          t.Object({
+            image: t.Nullable(FilePlain),
+          }),
+        ]),
+      },
     },
   )
 
@@ -199,12 +190,7 @@ export const novels = new Elysia({
           imageId: body.imageId,
         },
         include: {
-          image: {
-            select: {
-              url: true,
-              type: true,
-            },
-          },
+          image: true,
         },
       });
 
@@ -216,9 +202,17 @@ export const novels = new Elysia({
       }),
       body: t.Object({
         name: t.String({ minLength: 1 }),
-        description: t.Optional(t.String({ minLength: 1 })),
+        description: t.String({ minLength: 1 }),
         imageId: t.Optional(t.String({ format: 'uuid' })),
       }),
+      response: {
+        200: t.Composite([
+          NovelPlain,
+          t.Object({
+            image: t.Nullable(FilePlain),
+          }),
+        ]),
+      },
     },
   )
 
@@ -244,16 +238,14 @@ export const novels = new Elysia({
         where: { id },
       });
 
-      return {
-        message: t({
-          en: 'Novel deleted successfully',
-          ar: 'تم حذف الرواية بنجاح',
-        }),
-      };
+      return existingNovel;
     },
     {
       params: t.Object({
         id: t.String({ format: 'uuid' }),
       }),
+      response: {
+        200: NovelPlain,
+      },
     },
   );

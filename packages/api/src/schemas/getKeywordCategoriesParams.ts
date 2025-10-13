@@ -8,12 +8,12 @@
 import type { GetKeywordCategoriesSortingDirection } from './getKeywordCategoriesSortingDirection';
 
 export type GetKeywordCategoriesParams = {
-  pagination: {
+  pagination?: {
     page: number;
     pageSize: number;
   };
-  sorting: {
+  sorting?: {
     column: string;
-    direction: GetKeywordCategoriesSortingDirection;
+    direction?: GetKeywordCategoriesSortingDirection;
   };
 };

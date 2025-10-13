@@ -25,8 +25,23 @@ import axios from 'axios';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import type {
+  DeleteKeywordsChaptersById200,
+  DeleteKeywordsChaptersById404,
+  DeleteKeywordsChaptersById500,
+  GetKeywordsChaptersById200,
+  GetKeywordsChaptersById404,
+  GetKeywordsChaptersById500,
+  GetKeywordsChaptersChapterByChapterId200,
+  GetKeywordsChaptersChapterByChapterId404,
+  GetKeywordsChaptersChapterByChapterId500,
   GetKeywordsChaptersChapterByChapterIdParams,
+  GetKeywordsChaptersKeywordByKeywordId200,
+  GetKeywordsChaptersKeywordByKeywordId404,
+  GetKeywordsChaptersKeywordByKeywordId500,
   GetKeywordsChaptersKeywordByKeywordIdParams,
+  PostKeywordsChapters200,
+  PostKeywordsChapters404,
+  PostKeywordsChapters500,
   PostKeywordsChaptersBodyOne,
   PostKeywordsChaptersBodyThree,
   PostKeywordsChaptersBodyTwo,
@@ -40,7 +55,7 @@ export const getKeywordsChaptersChapterByChapterId = (
   chapterId: string,
   params: GetKeywordsChaptersChapterByChapterIdParams,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<GetKeywordsChaptersChapterByChapterId200>> => {
   return axios.get(`http://localhost:7000/keywords-chapters/chapter/${chapterId}`, {
     ...options,
     params: { ...params, ...options?.params },
@@ -59,7 +74,10 @@ export const getGetKeywordsChaptersChapterByChapterIdQueryKey = (
 
 export const getGetKeywordsChaptersChapterByChapterIdQueryOptions = <
   TData = Awaited<ReturnType<typeof getKeywordsChaptersChapterByChapterId>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<
+    | GetKeywordsChaptersChapterByChapterId404
+    | GetKeywordsChaptersChapterByChapterId500
+  >,
 >(
   chapterId: string,
   params: GetKeywordsChaptersChapterByChapterIdParams,
@@ -103,11 +121,16 @@ export const getGetKeywordsChaptersChapterByChapterIdQueryOptions = <
 export type GetKeywordsChaptersChapterByChapterIdQueryResult = NonNullable<
   Awaited<ReturnType<typeof getKeywordsChaptersChapterByChapterId>>
 >;
-export type GetKeywordsChaptersChapterByChapterIdQueryError = AxiosError<unknown>;
+export type GetKeywordsChaptersChapterByChapterIdQueryError = AxiosError<
+  GetKeywordsChaptersChapterByChapterId404 | GetKeywordsChaptersChapterByChapterId500
+>;
 
 export function useGetKeywordsChaptersChapterByChapterId<
   TData = Awaited<ReturnType<typeof getKeywordsChaptersChapterByChapterId>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<
+    | GetKeywordsChaptersChapterByChapterId404
+    | GetKeywordsChaptersChapterByChapterId500
+  >,
 >(
   chapterId: string,
   params: GetKeywordsChaptersChapterByChapterIdParams,
@@ -135,7 +158,10 @@ export function useGetKeywordsChaptersChapterByChapterId<
 };
 export function useGetKeywordsChaptersChapterByChapterId<
   TData = Awaited<ReturnType<typeof getKeywordsChaptersChapterByChapterId>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<
+    | GetKeywordsChaptersChapterByChapterId404
+    | GetKeywordsChaptersChapterByChapterId500
+  >,
 >(
   chapterId: string,
   params: GetKeywordsChaptersChapterByChapterIdParams,
@@ -161,7 +187,10 @@ export function useGetKeywordsChaptersChapterByChapterId<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetKeywordsChaptersChapterByChapterId<
   TData = Awaited<ReturnType<typeof getKeywordsChaptersChapterByChapterId>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<
+    | GetKeywordsChaptersChapterByChapterId404
+    | GetKeywordsChaptersChapterByChapterId500
+  >,
 >(
   chapterId: string,
   params: GetKeywordsChaptersChapterByChapterIdParams,
@@ -180,7 +209,10 @@ export function useGetKeywordsChaptersChapterByChapterId<
 
 export function useGetKeywordsChaptersChapterByChapterId<
   TData = Awaited<ReturnType<typeof getKeywordsChaptersChapterByChapterId>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<
+    | GetKeywordsChaptersChapterByChapterId404
+    | GetKeywordsChaptersChapterByChapterId500
+  >,
 >(
   chapterId: string,
   params: GetKeywordsChaptersChapterByChapterIdParams,
@@ -216,7 +248,7 @@ export const getKeywordsChaptersKeywordByKeywordId = (
   keywordId: string,
   params: GetKeywordsChaptersKeywordByKeywordIdParams,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<GetKeywordsChaptersKeywordByKeywordId200>> => {
   return axios.get(`http://localhost:7000/keywords-chapters/keyword/${keywordId}`, {
     ...options,
     params: { ...params, ...options?.params },
@@ -235,7 +267,10 @@ export const getGetKeywordsChaptersKeywordByKeywordIdQueryKey = (
 
 export const getGetKeywordsChaptersKeywordByKeywordIdQueryOptions = <
   TData = Awaited<ReturnType<typeof getKeywordsChaptersKeywordByKeywordId>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<
+    | GetKeywordsChaptersKeywordByKeywordId404
+    | GetKeywordsChaptersKeywordByKeywordId500
+  >,
 >(
   keywordId: string,
   params: GetKeywordsChaptersKeywordByKeywordIdParams,
@@ -279,11 +314,16 @@ export const getGetKeywordsChaptersKeywordByKeywordIdQueryOptions = <
 export type GetKeywordsChaptersKeywordByKeywordIdQueryResult = NonNullable<
   Awaited<ReturnType<typeof getKeywordsChaptersKeywordByKeywordId>>
 >;
-export type GetKeywordsChaptersKeywordByKeywordIdQueryError = AxiosError<unknown>;
+export type GetKeywordsChaptersKeywordByKeywordIdQueryError = AxiosError<
+  GetKeywordsChaptersKeywordByKeywordId404 | GetKeywordsChaptersKeywordByKeywordId500
+>;
 
 export function useGetKeywordsChaptersKeywordByKeywordId<
   TData = Awaited<ReturnType<typeof getKeywordsChaptersKeywordByKeywordId>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<
+    | GetKeywordsChaptersKeywordByKeywordId404
+    | GetKeywordsChaptersKeywordByKeywordId500
+  >,
 >(
   keywordId: string,
   params: GetKeywordsChaptersKeywordByKeywordIdParams,
@@ -311,7 +351,10 @@ export function useGetKeywordsChaptersKeywordByKeywordId<
 };
 export function useGetKeywordsChaptersKeywordByKeywordId<
   TData = Awaited<ReturnType<typeof getKeywordsChaptersKeywordByKeywordId>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<
+    | GetKeywordsChaptersKeywordByKeywordId404
+    | GetKeywordsChaptersKeywordByKeywordId500
+  >,
 >(
   keywordId: string,
   params: GetKeywordsChaptersKeywordByKeywordIdParams,
@@ -337,7 +380,10 @@ export function useGetKeywordsChaptersKeywordByKeywordId<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetKeywordsChaptersKeywordByKeywordId<
   TData = Awaited<ReturnType<typeof getKeywordsChaptersKeywordByKeywordId>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<
+    | GetKeywordsChaptersKeywordByKeywordId404
+    | GetKeywordsChaptersKeywordByKeywordId500
+  >,
 >(
   keywordId: string,
   params: GetKeywordsChaptersKeywordByKeywordIdParams,
@@ -356,7 +402,10 @@ export function useGetKeywordsChaptersKeywordByKeywordId<
 
 export function useGetKeywordsChaptersKeywordByKeywordId<
   TData = Awaited<ReturnType<typeof getKeywordsChaptersKeywordByKeywordId>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<
+    | GetKeywordsChaptersKeywordByKeywordId404
+    | GetKeywordsChaptersKeywordByKeywordId500
+  >,
 >(
   keywordId: string,
   params: GetKeywordsChaptersKeywordByKeywordIdParams,
@@ -391,7 +440,7 @@ export function useGetKeywordsChaptersKeywordByKeywordId<
 export const getKeywordsChaptersById = (
   id: string,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<GetKeywordsChaptersById200>> => {
   return axios.get(`http://localhost:7000/keywords-chapters/${id}`, options);
 };
 
@@ -401,7 +450,7 @@ export const getGetKeywordsChaptersByIdQueryKey = (id?: string) => {
 
 export const getGetKeywordsChaptersByIdQueryOptions = <
   TData = Awaited<ReturnType<typeof getKeywordsChaptersById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordsChaptersById404 | GetKeywordsChaptersById500>,
 >(
   id: string,
   options?: {
@@ -433,11 +482,13 @@ export const getGetKeywordsChaptersByIdQueryOptions = <
 export type GetKeywordsChaptersByIdQueryResult = NonNullable<
   Awaited<ReturnType<typeof getKeywordsChaptersById>>
 >;
-export type GetKeywordsChaptersByIdQueryError = AxiosError<unknown>;
+export type GetKeywordsChaptersByIdQueryError = AxiosError<
+  GetKeywordsChaptersById404 | GetKeywordsChaptersById500
+>;
 
 export function useGetKeywordsChaptersById<
   TData = Awaited<ReturnType<typeof getKeywordsChaptersById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordsChaptersById404 | GetKeywordsChaptersById500>,
 >(
   id: string,
   options: {
@@ -464,7 +515,7 @@ export function useGetKeywordsChaptersById<
 };
 export function useGetKeywordsChaptersById<
   TData = Awaited<ReturnType<typeof getKeywordsChaptersById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordsChaptersById404 | GetKeywordsChaptersById500>,
 >(
   id: string,
   options?: {
@@ -489,7 +540,7 @@ export function useGetKeywordsChaptersById<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetKeywordsChaptersById<
   TData = Awaited<ReturnType<typeof getKeywordsChaptersById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordsChaptersById404 | GetKeywordsChaptersById500>,
 >(
   id: string,
   options?: {
@@ -507,7 +558,7 @@ export function useGetKeywordsChaptersById<
 
 export function useGetKeywordsChaptersById<
   TData = Awaited<ReturnType<typeof getKeywordsChaptersById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetKeywordsChaptersById404 | GetKeywordsChaptersById500>,
 >(
   id: string,
   options?: {
@@ -537,12 +588,12 @@ export function useGetKeywordsChaptersById<
 export const deleteKeywordsChaptersById = (
   id: string,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<DeleteKeywordsChaptersById200>> => {
   return axios.delete(`http://localhost:7000/keywords-chapters/${id}`, options);
 };
 
 export const getDeleteKeywordsChaptersByIdMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<DeleteKeywordsChaptersById404 | DeleteKeywordsChaptersById500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -583,10 +634,12 @@ export type DeleteKeywordsChaptersByIdMutationResult = NonNullable<
   Awaited<ReturnType<typeof deleteKeywordsChaptersById>>
 >;
 
-export type DeleteKeywordsChaptersByIdMutationError = AxiosError<unknown>;
+export type DeleteKeywordsChaptersByIdMutationError = AxiosError<
+  DeleteKeywordsChaptersById404 | DeleteKeywordsChaptersById500
+>;
 
 export const useDeleteKeywordsChaptersById = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<DeleteKeywordsChaptersById404 | DeleteKeywordsChaptersById500>,
   TContext = unknown,
 >(
   options?: {
@@ -615,7 +668,7 @@ export const postKeywordsChapters = (
     | PostKeywordsChaptersBodyTwo
     | PostKeywordsChaptersBodyThree,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<PostKeywordsChapters200>> => {
   return axios.post(
     'http://localhost:7000/keywords-chapters/',
     postKeywordsChaptersBody,
@@ -624,7 +677,7 @@ export const postKeywordsChapters = (
 };
 
 export const getPostKeywordsChaptersMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PostKeywordsChapters404 | PostKeywordsChapters500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -683,10 +736,12 @@ export type PostKeywordsChaptersMutationBody =
   | PostKeywordsChaptersBodyOne
   | PostKeywordsChaptersBodyTwo
   | PostKeywordsChaptersBodyThree;
-export type PostKeywordsChaptersMutationError = AxiosError<unknown>;
+export type PostKeywordsChaptersMutationError = AxiosError<
+  PostKeywordsChapters404 | PostKeywordsChapters500
+>;
 
 export const usePostKeywordsChapters = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PostKeywordsChapters404 | PostKeywordsChapters500>,
   TContext = unknown,
 >(
   options?: {

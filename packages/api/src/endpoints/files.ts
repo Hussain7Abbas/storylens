@@ -17,6 +17,9 @@ import axios from 'axios';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import type {
+  PostFilesUpload200,
+  PostFilesUpload404,
+  PostFilesUpload500,
   PostFilesUploadBodyOne,
   PostFilesUploadBodyThree,
   PostFilesUploadBodyTwo,
@@ -32,7 +35,7 @@ export const postFilesUpload = (
     | PostFilesUploadBodyTwo
     | PostFilesUploadBodyThree,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<PostFilesUpload200>> => {
   return axios.post(
     'http://localhost:7000/files/upload',
     postFilesUploadBody,
@@ -41,7 +44,7 @@ export const postFilesUpload = (
 };
 
 export const getPostFilesUploadMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PostFilesUpload404 | PostFilesUpload500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -97,9 +100,14 @@ export type PostFilesUploadMutationBody =
   | PostFilesUploadBodyOne
   | PostFilesUploadBodyTwo
   | PostFilesUploadBodyThree;
-export type PostFilesUploadMutationError = AxiosError<unknown>;
+export type PostFilesUploadMutationError = AxiosError<
+  PostFilesUpload404 | PostFilesUpload500
+>;
 
-export const usePostFilesUpload = <TError = AxiosError<unknown>, TContext = unknown>(
+export const usePostFilesUpload = <
+  TError = AxiosError<PostFilesUpload404 | PostFilesUpload500>,
+  TContext = unknown,
+>(
   options?: {
     mutation?: UseMutationOptions<
       Awaited<ReturnType<typeof postFilesUpload>>,

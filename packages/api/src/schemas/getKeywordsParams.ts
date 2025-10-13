@@ -8,15 +8,15 @@
 import type { GetKeywordsSortingDirection } from './getKeywordsSortingDirection';
 
 export type GetKeywordsParams = {
-  pagination: {
+  pagination?: {
     page: number;
     pageSize: number;
   };
-  sorting: {
+  sorting?: {
     column: string;
-    direction: GetKeywordsSortingDirection;
+    direction?: GetKeywordsSortingDirection;
   };
-  query?: {
+  query: {
     search?: string;
     categoryId?: string;
     natureId?: string;

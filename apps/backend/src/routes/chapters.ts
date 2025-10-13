@@ -1,12 +1,17 @@
+import {
+  ChapterPlain,
+  FilePlain,
+  KeywordCategoryPlain,
+  KeywordNaturePlain,
+  KeywordPlain,
+  KeywordsChaptersPlain,
+  NovelPlain,
+} from '@repo/db';
 import { Elysia, t } from 'elysia';
 import { paginationSchema, sortingSchema } from '@/schemas/common';
 import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
-import {
-  authenticate,
-  getNestedColumnObject,
-  parsePaginationProps,
-} from '@/utils/helpers';
+import { getNestedColumnObject, parsePaginationProps } from '@/utils/helpers';
 
 export const chapters = new Elysia({ prefix: '/chapters', tags: ['Chapters'] })
   .use(setup)
@@ -62,6 +67,12 @@ export const chapters = new Elysia({ prefix: '/chapters', tags: ['Chapters'] })
         pagination: paginationSchema,
         sorting: sortingSchema,
       }),
+      response: {
+        200: t.Object({
+          data: t.Array(ChapterPlain),
+          total: t.Number(),
+        }),
+      },
     },
   )
 
@@ -72,24 +83,14 @@ export const chapters = new Elysia({ prefix: '/chapters', tags: ['Chapters'] })
       const chapter = await prisma.chapter.findUnique({
         where: { id },
         include: {
-          novel: {
-            select: {
-              id: true,
-              name: true,
-            },
-          },
+          novel: true,
           KeywordsChapters: {
             include: {
               keyword: {
                 include: {
                   category: true,
                   nature: true,
-                  image: {
-                    select: {
-                      url: true,
-                      type: true,
-                    },
-                  },
+                  image: true,
                 },
               },
             },
@@ -113,21 +114,36 @@ export const chapters = new Elysia({ prefix: '/chapters', tags: ['Chapters'] })
       params: t.Object({
         id: t.String({ format: 'uuid' }),
       }),
+      response: {
+        200: t.Composite([
+          ChapterPlain,
+          t.Object({
+            novel: NovelPlain,
+            KeywordsChapters: t.Array(
+              t.Composite([
+                KeywordsChaptersPlain,
+                t.Object({
+                  keyword: t.Composite([
+                    KeywordPlain,
+                    t.Object({
+                      category: KeywordCategoryPlain,
+                      nature: KeywordNaturePlain,
+                      image: t.Nullable(FilePlain),
+                    }),
+                  ]),
+                }),
+              ]),
+            ),
+          }),
+        ]),
+      },
     },
   )
 
   // Create chapter (User only)
   .post(
     '/',
-    async ({ t, prisma, bearer, body }) => {
-      await authenticate({
-        token: bearer || '',
-        errorMessage: t({
-          en: 'Authentication required',
-          ar: 'مطلوب التحقق من الهوية',
-        }),
-      });
-
+    async ({ t, prisma, body }) => {
       // Verify novel exists
       const novel = await prisma.novel.findUnique({
         where: { id: body.novelId },
@@ -178,21 +194,16 @@ export const chapters = new Elysia({ prefix: '/chapters', tags: ['Chapters'] })
         description: t.Optional(t.String()),
         novelId: t.String({ format: 'uuid' }),
       }),
+      response: {
+        200: ChapterPlain,
+      },
     },
   )
 
   // Update chapter (User only)
   .put(
     '/:id',
-    async ({ t, prisma, bearer, params: { id }, body }) => {
-      await authenticate({
-        token: bearer || '',
-        errorMessage: t({
-          en: 'Authentication required',
-          ar: 'مطلوب التحقق من الهوية',
-        }),
-      });
-
+    async ({ t, prisma, params: { id }, body }) => {
       const existingChapter = await prisma.chapter.findUnique({
         where: { id },
       });
@@ -247,21 +258,16 @@ export const chapters = new Elysia({ prefix: '/chapters', tags: ['Chapters'] })
         number: t.Number({ minimum: 1 }),
         description: t.Optional(t.String()),
       }),
+      response: {
+        200: ChapterPlain,
+      },
     },
   )
 
   // Delete chapter (User only)
   .delete(
     '/:id',
-    async ({ t, prisma, bearer, params: { id } }) => {
-      await authenticate({
-        token: bearer || '',
-        errorMessage: t({
-          en: 'Authentication required',
-          ar: 'مطلوب التحقق من الهوية',
-        }),
-      });
-
+    async ({ t, prisma, params: { id } }) => {
       const existingChapter = await prisma.chapter.findUnique({
         where: { id },
       });
@@ -280,16 +286,14 @@ export const chapters = new Elysia({ prefix: '/chapters', tags: ['Chapters'] })
         where: { id },
       });
 
-      return {
-        message: t({
-          en: 'Chapter deleted successfully',
-          ar: 'تم حذف الفصل بنجاح',
-        }),
-      };
+      return existingChapter;
     },
     {
       params: t.Object({
         id: t.String({ format: 'uuid' }),
       }),
+      response: {
+        200: ChapterPlain,
+      },
     },
   );

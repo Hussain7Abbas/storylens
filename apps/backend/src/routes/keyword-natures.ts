@@ -1,12 +1,9 @@
+import { KeywordCategoryPlain, KeywordNaturePlain, KeywordPlain } from '@repo/db';
 import { Elysia, t } from 'elysia';
 import { paginationSchema, sortingSchema } from '@/schemas/common';
 import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
-import {
-  authenticate,
-  getNestedColumnObject,
-  parsePaginationProps,
-} from '@/utils/helpers';
+import { getNestedColumnObject, parsePaginationProps } from '@/utils/helpers';
 
 export const keywordNatures = new Elysia({
   prefix: '/keyword-natures',
@@ -46,6 +43,12 @@ export const keywordNatures = new Elysia({
         pagination: paginationSchema,
         sorting: sortingSchema,
       }),
+      response: {
+        200: t.Object({
+          data: t.Array(KeywordNaturePlain),
+          total: t.Number(),
+        }),
+      },
     },
   )
 
@@ -57,17 +60,8 @@ export const keywordNatures = new Elysia({
         where: { id },
         include: {
           keywords: {
-            select: {
-              id: true,
-              name: true,
-              description: true,
-              category: {
-                select: {
-                  id: true,
-                  name: true,
-                  color: true,
-                },
-              },
+            include: {
+              category: true,
             },
             take: 10,
             orderBy: {
@@ -98,21 +92,31 @@ export const keywordNatures = new Elysia({
       params: t.Object({
         id: t.String({ format: 'uuid' }),
       }),
+      response: {
+        200: t.Composite([
+          KeywordNaturePlain,
+          t.Object({
+            keywords: t.Array(
+              t.Composite([
+                KeywordPlain,
+                t.Object({
+                  category: KeywordCategoryPlain,
+                }),
+              ]),
+            ),
+            _count: t.Object({
+              keywords: t.Number(),
+            }),
+          }),
+        ]),
+      },
     },
   )
 
   // Create keyword nature (User only)
   .post(
     '/',
-    async ({ t, prisma, bearer, body }) => {
-      await authenticate({
-        token: bearer || '',
-        errorMessage: t({
-          en: 'Authentication required',
-          ar: 'مطلوب التحقق من الهوية',
-        }),
-      });
-
+    async ({ t, prisma, body }) => {
       // Check if nature name already exists
       const existingNature = await prisma.keywordNature.findFirst({
         where: {
@@ -143,21 +147,16 @@ export const keywordNatures = new Elysia({
         name: t.String({ minLength: 1 }),
         color: t.String({ pattern: '^#[0-9A-Fa-f]{6}$' }),
       }),
+      response: {
+        200: KeywordNaturePlain,
+      },
     },
   )
 
   // Update keyword nature (User only)
   .put(
     '/:id',
-    async ({ t, prisma, bearer, params: { id }, body }) => {
-      await authenticate({
-        token: bearer || '',
-        errorMessage: t({
-          en: 'Authentication required',
-          ar: 'مطلوب التحقق من الهوية',
-        }),
-      });
-
+    async ({ t, prisma, params: { id }, body }) => {
       const existingNature = await prisma.keywordNature.findUnique({
         where: { id },
       });
@@ -209,21 +208,16 @@ export const keywordNatures = new Elysia({
         name: t.String({ minLength: 1 }),
         color: t.String({ pattern: '^#[0-9A-Fa-f]{6}$' }),
       }),
+      response: {
+        200: KeywordNaturePlain,
+      },
     },
   )
 
   // Delete keyword nature (User only)
   .delete(
     '/:id',
-    async ({ t, prisma, bearer, params: { id } }) => {
-      await authenticate({
-        token: bearer || '',
-        errorMessage: t({
-          en: 'Authentication required',
-          ar: 'مطلوب التحقق من الهوية',
-        }),
-      });
-
+    async ({ t, prisma, params: { id } }) => {
       const existingNature = await prisma.keywordNature.findUnique({
         where: { id },
         include: {
@@ -259,16 +253,14 @@ export const keywordNatures = new Elysia({
         where: { id },
       });
 
-      return {
-        message: t({
-          en: 'Nature deleted successfully',
-          ar: 'تم حذف الطبيعة بنجاح',
-        }),
-      };
+      return existingNature;
     },
     {
       params: t.Object({
         id: t.String({ format: 'uuid' }),
       }),
+      response: {
+        200: KeywordNaturePlain,
+      },
     },
   );

@@ -12,6 +12,7 @@ import { keywords } from './routes/keywords';
 import { keywordsChapters } from './routes/keywords-chapters';
 import { novels } from './routes/novels';
 import { replacements } from './routes/replacements';
+import { errorSchema } from './schemas/common';
 import { AuthError, HttpError } from './utils/errors';
 
 export const app = new Elysia()
@@ -31,6 +32,12 @@ export const app = new Elysia()
       return status(401, { message: error.message });
     }
   })
+  .guard({
+    response: {
+      404: errorSchema,
+      500: errorSchema,
+    },
+  })
 
   // Routes
   .get('/', () => ({
@@ -38,15 +45,15 @@ export const app = new Elysia()
   }))
 
   // .use(accounts)
-  .use(files)
   .use(configs)
   .use(novels)
   .use(chapters)
   .use(keywords)
+  .use(replacements)
   .use(keywordsChapters)
   .use(keywordCategories)
   .use(keywordNatures)
-  .use(replacements)
+  .use(files)
 
   .listen(env.PORT, ({ url }) => {
     console.log(`🚀 Server is running at ${chalk.green(url)}`);

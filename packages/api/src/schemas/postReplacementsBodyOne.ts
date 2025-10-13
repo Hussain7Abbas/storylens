@@ -10,4 +10,5 @@ export type PostReplacementsBodyOne = {
   /** @minLength 1 */
   replacement: string;
   keywordId: string;
+  novelId: string;
 };

@@ -25,10 +25,25 @@ import axios from 'axios';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import type {
+  DeleteChaptersById200,
+  DeleteChaptersById404,
+  DeleteChaptersById500,
+  GetChaptersById200,
+  GetChaptersById404,
+  GetChaptersById500,
+  GetChaptersNovelByNovelId200,
+  GetChaptersNovelByNovelId404,
+  GetChaptersNovelByNovelId500,
   GetChaptersNovelByNovelIdParams,
+  PostChapters200,
+  PostChapters404,
+  PostChapters500,
   PostChaptersBodyOne,
   PostChaptersBodyThree,
   PostChaptersBodyTwo,
+  PutChaptersById200,
+  PutChaptersById404,
+  PutChaptersById500,
   PutChaptersByIdBodyOne,
   PutChaptersByIdBodyThree,
   PutChaptersByIdBodyTwo,
@@ -42,7 +57,7 @@ export const getChaptersNovelByNovelId = (
   novelId: string,
   params: GetChaptersNovelByNovelIdParams,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<GetChaptersNovelByNovelId200>> => {
   return axios.get(`http://localhost:7000/chapters/novel/${novelId}`, {
     ...options,
     params: { ...params, ...options?.params },
@@ -61,7 +76,7 @@ export const getGetChaptersNovelByNovelIdQueryKey = (
 
 export const getGetChaptersNovelByNovelIdQueryOptions = <
   TData = Awaited<ReturnType<typeof getChaptersNovelByNovelId>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetChaptersNovelByNovelId404 | GetChaptersNovelByNovelId500>,
 >(
   novelId: string,
   params: GetChaptersNovelByNovelIdParams,
@@ -101,11 +116,13 @@ export const getGetChaptersNovelByNovelIdQueryOptions = <
 export type GetChaptersNovelByNovelIdQueryResult = NonNullable<
   Awaited<ReturnType<typeof getChaptersNovelByNovelId>>
 >;
-export type GetChaptersNovelByNovelIdQueryError = AxiosError<unknown>;
+export type GetChaptersNovelByNovelIdQueryError = AxiosError<
+  GetChaptersNovelByNovelId404 | GetChaptersNovelByNovelId500
+>;
 
 export function useGetChaptersNovelByNovelId<
   TData = Awaited<ReturnType<typeof getChaptersNovelByNovelId>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetChaptersNovelByNovelId404 | GetChaptersNovelByNovelId500>,
 >(
   novelId: string,
   params: GetChaptersNovelByNovelIdParams,
@@ -133,7 +150,7 @@ export function useGetChaptersNovelByNovelId<
 };
 export function useGetChaptersNovelByNovelId<
   TData = Awaited<ReturnType<typeof getChaptersNovelByNovelId>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetChaptersNovelByNovelId404 | GetChaptersNovelByNovelId500>,
 >(
   novelId: string,
   params: GetChaptersNovelByNovelIdParams,
@@ -159,7 +176,7 @@ export function useGetChaptersNovelByNovelId<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetChaptersNovelByNovelId<
   TData = Awaited<ReturnType<typeof getChaptersNovelByNovelId>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetChaptersNovelByNovelId404 | GetChaptersNovelByNovelId500>,
 >(
   novelId: string,
   params: GetChaptersNovelByNovelIdParams,
@@ -178,7 +195,7 @@ export function useGetChaptersNovelByNovelId<
 
 export function useGetChaptersNovelByNovelId<
   TData = Awaited<ReturnType<typeof getChaptersNovelByNovelId>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetChaptersNovelByNovelId404 | GetChaptersNovelByNovelId500>,
 >(
   novelId: string,
   params: GetChaptersNovelByNovelIdParams,
@@ -213,7 +230,7 @@ export function useGetChaptersNovelByNovelId<
 export const getChaptersById = (
   id: string,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<GetChaptersById200>> => {
   return axios.get(`http://localhost:7000/chapters/${id}`, options);
 };
 
@@ -223,7 +240,7 @@ export const getGetChaptersByIdQueryKey = (id?: string) => {
 
 export const getGetChaptersByIdQueryOptions = <
   TData = Awaited<ReturnType<typeof getChaptersById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetChaptersById404 | GetChaptersById500>,
 >(
   id: string,
   options?: {
@@ -251,11 +268,13 @@ export const getGetChaptersByIdQueryOptions = <
 export type GetChaptersByIdQueryResult = NonNullable<
   Awaited<ReturnType<typeof getChaptersById>>
 >;
-export type GetChaptersByIdQueryError = AxiosError<unknown>;
+export type GetChaptersByIdQueryError = AxiosError<
+  GetChaptersById404 | GetChaptersById500
+>;
 
 export function useGetChaptersById<
   TData = Awaited<ReturnType<typeof getChaptersById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetChaptersById404 | GetChaptersById500>,
 >(
   id: string,
   options: {
@@ -278,7 +297,7 @@ export function useGetChaptersById<
 };
 export function useGetChaptersById<
   TData = Awaited<ReturnType<typeof getChaptersById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetChaptersById404 | GetChaptersById500>,
 >(
   id: string,
   options?: {
@@ -299,7 +318,7 @@ export function useGetChaptersById<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetChaptersById<
   TData = Awaited<ReturnType<typeof getChaptersById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetChaptersById404 | GetChaptersById500>,
 >(
   id: string,
   options?: {
@@ -313,7 +332,7 @@ export function useGetChaptersById<
 
 export function useGetChaptersById<
   TData = Awaited<ReturnType<typeof getChaptersById>>,
-  TError = AxiosError<unknown>,
+  TError = AxiosError<GetChaptersById404 | GetChaptersById500>,
 >(
   id: string,
   options?: {
@@ -343,7 +362,7 @@ export const putChaptersById = (
     | PutChaptersByIdBodyTwo
     | PutChaptersByIdBodyThree,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<PutChaptersById200>> => {
   return axios.put(
     `http://localhost:7000/chapters/${id}`,
     putChaptersByIdBody,
@@ -352,7 +371,7 @@ export const putChaptersById = (
 };
 
 export const getPutChaptersByIdMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PutChaptersById404 | PutChaptersById500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -411,9 +430,14 @@ export type PutChaptersByIdMutationBody =
   | PutChaptersByIdBodyOne
   | PutChaptersByIdBodyTwo
   | PutChaptersByIdBodyThree;
-export type PutChaptersByIdMutationError = AxiosError<unknown>;
+export type PutChaptersByIdMutationError = AxiosError<
+  PutChaptersById404 | PutChaptersById500
+>;
 
-export const usePutChaptersById = <TError = AxiosError<unknown>, TContext = unknown>(
+export const usePutChaptersById = <
+  TError = AxiosError<PutChaptersById404 | PutChaptersById500>,
+  TContext = unknown,
+>(
   options?: {
     mutation?: UseMutationOptions<
       Awaited<ReturnType<typeof putChaptersById>>,
@@ -446,12 +470,12 @@ export const usePutChaptersById = <TError = AxiosError<unknown>, TContext = unkn
 export const deleteChaptersById = (
   id: string,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<DeleteChaptersById200>> => {
   return axios.delete(`http://localhost:7000/chapters/${id}`, options);
 };
 
 export const getDeleteChaptersByIdMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<DeleteChaptersById404 | DeleteChaptersById500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -492,10 +516,12 @@ export type DeleteChaptersByIdMutationResult = NonNullable<
   Awaited<ReturnType<typeof deleteChaptersById>>
 >;
 
-export type DeleteChaptersByIdMutationError = AxiosError<unknown>;
+export type DeleteChaptersByIdMutationError = AxiosError<
+  DeleteChaptersById404 | DeleteChaptersById500
+>;
 
 export const useDeleteChaptersById = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<DeleteChaptersById404 | DeleteChaptersById500>,
   TContext = unknown,
 >(
   options?: {
@@ -521,12 +547,12 @@ export const useDeleteChaptersById = <
 export const postChapters = (
   postChaptersBody: PostChaptersBodyOne | PostChaptersBodyTwo | PostChaptersBodyThree,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
+): Promise<AxiosResponse<PostChapters200>> => {
   return axios.post('http://localhost:7000/chapters/', postChaptersBody, options);
 };
 
 export const getPostChaptersMutationOptions = <
-  TError = AxiosError<unknown>,
+  TError = AxiosError<PostChapters404 | PostChapters500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -570,9 +596,12 @@ export type PostChaptersMutationBody =
   | PostChaptersBodyOne
   | PostChaptersBodyTwo
   | PostChaptersBodyThree;
-export type PostChaptersMutationError = AxiosError<unknown>;
+export type PostChaptersMutationError = AxiosError<PostChapters404 | PostChapters500>;
 
-export const usePostChapters = <TError = AxiosError<unknown>, TContext = unknown>(
+export const usePostChapters = <
+  TError = AxiosError<PostChapters404 | PostChapters500>,
+  TContext = unknown,
+>(
   options?: {
     mutation?: UseMutationOptions<
       Awaited<ReturnType<typeof postChapters>>,
