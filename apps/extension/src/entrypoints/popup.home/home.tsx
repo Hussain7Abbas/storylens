@@ -122,7 +122,7 @@ export function HomePage() {
             </Group>
           )}
 
-          {selectedNovel && (
+          {selectedNovel?.id && (
             <Tabs defaultValue="coloring" variant="outline">
               <Stack
                 gap="xs"
@@ -142,10 +142,10 @@ export function HomePage() {
                 </Tabs.List>
               </Stack>
               <Tabs.Panel value="coloring">
-                <ColoringTab selectedNovelId={selectedNovel?.id || ''} />
+                <ColoringTab selectedNovelId={selectedNovel?.id} />
               </Tabs.Panel>
               <Tabs.Panel value="replacing">
-                <ReplacingTab selectedNovelId={selectedNovel?.id || ''} />
+                <ReplacingTab selectedNovelId={selectedNovel?.id} />
               </Tabs.Panel>
             </Tabs>
           )}

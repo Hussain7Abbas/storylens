@@ -1,7 +1,8 @@
-import { Stack, TextInput, Alert, Button, Group } from '@mantine/core';
+import { Stack, TextInput, Alert, Button, Group, ActionIcon } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import {
   usePostReplacements,
+  useDeleteReplacementsById,
   usePutReplacementsById,
 } from '@repo/api/replacements.js';
 import { useTranslation } from 'react-i18next';
@@ -10,8 +11,9 @@ import type {
   PostReplacementsBodyOne,
 } from '@repo/api/schemas';
 import { useQueryClient } from '@tanstack/react-query';
+import { IconTrash } from '@tabler/icons-react';
 
-export type ReplacingFormModesType = 'add' | 'edit' | 'delete' | undefined;
+export type ReplacingFormModesType = 'add' | 'edit' | undefined;
 interface ReplacingFormProps extends React.HTMLAttributes<HTMLFormElement> {
   mode: ReplacingFormModesType;
   selectedNovelId: string | undefined;
@@ -46,6 +48,7 @@ export function ReplacingForm({
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ['replacements'] });
         form.reset();
+        onClose();
       },
     },
   });
@@ -55,6 +58,17 @@ export function ReplacingForm({
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ['replacements'] });
         form.reset();
+        onClose();
+      },
+    },
+  });
+
+  const deleteReplacementMutation = useDeleteReplacementsById({
+    mutation: {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['replacements'] });
+        form.reset();
+        onClose();
       },
     },
   });
@@ -81,6 +95,12 @@ export function ReplacingForm({
     }
   };
 
+  const handleDelete = () => {
+    if (replacement?.id) {
+      deleteReplacementMutation.mutate({ id: replacement.id });
+    }
+  };
+
   return (
     <form onSubmit={form.onSubmit(handleSubmit)} {...props}>
       <Stack gap="xs" p="xs">
@@ -98,13 +118,23 @@ export function ReplacingForm({
           </Alert>
         )}
 
-        <Group grow>
-          <Button variant="outline" onClick={onClose}>
-            {t('_.cancel')}
-          </Button>
-          <Button type="submit" loading={createKeywordMutation.isPending}>
-            {t('_.save')}
-          </Button>
+        <Group justify="space-between" mt="md">
+          <ActionIcon
+            variant="transparent"
+            color="red"
+            size="lg"
+            onClick={() => handleDelete()}
+          >
+            <IconTrash />
+          </ActionIcon>
+          <Group>
+            <Button variant="outline" onClick={onClose}>
+              {t('_.cancel')}
+            </Button>
+            <Button type="submit" loading={createKeywordMutation.isPending}>
+              {t('_.save')}
+            </Button>
+          </Group>
         </Group>
       </Stack>
     </form>

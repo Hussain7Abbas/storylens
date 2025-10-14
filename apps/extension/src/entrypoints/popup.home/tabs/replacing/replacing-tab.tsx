@@ -6,7 +6,7 @@ import { ReplacingForm } from './replacing-form';
 import { ReplacingCards } from './replacing-cards';
 import type { GetReplacements200DataItem } from '@repo/api/schemas';
 
-export function ReplacingTab({ selectedNovelId }: { selectedNovelId?: string }) {
+export function ReplacingTab({ selectedNovelId }: { selectedNovelId: string }) {
   const { t } = useTranslation();
   const [replacingFormMode, setReplacingFormMode] =
     useState<ReplacingFormModesType>(undefined);
@@ -30,7 +30,10 @@ export function ReplacingTab({ selectedNovelId }: { selectedNovelId?: string }) 
             type="submit"
             variant="light"
             color="green.7"
-            onClick={() => setReplacingFormMode('add')}
+            onClick={() => {
+              setReplacement(undefined);
+              setReplacingFormMode('add');
+            }}
             hidden={!!replacingFormMode}
             fullWidth
           >
@@ -39,6 +42,7 @@ export function ReplacingTab({ selectedNovelId }: { selectedNovelId?: string }) 
           <ReplacingCards
             selectedNovelId={selectedNovelId}
             setReplacement={setReplacement}
+            setMode={setReplacingFormMode}
           />
         </>
       )}

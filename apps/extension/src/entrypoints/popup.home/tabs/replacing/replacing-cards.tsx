@@ -1,22 +1,24 @@
 import { Stack, Loader, Group, Text, type StackProps, Center } from '@mantine/core';
 import { useGetReplacements } from '@repo/api/replacements.js';
 import type { GetReplacements200DataItem } from '@repo/api/schemas';
+import type { ReplacingFormModesType } from './replacing-form';
 
-export type ReplacingFormModesType = 'add' | 'edit' | 'delete' | undefined;
 interface ReplacingFormProps extends StackProps {
-  selectedNovelId: string | undefined;
+  selectedNovelId: string;
   setReplacement: (replacement: GetReplacements200DataItem) => void;
+  setMode: (mode: ReplacingFormModesType) => void;
 }
 
 export function ReplacingCards({
   selectedNovelId,
   setReplacement,
+  setMode,
   ...props
 }: ReplacingFormProps) {
   const replacementsOfNovel = useGetReplacements({
     pagination: { page: 1, pageSize: 100 },
-    sorting: { column: 'name', direction: 'asc' },
-    query: selectedNovelId ? { novelId: selectedNovelId } : undefined,
+    sorting: { column: 'from', direction: 'asc' },
+    query: { novelId: selectedNovelId },
   });
 
   if (replacementsOfNovel.isLoading) {
@@ -38,7 +40,10 @@ export function ReplacingCards({
               justify="space-between"
               p="xs"
               style={{ border: '1px solid #ddd', borderRadius: '4px' }}
-              onClick={() => setReplacement(replacement)}
+              onClick={() => {
+                setReplacement(replacement);
+                setMode('edit');
+              }}
             >
               <div>
                 <Text fw={500}>{replacement.from}</Text>

@@ -6,7 +6,7 @@ import { ColoringForm } from './coloring-form';
 import { ColoringCards } from './coloring-cards';
 import type { GetKeywords200DataItem } from '@repo/api/schemas';
 
-export function ColoringTab({ selectedNovelId }: { selectedNovelId?: string }) {
+export function ColoringTab({ selectedNovelId }: { selectedNovelId: string }) {
   const { t } = useTranslation();
   const [coloringFormMode, setColoringFormMode] =
     useState<ColoringFormModesType>(undefined);
@@ -30,13 +30,20 @@ export function ColoringTab({ selectedNovelId }: { selectedNovelId?: string }) {
             type="submit"
             variant="light"
             color="green.7"
-            onClick={() => setColoringFormMode('add')}
+            onClick={() => {
+              setKeyword(undefined);
+              setColoringFormMode('add');
+            }}
             hidden={!!coloringFormMode}
             fullWidth
           >
             {t('_.add')}
           </Button>
-          <ColoringCards selectedNovelId={selectedNovelId} setKeyword={setKeyword} />
+          <ColoringCards
+            selectedNovelId={selectedNovelId}
+            setKeyword={setKeyword}
+            setMode={setColoringFormMode}
+          />
         </>
       )}
     </Stack>

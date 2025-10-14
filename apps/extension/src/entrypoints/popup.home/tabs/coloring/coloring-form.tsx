@@ -6,18 +6,24 @@ import {
   Loader,
   Group,
   Button,
+  ActionIcon,
+  FileInput,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { usePostKeywords, usePutKeywordsById } from '@repo/api/keywords.js';
+import {
+  useDeleteKeywordsById,
+  usePostKeywords,
+  usePutKeywordsById,
+} from '@repo/api/keywords.js';
 import type { KeywordCategory, KeywordNature } from '@prisma/client';
 import { useTranslation } from 'react-i18next';
 import { useGetKeywordNatures } from '@repo/api/keyword-natures.js';
 import { useGetKeywordCategories } from '@repo/api/keyword-categories.js';
-import { IconCategory, IconMasksTheater } from '@tabler/icons-react';
+import { IconCategory, IconMasksTheater, IconTrash } from '@tabler/icons-react';
 import type { GetKeywords200DataItem, PostKeywordsBodyOne } from '@repo/api/schemas';
 import { useQueryClient } from '@tanstack/react-query';
 
-export type ColoringFormModesType = 'add' | 'edit' | 'delete' | undefined;
+export type ColoringFormModesType = 'add' | 'edit' | undefined;
 interface ColoringFormProps extends React.HTMLAttributes<HTMLFormElement> {
   mode: ColoringFormModesType;
   selectedNovelId: string | undefined;
@@ -40,7 +46,7 @@ export function ColoringForm({
       description: keyword?.description || '',
       categoryId: keyword?.categoryId || '',
       natureId: keyword?.natureId || '',
-      imageId: keyword?.imageId || '',
+      imageId: keyword?.imageId || undefined,
     },
     validate: {
       name: (value) => (!value ? 'Name is required' : null),
@@ -70,6 +76,7 @@ export function ColoringForm({
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ['keywords'] });
         form.reset();
+        onClose();
       },
     },
   });
@@ -79,6 +86,17 @@ export function ColoringForm({
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ['keywords'] });
         form.reset();
+        onClose();
+      },
+    },
+  });
+
+  const deleteKeywordMutation = useDeleteKeywordsById({
+    mutation: {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['keywords'] });
+        form.reset();
+        onClose();
       },
     },
   });
@@ -100,6 +118,12 @@ export function ColoringForm({
         id: keyword?.id,
         data: values,
       });
+    }
+  };
+
+  const handleDelete = () => {
+    if (keyword?.id) {
+      deleteKeywordMutation.mutate({ id: keyword.id });
     }
   };
 
@@ -146,7 +170,7 @@ export function ColoringForm({
           required
         />
 
-        <TextInput
+        <FileInput
           label={t('coloring.image')}
           {...form.getInputProps('imageId')}
           placeholder="Image ID (optional)"
@@ -158,13 +182,24 @@ export function ColoringForm({
           </Alert>
         )}
 
-        <Group grow>
-          <Button variant="outline" onClick={onClose}>
-            {t('_.cancel')}
-          </Button>
-          <Button type="submit" loading={createKeywordMutation.isPending}>
-            {t('_.save')}
-          </Button>
+        <Group justify="space-between" mt="md">
+          <ActionIcon
+            variant="transparent"
+            color="red"
+            size="lg"
+            onClick={() => handleDelete()}
+          >
+            <IconTrash />
+          </ActionIcon>
+          <Group>
+            {' '}
+            <Button variant="outline" onClick={onClose}>
+              {t('_.cancel')}
+            </Button>
+            <Button type="submit" loading={createKeywordMutation.isPending}>
+              {t('_.save')}
+            </Button>
+          </Group>
         </Group>
       </Stack>
     </form>
