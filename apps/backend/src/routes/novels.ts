@@ -150,7 +150,7 @@ export const novels = new Elysia({
     {
       body: t.Object({
         name: t.String({ minLength: 1 }),
-        description: t.String({ minLength: 1 }),
+        description: t.Optional(t.String({ minLength: 1 })),
         imageId: t.Optional(t.String({ format: 'uuid' })),
       }),
       response: {
@@ -202,7 +202,7 @@ export const novels = new Elysia({
       }),
       body: t.Object({
         name: t.String({ minLength: 1 }),
-        description: t.String({ minLength: 1 }),
+        description: t.Optional(t.String({ minLength: 1 })),
         imageId: t.Optional(t.String({ format: 'uuid' })),
       }),
       response: {

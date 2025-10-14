@@ -11,7 +11,8 @@ import type { DeleteReplacementsById200UpdatedAt } from './deleteReplacementsByI
 
 export type DeleteReplacementsById200 = {
   id: string;
-  replacement: string;
+  from: string;
+  to: string;
   novelId: string;
   keywordId: DeleteReplacementsById200KeywordId;
   createdAt: DeleteReplacementsById200CreatedAt;

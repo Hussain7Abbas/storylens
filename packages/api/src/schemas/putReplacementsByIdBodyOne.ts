@@ -7,6 +7,9 @@
  */
 
 export type PutReplacementsByIdBodyOne = {
+  novelId: string;
   /** @minLength 1 */
-  replacement: string;
+  from: string;
+  /** @minLength 1 */
+  to: string;
 };

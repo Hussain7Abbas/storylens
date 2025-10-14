@@ -1,3 +1,4 @@
+import type { PrismaClient } from '@prisma/client';
 import {
   KeywordCategoryPlain,
   KeywordNaturePlain,
@@ -16,30 +17,36 @@ export const replacements = new Elysia({
 })
   .use(setup)
 
-  // Get all replacements for a keyword
+  // Get all Replacements with filters
   .get(
-    '/keyword/:keywordId',
-    async ({ t, prisma, params: { keywordId }, query: { pagination, sorting } }) => {
+    '/',
+    async ({ prisma, query: { pagination, query, sorting } }) => {
       const { skip, take } = parsePaginationProps(pagination);
 
-      // Verify keyword exists
-      const keyword = await prisma.keyword.findUnique({
-        where: { id: keywordId },
-      });
+      const where: Record<string, unknown> = {};
 
-      if (!keyword) {
-        throw new HttpError({
-          statusCode: 404,
-          message: t({
-            en: 'Keyword not found',
-            ar: 'الكلمة المفتاحية غير موجودة',
-          }),
-        });
+      if (query?.search) {
+        where.from = {
+          contains: query.search,
+          mode: 'insensitive' as const,
+        };
+        where.to = {
+          contains: query.search,
+          mode: 'insensitive' as const,
+        };
+      }
+
+      if (query?.keywordId) {
+        where.keywordId = query.keywordId;
+      }
+
+      if (query?.novelId) {
+        where.novelId = query.novelId;
       }
 
       const [replacements, total] = await Promise.all([
         prisma.replacement.findMany({
-          where: { keywordId },
+          where,
           skip,
           take,
           include: {
@@ -47,7 +54,7 @@ export const replacements = new Elysia({
           },
           orderBy: getNestedColumnObject(sorting?.column, sorting?.direction),
         }),
-        prisma.replacement.count({ where: { keywordId } }),
+        prisma.replacement.count({ where }),
       ]);
 
       return {
@@ -56,16 +63,29 @@ export const replacements = new Elysia({
       };
     },
     {
-      params: t.Object({
-        keywordId: t.String({ format: 'uuid' }),
-      }),
       query: t.Object({
         pagination: paginationSchema,
         sorting: sortingSchema,
+        query: t.Optional(
+          t.Object({
+            search: t.Optional(t.String()),
+            from: t.Optional(t.String()),
+            to: t.Optional(t.String()),
+            novelId: t.Optional(t.String({ format: 'uuid' })),
+            keywordId: t.Optional(t.String({ format: 'uuid' })),
+          }),
+        ),
       }),
       response: {
         200: t.Object({
-          data: t.Array(ReplacementPlain),
+          data: t.Array(
+            t.Composite([
+              ReplacementPlain,
+              t.Object({
+                keyword: t.Nullable(KeywordPlain),
+              }),
+            ]),
+          ),
           total: t.Number(),
         }),
       },
@@ -127,43 +147,15 @@ export const replacements = new Elysia({
   .post(
     '/',
     async ({ t, prisma, body }) => {
-      // Verify keyword exists
-      const keyword = await prisma.keyword.findUnique({
-        where: { id: body.keywordId },
-      });
-
-      if (!keyword) {
-        throw new HttpError({
-          statusCode: 404,
-          message: t({
-            en: 'Keyword not found',
-            ar: 'الكلمة المفتاحية غير موجودة',
-          }),
-        });
-      }
-
-      // Check if replacement already exists for this keyword
-      const existingReplacement = await prisma.replacement.findFirst({
-        where: {
-          replacement: body.replacement,
-          keywordId: body.keywordId,
-        },
-      });
-
-      if (existingReplacement) {
-        throw new HttpError({
-          message: t({
-            en: 'Replacement already exists for this keyword',
-            ar: 'البديل موجود بالفعل لهذه الكلمة المفتاحية',
-          }),
-        });
-      }
+      await validateReplacement(body, prisma, t, 'create');
+      const keyword = await checkChainReplacement(body, prisma);
 
       const replacement = await prisma.replacement.create({
         data: {
-          replacement: body.replacement,
-          keywordId: body.keywordId,
           novelId: body.novelId,
+          from: body.from,
+          to: body.to,
+          keywordId: keyword?.id,
         },
         include: {
           keyword: true,
@@ -174,9 +166,9 @@ export const replacements = new Elysia({
     },
     {
       body: t.Object({
-        replacement: t.String({ minLength: 1 }),
-        keywordId: t.String({ format: 'uuid' }),
         novelId: t.String({ format: 'uuid' }),
+        from: t.String({ minLength: 1 }),
+        to: t.String({ minLength: 1 }),
       }),
       response: {
         200: t.Composite([
@@ -193,44 +185,15 @@ export const replacements = new Elysia({
   .put(
     '/:id',
     async ({ t, prisma, params: { id }, body }) => {
-      const existingReplacement = await prisma.replacement.findUnique({
-        where: { id },
-      });
-
-      if (!existingReplacement) {
-        throw new HttpError({
-          statusCode: 404,
-          message: t({
-            en: 'Replacement not found',
-            ar: 'البديل غير موجود',
-          }),
-        });
-      }
-
-      // If changing replacement text, check for conflicts within the same keyword
-      if (body.replacement && body.replacement !== existingReplacement.replacement) {
-        const conflictReplacement = await prisma.replacement.findFirst({
-          where: {
-            replacement: body.replacement,
-            keywordId: existingReplacement.keywordId,
-            id: { not: id },
-          },
-        });
-
-        if (conflictReplacement) {
-          throw new HttpError({
-            message: t({
-              en: 'Replacement already exists for this keyword',
-              ar: 'البديل موجود بالفعل لهذه الكلمة المفتاحية',
-            }),
-          });
-        }
-      }
+      await validateReplacement(body, prisma, t, 'update');
+      const keyword = await checkChainReplacement(body, prisma);
 
       const replacement = await prisma.replacement.update({
         where: { id },
         data: {
-          replacement: body.replacement,
+          from: body.from,
+          to: body.to,
+          keywordId: keyword?.id,
         },
         include: {
           keyword: true,
@@ -244,7 +207,9 @@ export const replacements = new Elysia({
         id: t.String({ format: 'uuid' }),
       }),
       body: t.Object({
-        replacement: t.String({ minLength: 1 }),
+        novelId: t.String({ format: 'uuid' }),
+        from: t.String({ minLength: 1 }),
+        to: t.String({ minLength: 1 }),
       }),
       response: {
         200: t.Composite([
@@ -290,3 +255,97 @@ export const replacements = new Elysia({
       },
     },
   );
+
+async function validateReplacement(
+  body: { id?: string; from: string; to: string; novelId: string },
+  prisma: PrismaClient,
+  t: ({ en, ar }: { en: string; ar: string }) => string,
+  mode: 'create' | 'update',
+) {
+  if (mode === 'update') {
+    const existingReplacement = await prisma.replacement.findUnique({
+      where: { id: body.id },
+    });
+
+    if (!existingReplacement) {
+      throw new HttpError({
+        statusCode: 404,
+        message: t({
+          en: 'Replacement not found',
+          ar: 'البديل غير موجود',
+        }),
+      });
+    }
+  }
+
+  // Check if replacement already exists
+  const existingReplacement = await prisma.replacement.findFirst({
+    where: {
+      from: body.from,
+      novelId: body.novelId,
+    },
+  });
+
+  if (existingReplacement) {
+    throw new HttpError({
+      message: t({
+        en: 'Replacement already exists for this keyword',
+        ar: 'البديل موجود بالفعل لهذه الكلمة المفتاحية',
+      }),
+    });
+  }
+
+  // Check if there is bidirectional replacement
+  const bidirectionalReplacement = await prisma.replacement.findFirst({
+    where: {
+      from: body.to,
+      to: body.from,
+      novelId: body.novelId,
+    },
+  });
+
+  if (bidirectionalReplacement) {
+    throw new HttpError({
+      message: t({
+        en: 'There is a bidirectional replacement',
+        ar: 'هناك بديل متبادل',
+      }),
+    });
+  }
+}
+
+async function checkChainReplacement(
+  body: { from: string; to: string; novelId: string },
+  prisma: PrismaClient,
+) {
+  // check if there is a keyword linked to the "to replacement"
+  const keyword = await prisma.keyword.findFirst({
+    where: {
+      name: body.to,
+      novelId: body.novelId,
+    },
+  });
+
+  // Check if there is a chain of replacements then update the replacement
+  const chainReplacement = await prisma.replacement.findMany({
+    where: {
+      to: body.from,
+      novelId: body.novelId,
+    },
+  });
+
+  if (chainReplacement.length > 0) {
+    await prisma.replacement.updateMany({
+      where: {
+        to: body.from,
+        novelId: body.novelId,
+      },
+      data: {
+        to: body.to,
+        keywordId: keyword?.id,
+      },
+    });
+  }
+
+  return keyword;
+}

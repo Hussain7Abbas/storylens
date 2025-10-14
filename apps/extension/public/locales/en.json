@@ -37,9 +37,9 @@
     "image": "Image",
     "novel": "Novel"
   },
-  "replaces": {
-    "name": "Name",
-    "replaceWith": "Replace With"
+  "replacing": {
+    "from": "From",
+    "to": "To"
   },
   "home": {
     "title": "Keywords Management",

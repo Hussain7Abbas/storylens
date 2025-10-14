@@ -7,8 +7,9 @@
  */
 
 export type PostReplacementsBodyThree = {
-  /** @minLength 1 */
-  replacement: string;
-  keywordId: string;
   novelId: string;
+  /** @minLength 1 */
+  from: string;
+  /** @minLength 1 */
+  to: string;
 };

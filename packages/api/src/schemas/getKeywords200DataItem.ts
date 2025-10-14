@@ -9,6 +9,10 @@ import type { GetKeywords200DataItemImageId } from './getKeywords200DataItemImag
 import type { GetKeywords200DataItemParentId } from './getKeywords200DataItemParentId';
 import type { GetKeywords200DataItemCreatedAt } from './getKeywords200DataItemCreatedAt';
 import type { GetKeywords200DataItemUpdatedAt } from './getKeywords200DataItemUpdatedAt';
+import type { GetKeywords200DataItemCategory } from './getKeywords200DataItemCategory';
+import type { GetKeywords200DataItemNature } from './getKeywords200DataItemNature';
+import type { GetKeywords200DataItemImage } from './getKeywords200DataItemImage';
+import type { GetKeywords200DataItemParent } from './getKeywords200DataItemParent';
 
 export type GetKeywords200DataItem = {
   id: string;
@@ -21,4 +25,10 @@ export type GetKeywords200DataItem = {
   novelId: string;
   createdAt: GetKeywords200DataItemCreatedAt;
   updatedAt: GetKeywords200DataItemUpdatedAt;
+  category: GetKeywords200DataItemCategory;
+  nature: GetKeywords200DataItemNature;
+  /** @nullable */
+  image: GetKeywords200DataItemImage;
+  /** @nullable */
+  parent: GetKeywords200DataItemParent;
 };

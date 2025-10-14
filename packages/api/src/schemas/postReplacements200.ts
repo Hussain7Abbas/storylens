@@ -12,7 +12,8 @@ import type { PostReplacements200Keyword } from './postReplacements200Keyword';
 
 export type PostReplacements200 = {
   id: string;
-  replacement: string;
+  from: string;
+  to: string;
   novelId: string;
   keywordId: PostReplacements200KeywordId;
   createdAt: PostReplacements200CreatedAt;

@@ -10,6 +10,6 @@ export type PostNovelsBodyOne = {
   /** @minLength 1 */
   name: string;
   /** @minLength 1 */
-  description: string;
+  description?: string;
   imageId?: string;
 };

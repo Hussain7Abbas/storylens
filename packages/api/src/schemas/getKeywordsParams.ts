@@ -16,7 +16,7 @@ export type GetKeywordsParams = {
     column: string;
     direction?: GetKeywordsSortingDirection;
   };
-  query: {
+  query?: {
     search?: string;
     categoryId?: string;
     natureId?: string;

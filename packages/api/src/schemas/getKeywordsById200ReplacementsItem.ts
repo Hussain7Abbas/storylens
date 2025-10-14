@@ -11,7 +11,8 @@ import type { GetKeywordsById200ReplacementsItemUpdatedAt } from './getKeywordsB
 
 export type GetKeywordsById200ReplacementsItem = {
   id: string;
-  replacement: string;
+  from: string;
+  to: string;
   novelId: string;
   keywordId: GetKeywordsById200ReplacementsItemKeywordId;
   createdAt: GetKeywordsById200ReplacementsItemCreatedAt;

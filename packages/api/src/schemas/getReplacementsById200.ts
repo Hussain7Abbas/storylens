@@ -12,7 +12,8 @@ import type { GetReplacementsById200Keyword } from './getReplacementsById200Keyw
 
 export type GetReplacementsById200 = {
   id: string;
-  replacement: string;
+  from: string;
+  to: string;
   novelId: string;
   keywordId: GetReplacementsById200KeywordId;
   createdAt: GetReplacementsById200CreatedAt;

@@ -12,7 +12,8 @@ import type { PutReplacementsById200Keyword } from './putReplacementsById200Keyw
 
 export type PutReplacementsById200 = {
   id: string;
-  replacement: string;
+  from: string;
+  to: string;
   novelId: string;
   keywordId: PutReplacementsById200KeywordId;
   createdAt: PutReplacementsById200CreatedAt;

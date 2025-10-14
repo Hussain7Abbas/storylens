@@ -54,13 +54,6 @@ export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
             nature: true,
             image: true,
             parent: true,
-            _count: {
-              select: {
-                children: true,
-                KeywordsChapters: true,
-                replacements: true,
-              },
-            },
           },
           orderBy: getNestedColumnObject(sorting?.column, sorting?.direction),
         }),
@@ -76,16 +69,28 @@ export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
       query: t.Object({
         pagination: paginationSchema,
         sorting: sortingSchema,
-        query: t.Object({
-          search: t.Optional(t.String()),
-          categoryId: t.Optional(t.String({ format: 'uuid' })),
-          natureId: t.Optional(t.String({ format: 'uuid' })),
-          novelId: t.Optional(t.String({ format: 'uuid' })),
-        }),
+        query: t.Optional(
+          t.Object({
+            search: t.Optional(t.String()),
+            categoryId: t.Optional(t.String({ format: 'uuid' })),
+            natureId: t.Optional(t.String({ format: 'uuid' })),
+            novelId: t.Optional(t.String({ format: 'uuid' })),
+          }),
+        ),
       }),
       response: {
         200: t.Object({
-          data: t.Array(KeywordPlain),
+          data: t.Array(
+            t.Composite([
+              KeywordPlain,
+              t.Object({
+                category: KeywordCategoryPlain,
+                nature: KeywordNaturePlain,
+                image: t.Nullable(FilePlain),
+                parent: t.Nullable(KeywordPlain),
+              }),
+            ]),
+          ),
           total: t.Number(),
         }),
       },

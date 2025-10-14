@@ -32,7 +32,7 @@ function App({ type = 'popup' }: { type: 'popup' | 'options' }) {
           <Stack
             h={type === 'popup' ? '30rem' : '100vh'}
             w={type === 'popup' ? '20rem' : '100vw'}
-            gap="xs"
+            gap={0}
             dir={locale === 'ar' ? 'rtl' : 'ltr'}
           >
             <Navbar />

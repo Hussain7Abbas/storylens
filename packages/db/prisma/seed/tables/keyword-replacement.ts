@@ -24,7 +24,8 @@ export async function seedKeywordReplacement(prisma: PrismaClient) {
     promises.push(
       prisma.replacement.create({
         data: {
-          replacement: fakerAR.person.fullName(),
+          from: fakerAR.person.fullName(),
+          to: fakerAR.person.fullName(),
           novel: {
             connect: {
               id: fakerAR.helpers.arrayElement(novels).id,

@@ -111,8 +111,12 @@ export function NovelForm({
   };
 
   const handleDelete = () => {
+    if (!selectedNovel?.id) {
+      toast.error('Novel not found');
+      return;
+    }
     deleteNovelMutation.mutate({
-      id: selectedNovel?.id || '',
+      id: selectedNovel?.id,
     });
   };
 
@@ -121,14 +125,23 @@ export function NovelForm({
       <Paper p="xs" withBorder>
         <Stack gap="xs">
           <Alert title="Are you sure you want to delete this novel?" color="red" />
-          <Button
-            variant="outline"
-            color="red"
-            onClick={handleDelete}
-            loading={deleteNovelMutation.isPending}
-          >
-            {t('_.delete')}
-          </Button>
+          <Group grow>
+            <Button
+              variant="outline"
+              onClick={onClose}
+              loading={deleteNovelMutation.isPending}
+            >
+              {t('_.cancel')}
+            </Button>
+            <Button
+              variant="outline"
+              color="red"
+              onClick={handleDelete}
+              loading={deleteNovelMutation.isPending}
+            >
+              {t('_.delete')}
+            </Button>
+          </Group>
         </Stack>
       </Paper>
     );

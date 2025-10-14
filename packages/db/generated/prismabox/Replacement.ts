@@ -7,7 +7,8 @@ import { __nullable__ } from './__nullable__';
 export const ReplacementPlain = t.Object(
   {
     id: t.String(),
-    replacement: t.String(),
+    from: t.String(),
+    to: t.String(),
     novelId: t.String(),
     keywordId: __nullable__(t.String()),
     createdAt: t.Date(),
@@ -51,12 +52,12 @@ export const ReplacementRelations = t.Object(
 );
 
 export const ReplacementPlainInputCreate = t.Object(
-  { replacement: t.String() },
+  { from: t.String(), to: t.String() },
   { additionalProperties: false },
 );
 
 export const ReplacementPlainInputUpdate = t.Object(
-  { replacement: t.Optional(t.String()) },
+  { from: t.Optional(t.String()), to: t.Optional(t.String()) },
   { additionalProperties: false },
 );
 
@@ -132,7 +133,8 @@ export const ReplacementWhere = t.Partial(
           NOT: t.Union([Self, t.Array(Self, { additionalProperties: false })]),
           OR: t.Array(Self, { additionalProperties: false }),
           id: t.String(),
-          replacement: t.String(),
+          from: t.String(),
+          to: t.String(),
           novelId: t.String(),
           keywordId: t.String(),
           createdAt: t.Date(),
@@ -148,12 +150,31 @@ export const ReplacementWhereUnique = t.Recursive(
   (Self) =>
     t.Intersect(
       [
-        t.Partial(t.Object({ id: t.String() }, { additionalProperties: false }), {
-          additionalProperties: false,
-        }),
-        t.Union([t.Object({ id: t.String() })], {
-          additionalProperties: false,
-        }),
+        t.Partial(
+          t.Object(
+            {
+              id: t.String(),
+              from_novelId: t.Object(
+                { from: t.String(), novelId: t.String() },
+                { additionalProperties: false },
+              ),
+            },
+            { additionalProperties: false },
+          ),
+          { additionalProperties: false },
+        ),
+        t.Union(
+          [
+            t.Object({ id: t.String() }),
+            t.Object({
+              from_novelId: t.Object(
+                { from: t.String(), novelId: t.String() },
+                { additionalProperties: false },
+              ),
+            }),
+          ],
+          { additionalProperties: false },
+        ),
         t.Partial(
           t.Object({
             AND: t.Union([Self, t.Array(Self, { additionalProperties: false })]),
@@ -166,7 +187,8 @@ export const ReplacementWhereUnique = t.Recursive(
           t.Object(
             {
               id: t.String(),
-              replacement: t.String(),
+              from: t.String(),
+              to: t.String(),
               novelId: t.String(),
               keywordId: t.String(),
               createdAt: t.Date(),
@@ -185,7 +207,8 @@ export const ReplacementSelect = t.Partial(
   t.Object(
     {
       id: t.Boolean(),
-      replacement: t.Boolean(),
+      from: t.Boolean(),
+      to: t.Boolean(),
       novelId: t.Boolean(),
       novel: t.Boolean(),
       keywordId: t.Boolean(),
@@ -211,7 +234,10 @@ export const ReplacementOrderBy = t.Partial(
       id: t.Union([t.Literal('asc'), t.Literal('desc')], {
         additionalProperties: false,
       }),
-      replacement: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      from: t.Union([t.Literal('asc'), t.Literal('desc')], {
+        additionalProperties: false,
+      }),
+      to: t.Union([t.Literal('asc'), t.Literal('desc')], {
         additionalProperties: false,
       }),
       novelId: t.Union([t.Literal('asc'), t.Literal('desc')], {

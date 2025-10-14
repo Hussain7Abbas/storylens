@@ -73,7 +73,8 @@ export const NovelRelations = t.Object(
       t.Object(
         {
           id: t.String(),
-          replacement: t.String(),
+          from: t.String(),
+          to: t.String(),
           novelId: t.String(),
           keywordId: __nullable__(t.String()),
           createdAt: t.Date(),

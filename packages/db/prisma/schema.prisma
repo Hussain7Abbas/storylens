@@ -115,7 +115,7 @@ model Novel {
   updatedAt DateTime @updatedAt
 
   // Relations
-  Keywords Keyword[] @relation("NovelKeywords")
+  Keywords Keyword[] @relation("NovelKeywords") 
   chapters Chapter[] @relation("NovelChapters")
   replacements Replacement[] @relation("NovelReplacements")
   @@index([name])
@@ -129,7 +129,7 @@ model Chapter {
   description String?
 
   novelId String
-  novel Novel @relation(fields: [novelId], references: [id], name: "NovelChapters")
+  novel Novel @relation(fields: [novelId], references: [id], name: "NovelChapters", onDelete: Cascade)
 
   // Metadata
   createdAt DateTime @default(now())
@@ -188,7 +188,7 @@ model Keyword {
   parent Keyword? @relation(fields: [parentId], references: [id], name: "KeywordParents")
 
   novelId String
-  novel Novel @relation(fields: [novelId], references: [id], name: "NovelKeywords")
+  novel Novel @relation(fields: [novelId], references: [id], name: "NovelKeywords", onDelete: Cascade)
 
   // Metadata
   createdAt DateTime @default(now())
@@ -221,10 +221,11 @@ model KeywordsChapters{
 model Replacement{
   id String @id @default(uuid())
 
-  replacement String
+  from String
+  to String
 
   novelId String
-  novel Novel @relation(fields: [novelId], references: [id], name: "NovelReplacements")
+  novel Novel @relation(fields: [novelId], references: [id], name: "NovelReplacements", onDelete: Cascade)
   
   keywordId String?
   keyword Keyword? @relation(fields: [keywordId], references: [id], name: "KeywordReplacements")
@@ -232,6 +233,8 @@ model Replacement{
   // Metadata
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@unique([from, novelId])
 }
 
 model Config {

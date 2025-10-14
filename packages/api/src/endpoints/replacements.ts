@@ -28,13 +28,13 @@ import type {
   DeleteReplacementsById200,
   DeleteReplacementsById404,
   DeleteReplacementsById500,
+  GetReplacements200,
+  GetReplacements404,
+  GetReplacements500,
   GetReplacementsById200,
   GetReplacementsById404,
   GetReplacementsById500,
-  GetReplacementsKeywordByKeywordId200,
-  GetReplacementsKeywordByKeywordId404,
-  GetReplacementsKeywordByKeywordId500,
-  GetReplacementsKeywordByKeywordIdParams,
+  GetReplacementsParams,
   PostReplacements200,
   PostReplacements404,
   PostReplacements500,
@@ -53,97 +53,71 @@ type AwaitedInput<T> = PromiseLike<T> | T;
 
 type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 
-export const getReplacementsKeywordByKeywordId = (
-  keywordId: string,
-  params: GetReplacementsKeywordByKeywordIdParams,
+export const getReplacements = (
+  params: GetReplacementsParams,
   options?: AxiosRequestConfig,
-): Promise<AxiosResponse<GetReplacementsKeywordByKeywordId200>> => {
-  return axios.get(`http://localhost:7000/replacements/keyword/${keywordId}`, {
+): Promise<AxiosResponse<GetReplacements200>> => {
+  return axios.get('http://localhost:7000/replacements/', {
     ...options,
     params: { ...params, ...options?.params },
   });
 };
 
-export const getGetReplacementsKeywordByKeywordIdQueryKey = (
-  keywordId?: string,
-  params?: GetReplacementsKeywordByKeywordIdParams,
-) => {
+export const getGetReplacementsQueryKey = (params?: GetReplacementsParams) => {
   return [
-    `http://localhost:7000/replacements/keyword/${keywordId}`,
+    'http://localhost:7000/replacements/',
     ...(params ? [params] : []),
   ] as const;
 };
 
-export const getGetReplacementsKeywordByKeywordIdQueryOptions = <
-  TData = Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>,
-  TError = AxiosError<
-    GetReplacementsKeywordByKeywordId404 | GetReplacementsKeywordByKeywordId500
-  >,
+export const getGetReplacementsQueryOptions = <
+  TData = Awaited<ReturnType<typeof getReplacements>>,
+  TError = AxiosError<GetReplacements404 | GetReplacements500>,
 >(
-  keywordId: string,
-  params: GetReplacementsKeywordByKeywordIdParams,
+  params: GetReplacementsParams,
   options?: {
     query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>,
-        TError,
-        TData
-      >
+      UseQueryOptions<Awaited<ReturnType<typeof getReplacements>>, TError, TData>
     >;
     axios?: AxiosRequestConfig;
   },
 ) => {
   const { query: queryOptions, axios: axiosOptions } = options ?? {};
 
-  const queryKey =
-    queryOptions?.queryKey ??
-    getGetReplacementsKeywordByKeywordIdQueryKey(keywordId, params);
+  const queryKey = queryOptions?.queryKey ?? getGetReplacementsQueryKey(params);
 
-  const queryFn: QueryFunction<
-    Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>
-  > = ({ signal }) =>
-    getReplacementsKeywordByKeywordId(keywordId, params, { signal, ...axiosOptions });
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getReplacements>>> = ({
+    signal,
+  }) => getReplacements(params, { signal, ...axiosOptions });
 
-  return {
-    queryKey,
-    queryFn,
-    enabled: !!keywordId,
-    ...queryOptions,
-  } as UseQueryOptions<
-    Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>,
+  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof getReplacements>>,
     TError,
     TData
   > & { queryKey: DataTag<QueryKey, TData, TError> };
 };
 
-export type GetReplacementsKeywordByKeywordIdQueryResult = NonNullable<
-  Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>
+export type GetReplacementsQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getReplacements>>
 >;
-export type GetReplacementsKeywordByKeywordIdQueryError = AxiosError<
-  GetReplacementsKeywordByKeywordId404 | GetReplacementsKeywordByKeywordId500
+export type GetReplacementsQueryError = AxiosError<
+  GetReplacements404 | GetReplacements500
 >;
 
-export function useGetReplacementsKeywordByKeywordId<
-  TData = Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>,
-  TError = AxiosError<
-    GetReplacementsKeywordByKeywordId404 | GetReplacementsKeywordByKeywordId500
-  >,
+export function useGetReplacements<
+  TData = Awaited<ReturnType<typeof getReplacements>>,
+  TError = AxiosError<GetReplacements404 | GetReplacements500>,
 >(
-  keywordId: string,
-  params: GetReplacementsKeywordByKeywordIdParams,
+  params: GetReplacementsParams,
   options: {
     query: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>,
-        TError,
-        TData
-      >
+      UseQueryOptions<Awaited<ReturnType<typeof getReplacements>>, TError, TData>
     > &
       Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>,
+          Awaited<ReturnType<typeof getReplacements>>,
           TError,
-          Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>
+          Awaited<ReturnType<typeof getReplacements>>
         >,
         'initialData'
       >;
@@ -153,27 +127,20 @@ export function useGetReplacementsKeywordByKeywordId<
 ): DefinedUseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
-export function useGetReplacementsKeywordByKeywordId<
-  TData = Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>,
-  TError = AxiosError<
-    GetReplacementsKeywordByKeywordId404 | GetReplacementsKeywordByKeywordId500
-  >,
+export function useGetReplacements<
+  TData = Awaited<ReturnType<typeof getReplacements>>,
+  TError = AxiosError<GetReplacements404 | GetReplacements500>,
 >(
-  keywordId: string,
-  params: GetReplacementsKeywordByKeywordIdParams,
+  params: GetReplacementsParams,
   options?: {
     query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>,
-        TError,
-        TData
-      >
+      UseQueryOptions<Awaited<ReturnType<typeof getReplacements>>, TError, TData>
     > &
       Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>,
+          Awaited<ReturnType<typeof getReplacements>>,
           TError,
-          Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>
+          Awaited<ReturnType<typeof getReplacements>>
         >,
         'initialData'
       >;
@@ -181,52 +148,34 @@ export function useGetReplacementsKeywordByKeywordId<
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
-export function useGetReplacementsKeywordByKeywordId<
-  TData = Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>,
-  TError = AxiosError<
-    GetReplacementsKeywordByKeywordId404 | GetReplacementsKeywordByKeywordId500
-  >,
+export function useGetReplacements<
+  TData = Awaited<ReturnType<typeof getReplacements>>,
+  TError = AxiosError<GetReplacements404 | GetReplacements500>,
 >(
-  keywordId: string,
-  params: GetReplacementsKeywordByKeywordIdParams,
+  params: GetReplacementsParams,
   options?: {
     query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>,
-        TError,
-        TData
-      >
+      UseQueryOptions<Awaited<ReturnType<typeof getReplacements>>, TError, TData>
     >;
     axios?: AxiosRequestConfig;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
-export function useGetReplacementsKeywordByKeywordId<
-  TData = Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>,
-  TError = AxiosError<
-    GetReplacementsKeywordByKeywordId404 | GetReplacementsKeywordByKeywordId500
-  >,
+export function useGetReplacements<
+  TData = Awaited<ReturnType<typeof getReplacements>>,
+  TError = AxiosError<GetReplacements404 | GetReplacements500>,
 >(
-  keywordId: string,
-  params: GetReplacementsKeywordByKeywordIdParams,
+  params: GetReplacementsParams,
   options?: {
     query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof getReplacementsKeywordByKeywordId>>,
-        TError,
-        TData
-      >
+      UseQueryOptions<Awaited<ReturnType<typeof getReplacements>>, TError, TData>
     >;
     axios?: AxiosRequestConfig;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
-  const queryOptions = getGetReplacementsKeywordByKeywordIdQueryOptions(
-    keywordId,
-    params,
-    options,
-  );
+  const queryOptions = getGetReplacementsQueryOptions(params, options);
 
   const query = useQuery(queryOptions, queryClient) as UseQueryResult<
     TData,
@@ -238,6 +187,118 @@ export function useGetReplacementsKeywordByKeywordId<
   return query;
 }
 
+export const postReplacements = (
+  postReplacementsBody:
+    | PostReplacementsBodyOne
+    | PostReplacementsBodyTwo
+    | PostReplacementsBodyThree,
+  options?: AxiosRequestConfig,
+): Promise<AxiosResponse<PostReplacements200>> => {
+  return axios.post(
+    'http://localhost:7000/replacements/',
+    postReplacementsBody,
+    options,
+  );
+};
+
+export const getPostReplacementsMutationOptions = <
+  TError = AxiosError<PostReplacements404 | PostReplacements500>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof postReplacements>>,
+    TError,
+    {
+      data:
+        | PostReplacementsBodyOne
+        | PostReplacementsBodyTwo
+        | PostReplacementsBodyThree;
+    },
+    TContext
+  >;
+  axios?: AxiosRequestConfig;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof postReplacements>>,
+  TError,
+  {
+    data:
+      | PostReplacementsBodyOne
+      | PostReplacementsBodyTwo
+      | PostReplacementsBodyThree;
+  },
+  TContext
+> => {
+  const mutationKey = ['postReplacements'];
+  const { mutation: mutationOptions, axios: axiosOptions } = options
+    ? options.mutation &&
+      'mutationKey' in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, axios: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof postReplacements>>,
+    {
+      data:
+        | PostReplacementsBodyOne
+        | PostReplacementsBodyTwo
+        | PostReplacementsBodyThree;
+    }
+  > = (props) => {
+    const { data } = props ?? {};
+
+    return postReplacements(data, axiosOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type PostReplacementsMutationResult = NonNullable<
+  Awaited<ReturnType<typeof postReplacements>>
+>;
+export type PostReplacementsMutationBody =
+  | PostReplacementsBodyOne
+  | PostReplacementsBodyTwo
+  | PostReplacementsBodyThree;
+export type PostReplacementsMutationError = AxiosError<
+  PostReplacements404 | PostReplacements500
+>;
+
+export const usePostReplacements = <
+  TError = AxiosError<PostReplacements404 | PostReplacements500>,
+  TContext = unknown,
+>(
+  options?: {
+    mutation?: UseMutationOptions<
+      Awaited<ReturnType<typeof postReplacements>>,
+      TError,
+      {
+        data:
+          | PostReplacementsBodyOne
+          | PostReplacementsBodyTwo
+          | PostReplacementsBodyThree;
+      },
+      TContext
+    >;
+    axios?: AxiosRequestConfig;
+  },
+  queryClient?: QueryClient,
+): UseMutationResult<
+  Awaited<ReturnType<typeof postReplacements>>,
+  TError,
+  {
+    data:
+      | PostReplacementsBodyOne
+      | PostReplacementsBodyTwo
+      | PostReplacementsBodyThree;
+  },
+  TContext
+> => {
+  const mutationOptions = getPostReplacementsMutationOptions(options);
+
+  return useMutation(mutationOptions, queryClient);
+};
 export const getReplacementsById = (
   id: string,
   options?: AxiosRequestConfig,
@@ -558,118 +619,6 @@ export const useDeleteReplacementsById = <
   TContext
 > => {
   const mutationOptions = getDeleteReplacementsByIdMutationOptions(options);
-
-  return useMutation(mutationOptions, queryClient);
-};
-export const postReplacements = (
-  postReplacementsBody:
-    | PostReplacementsBodyOne
-    | PostReplacementsBodyTwo
-    | PostReplacementsBodyThree,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<PostReplacements200>> => {
-  return axios.post(
-    'http://localhost:7000/replacements/',
-    postReplacementsBody,
-    options,
-  );
-};
-
-export const getPostReplacementsMutationOptions = <
-  TError = AxiosError<PostReplacements404 | PostReplacements500>,
-  TContext = unknown,
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof postReplacements>>,
-    TError,
-    {
-      data:
-        | PostReplacementsBodyOne
-        | PostReplacementsBodyTwo
-        | PostReplacementsBodyThree;
-    },
-    TContext
-  >;
-  axios?: AxiosRequestConfig;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof postReplacements>>,
-  TError,
-  {
-    data:
-      | PostReplacementsBodyOne
-      | PostReplacementsBodyTwo
-      | PostReplacementsBodyThree;
-  },
-  TContext
-> => {
-  const mutationKey = ['postReplacements'];
-  const { mutation: mutationOptions, axios: axiosOptions } = options
-    ? options.mutation &&
-      'mutationKey' in options.mutation &&
-      options.mutation.mutationKey
-      ? options
-      : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, axios: undefined };
-
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof postReplacements>>,
-    {
-      data:
-        | PostReplacementsBodyOne
-        | PostReplacementsBodyTwo
-        | PostReplacementsBodyThree;
-    }
-  > = (props) => {
-    const { data } = props ?? {};
-
-    return postReplacements(data, axiosOptions);
-  };
-
-  return { mutationFn, ...mutationOptions };
-};
-
-export type PostReplacementsMutationResult = NonNullable<
-  Awaited<ReturnType<typeof postReplacements>>
->;
-export type PostReplacementsMutationBody =
-  | PostReplacementsBodyOne
-  | PostReplacementsBodyTwo
-  | PostReplacementsBodyThree;
-export type PostReplacementsMutationError = AxiosError<
-  PostReplacements404 | PostReplacements500
->;
-
-export const usePostReplacements = <
-  TError = AxiosError<PostReplacements404 | PostReplacements500>,
-  TContext = unknown,
->(
-  options?: {
-    mutation?: UseMutationOptions<
-      Awaited<ReturnType<typeof postReplacements>>,
-      TError,
-      {
-        data:
-          | PostReplacementsBodyOne
-          | PostReplacementsBodyTwo
-          | PostReplacementsBodyThree;
-      },
-      TContext
-    >;
-    axios?: AxiosRequestConfig;
-  },
-  queryClient?: QueryClient,
-): UseMutationResult<
-  Awaited<ReturnType<typeof postReplacements>>,
-  TError,
-  {
-    data:
-      | PostReplacementsBodyOne
-      | PostReplacementsBodyTwo
-      | PostReplacementsBodyThree;
-  },
-  TContext
-> => {
-  const mutationOptions = getPostReplacementsMutationOptions(options);
 
   return useMutation(mutationOptions, queryClient);
 };

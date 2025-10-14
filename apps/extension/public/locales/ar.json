@@ -37,9 +37,9 @@
     "image": "الصورة",
     "novel": "الرواية"
   },
-  "replaces": {
-    "name": "الاسم",
-    "replaceWith": "استبدال بـ"
+  "replacing": {
+    "from": "من",
+    "to": "إلى"
   },
   "home": {
     "title": "إدارة الكلمات المفتاحية",
@@ -116,5 +116,11 @@
     "websiteDeleteSuccess": "تم حذف الموقع بنجاح",
     "websiteDeleteFailed": "فشل حذف الموقع",
     "noData": "لا توجد مواقع لعرضها"
+  },
+  "novels": {
+    "add": "إضافة رواية",
+    "edit": "تعديل الرواية",
+    "delete": "حذف الرواية",
+    "applyKeywordsAndReplacements": "تطبيق الكلمات المفتاحية والاستبدالات"
   }
 }
