@@ -73,6 +73,7 @@ export function HomePage() {
           <Loader />
         ) : (
           <Stack gap="xs">
+            z
             <Group gap="xs" align="end">
               <Select
                 label={t('coloring.novel')}
@@ -91,6 +92,7 @@ export function HomePage() {
                   )
                 }
                 required
+                searchable
               />
               <Text flex={1} ta="center">
                 {currentTabNovel?.chapter}
