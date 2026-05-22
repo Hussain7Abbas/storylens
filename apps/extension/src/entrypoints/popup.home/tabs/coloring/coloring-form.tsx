@@ -49,10 +49,10 @@ export function ColoringForm({
       imageId: keyword?.imageId || undefined,
     },
     validate: {
-      name: (value) => (!value ? 'Name is required' : null),
-      description: (value) => (!value ? 'Description is required' : null),
-      categoryId: (value) => (!value ? 'Category is required' : null),
-      natureId: (value) => (!value ? 'Nature is required' : null),
+      name: (value) => (!value ? t('home.nameRequired') : null),
+      description: (value) => (!value ? t('home.descriptionRequired') : null),
+      categoryId: (value) => (!value ? t('home.categoryRequired') : null),
+      natureId: (value) => (!value ? t('home.natureRequired') : null),
     },
   });
 
@@ -103,7 +103,7 @@ export function ColoringForm({
 
   const handleSubmit = (values: typeof form.values) => {
     if (!selectedNovelId) {
-      form.setFieldError('novel', 'Please select a novel');
+      form.setFieldError('novel', t('home.selectNovelFirst'));
       return;
     }
     if (mode === 'add') {
@@ -138,7 +138,7 @@ export function ColoringForm({
 
         <Select
           label={t('coloring.category')}
-          placeholder="Select category"
+          placeholder={t('coloring.selectCategory')}
           allowDeselect={false}
           data={categoriesData?.data?.data?.map((cat: KeywordCategory) => ({
             value: cat.id,
@@ -152,7 +152,7 @@ export function ColoringForm({
 
         <Select
           label={t('coloring.nature')}
-          placeholder="Select nature"
+          placeholder={t('coloring.selectNature')}
           allowDeselect={false}
           data={naturesData?.data?.data?.map((nature: KeywordNature) => ({
             value: nature.id,
@@ -173,12 +173,12 @@ export function ColoringForm({
         <FileInput
           label={t('coloring.image')}
           {...form.getInputProps('imageId')}
-          placeholder="Image ID (optional)"
+          placeholder={t('coloring.imageOptional')}
         />
 
         {createKeywordMutation.isError && (
           <Alert color="red">
-            Failed to create keyword: {createKeywordMutation.error?.message}
+            {t('coloring.createFailed')}: {createKeywordMutation.error?.message}
           </Alert>
         )}
 

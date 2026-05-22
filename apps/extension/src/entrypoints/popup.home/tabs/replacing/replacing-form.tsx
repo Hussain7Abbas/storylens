@@ -36,8 +36,8 @@ export function ReplacingForm({
       to: replacement?.to || '',
     },
     validate: {
-      from: (value) => (!value ? 'From is required' : null),
-      to: (value) => (!value ? 'To is required' : null),
+      from: (value) => (!value ? t('replacing.fromRequired') : null),
+      to: (value) => (!value ? t('replacing.toRequired') : null),
     },
   });
 
@@ -75,7 +75,7 @@ export function ReplacingForm({
 
   const handleSubmit = (values: typeof form.values) => {
     if (!selectedNovelId) {
-      form.setFieldError('novel', 'Please select a novel');
+      form.setFieldError('novel', t('home.selectNovelFirst'));
       return;
     }
 
@@ -114,7 +114,7 @@ export function ReplacingForm({
 
         {createKeywordMutation.isError && (
           <Alert color="red">
-            Failed to create keyword: {createKeywordMutation.error?.message}
+            {t('replacing.createFailed')}: {createKeywordMutation.error?.message}
           </Alert>
         )}
 

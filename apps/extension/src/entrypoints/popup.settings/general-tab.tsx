@@ -15,7 +15,9 @@ export function GeneralTab() {
       <Group>
         <Text>{t('settings.language')}:</Text>
         <Button onClick={handleChangeLanguage}>
-          {locale === 'ar' ? 'English' : 'Arabic'}
+          {locale === 'ar'
+            ? t('settings.languageEnglish')
+            : t('settings.languageArabic')}
         </Button>
       </Group>
       <Fieldset legend={t('nodeSelector.nodeSelector')}>

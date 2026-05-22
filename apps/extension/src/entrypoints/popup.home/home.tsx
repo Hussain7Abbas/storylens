@@ -93,7 +93,7 @@ export function HomePage() {
             <Group gap="xs" align="end">
               <Select
                 label={t('coloring.novel')}
-                placeholder="Select a novel"
+                placeholder={t('home.selectNovelPlaceholder')}
                 allowDeselect={false}
                 data={novelsData?.data?.data?.map((novel: Novel) => ({
                   value: novel.id,
@@ -205,7 +205,7 @@ function NovelMenu({
         <Menu.Item
           leftSection={<IconCrosshair size={14} color="gray" />}
           onClick={() => {
-            toast.success('Coming soon');
+            toast.success(t('novels.comingSoon'));
           }}
         >
           {t('novels.applyKeywordsAndReplacements')}

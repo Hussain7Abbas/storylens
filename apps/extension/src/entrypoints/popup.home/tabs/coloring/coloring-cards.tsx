@@ -2,6 +2,7 @@ import { Stack, Loader, Group, Text, type StackProps, Center } from '@mantine/co
 import { useGetKeywords } from '@repo/api/keywords.js';
 import type { GetKeywords200DataItem } from '@repo/api/schemas';
 import type { ColoringFormModesType } from './coloring-form';
+import { useTranslation } from 'react-i18next';
 
 interface ColoringFormProps extends StackProps {
   selectedNovelId: string;
@@ -15,6 +16,7 @@ export function ColoringCards({
   setMode,
   ...props
 }: ColoringFormProps) {
+  const { t } = useTranslation();
   const keywordsOfNovel = useGetKeywords({
     pagination: { page: 1, pageSize: 100 },
     sorting: { column: 'name', direction: 'asc' },
@@ -64,7 +66,7 @@ export function ColoringCards({
         </Stack>
       ) : (
         <Text ta="center" c="dimmed">
-          No keywords found
+          {t('home.noKeywords')}
         </Text>
       )}
     </>

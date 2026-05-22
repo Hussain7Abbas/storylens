@@ -44,8 +44,8 @@ export function CategoryTab() {
         {...tableProps}
         noRecordsText={t('category.noRecords')}
         columns={[
-          { accessor: 'name', title: 'Name' },
-          { accessor: 'color', title: 'Color' },
+          { accessor: 'name', title: t('settings.name') },
+          { accessor: 'color', title: t('settings.color') },
         ]}
       />
     </Stack>

@@ -2,6 +2,7 @@ import { Stack, Loader, Group, Text, type StackProps, Center } from '@mantine/co
 import { useGetReplacements } from '@repo/api/replacements.js';
 import type { GetReplacements200DataItem } from '@repo/api/schemas';
 import type { ReplacingFormModesType } from './replacing-form';
+import { useTranslation } from 'react-i18next';
 
 interface ReplacingFormProps extends StackProps {
   selectedNovelId: string;
@@ -15,6 +16,7 @@ export function ReplacingCards({
   setMode,
   ...props
 }: ReplacingFormProps) {
+  const { t } = useTranslation();
   const replacementsOfNovel = useGetReplacements({
     pagination: { page: 1, pageSize: 100 },
     sorting: { column: 'from', direction: 'asc' },
@@ -56,7 +58,7 @@ export function ReplacingCards({
         </Stack>
       ) : (
         <Text ta="center" c="dimmed">
-          No replacements found
+          {t('replacing.noReplacements')}
         </Text>
       )}
     </>

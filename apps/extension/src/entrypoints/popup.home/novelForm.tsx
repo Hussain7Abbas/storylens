@@ -112,7 +112,7 @@ export function NovelForm({
 
   const handleDelete = () => {
     if (!selectedNovel?.id) {
-      toast.error('Novel not found');
+      toast.error(t('novels.notFound'));
       return;
     }
     deleteNovelMutation.mutate({
@@ -151,12 +151,12 @@ export function NovelForm({
     <Paper p="xs" withBorder>
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <Stack gap="xs">
-          <TextInput label="Novel Name" {...form.getInputProps('name')} />
+          <TextInput label={t('novels.name')} {...form.getInputProps('name')} />
           <TextInput
-            label="Novel Description"
+            label={t('novels.description')}
             {...form.getInputProps('description')}
           />
-          <FileInput label="Novel Image" {...form.getInputProps('imageId')} />
+          <FileInput label={t('novels.image')} {...form.getInputProps('imageId')} />
 
           <Group grow>
             <Button
