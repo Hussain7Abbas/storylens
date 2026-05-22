@@ -3,7 +3,7 @@
 	help ensure-apps \
 	install prepare init-env setup db-setup \
 	docker-up docker-down docker-logs \
-	db-generate db-migrate-dev db-migrate-deploy db-migrate-reset db-seed db-studio \
+	db-generate db-migrate-dev db-migrate-deploy db-reset db-seed db-studio \
 	storage-seed orval i18n-parse \
 	dev dev-backend dev-extension dev-firefox backend extension \
 	build build-seq build-backend build-extension build-firefox start-backend \
@@ -49,7 +49,7 @@ help:
 	@echo "  $(GREEN)db-generate$(RESET)         $(GREEN)make -C packages/db db-generate$(RESET)"
 	@echo "  $(GREEN)db-migrate-dev$(RESET)      $(GREEN)make -C packages/db db-migrate-dev$(RESET)"
 	@echo "  $(GREEN)db-migrate-deploy$(RESET)   $(GREEN)make -C packages/db db-migrate-deploy$(RESET)"
-	@echo "  $(GREEN)db-migrate-reset$(RESET)    $(GREEN)make -C packages/db db-migrate-reset$(RESET)"
+	@echo "  $(GREEN)db-reset$(RESET)    $(GREEN)make -C packages/db db-reset$(RESET)"
 	@echo "  $(GREEN)db-seed$(RESET)             $(GREEN)make -C packages/db db-seed$(RESET)"
 	@echo "  $(GREEN)db-studio$(RESET)           $(GREEN)make -C packages/db db-studio$(RESET)"
 	@echo ""
@@ -132,8 +132,8 @@ db-migrate-dev: ensure-apps
 db-migrate-deploy: ensure-apps
 	@$(MAKE) -C "$(DB)" db-migrate-deploy
 
-db-migrate-reset: ensure-apps
-	@$(MAKE) -C "$(DB)" db-migrate-reset
+db-reset: ensure-apps
+	@$(MAKE) -C "$(DB)" db-reset
 
 db-seed: ensure-apps
 	@$(MAKE) -C "$(DB)" db-seed

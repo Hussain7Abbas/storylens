@@ -1,46 +1,49 @@
 import type { PrismaClient } from '@prisma/client';
-import { fakerAR } from '@faker-js/faker';
+import { seedReplacements } from '../data/replacements';
+import { indexBy } from '../utils/lookups';
 
 export async function seedKeywordReplacement(prisma: PrismaClient) {
   console.log('🌱', 'Seeding keyword replacements');
+
   const novels = await prisma.novel.findMany();
   if (novels.length === 0) {
     throw new Error('No novels found');
   }
 
-  const keywords = await prisma.keyword.findMany();
-  if (keywords.length === 0) {
-    throw new Error('No keywords found');
-  }
+  const keywords = await prisma.keyword.findMany({
+    select: { id: true, name: true, novelId: true },
+  });
 
-  const replacementsNumbers = fakerAR.number.int({ min: 1, max: 10 });
+  const novelByName = indexBy(novels, (novel) => novel.name);
+  const keywordByNovelAndName = new Map<string, string>();
 
-  const promises = [];
-  for (let i = 0; i < replacementsNumbers; i++) {
-    const isLinkedToKeyword = fakerAR.helpers.weightedArrayElement([
-      { value: true, weight: 3 },
-      { value: false, weight: 7 },
-    ]);
-    promises.push(
-      prisma.replacement.create({
-        data: {
-          from: fakerAR.person.fullName(),
-          to: fakerAR.person.fullName(),
-          novel: {
-            connect: {
-              id: fakerAR.helpers.arrayElement(novels).id,
-            },
-          },
-          keyword: isLinkedToKeyword
-            ? {
-                connect: {
-                  id: fakerAR.helpers.arrayElement(keywords).id,
-                },
-              }
-            : undefined,
-        },
-      }),
+  for (const keyword of keywords) {
+    keywordByNovelAndName.set(
+      `${keyword.novelId}:${keyword.name.trim()}`,
+      keyword.id,
     );
   }
-  await Promise.all(promises);
+
+  await prisma.replacement.createMany({
+    data: seedReplacements.flatMap((replacement) => {
+      const novel = novelByName.get(replacement.novelSlug);
+
+      if (!novel) {
+        return [];
+      }
+
+      const from = replacement.from.trim();
+      const keywordId = keywordByNovelAndName.get(`${novel.id}:${from}`);
+
+      return [
+        {
+          from: replacement.from,
+          to: replacement.to,
+          novelId: novel.id,
+          keywordId,
+        },
+      ];
+    }),
+    skipDuplicates: true,
+  });
 }

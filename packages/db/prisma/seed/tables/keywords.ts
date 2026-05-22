@@ -1,5 +1,7 @@
 import type { PrismaClient } from '@prisma/client';
-import { fakerAR } from '@faker-js/faker';
+import { seedKeywords as seedKeywordsData } from '../data/keywords';
+import { mapLegacyRole } from '../utils/legacy-role-mapper';
+import { indexBy } from '../utils/lookups';
 
 export async function seedKeywords(prisma: PrismaClient) {
   console.log('🌱', 'Seeding keywords');
@@ -19,28 +21,31 @@ export async function seedKeywords(prisma: PrismaClient) {
     throw new Error('No keyword natures found');
   }
 
-  const chapters = await prisma.chapter.findMany();
-  if (chapters.length === 0) {
-    throw new Error('No chapters found');
-  }
+  const novelByName = indexBy(novels, (novel) => novel.name);
+  const categoryByName = indexBy(keywordCategories, (category) => category.name);
+  const natureByName = indexBy(keywordNatures, (nature) => nature.name);
 
-  const promises = [];
-  for (const novel of novels) {
-    const keywordsNumbers = fakerAR.number.int({ min: 1, max: 100 });
-    for (let i = 0; i < keywordsNumbers; i++) {
-      promises.push(
-        prisma.keyword.create({
-          data: {
-            name: fakerAR.person.fullName(),
-            description: fakerAR.lorem.paragraph(),
-            novelId: novel.id,
-            categoryId: fakerAR.helpers.arrayElement(keywordCategories)?.id,
-            natureId: fakerAR.helpers.arrayElement(keywordNatures)?.id,
-          },
-        }),
-      );
-    }
-  }
+  await prisma.keyword.createMany({
+    data: seedKeywordsData.flatMap((keyword) => {
+      const novel = novelByName.get(keyword.novelSlug);
+      const { category, nature } = mapLegacyRole(keyword.role);
+      const categoryRecord = categoryByName.get(category);
+      const natureRecord = natureByName.get(nature);
 
-  await Promise.all(promises);
+      if (!novel || !categoryRecord || !natureRecord) {
+        return [];
+      }
+
+      return [
+        {
+          name: keyword.name.trim(),
+          description: keyword.description,
+          novelId: novel.id,
+          categoryId: categoryRecord.id,
+          natureId: natureRecord.id,
+          ...(keyword.timestamp ? { createdAt: new Date(keyword.timestamp) } : {}),
+        },
+      ];
+    }),
+  });
 }

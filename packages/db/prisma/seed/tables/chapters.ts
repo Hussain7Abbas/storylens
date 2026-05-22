@@ -1,5 +1,6 @@
 import type { PrismaClient } from '@prisma/client';
-import { fakerAR } from '@faker-js/faker';
+
+const PLACEHOLDER_CHAPTER_COUNT = 5;
 
 export async function seedChapters(prisma: PrismaClient) {
   console.log('🌱', 'Seeding chapters');
@@ -10,22 +11,14 @@ export async function seedChapters(prisma: PrismaClient) {
     throw new Error('No novels found');
   }
 
-  const promises = [];
-  for (const novel of novels) {
-    const chaptersNumbers = fakerAR.number.int({ min: 1, max: 100 });
-    for (let i = 0; i < chaptersNumbers; i++) {
-      promises.push(
-        prisma.chapter.create({
-          data: {
-            name: `${i + 1} - ${fakerAR.book.title()}`,
-            description: fakerAR.lorem.paragraph(),
-            number: i + 1,
-            novelId: novel.id,
-          },
-        }),
-      );
-    }
-  }
-
-  await Promise.all(promises);
+  await prisma.chapter.createMany({
+    data: novels.flatMap((novel) =>
+      Array.from({ length: PLACEHOLDER_CHAPTER_COUNT }, (_, index) => ({
+        name: `الفصل ${index + 1}`,
+        description: null,
+        number: index + 1,
+        novelId: novel.id,
+      })),
+    ),
+  });
 }

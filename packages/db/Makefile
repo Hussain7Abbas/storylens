@@ -1,6 +1,6 @@
 # Story Lens database (Prisma + PostgreSQL).
 .PHONY: \
-	help db-generate db-migrate-dev db-migrate-deploy db-migrate-reset \
+	help db-generate db-migrate-dev db-migrate-deploy db-reset \
 	db-seed db-studio
 
 ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
@@ -21,7 +21,7 @@ help:
 	@echo "  $(GREEN)db-generate$(RESET)         $(YELLOW)prisma generate$(RESET)"
 	@echo "  $(GREEN)db-migrate-dev$(RESET)      $(YELLOW)prisma migrate dev$(RESET)"
 	@echo "  $(GREEN)db-migrate-deploy$(RESET)   $(YELLOW)prisma migrate deploy$(RESET) ($(YELLOW)requires Postgres$(RESET))"
-	@echo "  $(GREEN)db-migrate-reset$(RESET)    $(YELLOW)prisma migrate reset$(RESET)"
+	@echo "  $(GREEN)db-reset$(RESET)    $(YELLOW)prisma migrate reset$(RESET)"
 	@echo "  $(GREEN)db-seed$(RESET)             $(YELLOW)prisma db seed$(RESET)"
 	@echo "  $(GREEN)db-studio$(RESET)           open Prisma Studio"
 	@echo ""
@@ -35,7 +35,7 @@ db-migrate-dev:
 db-migrate-deploy:
 	@cd "$(ROOT)" && bunx prisma migrate deploy
 
-db-migrate-reset:
+db-reset:
 	@cd "$(ROOT)" && bunx prisma migrate reset
 
 db-seed:

@@ -1,33 +1,41 @@
 import type { PrismaClient } from '@prisma/client';
-import { fakerAR } from '@faker-js/faker';
+import { groupBy } from '../utils/lookups';
 
 export async function seedKeywordsChapters(prisma: PrismaClient) {
   console.log('🌱', 'Seeding keywords chapters');
 
-  const keywords = await prisma.keyword.findMany();
+  const keywords = await prisma.keyword.findMany({
+    select: { id: true, novelId: true },
+  });
   if (keywords.length === 0) {
     throw new Error('No keywords found');
   }
 
-  const chapters = await prisma.chapter.findMany();
+  const chapters = await prisma.chapter.findMany({
+    select: { id: true, novelId: true, number: true },
+    orderBy: { number: 'asc' },
+  });
   if (chapters.length === 0) {
     throw new Error('No chapters found');
   }
 
-  const promises = [];
-  for (const chapter of chapters) {
-    const keywordsNumbers = fakerAR.number.int({ min: 1, max: 10 });
-    for (let i = 0; i < keywordsNumbers; i++) {
-      promises.push(
-        prisma.keywordsChapters.create({
-          data: {
-            keywordId: fakerAR.helpers.arrayElement(keywords)?.id,
-            chapterId: chapter.id,
-          },
-        }),
-      );
-    }
-  }
+  const chaptersByNovelId = groupBy(chapters, (chapter) => chapter.novelId);
 
-  await Promise.all(promises);
+  await prisma.keywordsChapters.createMany({
+    data: keywords.flatMap((keyword) => {
+      const novelChapters = chaptersByNovelId.get(keyword.novelId);
+      const firstChapter = novelChapters?.[0];
+
+      if (!firstChapter) {
+        return [];
+      }
+
+      return [
+        {
+          keywordId: keyword.id,
+          chapterId: firstChapter.id,
+        },
+      ];
+    }),
+  });
 }

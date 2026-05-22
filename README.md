@@ -122,7 +122,7 @@ Aliases: `make backend` and `make extension` work the same as `make dev-backend`
 | --- | --- |
 | `make db-migrate-dev` | Create and apply a migration in development |
 | `make db-migrate-deploy` | Apply pending migrations (production/CI) |
-| `make db-migrate-reset` | Reset the database and re-apply all migrations |
+| `make db-reset` | Reset the database and re-apply all migrations |
 | `make db-seed` | Seed the database with initial data |
 | `make db-studio` | Open Prisma Studio |
 | `make db-generate` | Regenerate the Prisma client |
