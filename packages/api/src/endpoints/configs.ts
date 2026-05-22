@@ -21,9 +21,6 @@ import type {
   UseQueryResult,
 } from '@tanstack/react-query';
 
-import axios from 'axios';
-import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-
 import type {
   DeleteConfigsByKey200,
   DeleteConfigsByKey404,
@@ -42,36 +39,45 @@ import type {
   PutConfigsBodyTwo,
 } from '../schemas';
 
+import { customInstance } from '../axios-instance';
+import type { ErrorType } from '../axios-instance';
+
 type AwaitedInput<T> = PromiseLike<T> | T;
 
 type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 export const getConfigs = (
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<GetConfigs200>> => {
-  return axios.get('http://localhost:7000/configs/', options);
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<GetConfigs200>(
+    { url: 'http://localhost:7001/configs/', method: 'GET', signal },
+    options,
+  );
 };
 
 export const getGetConfigsQueryKey = () => {
-  return ['http://localhost:7000/configs/'] as const;
+  return ['http://localhost:7001/configs/'] as const;
 };
 
 export const getGetConfigsQueryOptions = <
   TData = Awaited<ReturnType<typeof getConfigs>>,
-  TError = AxiosError<GetConfigs404 | GetConfigs500>,
+  TError = ErrorType<GetConfigs404 | GetConfigs500>,
 >(options?: {
   query?: Partial<
     UseQueryOptions<Awaited<ReturnType<typeof getConfigs>>, TError, TData>
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options ?? {};
+  const { query: queryOptions, request: requestOptions } = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getGetConfigsQueryKey();
 
   const queryFn: QueryFunction<Awaited<ReturnType<typeof getConfigs>>> = ({
     signal,
-  }) => getConfigs({ signal, ...axiosOptions });
+  }) => getConfigs(requestOptions, signal);
 
   return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
     Awaited<ReturnType<typeof getConfigs>>,
@@ -83,11 +89,11 @@ export const getGetConfigsQueryOptions = <
 export type GetConfigsQueryResult = NonNullable<
   Awaited<ReturnType<typeof getConfigs>>
 >;
-export type GetConfigsQueryError = AxiosError<GetConfigs404 | GetConfigs500>;
+export type GetConfigsQueryError = ErrorType<GetConfigs404 | GetConfigs500>;
 
 export function useGetConfigs<
   TData = Awaited<ReturnType<typeof getConfigs>>,
-  TError = AxiosError<GetConfigs404 | GetConfigs500>,
+  TError = ErrorType<GetConfigs404 | GetConfigs500>,
 >(
   options: {
     query: Partial<
@@ -101,7 +107,7 @@ export function useGetConfigs<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): DefinedUseQueryResult<TData, TError> & {
@@ -109,7 +115,7 @@ export function useGetConfigs<
 };
 export function useGetConfigs<
   TData = Awaited<ReturnType<typeof getConfigs>>,
-  TError = AxiosError<GetConfigs404 | GetConfigs500>,
+  TError = ErrorType<GetConfigs404 | GetConfigs500>,
 >(
   options?: {
     query?: Partial<
@@ -123,32 +129,32 @@ export function useGetConfigs<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetConfigs<
   TData = Awaited<ReturnType<typeof getConfigs>>,
-  TError = AxiosError<GetConfigs404 | GetConfigs500>,
+  TError = ErrorType<GetConfigs404 | GetConfigs500>,
 >(
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getConfigs>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
 export function useGetConfigs<
   TData = Awaited<ReturnType<typeof getConfigs>>,
-  TError = AxiosError<GetConfigs404 | GetConfigs500>,
+  TError = ErrorType<GetConfigs404 | GetConfigs500>,
 >(
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getConfigs>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -166,13 +172,16 @@ export function useGetConfigs<
 
 export const putConfigs = (
   putConfigsBody: PutConfigsBodyOne | PutConfigsBodyTwo | PutConfigsBodyThree,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<PutConfigs200>> => {
-  return axios.put('http://localhost:7000/configs/', putConfigsBody, options);
+  options?: SecondParameter<typeof customInstance>,
+) => {
+  return customInstance<PutConfigs200>(
+    { url: 'http://localhost:7001/configs/', method: 'PUT', data: putConfigsBody },
+    options,
+  );
 };
 
 export const getPutConfigsMutationOptions = <
-  TError = AxiosError<PutConfigs404 | PutConfigs500>,
+  TError = ErrorType<PutConfigs404 | PutConfigs500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -181,7 +190,7 @@ export const getPutConfigsMutationOptions = <
     { data: PutConfigsBodyOne | PutConfigsBodyTwo | PutConfigsBodyThree },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof putConfigs>>,
   TError,
@@ -189,13 +198,13 @@ export const getPutConfigsMutationOptions = <
   TContext
 > => {
   const mutationKey = ['putConfigs'];
-  const { mutation: mutationOptions, axios: axiosOptions } = options
+  const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
       options.mutation.mutationKey
       ? options
       : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, axios: undefined };
+    : { mutation: { mutationKey }, request: undefined };
 
   const mutationFn: MutationFunction<
     Awaited<ReturnType<typeof putConfigs>>,
@@ -203,7 +212,7 @@ export const getPutConfigsMutationOptions = <
   > = (props) => {
     const { data } = props ?? {};
 
-    return putConfigs(data, axiosOptions);
+    return putConfigs(data, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
@@ -216,10 +225,10 @@ export type PutConfigsMutationBody =
   | PutConfigsBodyOne
   | PutConfigsBodyTwo
   | PutConfigsBodyThree;
-export type PutConfigsMutationError = AxiosError<PutConfigs404 | PutConfigs500>;
+export type PutConfigsMutationError = ErrorType<PutConfigs404 | PutConfigs500>;
 
 export const usePutConfigs = <
-  TError = AxiosError<PutConfigs404 | PutConfigs500>,
+  TError = ErrorType<PutConfigs404 | PutConfigs500>,
   TContext = unknown,
 >(
   options?: {
@@ -229,7 +238,7 @@ export const usePutConfigs = <
       { data: PutConfigsBodyOne | PutConfigsBodyTwo | PutConfigsBodyThree },
       TContext
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseMutationResult<
@@ -244,34 +253,38 @@ export const usePutConfigs = <
 };
 export const getConfigsByKey = (
   key: string,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<GetConfigsByKey200>> => {
-  return axios.get(`http://localhost:7000/configs/${key}`, options);
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<GetConfigsByKey200>(
+    { url: `http://localhost:7001/configs/${key}`, method: 'GET', signal },
+    options,
+  );
 };
 
 export const getGetConfigsByKeyQueryKey = (key?: string) => {
-  return [`http://localhost:7000/configs/${key}`] as const;
+  return [`http://localhost:7001/configs/${key}`] as const;
 };
 
 export const getGetConfigsByKeyQueryOptions = <
   TData = Awaited<ReturnType<typeof getConfigsByKey>>,
-  TError = AxiosError<GetConfigsByKey404 | GetConfigsByKey500>,
+  TError = ErrorType<GetConfigsByKey404 | GetConfigsByKey500>,
 >(
   key: string,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getConfigsByKey>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options ?? {};
+  const { query: queryOptions, request: requestOptions } = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getGetConfigsByKeyQueryKey(key);
 
   const queryFn: QueryFunction<Awaited<ReturnType<typeof getConfigsByKey>>> = ({
     signal,
-  }) => getConfigsByKey(key, { signal, ...axiosOptions });
+  }) => getConfigsByKey(key, requestOptions, signal);
 
   return { queryKey, queryFn, enabled: !!key, ...queryOptions } as UseQueryOptions<
     Awaited<ReturnType<typeof getConfigsByKey>>,
@@ -283,13 +296,13 @@ export const getGetConfigsByKeyQueryOptions = <
 export type GetConfigsByKeyQueryResult = NonNullable<
   Awaited<ReturnType<typeof getConfigsByKey>>
 >;
-export type GetConfigsByKeyQueryError = AxiosError<
+export type GetConfigsByKeyQueryError = ErrorType<
   GetConfigsByKey404 | GetConfigsByKey500
 >;
 
 export function useGetConfigsByKey<
   TData = Awaited<ReturnType<typeof getConfigsByKey>>,
-  TError = AxiosError<GetConfigsByKey404 | GetConfigsByKey500>,
+  TError = ErrorType<GetConfigsByKey404 | GetConfigsByKey500>,
 >(
   key: string,
   options: {
@@ -304,7 +317,7 @@ export function useGetConfigsByKey<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): DefinedUseQueryResult<TData, TError> & {
@@ -312,7 +325,7 @@ export function useGetConfigsByKey<
 };
 export function useGetConfigsByKey<
   TData = Awaited<ReturnType<typeof getConfigsByKey>>,
-  TError = AxiosError<GetConfigsByKey404 | GetConfigsByKey500>,
+  TError = ErrorType<GetConfigsByKey404 | GetConfigsByKey500>,
 >(
   key: string,
   options?: {
@@ -327,34 +340,34 @@ export function useGetConfigsByKey<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetConfigsByKey<
   TData = Awaited<ReturnType<typeof getConfigsByKey>>,
-  TError = AxiosError<GetConfigsByKey404 | GetConfigsByKey500>,
+  TError = ErrorType<GetConfigsByKey404 | GetConfigsByKey500>,
 >(
   key: string,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getConfigsByKey>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
 export function useGetConfigsByKey<
   TData = Awaited<ReturnType<typeof getConfigsByKey>>,
-  TError = AxiosError<GetConfigsByKey404 | GetConfigsByKey500>,
+  TError = ErrorType<GetConfigsByKey404 | GetConfigsByKey500>,
 >(
   key: string,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getConfigsByKey>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -372,13 +385,16 @@ export function useGetConfigsByKey<
 
 export const deleteConfigsByKey = (
   key: string,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<DeleteConfigsByKey200>> => {
-  return axios.delete(`http://localhost:7000/configs/${key}`, options);
+  options?: SecondParameter<typeof customInstance>,
+) => {
+  return customInstance<DeleteConfigsByKey200>(
+    { url: `http://localhost:7001/configs/${key}`, method: 'DELETE' },
+    options,
+  );
 };
 
 export const getDeleteConfigsByKeyMutationOptions = <
-  TError = AxiosError<DeleteConfigsByKey404 | DeleteConfigsByKey500>,
+  TError = ErrorType<DeleteConfigsByKey404 | DeleteConfigsByKey500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -387,7 +403,7 @@ export const getDeleteConfigsByKeyMutationOptions = <
     { key: string },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof deleteConfigsByKey>>,
   TError,
@@ -395,13 +411,13 @@ export const getDeleteConfigsByKeyMutationOptions = <
   TContext
 > => {
   const mutationKey = ['deleteConfigsByKey'];
-  const { mutation: mutationOptions, axios: axiosOptions } = options
+  const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
       options.mutation.mutationKey
       ? options
       : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, axios: undefined };
+    : { mutation: { mutationKey }, request: undefined };
 
   const mutationFn: MutationFunction<
     Awaited<ReturnType<typeof deleteConfigsByKey>>,
@@ -409,7 +425,7 @@ export const getDeleteConfigsByKeyMutationOptions = <
   > = (props) => {
     const { key } = props ?? {};
 
-    return deleteConfigsByKey(key, axiosOptions);
+    return deleteConfigsByKey(key, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
@@ -419,12 +435,12 @@ export type DeleteConfigsByKeyMutationResult = NonNullable<
   Awaited<ReturnType<typeof deleteConfigsByKey>>
 >;
 
-export type DeleteConfigsByKeyMutationError = AxiosError<
+export type DeleteConfigsByKeyMutationError = ErrorType<
   DeleteConfigsByKey404 | DeleteConfigsByKey500
 >;
 
 export const useDeleteConfigsByKey = <
-  TError = AxiosError<DeleteConfigsByKey404 | DeleteConfigsByKey500>,
+  TError = ErrorType<DeleteConfigsByKey404 | DeleteConfigsByKey500>,
   TContext = unknown,
 >(
   options?: {
@@ -434,7 +450,7 @@ export const useDeleteConfigsByKey = <
       { key: string },
       TContext
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseMutationResult<

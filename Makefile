@@ -145,7 +145,7 @@ storage-seed:
 	@$(RUN) storage:seed
 
 orval:
-	@$(RUN) orval
+	@$(MAKE) -C "$(API)" orval
 
 i18n-parse: ensure-apps
 	@$(MAKE) -C "$(EXTENSION)" i18n-parse

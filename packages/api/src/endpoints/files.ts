@@ -13,9 +13,6 @@ import type {
   UseMutationResult,
 } from '@tanstack/react-query';
 
-import axios from 'axios';
-import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-
 import type {
   PostFilesUpload200,
   PostFilesUpload404,
@@ -25,26 +22,36 @@ import type {
   PostFilesUploadBodyTwo,
 } from '../schemas';
 
+import { customInstance } from '../axios-instance';
+import type { ErrorType } from '../axios-instance';
+
 type AwaitedInput<T> = PromiseLike<T> | T;
 
 type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
+
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 export const postFilesUpload = (
   postFilesUploadBody:
     | PostFilesUploadBodyOne
     | PostFilesUploadBodyTwo
     | PostFilesUploadBodyThree,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<PostFilesUpload200>> => {
-  return axios.post(
-    'http://localhost:7000/files/upload',
-    postFilesUploadBody,
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<PostFilesUpload200>(
+    {
+      url: 'http://localhost:7001/files/upload',
+      method: 'POST',
+      data: postFilesUploadBody,
+      signal,
+    },
     options,
   );
 };
 
 export const getPostFilesUploadMutationOptions = <
-  TError = AxiosError<PostFilesUpload404 | PostFilesUpload500>,
+  TError = ErrorType<PostFilesUpload404 | PostFilesUpload500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -58,7 +65,7 @@ export const getPostFilesUploadMutationOptions = <
     },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof postFilesUpload>>,
   TError,
@@ -68,13 +75,13 @@ export const getPostFilesUploadMutationOptions = <
   TContext
 > => {
   const mutationKey = ['postFilesUpload'];
-  const { mutation: mutationOptions, axios: axiosOptions } = options
+  const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
       options.mutation.mutationKey
       ? options
       : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, axios: undefined };
+    : { mutation: { mutationKey }, request: undefined };
 
   const mutationFn: MutationFunction<
     Awaited<ReturnType<typeof postFilesUpload>>,
@@ -87,7 +94,7 @@ export const getPostFilesUploadMutationOptions = <
   > = (props) => {
     const { data } = props ?? {};
 
-    return postFilesUpload(data, axiosOptions);
+    return postFilesUpload(data, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
@@ -100,12 +107,12 @@ export type PostFilesUploadMutationBody =
   | PostFilesUploadBodyOne
   | PostFilesUploadBodyTwo
   | PostFilesUploadBodyThree;
-export type PostFilesUploadMutationError = AxiosError<
+export type PostFilesUploadMutationError = ErrorType<
   PostFilesUpload404 | PostFilesUpload500
 >;
 
 export const usePostFilesUpload = <
-  TError = AxiosError<PostFilesUpload404 | PostFilesUpload500>,
+  TError = ErrorType<PostFilesUpload404 | PostFilesUpload500>,
   TContext = unknown,
 >(
   options?: {
@@ -120,7 +127,7 @@ export const usePostFilesUpload = <
       },
       TContext
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseMutationResult<

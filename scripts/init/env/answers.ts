@@ -1,19 +1,28 @@
 import { input, password, select } from '@inquirer/prompts';
 import { generateSecretKey } from './helpers';
 
-export const answers = {
-  nodeEnv: await select({
-    message: 'Select node environment',
-    choices: [
-      { name: 'Development', value: 'development' },
-      { name: 'Production', value: 'production' },
-    ],
-  }),
+const nodeEnv = await select({
+  message: 'Select node environment',
+  choices: [
+    { name: 'Development', value: 'development' },
+    { name: 'Production', value: 'production' },
+  ],
+});
 
-  backendPort: await input({
-    message: 'Backend Port',
-    default: '7000',
-  }),
+const backendPort = await input({
+  message: 'Backend Port',
+  default: '7001',
+});
+
+const backendUrl = await input({
+  message: 'Backend URL',
+  default: `http://localhost:${backendPort}`,
+});
+
+export const answers = {
+  nodeEnv,
+  backendPort,
+  backendUrl,
 
   jwtSecretKey: generateSecretKey(16),
 

@@ -21,9 +21,6 @@ import type {
   UseQueryResult,
 } from '@tanstack/react-query';
 
-import axios from 'axios';
-import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-
 import type {
   DeleteNovelsById200,
   DeleteNovelsById404,
@@ -49,43 +46,49 @@ import type {
   PutNovelsByIdBodyTwo,
 } from '../schemas';
 
+import { customInstance } from '../axios-instance';
+import type { ErrorType } from '../axios-instance';
+
 type AwaitedInput<T> = PromiseLike<T> | T;
 
 type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 export const getNovels = (
   params: GetNovelsParams,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<GetNovels200>> => {
-  return axios.get('http://localhost:7000/novels/', {
-    ...options,
-    params: { ...params, ...options?.params },
-  });
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<GetNovels200>(
+    { url: 'http://localhost:7001/novels/', method: 'GET', params, signal },
+    options,
+  );
 };
 
 export const getGetNovelsQueryKey = (params?: GetNovelsParams) => {
-  return ['http://localhost:7000/novels/', ...(params ? [params] : [])] as const;
+  return ['http://localhost:7001/novels/', ...(params ? [params] : [])] as const;
 };
 
 export const getGetNovelsQueryOptions = <
   TData = Awaited<ReturnType<typeof getNovels>>,
-  TError = AxiosError<GetNovels404 | GetNovels500>,
+  TError = ErrorType<GetNovels404 | GetNovels500>,
 >(
   params: GetNovelsParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getNovels>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options ?? {};
+  const { query: queryOptions, request: requestOptions } = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getGetNovelsQueryKey(params);
 
   const queryFn: QueryFunction<Awaited<ReturnType<typeof getNovels>>> = ({
     signal,
-  }) => getNovels(params, { signal, ...axiosOptions });
+  }) => getNovels(params, requestOptions, signal);
 
   return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
     Awaited<ReturnType<typeof getNovels>>,
@@ -95,11 +98,11 @@ export const getGetNovelsQueryOptions = <
 };
 
 export type GetNovelsQueryResult = NonNullable<Awaited<ReturnType<typeof getNovels>>>;
-export type GetNovelsQueryError = AxiosError<GetNovels404 | GetNovels500>;
+export type GetNovelsQueryError = ErrorType<GetNovels404 | GetNovels500>;
 
 export function useGetNovels<
   TData = Awaited<ReturnType<typeof getNovels>>,
-  TError = AxiosError<GetNovels404 | GetNovels500>,
+  TError = ErrorType<GetNovels404 | GetNovels500>,
 >(
   params: GetNovelsParams,
   options: {
@@ -114,7 +117,7 @@ export function useGetNovels<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): DefinedUseQueryResult<TData, TError> & {
@@ -122,7 +125,7 @@ export function useGetNovels<
 };
 export function useGetNovels<
   TData = Awaited<ReturnType<typeof getNovels>>,
-  TError = AxiosError<GetNovels404 | GetNovels500>,
+  TError = ErrorType<GetNovels404 | GetNovels500>,
 >(
   params: GetNovelsParams,
   options?: {
@@ -137,34 +140,34 @@ export function useGetNovels<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetNovels<
   TData = Awaited<ReturnType<typeof getNovels>>,
-  TError = AxiosError<GetNovels404 | GetNovels500>,
+  TError = ErrorType<GetNovels404 | GetNovels500>,
 >(
   params: GetNovelsParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getNovels>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
 export function useGetNovels<
   TData = Awaited<ReturnType<typeof getNovels>>,
-  TError = AxiosError<GetNovels404 | GetNovels500>,
+  TError = ErrorType<GetNovels404 | GetNovels500>,
 >(
   params: GetNovelsParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getNovels>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -182,13 +185,22 @@ export function useGetNovels<
 
 export const postNovels = (
   postNovelsBody: PostNovelsBodyOne | PostNovelsBodyTwo | PostNovelsBodyThree,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<PostNovels200>> => {
-  return axios.post('http://localhost:7000/novels/', postNovelsBody, options);
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<PostNovels200>(
+    {
+      url: 'http://localhost:7001/novels/',
+      method: 'POST',
+      data: postNovelsBody,
+      signal,
+    },
+    options,
+  );
 };
 
 export const getPostNovelsMutationOptions = <
-  TError = AxiosError<PostNovels404 | PostNovels500>,
+  TError = ErrorType<PostNovels404 | PostNovels500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -197,7 +209,7 @@ export const getPostNovelsMutationOptions = <
     { data: PostNovelsBodyOne | PostNovelsBodyTwo | PostNovelsBodyThree },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof postNovels>>,
   TError,
@@ -205,13 +217,13 @@ export const getPostNovelsMutationOptions = <
   TContext
 > => {
   const mutationKey = ['postNovels'];
-  const { mutation: mutationOptions, axios: axiosOptions } = options
+  const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
       options.mutation.mutationKey
       ? options
       : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, axios: undefined };
+    : { mutation: { mutationKey }, request: undefined };
 
   const mutationFn: MutationFunction<
     Awaited<ReturnType<typeof postNovels>>,
@@ -219,7 +231,7 @@ export const getPostNovelsMutationOptions = <
   > = (props) => {
     const { data } = props ?? {};
 
-    return postNovels(data, axiosOptions);
+    return postNovels(data, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
@@ -232,10 +244,10 @@ export type PostNovelsMutationBody =
   | PostNovelsBodyOne
   | PostNovelsBodyTwo
   | PostNovelsBodyThree;
-export type PostNovelsMutationError = AxiosError<PostNovels404 | PostNovels500>;
+export type PostNovelsMutationError = ErrorType<PostNovels404 | PostNovels500>;
 
 export const usePostNovels = <
-  TError = AxiosError<PostNovels404 | PostNovels500>,
+  TError = ErrorType<PostNovels404 | PostNovels500>,
   TContext = unknown,
 >(
   options?: {
@@ -245,7 +257,7 @@ export const usePostNovels = <
       { data: PostNovelsBodyOne | PostNovelsBodyTwo | PostNovelsBodyThree },
       TContext
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseMutationResult<
@@ -260,34 +272,38 @@ export const usePostNovels = <
 };
 export const getNovelsById = (
   id: string,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<GetNovelsById200>> => {
-  return axios.get(`http://localhost:7000/novels/${id}`, options);
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<GetNovelsById200>(
+    { url: `http://localhost:7001/novels/${id}`, method: 'GET', signal },
+    options,
+  );
 };
 
 export const getGetNovelsByIdQueryKey = (id?: string) => {
-  return [`http://localhost:7000/novels/${id}`] as const;
+  return [`http://localhost:7001/novels/${id}`] as const;
 };
 
 export const getGetNovelsByIdQueryOptions = <
   TData = Awaited<ReturnType<typeof getNovelsById>>,
-  TError = AxiosError<GetNovelsById404 | GetNovelsById500>,
+  TError = ErrorType<GetNovelsById404 | GetNovelsById500>,
 >(
   id: string,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getNovelsById>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options ?? {};
+  const { query: queryOptions, request: requestOptions } = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getGetNovelsByIdQueryKey(id);
 
   const queryFn: QueryFunction<Awaited<ReturnType<typeof getNovelsById>>> = ({
     signal,
-  }) => getNovelsById(id, { signal, ...axiosOptions });
+  }) => getNovelsById(id, requestOptions, signal);
 
   return { queryKey, queryFn, enabled: !!id, ...queryOptions } as UseQueryOptions<
     Awaited<ReturnType<typeof getNovelsById>>,
@@ -299,11 +315,11 @@ export const getGetNovelsByIdQueryOptions = <
 export type GetNovelsByIdQueryResult = NonNullable<
   Awaited<ReturnType<typeof getNovelsById>>
 >;
-export type GetNovelsByIdQueryError = AxiosError<GetNovelsById404 | GetNovelsById500>;
+export type GetNovelsByIdQueryError = ErrorType<GetNovelsById404 | GetNovelsById500>;
 
 export function useGetNovelsById<
   TData = Awaited<ReturnType<typeof getNovelsById>>,
-  TError = AxiosError<GetNovelsById404 | GetNovelsById500>,
+  TError = ErrorType<GetNovelsById404 | GetNovelsById500>,
 >(
   id: string,
   options: {
@@ -318,7 +334,7 @@ export function useGetNovelsById<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): DefinedUseQueryResult<TData, TError> & {
@@ -326,7 +342,7 @@ export function useGetNovelsById<
 };
 export function useGetNovelsById<
   TData = Awaited<ReturnType<typeof getNovelsById>>,
-  TError = AxiosError<GetNovelsById404 | GetNovelsById500>,
+  TError = ErrorType<GetNovelsById404 | GetNovelsById500>,
 >(
   id: string,
   options?: {
@@ -341,34 +357,34 @@ export function useGetNovelsById<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetNovelsById<
   TData = Awaited<ReturnType<typeof getNovelsById>>,
-  TError = AxiosError<GetNovelsById404 | GetNovelsById500>,
+  TError = ErrorType<GetNovelsById404 | GetNovelsById500>,
 >(
   id: string,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getNovelsById>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
 export function useGetNovelsById<
   TData = Awaited<ReturnType<typeof getNovelsById>>,
-  TError = AxiosError<GetNovelsById404 | GetNovelsById500>,
+  TError = ErrorType<GetNovelsById404 | GetNovelsById500>,
 >(
   id: string,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getNovelsById>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -390,13 +406,20 @@ export const putNovelsById = (
     | PutNovelsByIdBodyOne
     | PutNovelsByIdBodyTwo
     | PutNovelsByIdBodyThree,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<PutNovelsById200>> => {
-  return axios.put(`http://localhost:7000/novels/${id}`, putNovelsByIdBody, options);
+  options?: SecondParameter<typeof customInstance>,
+) => {
+  return customInstance<PutNovelsById200>(
+    {
+      url: `http://localhost:7001/novels/${id}`,
+      method: 'PUT',
+      data: putNovelsByIdBody,
+    },
+    options,
+  );
 };
 
 export const getPutNovelsByIdMutationOptions = <
-  TError = AxiosError<PutNovelsById404 | PutNovelsById500>,
+  TError = ErrorType<PutNovelsById404 | PutNovelsById500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -408,7 +431,7 @@ export const getPutNovelsByIdMutationOptions = <
     },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof putNovelsById>>,
   TError,
@@ -419,13 +442,13 @@ export const getPutNovelsByIdMutationOptions = <
   TContext
 > => {
   const mutationKey = ['putNovelsById'];
-  const { mutation: mutationOptions, axios: axiosOptions } = options
+  const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
       options.mutation.mutationKey
       ? options
       : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, axios: undefined };
+    : { mutation: { mutationKey }, request: undefined };
 
   const mutationFn: MutationFunction<
     Awaited<ReturnType<typeof putNovelsById>>,
@@ -436,7 +459,7 @@ export const getPutNovelsByIdMutationOptions = <
   > = (props) => {
     const { id, data } = props ?? {};
 
-    return putNovelsById(id, data, axiosOptions);
+    return putNovelsById(id, data, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
@@ -449,12 +472,12 @@ export type PutNovelsByIdMutationBody =
   | PutNovelsByIdBodyOne
   | PutNovelsByIdBodyTwo
   | PutNovelsByIdBodyThree;
-export type PutNovelsByIdMutationError = AxiosError<
+export type PutNovelsByIdMutationError = ErrorType<
   PutNovelsById404 | PutNovelsById500
 >;
 
 export const usePutNovelsById = <
-  TError = AxiosError<PutNovelsById404 | PutNovelsById500>,
+  TError = ErrorType<PutNovelsById404 | PutNovelsById500>,
   TContext = unknown,
 >(
   options?: {
@@ -467,7 +490,7 @@ export const usePutNovelsById = <
       },
       TContext
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseMutationResult<
@@ -485,13 +508,16 @@ export const usePutNovelsById = <
 };
 export const deleteNovelsById = (
   id: string,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<DeleteNovelsById200>> => {
-  return axios.delete(`http://localhost:7000/novels/${id}`, options);
+  options?: SecondParameter<typeof customInstance>,
+) => {
+  return customInstance<DeleteNovelsById200>(
+    { url: `http://localhost:7001/novels/${id}`, method: 'DELETE' },
+    options,
+  );
 };
 
 export const getDeleteNovelsByIdMutationOptions = <
-  TError = AxiosError<DeleteNovelsById404 | DeleteNovelsById500>,
+  TError = ErrorType<DeleteNovelsById404 | DeleteNovelsById500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -500,7 +526,7 @@ export const getDeleteNovelsByIdMutationOptions = <
     { id: string },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof deleteNovelsById>>,
   TError,
@@ -508,13 +534,13 @@ export const getDeleteNovelsByIdMutationOptions = <
   TContext
 > => {
   const mutationKey = ['deleteNovelsById'];
-  const { mutation: mutationOptions, axios: axiosOptions } = options
+  const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
       options.mutation.mutationKey
       ? options
       : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, axios: undefined };
+    : { mutation: { mutationKey }, request: undefined };
 
   const mutationFn: MutationFunction<
     Awaited<ReturnType<typeof deleteNovelsById>>,
@@ -522,7 +548,7 @@ export const getDeleteNovelsByIdMutationOptions = <
   > = (props) => {
     const { id } = props ?? {};
 
-    return deleteNovelsById(id, axiosOptions);
+    return deleteNovelsById(id, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
@@ -532,12 +558,12 @@ export type DeleteNovelsByIdMutationResult = NonNullable<
   Awaited<ReturnType<typeof deleteNovelsById>>
 >;
 
-export type DeleteNovelsByIdMutationError = AxiosError<
+export type DeleteNovelsByIdMutationError = ErrorType<
   DeleteNovelsById404 | DeleteNovelsById500
 >;
 
 export const useDeleteNovelsById = <
-  TError = AxiosError<DeleteNovelsById404 | DeleteNovelsById500>,
+  TError = ErrorType<DeleteNovelsById404 | DeleteNovelsById500>,
   TContext = unknown,
 >(
   options?: {
@@ -547,7 +573,7 @@ export const useDeleteNovelsById = <
       { id: string },
       TContext
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseMutationResult<

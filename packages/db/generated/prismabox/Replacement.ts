@@ -1,8 +1,8 @@
-import { t } from 'elysia';
+import { t } from "elysia";
 
-import { __transformDate__ } from './__transformDate__';
+import { __transformDate__ } from "./__transformDate__";
 
-import { __nullable__ } from './__nullable__';
+import { __nullable__ } from "./__nullable__";
 
 export const ReplacementPlain = t.Object(
   {
@@ -142,7 +142,7 @@ export const ReplacementWhere = t.Partial(
         },
         { additionalProperties: false },
       ),
-    { $id: 'Replacement' },
+    { $id: "Replacement" },
   ),
 );
 
@@ -177,8 +177,14 @@ export const ReplacementWhereUnique = t.Recursive(
         ),
         t.Partial(
           t.Object({
-            AND: t.Union([Self, t.Array(Self, { additionalProperties: false })]),
-            NOT: t.Union([Self, t.Array(Self, { additionalProperties: false })]),
+            AND: t.Union([
+              Self,
+              t.Array(Self, { additionalProperties: false }),
+            ]),
+            NOT: t.Union([
+              Self,
+              t.Array(Self, { additionalProperties: false }),
+            ]),
             OR: t.Array(Self, { additionalProperties: false }),
           }),
           { additionalProperties: false },
@@ -200,7 +206,7 @@ export const ReplacementWhereUnique = t.Recursive(
       ],
       { additionalProperties: false },
     ),
-  { $id: 'Replacement' },
+  { $id: "Replacement" },
 );
 
 export const ReplacementSelect = t.Partial(
@@ -231,25 +237,25 @@ export const ReplacementInclude = t.Partial(
 export const ReplacementOrderBy = t.Partial(
   t.Object(
     {
-      id: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      id: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      from: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      from: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      to: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      to: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      novelId: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      novelId: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      keywordId: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      keywordId: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      createdAt: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      createdAt: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      updatedAt: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      updatedAt: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
     },
@@ -257,9 +263,10 @@ export const ReplacementOrderBy = t.Partial(
   ),
 );
 
-export const Replacement = t.Composite([ReplacementPlain, ReplacementRelations], {
-  additionalProperties: false,
-});
+export const Replacement = t.Composite(
+  [ReplacementPlain, ReplacementRelations],
+  { additionalProperties: false },
+);
 
 export const ReplacementInputCreate = t.Composite(
   [ReplacementPlainInputCreate, ReplacementRelationsInputCreate],

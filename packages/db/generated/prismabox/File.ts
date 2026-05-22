@@ -1,14 +1,14 @@
-import { t } from 'elysia';
+import { t } from "elysia";
 
-import { __transformDate__ } from './__transformDate__';
+import { __transformDate__ } from "./__transformDate__";
 
-import { __nullable__ } from './__nullable__';
+import { __nullable__ } from "./__nullable__";
 
 export const FilePlain = t.Object(
   {
     id: t.String(),
     url: t.String(),
-    type: t.Union([t.Literal('Image'), t.Literal('Video')], {
+    type: t.Union([t.Literal("Image"), t.Literal("Video")], {
       additionalProperties: false,
     }),
     provider_image_id: t.String(),
@@ -33,7 +33,7 @@ export const FileRelations = t.Object(
           phone: t.String(),
           birthDate: __nullable__(t.Date()),
           gender: __nullable__(
-            t.Union([t.Literal('Male'), t.Literal('Female')], {
+            t.Union([t.Literal("Male"), t.Literal("Female")], {
               additionalProperties: false,
             }),
           ),
@@ -54,7 +54,7 @@ export const FileRelations = t.Object(
           phone: t.String(),
           birthDate: __nullable__(t.Date()),
           gender: __nullable__(
-            t.Union([t.Literal('Male'), t.Literal('Female')], {
+            t.Union([t.Literal("Male"), t.Literal("Female")], {
               additionalProperties: false,
             }),
           ),
@@ -76,7 +76,7 @@ export const FileRelations = t.Object(
           phone: t.String(),
           birthDate: __nullable__(t.Date()),
           gender: __nullable__(
-            t.Union([t.Literal('Male'), t.Literal('Female')], {
+            t.Union([t.Literal("Male"), t.Literal("Female")], {
               additionalProperties: false,
             }),
           ),
@@ -99,7 +99,7 @@ export const FileRelations = t.Object(
           phone: t.String(),
           birthDate: __nullable__(t.Date()),
           gender: __nullable__(
-            t.Union([t.Literal('Male'), t.Literal('Female')], {
+            t.Union([t.Literal("Male"), t.Literal("Female")], {
               additionalProperties: false,
             }),
           ),
@@ -150,7 +150,7 @@ export const FileRelations = t.Object(
 export const FilePlainInputCreate = t.Object(
   {
     url: t.String(),
-    type: t.Union([t.Literal('Image'), t.Literal('Video')], {
+    type: t.Union([t.Literal("Image"), t.Literal("Video")], {
       additionalProperties: false,
     }),
     delete_url: t.String(),
@@ -162,7 +162,7 @@ export const FilePlainInputUpdate = t.Object(
   {
     url: t.Optional(t.String()),
     type: t.Optional(
-      t.Union([t.Literal('Image'), t.Literal('Video')], {
+      t.Union([t.Literal("Image"), t.Literal("Video")], {
         additionalProperties: false,
       }),
     ),
@@ -413,7 +413,7 @@ export const FileWhere = t.Partial(
           OR: t.Array(Self, { additionalProperties: false }),
           id: t.String(),
           url: t.String(),
-          type: t.Union([t.Literal('Image'), t.Literal('Video')], {
+          type: t.Union([t.Literal("Image"), t.Literal("Video")], {
             additionalProperties: false,
           }),
           provider_image_id: t.String(),
@@ -425,7 +425,7 @@ export const FileWhere = t.Partial(
         },
         { additionalProperties: false },
       ),
-    { $id: 'File' },
+    { $id: "File" },
   ),
 );
 
@@ -450,8 +450,14 @@ export const FileWhereUnique = t.Recursive(
         ),
         t.Partial(
           t.Object({
-            AND: t.Union([Self, t.Array(Self, { additionalProperties: false })]),
-            NOT: t.Union([Self, t.Array(Self, { additionalProperties: false })]),
+            AND: t.Union([
+              Self,
+              t.Array(Self, { additionalProperties: false }),
+            ]),
+            NOT: t.Union([
+              Self,
+              t.Array(Self, { additionalProperties: false }),
+            ]),
             OR: t.Array(Self, { additionalProperties: false }),
           }),
           { additionalProperties: false },
@@ -461,7 +467,7 @@ export const FileWhereUnique = t.Recursive(
             {
               id: t.String(),
               url: t.String(),
-              type: t.Union([t.Literal('Image'), t.Literal('Video')], {
+              type: t.Union([t.Literal("Image"), t.Literal("Video")], {
                 additionalProperties: false,
               }),
               provider_image_id: t.String(),
@@ -477,7 +483,7 @@ export const FileWhereUnique = t.Recursive(
       ],
       { additionalProperties: false },
     ),
-  { $id: 'File' },
+  { $id: "File" },
 );
 
 export const FileSelect = t.Partial(
@@ -523,28 +529,28 @@ export const FileInclude = t.Partial(
 export const FileOrderBy = t.Partial(
   t.Object(
     {
-      id: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      id: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      url: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      url: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      provider_image_id: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      provider_image_id: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      delete_url: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      delete_url: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      userId: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      userId: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      adminId: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      adminId: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      createdAt: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      createdAt: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      updatedAt: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      updatedAt: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
     },

@@ -1,8 +1,8 @@
-import { t } from 'elysia';
+import { t } from "elysia";
 
-import { __transformDate__ } from './__transformDate__';
+import { __transformDate__ } from "./__transformDate__";
 
-import { __nullable__ } from './__nullable__';
+import { __nullable__ } from "./__nullable__";
 
 export const KeywordPlain = t.Object(
   {
@@ -47,7 +47,7 @@ export const KeywordRelations = t.Object(
         {
           id: t.String(),
           url: t.String(),
-          type: t.Union([t.Literal('Image'), t.Literal('Video')], {
+          type: t.Union([t.Literal("Image"), t.Literal("Video")], {
             additionalProperties: false,
           }),
           provider_image_id: t.String(),
@@ -426,7 +426,7 @@ export const KeywordWhere = t.Partial(
         },
         { additionalProperties: false },
       ),
-    { $id: 'Keyword' },
+    { $id: "Keyword" },
   ),
 );
 
@@ -434,16 +434,23 @@ export const KeywordWhereUnique = t.Recursive(
   (Self) =>
     t.Intersect(
       [
-        t.Partial(t.Object({ id: t.String() }, { additionalProperties: false }), {
-          additionalProperties: false,
-        }),
+        t.Partial(
+          t.Object({ id: t.String() }, { additionalProperties: false }),
+          { additionalProperties: false },
+        ),
         t.Union([t.Object({ id: t.String() })], {
           additionalProperties: false,
         }),
         t.Partial(
           t.Object({
-            AND: t.Union([Self, t.Array(Self, { additionalProperties: false })]),
-            NOT: t.Union([Self, t.Array(Self, { additionalProperties: false })]),
+            AND: t.Union([
+              Self,
+              t.Array(Self, { additionalProperties: false }),
+            ]),
+            NOT: t.Union([
+              Self,
+              t.Array(Self, { additionalProperties: false }),
+            ]),
             OR: t.Array(Self, { additionalProperties: false }),
           }),
           { additionalProperties: false },
@@ -468,7 +475,7 @@ export const KeywordWhereUnique = t.Recursive(
       ],
       { additionalProperties: false },
     ),
-  { $id: 'Keyword' },
+  { $id: "Keyword" },
 );
 
 export const KeywordSelect = t.Partial(
@@ -518,34 +525,34 @@ export const KeywordInclude = t.Partial(
 export const KeywordOrderBy = t.Partial(
   t.Object(
     {
-      id: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      id: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      name: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      name: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      description: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      description: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      categoryId: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      categoryId: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      natureId: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      natureId: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      imageId: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      imageId: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      parentId: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      parentId: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      novelId: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      novelId: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      createdAt: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      createdAt: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      updatedAt: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      updatedAt: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
     },

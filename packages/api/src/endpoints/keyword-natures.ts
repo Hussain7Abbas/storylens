@@ -21,9 +21,6 @@ import type {
   UseQueryResult,
 } from '@tanstack/react-query';
 
-import axios from 'axios';
-import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-
 import type {
   DeleteKeywordNaturesById200,
   DeleteKeywordNaturesById404,
@@ -49,46 +46,52 @@ import type {
   PutKeywordNaturesByIdBodyTwo,
 } from '../schemas';
 
+import { customInstance } from '../axios-instance';
+import type { ErrorType } from '../axios-instance';
+
 type AwaitedInput<T> = PromiseLike<T> | T;
 
 type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 export const getKeywordNatures = (
   params: GetKeywordNaturesParams,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<GetKeywordNatures200>> => {
-  return axios.get('http://localhost:7000/keyword-natures/', {
-    ...options,
-    params: { ...params, ...options?.params },
-  });
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<GetKeywordNatures200>(
+    { url: 'http://localhost:7001/keyword-natures/', method: 'GET', params, signal },
+    options,
+  );
 };
 
 export const getGetKeywordNaturesQueryKey = (params?: GetKeywordNaturesParams) => {
   return [
-    'http://localhost:7000/keyword-natures/',
+    'http://localhost:7001/keyword-natures/',
     ...(params ? [params] : []),
   ] as const;
 };
 
 export const getGetKeywordNaturesQueryOptions = <
   TData = Awaited<ReturnType<typeof getKeywordNatures>>,
-  TError = AxiosError<GetKeywordNatures404 | GetKeywordNatures500>,
+  TError = ErrorType<GetKeywordNatures404 | GetKeywordNatures500>,
 >(
   params: GetKeywordNaturesParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywordNatures>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options ?? {};
+  const { query: queryOptions, request: requestOptions } = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getGetKeywordNaturesQueryKey(params);
 
   const queryFn: QueryFunction<Awaited<ReturnType<typeof getKeywordNatures>>> = ({
     signal,
-  }) => getKeywordNatures(params, { signal, ...axiosOptions });
+  }) => getKeywordNatures(params, requestOptions, signal);
 
   return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
     Awaited<ReturnType<typeof getKeywordNatures>>,
@@ -100,13 +103,13 @@ export const getGetKeywordNaturesQueryOptions = <
 export type GetKeywordNaturesQueryResult = NonNullable<
   Awaited<ReturnType<typeof getKeywordNatures>>
 >;
-export type GetKeywordNaturesQueryError = AxiosError<
+export type GetKeywordNaturesQueryError = ErrorType<
   GetKeywordNatures404 | GetKeywordNatures500
 >;
 
 export function useGetKeywordNatures<
   TData = Awaited<ReturnType<typeof getKeywordNatures>>,
-  TError = AxiosError<GetKeywordNatures404 | GetKeywordNatures500>,
+  TError = ErrorType<GetKeywordNatures404 | GetKeywordNatures500>,
 >(
   params: GetKeywordNaturesParams,
   options: {
@@ -121,7 +124,7 @@ export function useGetKeywordNatures<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): DefinedUseQueryResult<TData, TError> & {
@@ -129,7 +132,7 @@ export function useGetKeywordNatures<
 };
 export function useGetKeywordNatures<
   TData = Awaited<ReturnType<typeof getKeywordNatures>>,
-  TError = AxiosError<GetKeywordNatures404 | GetKeywordNatures500>,
+  TError = ErrorType<GetKeywordNatures404 | GetKeywordNatures500>,
 >(
   params: GetKeywordNaturesParams,
   options?: {
@@ -144,34 +147,34 @@ export function useGetKeywordNatures<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetKeywordNatures<
   TData = Awaited<ReturnType<typeof getKeywordNatures>>,
-  TError = AxiosError<GetKeywordNatures404 | GetKeywordNatures500>,
+  TError = ErrorType<GetKeywordNatures404 | GetKeywordNatures500>,
 >(
   params: GetKeywordNaturesParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywordNatures>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
 export function useGetKeywordNatures<
   TData = Awaited<ReturnType<typeof getKeywordNatures>>,
-  TError = AxiosError<GetKeywordNatures404 | GetKeywordNatures500>,
+  TError = ErrorType<GetKeywordNatures404 | GetKeywordNatures500>,
 >(
   params: GetKeywordNaturesParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywordNatures>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -192,17 +195,22 @@ export const postKeywordNatures = (
     | PostKeywordNaturesBodyOne
     | PostKeywordNaturesBodyTwo
     | PostKeywordNaturesBodyThree,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<PostKeywordNatures200>> => {
-  return axios.post(
-    'http://localhost:7000/keyword-natures/',
-    postKeywordNaturesBody,
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<PostKeywordNatures200>(
+    {
+      url: 'http://localhost:7001/keyword-natures/',
+      method: 'POST',
+      data: postKeywordNaturesBody,
+      signal,
+    },
     options,
   );
 };
 
 export const getPostKeywordNaturesMutationOptions = <
-  TError = AxiosError<PostKeywordNatures404 | PostKeywordNatures500>,
+  TError = ErrorType<PostKeywordNatures404 | PostKeywordNatures500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -216,7 +224,7 @@ export const getPostKeywordNaturesMutationOptions = <
     },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof postKeywordNatures>>,
   TError,
@@ -229,13 +237,13 @@ export const getPostKeywordNaturesMutationOptions = <
   TContext
 > => {
   const mutationKey = ['postKeywordNatures'];
-  const { mutation: mutationOptions, axios: axiosOptions } = options
+  const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
       options.mutation.mutationKey
       ? options
       : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, axios: undefined };
+    : { mutation: { mutationKey }, request: undefined };
 
   const mutationFn: MutationFunction<
     Awaited<ReturnType<typeof postKeywordNatures>>,
@@ -248,7 +256,7 @@ export const getPostKeywordNaturesMutationOptions = <
   > = (props) => {
     const { data } = props ?? {};
 
-    return postKeywordNatures(data, axiosOptions);
+    return postKeywordNatures(data, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
@@ -261,12 +269,12 @@ export type PostKeywordNaturesMutationBody =
   | PostKeywordNaturesBodyOne
   | PostKeywordNaturesBodyTwo
   | PostKeywordNaturesBodyThree;
-export type PostKeywordNaturesMutationError = AxiosError<
+export type PostKeywordNaturesMutationError = ErrorType<
   PostKeywordNatures404 | PostKeywordNatures500
 >;
 
 export const usePostKeywordNatures = <
-  TError = AxiosError<PostKeywordNatures404 | PostKeywordNatures500>,
+  TError = ErrorType<PostKeywordNatures404 | PostKeywordNatures500>,
   TContext = unknown,
 >(
   options?: {
@@ -281,7 +289,7 @@ export const usePostKeywordNatures = <
       },
       TContext
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseMutationResult<
@@ -301,18 +309,22 @@ export const usePostKeywordNatures = <
 };
 export const getKeywordNaturesById = (
   id: string,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<GetKeywordNaturesById200>> => {
-  return axios.get(`http://localhost:7000/keyword-natures/${id}`, options);
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<GetKeywordNaturesById200>(
+    { url: `http://localhost:7001/keyword-natures/${id}`, method: 'GET', signal },
+    options,
+  );
 };
 
 export const getGetKeywordNaturesByIdQueryKey = (id?: string) => {
-  return [`http://localhost:7000/keyword-natures/${id}`] as const;
+  return [`http://localhost:7001/keyword-natures/${id}`] as const;
 };
 
 export const getGetKeywordNaturesByIdQueryOptions = <
   TData = Awaited<ReturnType<typeof getKeywordNaturesById>>,
-  TError = AxiosError<GetKeywordNaturesById404 | GetKeywordNaturesById500>,
+  TError = ErrorType<GetKeywordNaturesById404 | GetKeywordNaturesById500>,
 >(
   id: string,
   options?: {
@@ -323,16 +335,16 @@ export const getGetKeywordNaturesByIdQueryOptions = <
         TData
       >
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options ?? {};
+  const { query: queryOptions, request: requestOptions } = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getGetKeywordNaturesByIdQueryKey(id);
 
   const queryFn: QueryFunction<Awaited<ReturnType<typeof getKeywordNaturesById>>> = ({
     signal,
-  }) => getKeywordNaturesById(id, { signal, ...axiosOptions });
+  }) => getKeywordNaturesById(id, requestOptions, signal);
 
   return { queryKey, queryFn, enabled: !!id, ...queryOptions } as UseQueryOptions<
     Awaited<ReturnType<typeof getKeywordNaturesById>>,
@@ -344,13 +356,13 @@ export const getGetKeywordNaturesByIdQueryOptions = <
 export type GetKeywordNaturesByIdQueryResult = NonNullable<
   Awaited<ReturnType<typeof getKeywordNaturesById>>
 >;
-export type GetKeywordNaturesByIdQueryError = AxiosError<
+export type GetKeywordNaturesByIdQueryError = ErrorType<
   GetKeywordNaturesById404 | GetKeywordNaturesById500
 >;
 
 export function useGetKeywordNaturesById<
   TData = Awaited<ReturnType<typeof getKeywordNaturesById>>,
-  TError = AxiosError<GetKeywordNaturesById404 | GetKeywordNaturesById500>,
+  TError = ErrorType<GetKeywordNaturesById404 | GetKeywordNaturesById500>,
 >(
   id: string,
   options: {
@@ -369,7 +381,7 @@ export function useGetKeywordNaturesById<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): DefinedUseQueryResult<TData, TError> & {
@@ -377,7 +389,7 @@ export function useGetKeywordNaturesById<
 };
 export function useGetKeywordNaturesById<
   TData = Awaited<ReturnType<typeof getKeywordNaturesById>>,
-  TError = AxiosError<GetKeywordNaturesById404 | GetKeywordNaturesById500>,
+  TError = ErrorType<GetKeywordNaturesById404 | GetKeywordNaturesById500>,
 >(
   id: string,
   options?: {
@@ -396,13 +408,13 @@ export function useGetKeywordNaturesById<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetKeywordNaturesById<
   TData = Awaited<ReturnType<typeof getKeywordNaturesById>>,
-  TError = AxiosError<GetKeywordNaturesById404 | GetKeywordNaturesById500>,
+  TError = ErrorType<GetKeywordNaturesById404 | GetKeywordNaturesById500>,
 >(
   id: string,
   options?: {
@@ -413,14 +425,14 @@ export function useGetKeywordNaturesById<
         TData
       >
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
 export function useGetKeywordNaturesById<
   TData = Awaited<ReturnType<typeof getKeywordNaturesById>>,
-  TError = AxiosError<GetKeywordNaturesById404 | GetKeywordNaturesById500>,
+  TError = ErrorType<GetKeywordNaturesById404 | GetKeywordNaturesById500>,
 >(
   id: string,
   options?: {
@@ -431,7 +443,7 @@ export function useGetKeywordNaturesById<
         TData
       >
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -453,17 +465,20 @@ export const putKeywordNaturesById = (
     | PutKeywordNaturesByIdBodyOne
     | PutKeywordNaturesByIdBodyTwo
     | PutKeywordNaturesByIdBodyThree,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<PutKeywordNaturesById200>> => {
-  return axios.put(
-    `http://localhost:7000/keyword-natures/${id}`,
-    putKeywordNaturesByIdBody,
+  options?: SecondParameter<typeof customInstance>,
+) => {
+  return customInstance<PutKeywordNaturesById200>(
+    {
+      url: `http://localhost:7001/keyword-natures/${id}`,
+      method: 'PUT',
+      data: putKeywordNaturesByIdBody,
+    },
     options,
   );
 };
 
 export const getPutKeywordNaturesByIdMutationOptions = <
-  TError = AxiosError<PutKeywordNaturesById404 | PutKeywordNaturesById500>,
+  TError = ErrorType<PutKeywordNaturesById404 | PutKeywordNaturesById500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -478,7 +493,7 @@ export const getPutKeywordNaturesByIdMutationOptions = <
     },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof putKeywordNaturesById>>,
   TError,
@@ -492,13 +507,13 @@ export const getPutKeywordNaturesByIdMutationOptions = <
   TContext
 > => {
   const mutationKey = ['putKeywordNaturesById'];
-  const { mutation: mutationOptions, axios: axiosOptions } = options
+  const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
       options.mutation.mutationKey
       ? options
       : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, axios: undefined };
+    : { mutation: { mutationKey }, request: undefined };
 
   const mutationFn: MutationFunction<
     Awaited<ReturnType<typeof putKeywordNaturesById>>,
@@ -512,7 +527,7 @@ export const getPutKeywordNaturesByIdMutationOptions = <
   > = (props) => {
     const { id, data } = props ?? {};
 
-    return putKeywordNaturesById(id, data, axiosOptions);
+    return putKeywordNaturesById(id, data, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
@@ -525,12 +540,12 @@ export type PutKeywordNaturesByIdMutationBody =
   | PutKeywordNaturesByIdBodyOne
   | PutKeywordNaturesByIdBodyTwo
   | PutKeywordNaturesByIdBodyThree;
-export type PutKeywordNaturesByIdMutationError = AxiosError<
+export type PutKeywordNaturesByIdMutationError = ErrorType<
   PutKeywordNaturesById404 | PutKeywordNaturesById500
 >;
 
 export const usePutKeywordNaturesById = <
-  TError = AxiosError<PutKeywordNaturesById404 | PutKeywordNaturesById500>,
+  TError = ErrorType<PutKeywordNaturesById404 | PutKeywordNaturesById500>,
   TContext = unknown,
 >(
   options?: {
@@ -546,7 +561,7 @@ export const usePutKeywordNaturesById = <
       },
       TContext
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseMutationResult<
@@ -567,13 +582,16 @@ export const usePutKeywordNaturesById = <
 };
 export const deleteKeywordNaturesById = (
   id: string,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<DeleteKeywordNaturesById200>> => {
-  return axios.delete(`http://localhost:7000/keyword-natures/${id}`, options);
+  options?: SecondParameter<typeof customInstance>,
+) => {
+  return customInstance<DeleteKeywordNaturesById200>(
+    { url: `http://localhost:7001/keyword-natures/${id}`, method: 'DELETE' },
+    options,
+  );
 };
 
 export const getDeleteKeywordNaturesByIdMutationOptions = <
-  TError = AxiosError<DeleteKeywordNaturesById404 | DeleteKeywordNaturesById500>,
+  TError = ErrorType<DeleteKeywordNaturesById404 | DeleteKeywordNaturesById500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -582,7 +600,7 @@ export const getDeleteKeywordNaturesByIdMutationOptions = <
     { id: string },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof deleteKeywordNaturesById>>,
   TError,
@@ -590,13 +608,13 @@ export const getDeleteKeywordNaturesByIdMutationOptions = <
   TContext
 > => {
   const mutationKey = ['deleteKeywordNaturesById'];
-  const { mutation: mutationOptions, axios: axiosOptions } = options
+  const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
       options.mutation.mutationKey
       ? options
       : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, axios: undefined };
+    : { mutation: { mutationKey }, request: undefined };
 
   const mutationFn: MutationFunction<
     Awaited<ReturnType<typeof deleteKeywordNaturesById>>,
@@ -604,7 +622,7 @@ export const getDeleteKeywordNaturesByIdMutationOptions = <
   > = (props) => {
     const { id } = props ?? {};
 
-    return deleteKeywordNaturesById(id, axiosOptions);
+    return deleteKeywordNaturesById(id, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
@@ -614,12 +632,12 @@ export type DeleteKeywordNaturesByIdMutationResult = NonNullable<
   Awaited<ReturnType<typeof deleteKeywordNaturesById>>
 >;
 
-export type DeleteKeywordNaturesByIdMutationError = AxiosError<
+export type DeleteKeywordNaturesByIdMutationError = ErrorType<
   DeleteKeywordNaturesById404 | DeleteKeywordNaturesById500
 >;
 
 export const useDeleteKeywordNaturesById = <
-  TError = AxiosError<DeleteKeywordNaturesById404 | DeleteKeywordNaturesById500>,
+  TError = ErrorType<DeleteKeywordNaturesById404 | DeleteKeywordNaturesById500>,
   TContext = unknown,
 >(
   options?: {
@@ -629,7 +647,7 @@ export const useDeleteKeywordNaturesById = <
       { id: string },
       TContext
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseMutationResult<

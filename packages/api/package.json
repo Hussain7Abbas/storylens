@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "exports": {
     "./*": "./src/endpoints/*",
+    "./client": "./src/axios-instance.ts",
     "./schemas": "./src/schemas/index.ts"
   },
   "scripts": {
@@ -11,8 +12,10 @@
     "oeval": "orval --config ./orval.config.ts"
   },
   "dependencies": {
+    "@t3-oss/env-core": "^0.13.8",
     "@tanstack/react-query": "^5.90.2",
-    "axios": "^1.12.2"
+    "axios": "^1.12.2",
+    "zod": "^4.1.11"
   },
   "devDependencies": {
     "@repo/tsconfig": "workspace:*",

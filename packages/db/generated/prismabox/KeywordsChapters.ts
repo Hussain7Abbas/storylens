@@ -1,8 +1,8 @@
-import { t } from 'elysia';
+import { t } from "elysia";
 
-import { __transformDate__ } from './__transformDate__';
+import { __transformDate__ } from "./__transformDate__";
 
-import { __nullable__ } from './__nullable__';
+import { __nullable__ } from "./__nullable__";
 
 export const KeywordsChaptersPlain = t.Object(
   {
@@ -132,7 +132,7 @@ export const KeywordsChaptersWhere = t.Partial(
         },
         { additionalProperties: false },
       ),
-    { $id: 'KeywordsChapters' },
+    { $id: "KeywordsChapters" },
   ),
 );
 
@@ -140,16 +140,23 @@ export const KeywordsChaptersWhereUnique = t.Recursive(
   (Self) =>
     t.Intersect(
       [
-        t.Partial(t.Object({ id: t.String() }, { additionalProperties: false }), {
-          additionalProperties: false,
-        }),
+        t.Partial(
+          t.Object({ id: t.String() }, { additionalProperties: false }),
+          { additionalProperties: false },
+        ),
         t.Union([t.Object({ id: t.String() })], {
           additionalProperties: false,
         }),
         t.Partial(
           t.Object({
-            AND: t.Union([Self, t.Array(Self, { additionalProperties: false })]),
-            NOT: t.Union([Self, t.Array(Self, { additionalProperties: false })]),
+            AND: t.Union([
+              Self,
+              t.Array(Self, { additionalProperties: false }),
+            ]),
+            NOT: t.Union([
+              Self,
+              t.Array(Self, { additionalProperties: false }),
+            ]),
             OR: t.Array(Self, { additionalProperties: false }),
           }),
           { additionalProperties: false },
@@ -169,7 +176,7 @@ export const KeywordsChaptersWhereUnique = t.Recursive(
       ],
       { additionalProperties: false },
     ),
-  { $id: 'KeywordsChapters' },
+  { $id: "KeywordsChapters" },
 );
 
 export const KeywordsChaptersSelect = t.Partial(
@@ -198,19 +205,19 @@ export const KeywordsChaptersInclude = t.Partial(
 export const KeywordsChaptersOrderBy = t.Partial(
   t.Object(
     {
-      id: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      id: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      keywordId: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      keywordId: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      chapterId: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      chapterId: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      createdAt: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      createdAt: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      updatedAt: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      updatedAt: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
     },

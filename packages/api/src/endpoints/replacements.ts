@@ -21,9 +21,6 @@ import type {
   UseQueryResult,
 } from '@tanstack/react-query';
 
-import axios from 'axios';
-import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-
 import type {
   DeleteReplacementsById200,
   DeleteReplacementsById404,
@@ -49,46 +46,52 @@ import type {
   PutReplacementsByIdBodyTwo,
 } from '../schemas';
 
+import { customInstance } from '../axios-instance';
+import type { ErrorType } from '../axios-instance';
+
 type AwaitedInput<T> = PromiseLike<T> | T;
 
 type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 export const getReplacements = (
   params: GetReplacementsParams,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<GetReplacements200>> => {
-  return axios.get('http://localhost:7000/replacements/', {
-    ...options,
-    params: { ...params, ...options?.params },
-  });
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<GetReplacements200>(
+    { url: 'http://localhost:7001/replacements/', method: 'GET', params, signal },
+    options,
+  );
 };
 
 export const getGetReplacementsQueryKey = (params?: GetReplacementsParams) => {
   return [
-    'http://localhost:7000/replacements/',
+    'http://localhost:7001/replacements/',
     ...(params ? [params] : []),
   ] as const;
 };
 
 export const getGetReplacementsQueryOptions = <
   TData = Awaited<ReturnType<typeof getReplacements>>,
-  TError = AxiosError<GetReplacements404 | GetReplacements500>,
+  TError = ErrorType<GetReplacements404 | GetReplacements500>,
 >(
   params: GetReplacementsParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getReplacements>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options ?? {};
+  const { query: queryOptions, request: requestOptions } = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getGetReplacementsQueryKey(params);
 
   const queryFn: QueryFunction<Awaited<ReturnType<typeof getReplacements>>> = ({
     signal,
-  }) => getReplacements(params, { signal, ...axiosOptions });
+  }) => getReplacements(params, requestOptions, signal);
 
   return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
     Awaited<ReturnType<typeof getReplacements>>,
@@ -100,13 +103,13 @@ export const getGetReplacementsQueryOptions = <
 export type GetReplacementsQueryResult = NonNullable<
   Awaited<ReturnType<typeof getReplacements>>
 >;
-export type GetReplacementsQueryError = AxiosError<
+export type GetReplacementsQueryError = ErrorType<
   GetReplacements404 | GetReplacements500
 >;
 
 export function useGetReplacements<
   TData = Awaited<ReturnType<typeof getReplacements>>,
-  TError = AxiosError<GetReplacements404 | GetReplacements500>,
+  TError = ErrorType<GetReplacements404 | GetReplacements500>,
 >(
   params: GetReplacementsParams,
   options: {
@@ -121,7 +124,7 @@ export function useGetReplacements<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): DefinedUseQueryResult<TData, TError> & {
@@ -129,7 +132,7 @@ export function useGetReplacements<
 };
 export function useGetReplacements<
   TData = Awaited<ReturnType<typeof getReplacements>>,
-  TError = AxiosError<GetReplacements404 | GetReplacements500>,
+  TError = ErrorType<GetReplacements404 | GetReplacements500>,
 >(
   params: GetReplacementsParams,
   options?: {
@@ -144,34 +147,34 @@ export function useGetReplacements<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetReplacements<
   TData = Awaited<ReturnType<typeof getReplacements>>,
-  TError = AxiosError<GetReplacements404 | GetReplacements500>,
+  TError = ErrorType<GetReplacements404 | GetReplacements500>,
 >(
   params: GetReplacementsParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getReplacements>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
 export function useGetReplacements<
   TData = Awaited<ReturnType<typeof getReplacements>>,
-  TError = AxiosError<GetReplacements404 | GetReplacements500>,
+  TError = ErrorType<GetReplacements404 | GetReplacements500>,
 >(
   params: GetReplacementsParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getReplacements>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -192,17 +195,22 @@ export const postReplacements = (
     | PostReplacementsBodyOne
     | PostReplacementsBodyTwo
     | PostReplacementsBodyThree,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<PostReplacements200>> => {
-  return axios.post(
-    'http://localhost:7000/replacements/',
-    postReplacementsBody,
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<PostReplacements200>(
+    {
+      url: 'http://localhost:7001/replacements/',
+      method: 'POST',
+      data: postReplacementsBody,
+      signal,
+    },
     options,
   );
 };
 
 export const getPostReplacementsMutationOptions = <
-  TError = AxiosError<PostReplacements404 | PostReplacements500>,
+  TError = ErrorType<PostReplacements404 | PostReplacements500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -216,7 +224,7 @@ export const getPostReplacementsMutationOptions = <
     },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof postReplacements>>,
   TError,
@@ -229,13 +237,13 @@ export const getPostReplacementsMutationOptions = <
   TContext
 > => {
   const mutationKey = ['postReplacements'];
-  const { mutation: mutationOptions, axios: axiosOptions } = options
+  const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
       options.mutation.mutationKey
       ? options
       : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, axios: undefined };
+    : { mutation: { mutationKey }, request: undefined };
 
   const mutationFn: MutationFunction<
     Awaited<ReturnType<typeof postReplacements>>,
@@ -248,7 +256,7 @@ export const getPostReplacementsMutationOptions = <
   > = (props) => {
     const { data } = props ?? {};
 
-    return postReplacements(data, axiosOptions);
+    return postReplacements(data, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
@@ -261,12 +269,12 @@ export type PostReplacementsMutationBody =
   | PostReplacementsBodyOne
   | PostReplacementsBodyTwo
   | PostReplacementsBodyThree;
-export type PostReplacementsMutationError = AxiosError<
+export type PostReplacementsMutationError = ErrorType<
   PostReplacements404 | PostReplacements500
 >;
 
 export const usePostReplacements = <
-  TError = AxiosError<PostReplacements404 | PostReplacements500>,
+  TError = ErrorType<PostReplacements404 | PostReplacements500>,
   TContext = unknown,
 >(
   options?: {
@@ -281,7 +289,7 @@ export const usePostReplacements = <
       },
       TContext
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseMutationResult<
@@ -301,34 +309,38 @@ export const usePostReplacements = <
 };
 export const getReplacementsById = (
   id: string,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<GetReplacementsById200>> => {
-  return axios.get(`http://localhost:7000/replacements/${id}`, options);
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<GetReplacementsById200>(
+    { url: `http://localhost:7001/replacements/${id}`, method: 'GET', signal },
+    options,
+  );
 };
 
 export const getGetReplacementsByIdQueryKey = (id?: string) => {
-  return [`http://localhost:7000/replacements/${id}`] as const;
+  return [`http://localhost:7001/replacements/${id}`] as const;
 };
 
 export const getGetReplacementsByIdQueryOptions = <
   TData = Awaited<ReturnType<typeof getReplacementsById>>,
-  TError = AxiosError<GetReplacementsById404 | GetReplacementsById500>,
+  TError = ErrorType<GetReplacementsById404 | GetReplacementsById500>,
 >(
   id: string,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getReplacementsById>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options ?? {};
+  const { query: queryOptions, request: requestOptions } = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getGetReplacementsByIdQueryKey(id);
 
   const queryFn: QueryFunction<Awaited<ReturnType<typeof getReplacementsById>>> = ({
     signal,
-  }) => getReplacementsById(id, { signal, ...axiosOptions });
+  }) => getReplacementsById(id, requestOptions, signal);
 
   return { queryKey, queryFn, enabled: !!id, ...queryOptions } as UseQueryOptions<
     Awaited<ReturnType<typeof getReplacementsById>>,
@@ -340,13 +352,13 @@ export const getGetReplacementsByIdQueryOptions = <
 export type GetReplacementsByIdQueryResult = NonNullable<
   Awaited<ReturnType<typeof getReplacementsById>>
 >;
-export type GetReplacementsByIdQueryError = AxiosError<
+export type GetReplacementsByIdQueryError = ErrorType<
   GetReplacementsById404 | GetReplacementsById500
 >;
 
 export function useGetReplacementsById<
   TData = Awaited<ReturnType<typeof getReplacementsById>>,
-  TError = AxiosError<GetReplacementsById404 | GetReplacementsById500>,
+  TError = ErrorType<GetReplacementsById404 | GetReplacementsById500>,
 >(
   id: string,
   options: {
@@ -361,7 +373,7 @@ export function useGetReplacementsById<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): DefinedUseQueryResult<TData, TError> & {
@@ -369,7 +381,7 @@ export function useGetReplacementsById<
 };
 export function useGetReplacementsById<
   TData = Awaited<ReturnType<typeof getReplacementsById>>,
-  TError = AxiosError<GetReplacementsById404 | GetReplacementsById500>,
+  TError = ErrorType<GetReplacementsById404 | GetReplacementsById500>,
 >(
   id: string,
   options?: {
@@ -384,34 +396,34 @@ export function useGetReplacementsById<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetReplacementsById<
   TData = Awaited<ReturnType<typeof getReplacementsById>>,
-  TError = AxiosError<GetReplacementsById404 | GetReplacementsById500>,
+  TError = ErrorType<GetReplacementsById404 | GetReplacementsById500>,
 >(
   id: string,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getReplacementsById>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
 export function useGetReplacementsById<
   TData = Awaited<ReturnType<typeof getReplacementsById>>,
-  TError = AxiosError<GetReplacementsById404 | GetReplacementsById500>,
+  TError = ErrorType<GetReplacementsById404 | GetReplacementsById500>,
 >(
   id: string,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getReplacementsById>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -433,17 +445,20 @@ export const putReplacementsById = (
     | PutReplacementsByIdBodyOne
     | PutReplacementsByIdBodyTwo
     | PutReplacementsByIdBodyThree,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<PutReplacementsById200>> => {
-  return axios.put(
-    `http://localhost:7000/replacements/${id}`,
-    putReplacementsByIdBody,
+  options?: SecondParameter<typeof customInstance>,
+) => {
+  return customInstance<PutReplacementsById200>(
+    {
+      url: `http://localhost:7001/replacements/${id}`,
+      method: 'PUT',
+      data: putReplacementsByIdBody,
+    },
     options,
   );
 };
 
 export const getPutReplacementsByIdMutationOptions = <
-  TError = AxiosError<PutReplacementsById404 | PutReplacementsById500>,
+  TError = ErrorType<PutReplacementsById404 | PutReplacementsById500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -458,7 +473,7 @@ export const getPutReplacementsByIdMutationOptions = <
     },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof putReplacementsById>>,
   TError,
@@ -472,13 +487,13 @@ export const getPutReplacementsByIdMutationOptions = <
   TContext
 > => {
   const mutationKey = ['putReplacementsById'];
-  const { mutation: mutationOptions, axios: axiosOptions } = options
+  const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
       options.mutation.mutationKey
       ? options
       : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, axios: undefined };
+    : { mutation: { mutationKey }, request: undefined };
 
   const mutationFn: MutationFunction<
     Awaited<ReturnType<typeof putReplacementsById>>,
@@ -492,7 +507,7 @@ export const getPutReplacementsByIdMutationOptions = <
   > = (props) => {
     const { id, data } = props ?? {};
 
-    return putReplacementsById(id, data, axiosOptions);
+    return putReplacementsById(id, data, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
@@ -505,12 +520,12 @@ export type PutReplacementsByIdMutationBody =
   | PutReplacementsByIdBodyOne
   | PutReplacementsByIdBodyTwo
   | PutReplacementsByIdBodyThree;
-export type PutReplacementsByIdMutationError = AxiosError<
+export type PutReplacementsByIdMutationError = ErrorType<
   PutReplacementsById404 | PutReplacementsById500
 >;
 
 export const usePutReplacementsById = <
-  TError = AxiosError<PutReplacementsById404 | PutReplacementsById500>,
+  TError = ErrorType<PutReplacementsById404 | PutReplacementsById500>,
   TContext = unknown,
 >(
   options?: {
@@ -526,7 +541,7 @@ export const usePutReplacementsById = <
       },
       TContext
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseMutationResult<
@@ -547,13 +562,16 @@ export const usePutReplacementsById = <
 };
 export const deleteReplacementsById = (
   id: string,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<DeleteReplacementsById200>> => {
-  return axios.delete(`http://localhost:7000/replacements/${id}`, options);
+  options?: SecondParameter<typeof customInstance>,
+) => {
+  return customInstance<DeleteReplacementsById200>(
+    { url: `http://localhost:7001/replacements/${id}`, method: 'DELETE' },
+    options,
+  );
 };
 
 export const getDeleteReplacementsByIdMutationOptions = <
-  TError = AxiosError<DeleteReplacementsById404 | DeleteReplacementsById500>,
+  TError = ErrorType<DeleteReplacementsById404 | DeleteReplacementsById500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -562,7 +580,7 @@ export const getDeleteReplacementsByIdMutationOptions = <
     { id: string },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof deleteReplacementsById>>,
   TError,
@@ -570,13 +588,13 @@ export const getDeleteReplacementsByIdMutationOptions = <
   TContext
 > => {
   const mutationKey = ['deleteReplacementsById'];
-  const { mutation: mutationOptions, axios: axiosOptions } = options
+  const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
       options.mutation.mutationKey
       ? options
       : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, axios: undefined };
+    : { mutation: { mutationKey }, request: undefined };
 
   const mutationFn: MutationFunction<
     Awaited<ReturnType<typeof deleteReplacementsById>>,
@@ -584,7 +602,7 @@ export const getDeleteReplacementsByIdMutationOptions = <
   > = (props) => {
     const { id } = props ?? {};
 
-    return deleteReplacementsById(id, axiosOptions);
+    return deleteReplacementsById(id, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
@@ -594,12 +612,12 @@ export type DeleteReplacementsByIdMutationResult = NonNullable<
   Awaited<ReturnType<typeof deleteReplacementsById>>
 >;
 
-export type DeleteReplacementsByIdMutationError = AxiosError<
+export type DeleteReplacementsByIdMutationError = ErrorType<
   DeleteReplacementsById404 | DeleteReplacementsById500
 >;
 
 export const useDeleteReplacementsById = <
-  TError = AxiosError<DeleteReplacementsById404 | DeleteReplacementsById500>,
+  TError = ErrorType<DeleteReplacementsById404 | DeleteReplacementsById500>,
   TContext = unknown,
 >(
   options?: {
@@ -609,7 +627,7 @@ export const useDeleteReplacementsById = <
       { id: string },
       TContext
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseMutationResult<

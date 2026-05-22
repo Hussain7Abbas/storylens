@@ -21,9 +21,6 @@ import type {
   UseQueryResult,
 } from '@tanstack/react-query';
 
-import axios from 'axios';
-import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-
 import type {
   DeleteKeywordsById200,
   DeleteKeywordsById404,
@@ -49,43 +46,49 @@ import type {
   PutKeywordsByIdBodyTwo,
 } from '../schemas';
 
+import { customInstance } from '../axios-instance';
+import type { ErrorType } from '../axios-instance';
+
 type AwaitedInput<T> = PromiseLike<T> | T;
 
 type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 export const getKeywords = (
   params: GetKeywordsParams,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<GetKeywords200>> => {
-  return axios.get('http://localhost:7000/keywords/', {
-    ...options,
-    params: { ...params, ...options?.params },
-  });
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<GetKeywords200>(
+    { url: 'http://localhost:7001/keywords/', method: 'GET', params, signal },
+    options,
+  );
 };
 
 export const getGetKeywordsQueryKey = (params?: GetKeywordsParams) => {
-  return ['http://localhost:7000/keywords/', ...(params ? [params] : [])] as const;
+  return ['http://localhost:7001/keywords/', ...(params ? [params] : [])] as const;
 };
 
 export const getGetKeywordsQueryOptions = <
   TData = Awaited<ReturnType<typeof getKeywords>>,
-  TError = AxiosError<GetKeywords404 | GetKeywords500>,
+  TError = ErrorType<GetKeywords404 | GetKeywords500>,
 >(
   params: GetKeywordsParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywords>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options ?? {};
+  const { query: queryOptions, request: requestOptions } = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getGetKeywordsQueryKey(params);
 
   const queryFn: QueryFunction<Awaited<ReturnType<typeof getKeywords>>> = ({
     signal,
-  }) => getKeywords(params, { signal, ...axiosOptions });
+  }) => getKeywords(params, requestOptions, signal);
 
   return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
     Awaited<ReturnType<typeof getKeywords>>,
@@ -97,11 +100,11 @@ export const getGetKeywordsQueryOptions = <
 export type GetKeywordsQueryResult = NonNullable<
   Awaited<ReturnType<typeof getKeywords>>
 >;
-export type GetKeywordsQueryError = AxiosError<GetKeywords404 | GetKeywords500>;
+export type GetKeywordsQueryError = ErrorType<GetKeywords404 | GetKeywords500>;
 
 export function useGetKeywords<
   TData = Awaited<ReturnType<typeof getKeywords>>,
-  TError = AxiosError<GetKeywords404 | GetKeywords500>,
+  TError = ErrorType<GetKeywords404 | GetKeywords500>,
 >(
   params: GetKeywordsParams,
   options: {
@@ -116,7 +119,7 @@ export function useGetKeywords<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): DefinedUseQueryResult<TData, TError> & {
@@ -124,7 +127,7 @@ export function useGetKeywords<
 };
 export function useGetKeywords<
   TData = Awaited<ReturnType<typeof getKeywords>>,
-  TError = AxiosError<GetKeywords404 | GetKeywords500>,
+  TError = ErrorType<GetKeywords404 | GetKeywords500>,
 >(
   params: GetKeywordsParams,
   options?: {
@@ -139,34 +142,34 @@ export function useGetKeywords<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetKeywords<
   TData = Awaited<ReturnType<typeof getKeywords>>,
-  TError = AxiosError<GetKeywords404 | GetKeywords500>,
+  TError = ErrorType<GetKeywords404 | GetKeywords500>,
 >(
   params: GetKeywordsParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywords>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
 export function useGetKeywords<
   TData = Awaited<ReturnType<typeof getKeywords>>,
-  TError = AxiosError<GetKeywords404 | GetKeywords500>,
+  TError = ErrorType<GetKeywords404 | GetKeywords500>,
 >(
   params: GetKeywordsParams,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywords>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -184,13 +187,22 @@ export function useGetKeywords<
 
 export const postKeywords = (
   postKeywordsBody: PostKeywordsBodyOne | PostKeywordsBodyTwo | PostKeywordsBodyThree,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<PostKeywords200>> => {
-  return axios.post('http://localhost:7000/keywords/', postKeywordsBody, options);
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<PostKeywords200>(
+    {
+      url: 'http://localhost:7001/keywords/',
+      method: 'POST',
+      data: postKeywordsBody,
+      signal,
+    },
+    options,
+  );
 };
 
 export const getPostKeywordsMutationOptions = <
-  TError = AxiosError<PostKeywords404 | PostKeywords500>,
+  TError = ErrorType<PostKeywords404 | PostKeywords500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -199,7 +211,7 @@ export const getPostKeywordsMutationOptions = <
     { data: PostKeywordsBodyOne | PostKeywordsBodyTwo | PostKeywordsBodyThree },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof postKeywords>>,
   TError,
@@ -207,13 +219,13 @@ export const getPostKeywordsMutationOptions = <
   TContext
 > => {
   const mutationKey = ['postKeywords'];
-  const { mutation: mutationOptions, axios: axiosOptions } = options
+  const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
       options.mutation.mutationKey
       ? options
       : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, axios: undefined };
+    : { mutation: { mutationKey }, request: undefined };
 
   const mutationFn: MutationFunction<
     Awaited<ReturnType<typeof postKeywords>>,
@@ -221,7 +233,7 @@ export const getPostKeywordsMutationOptions = <
   > = (props) => {
     const { data } = props ?? {};
 
-    return postKeywords(data, axiosOptions);
+    return postKeywords(data, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
@@ -234,10 +246,10 @@ export type PostKeywordsMutationBody =
   | PostKeywordsBodyOne
   | PostKeywordsBodyTwo
   | PostKeywordsBodyThree;
-export type PostKeywordsMutationError = AxiosError<PostKeywords404 | PostKeywords500>;
+export type PostKeywordsMutationError = ErrorType<PostKeywords404 | PostKeywords500>;
 
 export const usePostKeywords = <
-  TError = AxiosError<PostKeywords404 | PostKeywords500>,
+  TError = ErrorType<PostKeywords404 | PostKeywords500>,
   TContext = unknown,
 >(
   options?: {
@@ -247,7 +259,7 @@ export const usePostKeywords = <
       { data: PostKeywordsBodyOne | PostKeywordsBodyTwo | PostKeywordsBodyThree },
       TContext
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseMutationResult<
@@ -262,34 +274,38 @@ export const usePostKeywords = <
 };
 export const getKeywordsById = (
   id: string,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<GetKeywordsById200>> => {
-  return axios.get(`http://localhost:7000/keywords/${id}`, options);
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<GetKeywordsById200>(
+    { url: `http://localhost:7001/keywords/${id}`, method: 'GET', signal },
+    options,
+  );
 };
 
 export const getGetKeywordsByIdQueryKey = (id?: string) => {
-  return [`http://localhost:7000/keywords/${id}`] as const;
+  return [`http://localhost:7001/keywords/${id}`] as const;
 };
 
 export const getGetKeywordsByIdQueryOptions = <
   TData = Awaited<ReturnType<typeof getKeywordsById>>,
-  TError = AxiosError<GetKeywordsById404 | GetKeywordsById500>,
+  TError = ErrorType<GetKeywordsById404 | GetKeywordsById500>,
 >(
   id: string,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywordsById>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
 ) => {
-  const { query: queryOptions, axios: axiosOptions } = options ?? {};
+  const { query: queryOptions, request: requestOptions } = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getGetKeywordsByIdQueryKey(id);
 
   const queryFn: QueryFunction<Awaited<ReturnType<typeof getKeywordsById>>> = ({
     signal,
-  }) => getKeywordsById(id, { signal, ...axiosOptions });
+  }) => getKeywordsById(id, requestOptions, signal);
 
   return { queryKey, queryFn, enabled: !!id, ...queryOptions } as UseQueryOptions<
     Awaited<ReturnType<typeof getKeywordsById>>,
@@ -301,13 +317,13 @@ export const getGetKeywordsByIdQueryOptions = <
 export type GetKeywordsByIdQueryResult = NonNullable<
   Awaited<ReturnType<typeof getKeywordsById>>
 >;
-export type GetKeywordsByIdQueryError = AxiosError<
+export type GetKeywordsByIdQueryError = ErrorType<
   GetKeywordsById404 | GetKeywordsById500
 >;
 
 export function useGetKeywordsById<
   TData = Awaited<ReturnType<typeof getKeywordsById>>,
-  TError = AxiosError<GetKeywordsById404 | GetKeywordsById500>,
+  TError = ErrorType<GetKeywordsById404 | GetKeywordsById500>,
 >(
   id: string,
   options: {
@@ -322,7 +338,7 @@ export function useGetKeywordsById<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): DefinedUseQueryResult<TData, TError> & {
@@ -330,7 +346,7 @@ export function useGetKeywordsById<
 };
 export function useGetKeywordsById<
   TData = Awaited<ReturnType<typeof getKeywordsById>>,
-  TError = AxiosError<GetKeywordsById404 | GetKeywordsById500>,
+  TError = ErrorType<GetKeywordsById404 | GetKeywordsById500>,
 >(
   id: string,
   options?: {
@@ -345,34 +361,34 @@ export function useGetKeywordsById<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetKeywordsById<
   TData = Awaited<ReturnType<typeof getKeywordsById>>,
-  TError = AxiosError<GetKeywordsById404 | GetKeywordsById500>,
+  TError = ErrorType<GetKeywordsById404 | GetKeywordsById500>,
 >(
   id: string,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywordsById>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
 export function useGetKeywordsById<
   TData = Awaited<ReturnType<typeof getKeywordsById>>,
-  TError = AxiosError<GetKeywordsById404 | GetKeywordsById500>,
+  TError = ErrorType<GetKeywordsById404 | GetKeywordsById500>,
 >(
   id: string,
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getKeywordsById>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -394,17 +410,20 @@ export const putKeywordsById = (
     | PutKeywordsByIdBodyOne
     | PutKeywordsByIdBodyTwo
     | PutKeywordsByIdBodyThree,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<PutKeywordsById200>> => {
-  return axios.put(
-    `http://localhost:7000/keywords/${id}`,
-    putKeywordsByIdBody,
+  options?: SecondParameter<typeof customInstance>,
+) => {
+  return customInstance<PutKeywordsById200>(
+    {
+      url: `http://localhost:7001/keywords/${id}`,
+      method: 'PUT',
+      data: putKeywordsByIdBody,
+    },
     options,
   );
 };
 
 export const getPutKeywordsByIdMutationOptions = <
-  TError = AxiosError<PutKeywordsById404 | PutKeywordsById500>,
+  TError = ErrorType<PutKeywordsById404 | PutKeywordsById500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -419,7 +438,7 @@ export const getPutKeywordsByIdMutationOptions = <
     },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof putKeywordsById>>,
   TError,
@@ -430,13 +449,13 @@ export const getPutKeywordsByIdMutationOptions = <
   TContext
 > => {
   const mutationKey = ['putKeywordsById'];
-  const { mutation: mutationOptions, axios: axiosOptions } = options
+  const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
       options.mutation.mutationKey
       ? options
       : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, axios: undefined };
+    : { mutation: { mutationKey }, request: undefined };
 
   const mutationFn: MutationFunction<
     Awaited<ReturnType<typeof putKeywordsById>>,
@@ -450,7 +469,7 @@ export const getPutKeywordsByIdMutationOptions = <
   > = (props) => {
     const { id, data } = props ?? {};
 
-    return putKeywordsById(id, data, axiosOptions);
+    return putKeywordsById(id, data, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
@@ -463,12 +482,12 @@ export type PutKeywordsByIdMutationBody =
   | PutKeywordsByIdBodyOne
   | PutKeywordsByIdBodyTwo
   | PutKeywordsByIdBodyThree;
-export type PutKeywordsByIdMutationError = AxiosError<
+export type PutKeywordsByIdMutationError = ErrorType<
   PutKeywordsById404 | PutKeywordsById500
 >;
 
 export const usePutKeywordsById = <
-  TError = AxiosError<PutKeywordsById404 | PutKeywordsById500>,
+  TError = ErrorType<PutKeywordsById404 | PutKeywordsById500>,
   TContext = unknown,
 >(
   options?: {
@@ -484,7 +503,7 @@ export const usePutKeywordsById = <
       },
       TContext
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseMutationResult<
@@ -502,13 +521,16 @@ export const usePutKeywordsById = <
 };
 export const deleteKeywordsById = (
   id: string,
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<DeleteKeywordsById200>> => {
-  return axios.delete(`http://localhost:7000/keywords/${id}`, options);
+  options?: SecondParameter<typeof customInstance>,
+) => {
+  return customInstance<DeleteKeywordsById200>(
+    { url: `http://localhost:7001/keywords/${id}`, method: 'DELETE' },
+    options,
+  );
 };
 
 export const getDeleteKeywordsByIdMutationOptions = <
-  TError = AxiosError<DeleteKeywordsById404 | DeleteKeywordsById500>,
+  TError = ErrorType<DeleteKeywordsById404 | DeleteKeywordsById500>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -517,7 +539,7 @@ export const getDeleteKeywordsByIdMutationOptions = <
     { id: string },
     TContext
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
   Awaited<ReturnType<typeof deleteKeywordsById>>,
   TError,
@@ -525,13 +547,13 @@ export const getDeleteKeywordsByIdMutationOptions = <
   TContext
 > => {
   const mutationKey = ['deleteKeywordsById'];
-  const { mutation: mutationOptions, axios: axiosOptions } = options
+  const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
       options.mutation.mutationKey
       ? options
       : { ...options, mutation: { ...options.mutation, mutationKey } }
-    : { mutation: { mutationKey }, axios: undefined };
+    : { mutation: { mutationKey }, request: undefined };
 
   const mutationFn: MutationFunction<
     Awaited<ReturnType<typeof deleteKeywordsById>>,
@@ -539,7 +561,7 @@ export const getDeleteKeywordsByIdMutationOptions = <
   > = (props) => {
     const { id } = props ?? {};
 
-    return deleteKeywordsById(id, axiosOptions);
+    return deleteKeywordsById(id, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
@@ -549,12 +571,12 @@ export type DeleteKeywordsByIdMutationResult = NonNullable<
   Awaited<ReturnType<typeof deleteKeywordsById>>
 >;
 
-export type DeleteKeywordsByIdMutationError = AxiosError<
+export type DeleteKeywordsByIdMutationError = ErrorType<
   DeleteKeywordsById404 | DeleteKeywordsById500
 >;
 
 export const useDeleteKeywordsById = <
-  TError = AxiosError<DeleteKeywordsById404 | DeleteKeywordsById500>,
+  TError = ErrorType<DeleteKeywordsById404 | DeleteKeywordsById500>,
   TContext = unknown,
 >(
   options?: {
@@ -564,7 +586,7 @@ export const useDeleteKeywordsById = <
       { id: string },
       TContext
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseMutationResult<

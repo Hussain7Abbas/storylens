@@ -1,8 +1,8 @@
-import { t } from 'elysia';
+import { t } from "elysia";
 
-import { __transformDate__ } from './__transformDate__';
+import { __transformDate__ } from "./__transformDate__";
 
-import { __nullable__ } from './__nullable__';
+import { __nullable__ } from "./__nullable__";
 
 export const UserPlain = t.Object(
   {
@@ -13,7 +13,7 @@ export const UserPlain = t.Object(
     phone: t.String(),
     birthDate: __nullable__(t.Date()),
     gender: __nullable__(
-      t.Union([t.Literal('Male'), t.Literal('Female')], {
+      t.Union([t.Literal("Male"), t.Literal("Female")], {
         additionalProperties: false,
       }),
     ),
@@ -31,7 +31,7 @@ export const UserRelations = t.Object(
         {
           id: t.String(),
           url: t.String(),
-          type: t.Union([t.Literal('Image'), t.Literal('Video')], {
+          type: t.Union([t.Literal("Image"), t.Literal("Video")], {
             additionalProperties: false,
           }),
           provider_image_id: t.String(),
@@ -49,7 +49,7 @@ export const UserRelations = t.Object(
         {
           id: t.String(),
           url: t.String(),
-          type: t.Union([t.Literal('Image'), t.Literal('Video')], {
+          type: t.Union([t.Literal("Image"), t.Literal("Video")], {
             additionalProperties: false,
           }),
           provider_image_id: t.String(),
@@ -76,7 +76,7 @@ export const UserPlainInputCreate = t.Object(
     birthDate: t.Optional(__nullable__(t.Date())),
     gender: t.Optional(
       __nullable__(
-        t.Union([t.Literal('Male'), t.Literal('Female')], {
+        t.Union([t.Literal("Male"), t.Literal("Female")], {
           additionalProperties: false,
         }),
       ),
@@ -94,7 +94,7 @@ export const UserPlainInputUpdate = t.Object(
     birthDate: t.Optional(__nullable__(t.Date())),
     gender: t.Optional(
       __nullable__(
-        t.Union([t.Literal('Male'), t.Literal('Female')], {
+        t.Union([t.Literal("Male"), t.Literal("Female")], {
           additionalProperties: false,
         }),
       ),
@@ -199,7 +199,7 @@ export const UserWhere = t.Partial(
           name: t.String(),
           phone: t.String(),
           birthDate: t.Date(),
-          gender: t.Union([t.Literal('Male'), t.Literal('Female')], {
+          gender: t.Union([t.Literal("Male"), t.Literal("Female")], {
             additionalProperties: false,
           }),
           avatarId: t.String(),
@@ -208,7 +208,7 @@ export const UserWhere = t.Partial(
         },
         { additionalProperties: false },
       ),
-    { $id: 'User' },
+    { $id: "User" },
   ),
 );
 
@@ -223,13 +223,20 @@ export const UserWhereUnique = t.Recursive(
           ),
           { additionalProperties: false },
         ),
-        t.Union([t.Object({ id: t.String() }), t.Object({ username: t.String() })], {
-          additionalProperties: false,
-        }),
+        t.Union(
+          [t.Object({ id: t.String() }), t.Object({ username: t.String() })],
+          { additionalProperties: false },
+        ),
         t.Partial(
           t.Object({
-            AND: t.Union([Self, t.Array(Self, { additionalProperties: false })]),
-            NOT: t.Union([Self, t.Array(Self, { additionalProperties: false })]),
+            AND: t.Union([
+              Self,
+              t.Array(Self, { additionalProperties: false }),
+            ]),
+            NOT: t.Union([
+              Self,
+              t.Array(Self, { additionalProperties: false }),
+            ]),
             OR: t.Array(Self, { additionalProperties: false }),
           }),
           { additionalProperties: false },
@@ -243,7 +250,7 @@ export const UserWhereUnique = t.Recursive(
               name: t.String(),
               phone: t.String(),
               birthDate: t.Date(),
-              gender: t.Union([t.Literal('Male'), t.Literal('Female')], {
+              gender: t.Union([t.Literal("Male"), t.Literal("Female")], {
                 additionalProperties: false,
               }),
               avatarId: t.String(),
@@ -256,7 +263,7 @@ export const UserWhereUnique = t.Recursive(
       ],
       { additionalProperties: false },
     ),
-  { $id: 'User' },
+  { $id: "User" },
 );
 
 export const UserSelect = t.Partial(
@@ -295,31 +302,31 @@ export const UserInclude = t.Partial(
 export const UserOrderBy = t.Partial(
   t.Object(
     {
-      id: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      id: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      username: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      username: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      password: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      password: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      name: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      name: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      phone: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      phone: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      birthDate: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      birthDate: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      avatarId: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      avatarId: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      createdAt: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      createdAt: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
-      updatedAt: t.Union([t.Literal('asc'), t.Literal('desc')], {
+      updatedAt: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
     },

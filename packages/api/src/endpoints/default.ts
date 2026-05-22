@@ -18,40 +18,46 @@ import type {
   UseQueryResult,
 } from '@tanstack/react-query';
 
-import axios from 'axios';
-import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-
 import type { GetIndex404, GetIndex500 } from '../schemas';
+
+import { customInstance } from '../axios-instance';
+import type { ErrorType } from '../axios-instance';
 
 type AwaitedInput<T> = PromiseLike<T> | T;
 
 type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 export const getIndex = (
-  options?: AxiosRequestConfig,
-): Promise<AxiosResponse<unknown>> => {
-  return axios.get('http://localhost:7000/', options);
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<unknown>(
+    { url: 'http://localhost:7001/', method: 'GET', signal },
+    options,
+  );
 };
 
 export const getGetIndexQueryKey = () => {
-  return ['http://localhost:7000/'] as const;
+  return ['http://localhost:7001/'] as const;
 };
 
 export const getGetIndexQueryOptions = <
   TData = Awaited<ReturnType<typeof getIndex>>,
-  TError = AxiosError<GetIndex404 | GetIndex500>,
+  TError = ErrorType<GetIndex404 | GetIndex500>,
 >(options?: {
   query?: Partial<
     UseQueryOptions<Awaited<ReturnType<typeof getIndex>>, TError, TData>
   >;
-  axios?: AxiosRequestConfig;
+  request?: SecondParameter<typeof customInstance>;
 }) => {
-  const { query: queryOptions, axios: axiosOptions } = options ?? {};
+  const { query: queryOptions, request: requestOptions } = options ?? {};
 
   const queryKey = queryOptions?.queryKey ?? getGetIndexQueryKey();
 
   const queryFn: QueryFunction<Awaited<ReturnType<typeof getIndex>>> = ({ signal }) =>
-    getIndex({ signal, ...axiosOptions });
+    getIndex(requestOptions, signal);
 
   return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
     Awaited<ReturnType<typeof getIndex>>,
@@ -61,11 +67,11 @@ export const getGetIndexQueryOptions = <
 };
 
 export type GetIndexQueryResult = NonNullable<Awaited<ReturnType<typeof getIndex>>>;
-export type GetIndexQueryError = AxiosError<GetIndex404 | GetIndex500>;
+export type GetIndexQueryError = ErrorType<GetIndex404 | GetIndex500>;
 
 export function useGetIndex<
   TData = Awaited<ReturnType<typeof getIndex>>,
-  TError = AxiosError<GetIndex404 | GetIndex500>,
+  TError = ErrorType<GetIndex404 | GetIndex500>,
 >(
   options: {
     query: Partial<
@@ -79,7 +85,7 @@ export function useGetIndex<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): DefinedUseQueryResult<TData, TError> & {
@@ -87,7 +93,7 @@ export function useGetIndex<
 };
 export function useGetIndex<
   TData = Awaited<ReturnType<typeof getIndex>>,
-  TError = AxiosError<GetIndex404 | GetIndex500>,
+  TError = ErrorType<GetIndex404 | GetIndex500>,
 >(
   options?: {
     query?: Partial<
@@ -101,32 +107,32 @@ export function useGetIndex<
         >,
         'initialData'
       >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetIndex<
   TData = Awaited<ReturnType<typeof getIndex>>,
-  TError = AxiosError<GetIndex404 | GetIndex500>,
+  TError = ErrorType<GetIndex404 | GetIndex500>,
 >(
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getIndex>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
 export function useGetIndex<
   TData = Awaited<ReturnType<typeof getIndex>>,
-  TError = AxiosError<GetIndex404 | GetIndex500>,
+  TError = ErrorType<GetIndex404 | GetIndex500>,
 >(
   options?: {
     query?: Partial<
       UseQueryOptions<Awaited<ReturnType<typeof getIndex>>, TError, TData>
     >;
-    axios?: AxiosRequestConfig;
+    request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {

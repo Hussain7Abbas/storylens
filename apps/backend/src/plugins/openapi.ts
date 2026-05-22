@@ -14,7 +14,7 @@ export const openapi =
           tags: [],
           servers: [
             {
-              url: '{server}:7000',
+              url: `{server}:${env.PORT}`,
               description: 'Server URL',
               variables: {
                 server: {

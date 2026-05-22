@@ -2,9 +2,12 @@ import { type ContentScriptContext, defineContentScript } from '#imports';
 import './content.css';
 import { WEBSITES_SELECTORS_KEY } from '@/components/node-selector/constants';
 import { getAllNovelData } from '@/utils/site-detection';
+import { setupApiClient } from '@/utils/setup-api-client';
 import { getConfigsByKey } from '@repo/api/configs.js';
 import type { AxiosResponse } from 'axios';
 import { onMessage } from '../background/messaging';
+
+setupApiClient();
 
 export default defineContentScript({
   matches: ['<all_urls>'],
