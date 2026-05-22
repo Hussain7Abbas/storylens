@@ -14,6 +14,9 @@ i18n
       escapeValue: false,
     },
     lng: 'en', // default language
+    react: {
+      useSuspense: false,
+    },
   });
 
 export default i18n;

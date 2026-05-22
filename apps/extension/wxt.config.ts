@@ -11,8 +11,16 @@ export default defineConfig({
   srcDir: 'src',
   hooks: {
     'build:manifestGenerated': (wxt, manifest) => {
-      if (wxt.config.mode === 'development') {
-        manifest.title += ' (DEV)';
+      if (wxt.config.mode !== 'development') {
+        return;
+      }
+
+      const devServerPort = wxt.config.dev?.server?.port ?? 3000;
+      const devServerOrigin = `http://localhost:${devServerPort}`;
+      const csp = manifest.content_security_policy;
+
+      if (csp && typeof csp === 'object' && typeof csp.extension_pages === 'string') {
+        csp.extension_pages += ` style-src 'self' 'unsafe-inline' ${devServerOrigin};`;
       }
     },
   },
