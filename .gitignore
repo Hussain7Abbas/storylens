@@ -42,3 +42,6 @@ yarn-error.log*
 
 # Next.js
 **/next-env.d.ts
+
+# packages
+packages/db/generated/
