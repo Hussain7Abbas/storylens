@@ -13,6 +13,14 @@ import { paginationSchema, sortingSchema } from '@/schemas/common';
 import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
 import { getNestedColumnObject, parsePaginationProps } from '@/utils/helpers';
+import { orderByIds, queryWeightedSearchIds } from '@/utils/weighted-search';
+
+const keywordInclude = {
+  category: true,
+  nature: true,
+  image: true,
+  parent: true,
+} as const;
 
 export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
   .use(setup)
@@ -24,13 +32,6 @@ export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
       const { skip, take } = parsePaginationProps(pagination);
 
       const where: Record<string, unknown> = {};
-
-      if (query?.search) {
-        where.name = {
-          contains: query.search,
-          mode: 'insensitive' as const,
-        };
-      }
 
       if (query?.categoryId) {
         where.categoryId = query.categoryId;
@@ -44,17 +45,47 @@ export const keywords = new Elysia({ prefix: '/keywords', tags: ['Keywords'] })
         where.novelId = query.novelId;
       }
 
+      if (query?.search) {
+        const { ids, total } = await queryWeightedSearchIds(prisma, {
+          table: 'Keyword',
+          primaryColumn: 'name',
+          secondaryColumn: 'description',
+          search: query.search,
+          filters: {
+            novelId: query.novelId,
+            categoryId: query.categoryId,
+            natureId: query.natureId,
+          },
+          skip: skip ?? 0,
+          take: take ?? 25,
+          sortColumn: sorting?.column,
+          sortDirection: sorting?.direction,
+        });
+
+        if (ids.length === 0) {
+          return {
+            data: [],
+            total,
+          };
+        }
+
+        const keywords = await prisma.keyword.findMany({
+          where: { id: { in: ids } },
+          include: keywordInclude,
+        });
+
+        return {
+          data: orderByIds(keywords, ids),
+          total,
+        };
+      }
+
       const [keywords, total] = await Promise.all([
         prisma.keyword.findMany({
           where,
           skip,
           take,
-          include: {
-            category: true,
-            nature: true,
-            image: true,
-            parent: true,
-          },
+          include: keywordInclude,
           orderBy: getNestedColumnObject(sorting?.column, sorting?.direction),
         }),
         prisma.keyword.count({ where }),

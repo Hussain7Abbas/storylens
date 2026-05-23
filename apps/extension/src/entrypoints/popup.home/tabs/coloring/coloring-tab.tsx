@@ -5,6 +5,7 @@ import type { ColoringFormModesType } from './coloring-form';
 import { ColoringForm } from './coloring-form';
 import { ColoringCards } from './coloring-cards';
 import type { GetKeywords200DataItem } from '@repo/api/schemas';
+import { SearchInput } from '@/components/search-input';
 
 export function ColoringTab({ selectedNovelId }: { selectedNovelId: string }) {
   const { t } = useTranslation();
@@ -13,6 +14,7 @@ export function ColoringTab({ selectedNovelId }: { selectedNovelId: string }) {
   const [keyword, setKeyword] = useState<GetKeywords200DataItem | undefined>(
     undefined,
   );
+  const [search, setSearch] = useState('');
 
   return (
     <Stack gap="xs" p="xs">
@@ -39,8 +41,15 @@ export function ColoringTab({ selectedNovelId }: { selectedNovelId: string }) {
           >
             {t('_.add')}
           </Button>
+          <SearchInput
+            value={search}
+            onChange={setSearch}
+            w="100%"
+            variant="default"
+          />
           <ColoringCards
             selectedNovelId={selectedNovelId}
+            search={search}
             setKeyword={setKeyword}
             setMode={setColoringFormMode}
           />

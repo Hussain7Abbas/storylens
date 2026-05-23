@@ -5,6 +5,7 @@ import type { ReplacingFormModesType } from './replacing-form';
 import { ReplacingForm } from './replacing-form';
 import { ReplacingCards } from './replacing-cards';
 import type { GetReplacements200DataItem } from '@repo/api/schemas';
+import { SearchInput } from '@/components/search-input';
 
 export function ReplacingTab({ selectedNovelId }: { selectedNovelId: string }) {
   const { t } = useTranslation();
@@ -13,6 +14,7 @@ export function ReplacingTab({ selectedNovelId }: { selectedNovelId: string }) {
   const [replacement, setReplacement] = useState<
     GetReplacements200DataItem | undefined
   >(undefined);
+  const [search, setSearch] = useState('');
 
   return (
     <Stack gap="xs" p="xs">
@@ -39,8 +41,15 @@ export function ReplacingTab({ selectedNovelId }: { selectedNovelId: string }) {
           >
             {t('_.add')}
           </Button>
+          <SearchInput
+            value={search}
+            onChange={setSearch}
+            w="100%"
+            variant="default"
+          />
           <ReplacingCards
             selectedNovelId={selectedNovelId}
+            search={search}
             setReplacement={setReplacement}
             setMode={setReplacingFormMode}
           />

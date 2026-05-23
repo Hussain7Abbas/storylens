@@ -10,6 +10,11 @@ import { paginationSchema, sortingSchema } from '@/schemas/common';
 import { setup } from '@/setup';
 import { HttpError } from '@/utils/errors';
 import { getNestedColumnObject, parsePaginationProps } from '@/utils/helpers';
+import { orderByIds, queryWeightedSearchIds } from '@/utils/weighted-search';
+
+const replacementInclude = {
+  keyword: true,
+} as const;
 
 export const replacements = new Elysia({
   prefix: '/replacements',
@@ -25,17 +30,6 @@ export const replacements = new Elysia({
 
       const where: Record<string, unknown> = {};
 
-      if (query?.search) {
-        where.from = {
-          contains: query.search,
-          mode: 'insensitive' as const,
-        };
-        where.to = {
-          contains: query.search,
-          mode: 'insensitive' as const,
-        };
-      }
-
       if (query?.keywordId) {
         where.keywordId = query.keywordId;
       }
@@ -44,14 +38,46 @@ export const replacements = new Elysia({
         where.novelId = query.novelId;
       }
 
+      if (query?.search) {
+        const { ids, total } = await queryWeightedSearchIds(prisma, {
+          table: 'Replacement',
+          primaryColumn: 'from',
+          secondaryColumn: 'to',
+          search: query.search,
+          filters: {
+            novelId: query.novelId,
+            keywordId: query.keywordId,
+          },
+          skip: skip ?? 0,
+          take: take ?? 25,
+          sortColumn: sorting?.column,
+          sortDirection: sorting?.direction,
+        });
+
+        if (ids.length === 0) {
+          return {
+            data: [],
+            total,
+          };
+        }
+
+        const replacements = await prisma.replacement.findMany({
+          where: { id: { in: ids } },
+          include: replacementInclude,
+        });
+
+        return {
+          data: orderByIds(replacements, ids),
+          total,
+        };
+      }
+
       const [replacements, total] = await Promise.all([
         prisma.replacement.findMany({
           where,
           skip,
           take,
-          include: {
-            keyword: true,
-          },
+          include: replacementInclude,
           orderBy: getNestedColumnObject(sorting?.column, sorting?.direction),
         }),
         prisma.replacement.count({ where }),
