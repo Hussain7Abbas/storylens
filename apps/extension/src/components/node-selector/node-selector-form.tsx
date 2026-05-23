@@ -1,4 +1,4 @@
-import { ActionIcon, Button, Group, Stack, TextInput } from '@mantine/core';
+import { ActionIcon, Button, Group, Stack, Textarea, TextInput } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useMemo, useState } from 'react';
 import type { websiteSelectors } from '@/types/configs';
@@ -28,7 +28,12 @@ type PageContext = {
   html: string;
 };
 
-const INITIAL_FORM_VALUES: SelectorPreviewInput & { website: string } = {
+type NodeSelectorFormValues = SelectorPreviewInput & {
+  website: string;
+  onLoadScript: string;
+};
+
+const INITIAL_FORM_VALUES: NodeSelectorFormValues = {
   website: '',
   novelXpath: '',
   novelXpathRegex: '(.*)',
@@ -36,6 +41,7 @@ const INITIAL_FORM_VALUES: SelectorPreviewInput & { website: string } = {
   chapterXpath: '',
   chapterXpathRegex: '\\d+',
   chapterUrlRegex: '(\\d+)(?!.*\\d)',
+  onLoadScript: '',
 };
 
 export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormProps) {
@@ -202,6 +208,7 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
             ? { regex: values.chapterUrlRegex }
             : null,
         },
+        onLoadScript: values.onLoadScript.trim() || null,
       },
     };
 
@@ -230,6 +237,7 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
       chapterXpath: existingSelector.chapter?.xpath?.value ?? '',
       chapterXpathRegex: existingSelector.chapter?.xpath?.regex ?? '\\d+',
       chapterUrlRegex: existingSelector.chapter?.url?.regex ?? '',
+      onLoadScript: existingSelector.onLoadScript ?? '',
     });
   }, [configData?.data?.value, editedWebsite, existingSelectors]);
 
@@ -296,6 +304,17 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
         {...form.getInputProps('chapterUrlRegex')}
       />
       <RegexPreview result={previews.chapterUrl} />
+
+      <Textarea
+        key={form.key('onLoadScript')}
+        label={t('nodeSelector.onLoadScript')}
+        description={t('nodeSelector.onLoadScriptDescription')}
+        placeholder={t('nodeSelector.onLoadScriptPlaceholder')}
+        minRows={4}
+        autosize
+        styles={{ input: { fontFamily: 'monospace', fontSize: '12px' } }}
+        {...form.getInputProps('onLoadScript')}
+      />
 
       <Group justify="space-between" mt="md">
         <ActionIcon

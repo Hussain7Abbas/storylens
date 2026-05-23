@@ -8,6 +8,7 @@ export type NodeSelectorFormValues = {
   chapterXpath: string;
   chapterXpathRegex: string;
   chapterUrlRegex: string;
+  onLoadScript: string;
 };
 
 export type DetectChapterSelectorsResponse = {

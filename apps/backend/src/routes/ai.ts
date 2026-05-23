@@ -80,6 +80,7 @@ export const ai = new Elysia({
               website: t.String(),
               novel: selectorSourceResponse,
               chapter: selectorSourceResponse,
+              onLoadScript: t.Optional(t.Nullable(t.String())),
             }),
             novelForm: t.Object({
               name: t.String(),
@@ -101,6 +102,7 @@ export const ai = new Elysia({
             chapterXpath: t.String(),
             chapterXpathRegex: t.String(),
             chapterUrlRegex: t.String(),
+            onLoadScript: t.String(),
           }),
           novelForm: t.Object({
             name: t.String(),

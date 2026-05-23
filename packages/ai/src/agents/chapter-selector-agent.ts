@@ -10,7 +10,11 @@ import {
   toNovelFormValues,
 } from '../schemas/chapter-selector';
 import { cleanNovelTitle } from '@repo/utils/novel-title';
-import { extractPageContextForAgent, getHostnameFromUrl } from '../utils/html';
+import {
+  extractCopyProtectionHints,
+  extractPageContextForAgent,
+  getHostnameFromUrl,
+} from '../utils/html';
 import {
   applyNovelFormNameFallback,
   validateWebsiteSelectors,
@@ -52,7 +56,41 @@ Other selector rules:
 - novelForm.slugs = [extracted novelSlug from URL only].
 - selectors.website and website must be the hostname only (example.com), no protocol or path.
 - Use stable XPaths from the provided element list when possible.
-- Avoid selectors that depend on ads, comments, or navigation menus.`;
+- Avoid selectors that depend on ads, comments, or navigation menus.
+
+Copy protection bypass (onLoadScript):
+- NEVER return a trivial one-liner like "document.onselectstart = null" or "document.oncopy = null" alone. Those almost never fix real copy protection.
+- When copy protection is detected, generate a COMPREHENSIVE script that neutralizes ALL known protection methods, then add site-specific fixes on top.
+- The script must be plain JavaScript (no imports). It is injected into the page main world via chrome.scripting.executeScript and a blob URL script (not inline eval).
+
+Required protections to address (include ALL of these in every onLoadScript when copy protection exists):
+1. Inline handler properties — null out oncopy, oncut, onpaste, onselectstart, oncontextmenu, ondragstart on document, document.body, and document.documentElement.
+2. Event listeners — add capture-phase listeners on document and window for copy, cut, paste, selectstart, contextmenu, dragstart, and keydown (block Ctrl/Cmd+C interception) that call stopImmediatePropagation().
+3. CSS user-select — inject a <style> tag overriding user-select, -webkit-user-select, -moz-user-select, -ms-user-select to text with !important on *, *::before, *::after.
+4. CSS pointer-events — set pointer-events: auto !important on elements that block interaction (overlays, transparent divs over content).
+5. ::selection / ::-moz-selection tricks — override with visible selection colors via injected CSS.
+6. -webkit-touch-callout: none — override to default via injected CSS.
+7. unselectable="on" attribute (legacy IE) — remove from all elements.
+8. Site-specific overlays/classes/IDs found in the page HTML — disable or remove them (e.g. transparent overlay divs, .no-copy, #protect, etc.).
+
+Base template (start from this and extend with site-specific fixes):
+(function(){
+  var h=['oncopy','oncut','onpaste','onselectstart','oncontextmenu','ondragstart'];
+  var t=[document,document.documentElement,document.body].filter(Boolean);
+  h.forEach(function(p){t.forEach(function(el){el[p]=null;});});
+  ['copy','cut','paste','selectstart','contextmenu','dragstart','keydown'].forEach(function(evt){
+    var fn=function(e){e.stopImmediatePropagation();};
+    document.addEventListener(evt,fn,true);
+    window.addEventListener(evt,fn,true);
+  });
+  var s=document.createElement('style');
+  s.textContent='*,*::before,*::after{-webkit-user-select:text!important;-moz-user-select:text!important;-ms-user-select:text!important;user-select:text!important;-webkit-touch-callout:default!important;pointer-events:auto!important}::selection{background:#b3d4fc!important;color:inherit!important}::-moz-selection{background:#b3d4fc!important;color:inherit!important}';
+  (document.head||document.documentElement).appendChild(s);
+  document.querySelectorAll('[unselectable="on"]').forEach(function(el){el.removeAttribute('unselectable');});
+})();
+
+After the base template, append site-specific lines that target protections found in this page's HTML/scripts (overlay selectors, custom classes, re-applied styles, etc.).
+When no copy protection is detected, set selectors.onLoadScript to null.`;
 
 const MAX_ATTEMPTS = 2;
 
@@ -79,6 +117,7 @@ function buildUserPrompt(
   validationErrors?: string[],
 ) {
   const pageContext = extractPageContextForAgent(input.html, input.url);
+  const copyProtectionHints = extractCopyProtectionHints(input.html);
 
   const validationSection = validationErrors?.length
     ? `\nPrevious selectors failed validation:\n${validationErrors.map((error) => `- ${error}`).join('\n')}\nFix the selectors and try again.\n`
@@ -92,6 +131,10 @@ ${validationSection}
 Important: novelSlug must be extracted from the URL path (e.g. "hail-the-king" from /novel/hail-the-king/72).
 novelName XPath regex must be dynamic — use "(.*)" or structural markers (رواية prefix, فصل suffix, dash segments). NEVER hardcode the current novel's title words in the regex.
 novelForm.name must be the structurally cleaned title (strip leading رواية, trailing chapter label, dash-separated site branding).
+
+If the page has copy protection, selectors.onLoadScript MUST be a comprehensive script (NOT a single property assignment). Use the full base template from system instructions plus site-specific fixes. Set to null only when no protection exists.
+
+${copyProtectionHints}
 
 Page context:
 ${pageContext}`;

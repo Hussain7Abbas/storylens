@@ -29,8 +29,8 @@ export default defineConfig({
     name: '__MSG_extName__',
     description: '__MSG_extDescription__',
     default_locale: 'en',
-    permissions: ['tabs'],
-    host_permissions: ['http://localhost/*', 'http://127.0.0.1/*'],
+    permissions: ['tabs', 'scripting'],
+    host_permissions: ['http://localhost/*', 'http://127.0.0.1/*', '<all_urls>'],
   },
 
   webExt: {

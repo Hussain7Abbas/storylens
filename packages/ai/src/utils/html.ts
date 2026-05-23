@@ -105,6 +105,72 @@ export function extractPageContextForAgent(
   return `${context.slice(0, maxChars)}\n<!-- truncated -->`;
 }
 
+const COPY_PROTECTION_PATTERNS: Array<{ label: string; pattern: RegExp }> = [
+  { label: 'oncopy handler', pattern: /\boncopy\s*=/i },
+  { label: 'oncut handler', pattern: /\boncut\s*=/i },
+  { label: 'onpaste handler', pattern: /\bonpaste\s*=/i },
+  { label: 'onselectstart handler', pattern: /\bonselectstart\s*=/i },
+  { label: 'oncontextmenu handler', pattern: /\boncontextmenu\s*=/i },
+  { label: 'ondragstart handler', pattern: /\bondragstart\s*=/i },
+  { label: 'user-select:none CSS', pattern: /user-select\s*:\s*none/i },
+  {
+    label: 'user-select:none !important CSS',
+    pattern: /user-select\s*:\s*none\s*!important/i,
+  },
+  {
+    label: '-webkit-user-select:none CSS',
+    pattern: /-webkit-user-select\s*:\s*none/i,
+  },
+  { label: 'pointer-events:none CSS', pattern: /pointer-events\s*:\s*none/i },
+  {
+    label: '-webkit-touch-callout:none CSS',
+    pattern: /-webkit-touch-callout\s*:\s*none/i,
+  },
+  { label: 'unselectable attribute', pattern: /\bunselectable\s*=\s*['"]?on/i },
+  {
+    label: 'copy event listener',
+    pattern: /addEventListener\s*\(\s*['"]copy['"]/i,
+  },
+  {
+    label: 'selectstart event listener',
+    pattern: /addEventListener\s*\(\s*['"]selectstart['"]/i,
+  },
+  {
+    label: 'contextmenu event listener',
+    pattern: /addEventListener\s*\(\s*['"]contextmenu['"]/i,
+  },
+  {
+    label: 'keydown copy shortcut blocker',
+    pattern: /key(?:Code|)\s*===?\s*67|ctrlKey.*[cC]|metaKey.*[cC]/i,
+  },
+  { label: 'disable copy script', pattern: /disable.*copy|no-?copy|anti-?copy/i },
+  {
+    label: 'selection overlay',
+    pattern: /pointer-events\s*:\s*none[\s\S]{0,80}(?:overlay|mask|protect)/i,
+  },
+];
+
+function detectCopyProtectionSignals(html: string): string[] {
+  const signals: string[] = [];
+
+  for (const { label, pattern } of COPY_PROTECTION_PATTERNS) {
+    if (pattern.test(html)) {
+      signals.push(label);
+    }
+  }
+
+  return signals;
+}
+
+export function extractCopyProtectionHints(html: string): string {
+  const signals = detectCopyProtectionSignals(html);
+  if (signals.length === 0) {
+    return 'Copy protection signals: none detected';
+  }
+
+  return `Copy protection signals detected:\n${signals.map((signal) => `- ${signal}`).join('\n')}`;
+}
+
 const REMOVE_TAGS = ['script', 'style', 'noscript', 'svg', 'iframe'];
 
 export function prepareHtmlForAgent(

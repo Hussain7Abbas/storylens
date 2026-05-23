@@ -1,5 +1,6 @@
 export interface websiteSelector {
   website: string;
+  onLoadScript?: string | null;
   novel: {
     xpath?: {
       value: string;

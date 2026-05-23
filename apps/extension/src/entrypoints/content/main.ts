@@ -3,7 +3,8 @@ import { sendMessage, onMessage } from '@/entrypoints/background/messaging';
 import type { currentNovelMeta } from '@/types';
 import { removeExtensionMarkup } from '@/utils/content-processor';
 import { processDetectedNovel } from '@/utils/process-detected-novel';
-import { getAllNovelData } from '@/utils/site-detection';
+import { getAllNovelData, getWebsiteSelector } from '@/utils/site-detection';
+import { runOnLoadScript } from '@/utils/run-on-load-script';
 
 const LOG_PREFIX = '[StoryLens]';
 
@@ -23,6 +24,39 @@ async function loadWebsiteSelectors(): Promise<void> {
   } catch (error) {
     console.error(`${LOG_PREFIX} Failed to load website selectors`, error);
     websiteSelectorsValue = undefined;
+  }
+}
+
+async function runWebsiteOnLoadScript(): Promise<void> {
+  const website = window.location.hostname;
+  const selector = getWebsiteSelector(websiteSelectorsValue, website);
+
+  if (!selector) {
+    console.log(`${LOG_PREFIX} onLoadScript skipped: no selector for website`, {
+      website,
+    });
+    return;
+  }
+
+  if (!selector.onLoadScript?.trim()) {
+    console.log(`${LOG_PREFIX} onLoadScript skipped: no script configured`, {
+      website,
+    });
+    return;
+  }
+
+  const result = await runOnLoadScript(selector.onLoadScript);
+
+  if (result.status === 'success') {
+    console.log(`${LOG_PREFIX} onLoadScript ran successfully`, { website });
+    return;
+  }
+
+  if (result.status === 'failed') {
+    console.error(`${LOG_PREFIX} onLoadScript failed`, {
+      website,
+      error: result.error,
+    });
   }
 }
 
@@ -82,6 +116,9 @@ export async function refreshPageContent(): Promise<void> {
   removeExtensionMarkup();
   lastProcessedKey = undefined;
 
+  await loadWebsiteSelectors();
+  await runWebsiteOnLoadScript();
+
   const novel = detectCurrentNovel();
   if (!novel) {
     console.warn(`${LOG_PREFIX} Refresh skipped: no novel detected on page`);
@@ -116,6 +153,7 @@ export async function runContentScript(ctx: ContentScriptContext): Promise<void>
   });
 
   await loadWebsiteSelectors();
+  await runWebsiteOnLoadScript();
   await reportCurrentNovel();
 
   try {
@@ -128,6 +166,7 @@ export async function runContentScript(ctx: ContentScriptContext): Promise<void>
     console.log(`${LOG_PREFIX} Location changed`, window.location.href);
     lastProcessedKey = undefined;
     void loadWebsiteSelectors()
+      .then(() => runWebsiteOnLoadScript())
       .then(() => reportCurrentNovel())
       .then(() => handleDetectedNovel())
       .catch((error) => {

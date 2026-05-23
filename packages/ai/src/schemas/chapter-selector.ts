@@ -14,6 +14,7 @@ export const websiteSelectorSchema = z.object({
   website: z.string().min(1),
   novel: selectorSourceSchema,
   chapter: selectorSourceSchema,
+  onLoadScript: z.string().nullable().optional(),
 });
 
 export const novelFormAutofillSchema = z.object({
@@ -38,6 +39,7 @@ export const nodeSelectorFormValuesSchema = z.object({
   chapterXpath: z.string(),
   chapterXpathRegex: z.string(),
   chapterUrlRegex: z.string(),
+  onLoadScript: z.string(),
 });
 
 export const chapterSelectorAgentInputSchema = z.object({
@@ -70,6 +72,7 @@ export function toNodeSelectorFormValues(
     chapterXpath: result.selectors.chapter.xpath?.value ?? '',
     chapterXpathRegex: result.selectors.chapter.xpath?.regex ?? '\\d+',
     chapterUrlRegex: result.selectors.chapter.url?.regex ?? '(\\d+)(?!.*\\d)',
+    onLoadScript: result.selectors.onLoadScript ?? '',
   };
 }
 

@@ -146,6 +146,9 @@
     "detectSuccess": "تم اكتشاف المحددات بنجاح",
     "detectPartial": "تم اكتشاف المحددات مع تحذيرات التحقق",
     "detectFailed": "فشل اكتشاف المحددات",
-    "noData": "لا توجد مواقع لعرضها"
+    "noData": "لا توجد مواقع لعرضها",
+    "onLoadScript": "سكربت عند التحميل",
+    "onLoadScriptDescription": "جافاسكربت يُنفّذ في الصفحة عند تحميل الإضافة، يُستخدم لتعطيل حماية النسخ",
+    "onLoadScriptPlaceholder": "document.oncopy = null;"
   }
 }

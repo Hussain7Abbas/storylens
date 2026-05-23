@@ -146,6 +146,9 @@
     "detectSuccess": "Selectors detected successfully",
     "detectPartial": "Selectors detected with validation warnings",
     "detectFailed": "Failed to detect selectors",
-    "noData": "There is no websites to show"
+    "noData": "There is no websites to show",
+    "onLoadScript": "On load script",
+    "onLoadScriptDescription": "JavaScript executed on the page when the extension loads, used to disable copy protection",
+    "onLoadScriptPlaceholder": "document.oncopy = null;"
   }
 }

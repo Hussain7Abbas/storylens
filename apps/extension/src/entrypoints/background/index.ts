@@ -2,6 +2,7 @@ import type { currentNovelMeta } from '@/types';
 import { onMessage } from '@/entrypoints/background/messaging';
 import { handleApiProxyRequest } from '@/utils/api-proxy-handler';
 import { loadWebsiteSelectorsValue } from '@/utils/load-website-selectors';
+import { injectOnLoadScriptInTab } from '@/utils/inject-on-load-script';
 import { setupApiClient } from '@/utils/setup-api-client';
 import { browser } from '#imports';
 import { defineBackground } from 'wxt/utils/define-background';
@@ -33,6 +34,18 @@ export default defineBackground(() => {
 
   onMessage('getWebsiteSelectors', () => {
     return loadWebsiteSelectorsValue();
+  });
+
+  onMessage('runOnLoadScript', async ({ data, sender }) => {
+    const tabId = sender.tab?.id;
+    if (tabId === undefined) {
+      return {
+        status: 'failed' as const,
+        error: new Error('No tab ID available for onLoadScript injection'),
+      };
+    }
+
+    return injectOnLoadScriptInTab(tabId, data.script);
   });
 
   onMessage('apiRequest', ({ data }) => {
