@@ -22,6 +22,7 @@ import { useGetKeywordCategories } from '@repo/api/keyword-categories.js';
 import { IconCategory, IconMasksTheater, IconTrash } from '@tabler/icons-react';
 import type { GetKeywords200DataItem, PostKeywordsBodyOne } from '@repo/api/schemas';
 import { useQueryClient } from '@tanstack/react-query';
+import { useRefreshContentScript } from '@/hooks/useRefreshContentScript';
 
 export type ColoringFormModesType = 'add' | 'edit' | undefined;
 interface ColoringFormProps extends React.HTMLAttributes<HTMLFormElement> {
@@ -70,11 +71,13 @@ export function ColoringForm({
   });
 
   const queryClient = useQueryClient();
+  const refreshContent = useRefreshContentScript();
 
   const createKeywordMutation = usePostKeywords({
     mutation: {
-      onSuccess: () => {
+      onSuccess: async () => {
         queryClient.invalidateQueries({ queryKey: ['keywords'] });
+        await refreshContent();
         form.reset();
         onClose();
       },
@@ -83,8 +86,9 @@ export function ColoringForm({
 
   const updateKeywordMutation = usePutKeywordsById({
     mutation: {
-      onSuccess: () => {
+      onSuccess: async () => {
         queryClient.invalidateQueries({ queryKey: ['keywords'] });
+        await refreshContent();
         form.reset();
         onClose();
       },
@@ -93,8 +97,9 @@ export function ColoringForm({
 
   const deleteKeywordMutation = useDeleteKeywordsById({
     mutation: {
-      onSuccess: () => {
+      onSuccess: async () => {
         queryClient.invalidateQueries({ queryKey: ['keywords'] });
+        await refreshContent();
         form.reset();
         onClose();
       },

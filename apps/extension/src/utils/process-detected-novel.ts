@@ -38,7 +38,10 @@ async function waitForContentRoot(): Promise<HTMLElement | undefined> {
   return undefined;
 }
 
-export async function processDetectedNovel(meta: currentNovelMeta): Promise<void> {
+export async function processDetectedNovel(
+  meta: currentNovelMeta,
+  options?: { force?: boolean },
+): Promise<void> {
   console.log(`${LOG_PREFIX} Processing detected novel`, meta);
 
   try {
@@ -57,6 +60,7 @@ export async function processDetectedNovel(meta: currentNovelMeta): Promise<void
       contentRoot,
       contentData,
       buildProcessKey(meta.novelSlug, meta.chapter),
+      { force: options?.force },
     );
   } catch (error) {
     console.error(`${LOG_PREFIX} Failed to process detected novel`, error);

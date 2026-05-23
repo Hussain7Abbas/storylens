@@ -13,14 +13,18 @@ import {
   IconChevronRight,
   IconLogin,
   IconMoon,
+  IconRefresh,
   IconSettings,
   IconSun,
 } from '@tabler/icons-react';
 import cx from 'clsx';
 import type { TFunction } from 'i18next';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import icon from '@/assets/icon.png';
 import { useRoutes } from '@/hooks/useRoutes';
+import toast from 'react-hot-toast';
+import { refreshContentScript } from '@/utils/refresh-content-script';
 import classes from './navbar.module.css';
 
 export function Navbar() {
@@ -46,6 +50,7 @@ export function Navbar() {
       {!isLoggedIn && <LoginButton t={t} />}
       {isLoggedIn && (
         <Group>
+          <RefreshContentButton t={t} />
           <ToggleColorScheme t={t} />
           <ActionsMenu t={t} dir={dir} />
         </Group>
@@ -62,6 +67,38 @@ export function LoginButton({ t }: { t: TFunction }) {
           <IconLogin />
         </ActionIcon>
       </Box>
+    </Tooltip>
+  );
+}
+
+function RefreshContentButton({ t }: { t: TFunction }) {
+  const [refreshing, setRefreshing] = useState(false);
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    try {
+      const refreshed = await refreshContentScript();
+      if (!refreshed) {
+        toast.error(t('navbar.refreshContentFailed'));
+      }
+    } finally {
+      setRefreshing(false);
+    }
+  };
+
+  return (
+    <Tooltip label={t('navbar.refreshContent')} withArrow>
+      <ActionIcon
+        variant="transparent"
+        size="lg"
+        aria-label={t('navbar.refreshContent')}
+        loading={refreshing}
+        onClick={() => {
+          void handleRefresh();
+        }}
+      >
+        <IconRefresh stroke={1.5} />
+      </ActionIcon>
     </Tooltip>
   );
 }

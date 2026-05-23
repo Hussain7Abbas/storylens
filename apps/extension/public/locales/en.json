@@ -14,6 +14,8 @@
   "navbar": {
     "login": "Login",
     "toggleColorScheme": "Toggle Color Scheme",
+    "refreshContent": "Refresh page highlights",
+    "refreshContentFailed": "Could not refresh the page. Make sure a novel chapter is open.",
     "user": "User",
     "profile": "Profile",
     "settings": "Settings",

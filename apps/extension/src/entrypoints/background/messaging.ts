@@ -8,6 +8,7 @@ interface ProtocolMap {
   reportCurrentNovel(data: currentNovelMeta): void;
   getCachedTabNovel(tabId: number): currentNovelMeta | undefined;
   getWebsiteSelectors(): string | undefined;
+  refreshContent(): void;
   apiRequest<T = unknown>(data: ApiProxyRequest): ApiProxyResponse<T>;
 }
 

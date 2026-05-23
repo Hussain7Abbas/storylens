@@ -12,6 +12,7 @@ import type {
 } from '@repo/api/schemas';
 import { useQueryClient } from '@tanstack/react-query';
 import { IconTrash } from '@tabler/icons-react';
+import { useRefreshContentScript } from '@/hooks/useRefreshContentScript';
 
 export type ReplacingFormModesType = 'add' | 'edit' | undefined;
 interface ReplacingFormProps extends React.HTMLAttributes<HTMLFormElement> {
@@ -42,11 +43,13 @@ export function ReplacingForm({
   });
 
   const queryClient = useQueryClient();
+  const refreshContent = useRefreshContentScript();
 
   const createKeywordMutation = usePostReplacements({
     mutation: {
-      onSuccess: () => {
+      onSuccess: async () => {
         queryClient.invalidateQueries({ queryKey: ['replacements'] });
+        await refreshContent();
         form.reset();
         onClose();
       },
@@ -55,8 +58,9 @@ export function ReplacingForm({
 
   const updateReplacementMutation = usePutReplacementsById({
     mutation: {
-      onSuccess: () => {
+      onSuccess: async () => {
         queryClient.invalidateQueries({ queryKey: ['replacements'] });
+        await refreshContent();
         form.reset();
         onClose();
       },
@@ -65,8 +69,9 @@ export function ReplacingForm({
 
   const deleteReplacementMutation = useDeleteReplacementsById({
     mutation: {
-      onSuccess: () => {
+      onSuccess: async () => {
         queryClient.invalidateQueries({ queryKey: ['replacements'] });
+        await refreshContent();
         form.reset();
         onClose();
       },

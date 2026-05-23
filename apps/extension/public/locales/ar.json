@@ -14,6 +14,8 @@
   "navbar": {
     "login": "تسجيل الدخول",
     "toggleColorScheme": "تبديل الوضع المظلم",
+    "refreshContent": "تحديث تمييز الصفحة",
+    "refreshContentFailed": "تعذر تحديث الصفحة. تأكد من فتح فصل الرواية.",
     "user": "المستخدم",
     "profile": "الملف الشخصي",
     "settings": "الإعدادات",

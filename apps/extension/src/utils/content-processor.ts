@@ -228,9 +228,10 @@ export function applyContentProcessing(
   root: HTMLElement,
   data: NovelContentData,
   processKey: string,
+  options?: { force?: boolean },
 ): ContentProcessingStats {
   const existingKey = root.getAttribute(PROCESS_ATTR);
-  if (existingKey === processKey) {
+  if (!options?.force && existingKey === processKey) {
     console.log(`${LOG_PREFIX} Content already processed for`, processKey);
     return {
       replacementsApplied: 0,
@@ -274,4 +275,29 @@ export function applyContentProcessing(
 
 export function buildProcessKey(novelSlug: string, chapter?: number): string {
   return `${novelSlug}:${chapter ?? 'unknown'}`;
+}
+
+export function removeExtensionMarkup(): void {
+  const keywordSpans = [...document.querySelectorAll('span.storylens-keyword')];
+
+  for (const span of keywordSpans) {
+    if (!(span instanceof HTMLSpanElement)) {
+      continue;
+    }
+
+    const keywordTextNode = span.childNodes[0];
+    if (keywordTextNode instanceof Text) {
+      span.replaceWith(keywordTextNode.cloneNode(true));
+      continue;
+    }
+
+    span.replaceWith(document.createTextNode(span.textContent ?? ''));
+  }
+
+  for (const element of document.querySelectorAll(`[${PROCESS_ATTR}]`)) {
+    if (element instanceof HTMLElement) {
+      element.removeAttribute(PROCESS_ATTR);
+      element.classList.remove('storylens-processed');
+    }
+  }
 }
