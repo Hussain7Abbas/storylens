@@ -1,5 +1,6 @@
 import type { currentNovelMeta } from '@/types';
-import type { websiteSelector } from '@/types/configs';
+import type { websiteSelector, websiteSelectors } from '@/types/configs';
+import { extractFromXpath, extractNovelNameFromXpath } from '@/utils/novel-title';
 
 /**
  * Detects the site name based on the xpath or url
@@ -9,28 +10,52 @@ export function getSiteName(): string {
 }
 
 /**
- * Extracts novel name from URL
+ * Extracts novel slug from URL (preferred) or xpath fallback
+ */
+export function getNovelSlug(
+  websiteSelector: websiteSelector,
+  document: Document,
+): string | null {
+  if (websiteSelector.novel?.url?.regex) {
+    const fromUrl = extractFromUrl(
+      document.location.href,
+      websiteSelector.novel.url.regex,
+    );
+    if (fromUrl) {
+      return fromUrl;
+    }
+  }
+
+  if (websiteSelector.novel?.xpath?.value) {
+    const fromXpath = extractFromXpath(
+      websiteSelector.novel.xpath.value,
+      websiteSelector.novel.xpath.regex || '.*',
+      document,
+    );
+    if (fromXpath) {
+      return fromXpath;
+    }
+  }
+
+  return null;
+}
+
+/**
+ * Extracts human-readable novel name from xpath
  */
 export function getNovelName(
   websiteSelector: websiteSelector,
   document: Document,
 ): string | null {
-  if (websiteSelector.novel?.xpath) {
-    return extractFromXpath(
-      websiteSelector.novel?.xpath?.value || '',
-      websiteSelector.novel?.xpath?.regex || '',
-      document,
-    );
+  if (!websiteSelector.novel?.xpath?.value) {
+    return null;
   }
 
-  if (websiteSelector.novel?.url) {
-    return extractFromUrl(
-      document.location.href,
-      websiteSelector.novel?.url?.regex || '',
-    );
-  }
-
-  return null;
+  return extractNovelNameFromXpath(
+    websiteSelector.novel.xpath.value,
+    websiteSelector.novel.xpath.regex || '.*',
+    document,
+  );
 }
 
 /**
@@ -40,49 +65,34 @@ export function getChapterNumber(
   websiteSelector: websiteSelector,
   document: Document,
 ): number | null {
-  if (websiteSelector.chapter?.xpath) {
-    return Number.parseInt(
-      extractFromXpath(
-        websiteSelector.chapter?.xpath?.value || '',
-        websiteSelector.chapter?.xpath?.regex || '',
-        document,
-      ) || '0',
-      10,
+  if (websiteSelector.chapter?.xpath?.value) {
+    const fromXpath = extractFromXpath(
+      websiteSelector.chapter.xpath.value,
+      websiteSelector.chapter.xpath.regex || '\\d+',
+      document,
     );
+    if (fromXpath) {
+      const chapter = Number.parseInt(fromXpath, 10);
+      if (!Number.isNaN(chapter) && chapter > 0) {
+        return chapter;
+      }
+    }
   }
 
-  if (websiteSelector.chapter.url) {
-    return Number.parseInt(
-      extractFromUrl(
-        document.location.href,
-        websiteSelector.chapter?.url?.regex || '',
-      ) || '0',
-      10,
+  if (websiteSelector.chapter?.url?.regex) {
+    const fromUrl = extractFromUrl(
+      document.location.href,
+      websiteSelector.chapter.url.regex,
     );
+    if (fromUrl) {
+      const chapter = Number.parseInt(fromUrl, 10);
+      if (!Number.isNaN(chapter) && chapter > 0) {
+        return chapter;
+      }
+    }
   }
 
   return null;
-}
-
-/**
- * Extracts text from an xpath
- */
-export function extractFromXpath(
-  xpath: string,
-  regex: string,
-  document: Document,
-): string | null {
-  const element = document.evaluate(
-    xpath,
-    document,
-    null,
-    XPathResult.FIRST_ORDERED_NODE_TYPE,
-    null,
-  );
-  const textContent =
-    element.singleNodeValue?.textContent?.replaceAll('\n', '').trim() || '';
-  const match = textContent.match(regex);
-  return match ? match[0] : null;
 }
 
 /**
@@ -93,33 +103,54 @@ export function extractFromUrl(url: string, regex: string): string | null {
   return match ? match[1] : null;
 }
 
+export function getWebsiteSelector(
+  websiteSelectorData: string | undefined,
+  website: string | undefined,
+): websiteSelector | undefined {
+  if (!websiteSelectorData || !website) {
+    return undefined;
+  }
+
+  try {
+    const selectors = JSON.parse(websiteSelectorData) as websiteSelectors;
+    const selector = selectors[website];
+    if (!selector || Object.keys(selector).length === 0) {
+      return undefined;
+    }
+    return selector;
+  } catch {
+    return undefined;
+  }
+}
+
 export function getAllNovelData(
   websiteSelectorData: string | undefined,
   website: string | undefined,
   document: Document,
 ): currentNovelMeta | undefined {
-  const websiteSelector = websiteSelectorData
-    ? JSON.parse(websiteSelectorData || '{}')[website || '']
-    : {};
-  // only parse if websiteSelectorData.data.value is not null
+  const websiteSelector = getWebsiteSelector(websiteSelectorData, website);
   if (!websiteSelector) {
-    console.log('Not a supported website selector, skipping content processing');
-    return;
+    console.log(
+      '[StoryLens] Not a supported website selector, skipping content processing',
+    );
+    return undefined;
   }
 
-  const novel = getNovelName(websiteSelector, document);
-  // Only run on novel pages
-  if (!novel) {
-    console.log('Not a novel page, skipping content processing');
-    return;
+  const novelSlug = getNovelSlug(websiteSelector, document);
+  if (!novelSlug) {
+    console.log('[StoryLens] Not a novel page, skipping content processing');
+    return undefined;
   }
 
   const chapter = getChapterNumber(websiteSelector, document);
-  // Only run on novel chapter pages
-  if (!chapter) {
-    console.log('Not a novel chapter page, skipping content processing');
-    return;
-  }
+  const novelName = getNovelName(websiteSelector, document);
 
-  return { novelSlug: novel, chapter };
+  const meta = {
+    novelSlug,
+    ...(novelName ? { novelName } : {}),
+    ...(chapter !== null ? { chapter } : {}),
+  };
+
+  console.log('[StoryLens] Extracted novel metadata from page', meta);
+  return meta;
 }

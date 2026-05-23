@@ -26,6 +26,7 @@ export type DetectChapterSelectorsResponse = {
   };
   validation: {
     novelSlug: string | null;
+    novelName: string | null;
     chapter: number | null;
     errors: string[];
   };

@@ -111,6 +111,7 @@ export const ai = new Elysia({
           }),
           validation: t.Object({
             novelSlug: t.Nullable(t.String()),
+            novelName: t.Nullable(t.String()),
             chapter: t.Nullable(t.Number()),
             errors: t.Array(t.String()),
           }),

@@ -10,22 +10,38 @@ import {
   toNovelFormValues,
 } from '../schemas/chapter-selector';
 import { extractPageContextForAgent, getHostnameFromUrl } from '../utils/html';
-import { validateWebsiteSelectors } from '../utils/validate-selectors';
+import {
+  applyNovelFormNameFallback,
+  validateWebsiteSelectors,
+} from '../utils/validate-selectors';
 
 const SYSTEM_INSTRUCTIONS = `You analyze web novel chapter pages and produce XPath/regex selectors for a browser extension.
 
-The extension extracts:
-1. novelSlug — a stable slug identifying the novel on this website
-2. chapter — the current chapter number as an integer
+The extension extracts three distinct values:
+1. novelSlug — a stable URL path identifier (e.g. "hail-the-king"), NEVER a display title
+2. novelName — the human-readable novel title (e.g. "رواية حيوا الملك")
+3. chapter — the current chapter number as an integer
 
-Selector rules:
-- Prefer URL regex when the slug or chapter number is clearly in the URL path or query string.
-- Use XPath when the value only appears in the DOM (title, breadcrumb, heading, etc.).
+Novel slug vs novel name (critical):
+- novelSlug MUST come from URL regex when the slug appears in the URL path or query string.
+- novelName comes from XPath when a title, heading, or breadcrumb element contains the novel title in the DOM.
+- NEVER use XPath to extract novelSlug. NEVER set novelForm.slugs from XPath text.
+- When both URL slug and DOM title are available, provide BOTH selectors: url regex for slug, xpath+regex for name.
+
+XPath regex rules for novelName:
+- XPath regex is applied to the matched element's textContent after trimming.
+- Prefer capture group 1 when the element contains extra site text, but "(.*)" is acceptable because the server cleans titles automatically.
+- Pick an XPath whose text includes the novel title, even if it also includes site branding or chapter labels.
+- novelForm.name must be the cleaned human-readable title, not the slug.
+- Example: text "- رواية حيوا الملك مترجمة - نادي الروايات" → novelForm.name = "رواية حيوا الملك"
+
+Other selector rules:
+- Prefer URL regex for chapter when the chapter number is clearly in the URL path or query string.
 - URL regex MUST include capture group 1 for the extracted value. Example: /novel/([^/]+)/
-- XPath regex is applied to the matched element's textContent after trimming. Use ".*" to take the full text, or "(\\\\d+)" for digits only.
-- Provide at least one working source for novel (xpath or url) and one for chapter (xpath or url).
-- novelForm.name should be the human-readable novel title when visible on the page.
-- novelForm.slugs should include the extracted novelSlug and any alternate slug variants found in the URL.
+- For chapter XPath regex use "(\\\\d+)" to capture digits only.
+- Provide at least one working source for novel slug (prefer url) and one for chapter (xpath or url).
+- novelForm.name = extracted novelName (clean title, not slug).
+- novelForm.slugs = [extracted novelSlug from URL only].
 - selectors.website and website must be the hostname only (example.com), no protocol or path.
 - Use stable XPaths from the provided element list when possible.
 - Avoid selectors that depend on ads, comments, or navigation menus.`;
@@ -65,6 +81,9 @@ function buildUserPrompt(
 Page URL: ${input.url}
 Hostname: ${getHostnameFromUrl(input.url)}
 ${validationSection}
+Important: novelSlug must be extracted from the URL path (e.g. "hail-the-king" from /novel/hail-the-king/72).
+novelName must be extracted from DOM text via XPath regex capture group 1, stripping optional site branding and metadata suffixes.
+
 Page context:
 ${pageContext}`;
 }
@@ -145,10 +164,9 @@ export async function detectChapterSelectors(
     result = response.result;
     lastUsage = response.usage;
 
-    const validation = validateWebsiteSelectors(
-      result.selectors,
-      parsedInput.url,
-      parsedInput.html,
+    const validation = applyNovelFormNameFallback(
+      validateWebsiteSelectors(result.selectors, parsedInput.url, parsedInput.html),
+      result.novelForm.name,
     );
 
     if (validation.errors.length === 0) {
@@ -168,10 +186,9 @@ export async function detectChapterSelectors(
     throw new Error('Failed to detect chapter selectors.');
   }
 
-  const validation = validateWebsiteSelectors(
-    result.selectors,
-    parsedInput.url,
-    parsedInput.html,
+  const validation = applyNovelFormNameFallback(
+    validateWebsiteSelectors(result.selectors, parsedInput.url, parsedInput.html),
+    result.novelForm.name,
   );
 
   return {

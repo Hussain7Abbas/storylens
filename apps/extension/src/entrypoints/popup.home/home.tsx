@@ -11,13 +11,11 @@ import {
 } from '@mantine/core';
 import { ColoringTab, ReplacingTab } from './tabs';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useGetNovels } from '@repo/api/novels.js';
 import type { Novel } from '@prisma/client';
-import { browser } from '#imports';
-import { sendMessage } from '../background/messaging';
-import type { currentNovelMeta } from '@/types';
 import { NovelForm, type novelFormModes } from './novelForm';
+import { useDetectedNovel } from './use-detected-novel';
 import {
   IconCrosshair,
   IconDotsVertical,
@@ -26,14 +24,11 @@ import {
   IconTrash,
 } from '@tabler/icons-react';
 import toast from 'react-hot-toast';
+import type { currentNovelMeta } from '@/types';
 import type { TFunction } from 'i18next';
 
 export function HomePage() {
   const { t } = useTranslation();
-  const [selectedNovel, setSelectedNovel] = useState<Partial<Novel> | undefined>();
-  const [currentTabNovel, setCurrentTabNovel] = useState<
-    currentNovelMeta | undefined
-  >();
   const [mode, setMode] = useState<novelFormModes>();
 
   // API hooks
@@ -48,34 +43,9 @@ export function HomePage() {
     sorting: { column: 'name', direction: 'asc' },
   });
 
-  useEffect(() => {
-    const getCurrentNovel = async () => {
-      if (!novelsData?.data?.data) {
-        return;
-      }
-      const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
-      const currentNovel = await sendMessage('getCurrentNovel', undefined, {
-        tabId: tab.id || 0,
-      });
-      if (currentNovel) {
-        setCurrentTabNovel(currentNovel);
-        const novel = novelsData?.data?.data?.find((novel: Novel) =>
-          novel.slugs.includes(currentNovel.novelSlug),
-        );
-        if (novel) {
-          setSelectedNovel(novel);
-        } else {
-          setSelectedNovel({
-            name: currentNovel.novelSlug,
-            slugs: [currentNovel.novelSlug],
-          });
-          setMode('add');
-        }
-        console.log('🔥', 'novel', { novel, currentNovel });
-      }
-    };
-    getCurrentNovel();
-  }, [novelsData?.data?.data]);
+  const { selectedNovel, setSelectedNovel, currentTabNovel } = useDetectedNovel(
+    novelsData?.data?.data,
+  );
 
   return (
     <Container p="md">
@@ -184,7 +154,7 @@ function NovelMenu({
             setSelectedNovel(
               currentTabNovel
                 ? {
-                    name: currentTabNovel.novelSlug,
+                    name: currentTabNovel.novelName ?? currentTabNovel.novelSlug,
                     slugs: [currentTabNovel.novelSlug],
                   }
                 : undefined,
