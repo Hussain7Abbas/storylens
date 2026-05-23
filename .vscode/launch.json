@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "bun",
+      "request": "launch",
+      "name": "Debug Backend",
+      "program": "${workspaceFolder}/apps/backend/src/server.ts",
+      "cwd": "${workspaceFolder}/apps/backend",
+      "watchMode": true,
+      "stopOnEntry": false
+    },
+    {
+      "type": "bun",
+      "request": "launch",
+      "name": "Debug Backend (no watch)",
+      "program": "${workspaceFolder}/apps/backend/src/server.ts",
+      "cwd": "${workspaceFolder}/apps/backend",
+      "watchMode": false,
+      "stopOnEntry": false
+    }
+  ]
+}
