@@ -18,6 +18,44 @@ import {
 import { toast } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
+import { browser } from '#imports';
+import { sendMessage } from '@/entrypoints/background/messaging';
+import { loadWebsiteSelectorsValue } from '@/utils/load-website-selectors';
+import { getWebsiteSelector } from '@/utils/site-detection';
+import { previewXpathRegexResultFromHtml } from '@/utils/selector-preview';
+
+async function getNovelNameFromRegex(tabId: number): Promise<string | null> {
+  try {
+    const detected = await sendMessage('getCurrentNovel', undefined, { tabId });
+    if (detected?.novelName) {
+      return detected.novelName;
+    }
+  } catch {
+    // Content script may still be initializing.
+  }
+
+  try {
+    const page = await sendMessage('getPageHtml', undefined, { tabId });
+    const selectorsValue = await loadWebsiteSelectorsValue();
+    const hostname = page?.url ? new URL(page.url).hostname : undefined;
+    const selector = getWebsiteSelector(selectorsValue, hostname);
+
+    if (!page?.html || !selector?.novel?.xpath?.value) {
+      return null;
+    }
+
+    const result = previewXpathRegexResultFromHtml(
+      page.html,
+      selector.novel.xpath.value,
+      selector.novel.xpath.regex || '(.*)',
+      { cleanNovelTitle: true },
+    );
+
+    return result.status === 'match' ? result.value : null;
+  } catch {
+    return null;
+  }
+}
 
 export type novelFormModes = 'add' | 'edit' | 'delete' | undefined;
 
@@ -43,13 +81,43 @@ export function NovelForm({
   });
 
   useEffect(() => {
-    form.setValues({
-      name: selectedNovel?.name || '',
-      description: selectedNovel?.description || '',
-      imageId: selectedNovel?.imageId || '',
-      slugs: selectedNovel?.slugs || [],
-    });
-  }, [selectedNovel]);
+    if (mode === 'edit') {
+      form.setValues({
+        name: selectedNovel?.name || '',
+        description: selectedNovel?.description || '',
+        imageId: selectedNovel?.imageId || '',
+        slugs: selectedNovel?.slugs || [],
+      });
+      return;
+    }
+
+    if (mode === 'add') {
+      form.setValues({
+        name: '',
+        description: '',
+        imageId: '',
+        slugs: selectedNovel?.slugs || [],
+      });
+    }
+  }, [mode, selectedNovel]);
+
+  useEffect(() => {
+    if (mode !== 'add') {
+      return;
+    }
+
+    void (async () => {
+      const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
+      if (!tab?.id) {
+        return;
+      }
+
+      const novelName = await getNovelNameFromRegex(tab.id);
+      if (novelName) {
+        form.setFieldValue('name', novelName);
+      }
+    })();
+  }, [mode]);
 
   const createNovelMutation = usePostNovels({
     mutation: {

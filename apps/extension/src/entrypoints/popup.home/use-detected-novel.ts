@@ -59,10 +59,6 @@ export function useDetectedNovel(novels: Novel[] | undefined) {
   );
 
   useEffect(() => {
-    if (!novels?.length) {
-      return;
-    }
-
     const detectNovel = async () => {
       const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
       if (!tab?.id) {

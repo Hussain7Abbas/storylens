@@ -154,7 +154,6 @@ function NovelMenu({
             setSelectedNovel(
               currentTabNovel
                 ? {
-                    name: currentTabNovel.novelName ?? currentTabNovel.novelSlug,
                     slugs: [currentTabNovel.novelSlug],
                   }
                 : undefined,
