@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@openrouter/sdk": "^0.12.35",
+    "jsdom": "^29.1.1",
     "linkedom": "^0.18.12",
     "xpath": "^0.0.34",
     "zod": "^4.1.12"
