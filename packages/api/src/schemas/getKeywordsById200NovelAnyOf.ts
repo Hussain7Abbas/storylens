@@ -14,6 +14,7 @@ export type GetKeywordsById200NovelAnyOf = {
   id: string;
   name: string;
   description: GetKeywordsById200NovelAnyOfDescription;
+  slugs: string[];
   imageId: GetKeywordsById200NovelAnyOfImageId;
   createdAt: GetKeywordsById200NovelAnyOfCreatedAt;
   updatedAt: GetKeywordsById200NovelAnyOfUpdatedAt;

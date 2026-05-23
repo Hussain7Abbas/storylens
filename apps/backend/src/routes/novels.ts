@@ -32,6 +32,11 @@ export const novels = new Elysia({
                   mode: 'insensitive' as const,
                 },
               },
+              {
+                slugs: {
+                  has: query.search,
+                },
+              },
             ],
           }
         : {};
@@ -139,6 +144,7 @@ export const novels = new Elysia({
           name: body.name,
           description: body.description,
           imageId: body.imageId,
+          slugs: body.slugs ?? [],
         },
         include: {
           image: true,
@@ -152,6 +158,7 @@ export const novels = new Elysia({
         name: t.String({ minLength: 1 }),
         description: t.Optional(t.String({ minLength: 1 })),
         imageId: t.Optional(t.String({ format: 'uuid' })),
+        slugs: t.Optional(t.Array(t.String({ minLength: 1 }))),
       }),
       response: {
         200: t.Composite([
@@ -188,6 +195,7 @@ export const novels = new Elysia({
           name: body.name,
           description: body.description,
           imageId: body.imageId,
+          slugs: body.slugs,
         },
         include: {
           image: true,
@@ -204,6 +212,7 @@ export const novels = new Elysia({
         name: t.String({ minLength: 1 }),
         description: t.Optional(t.String({ minLength: 1 })),
         imageId: t.Optional(t.String({ format: 'uuid' })),
+        slugs: t.Optional(t.Array(t.String({ minLength: 1 }))),
       }),
       response: {
         200: t.Composite([

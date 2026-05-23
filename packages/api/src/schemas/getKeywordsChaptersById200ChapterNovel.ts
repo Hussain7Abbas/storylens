@@ -14,6 +14,7 @@ export type GetKeywordsChaptersById200ChapterNovel = {
   id: string;
   name: string;
   description: GetKeywordsChaptersById200ChapterNovelDescription;
+  slugs: string[];
   imageId: GetKeywordsChaptersById200ChapterNovelImageId;
   createdAt: GetKeywordsChaptersById200ChapterNovelCreatedAt;
   updatedAt: GetKeywordsChaptersById200ChapterNovelUpdatedAt;

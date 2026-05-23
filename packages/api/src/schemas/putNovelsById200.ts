@@ -15,6 +15,7 @@ export type PutNovelsById200 = {
   id: string;
   name: string;
   description: PutNovelsById200Description;
+  slugs: string[];
   imageId: PutNovelsById200ImageId;
   createdAt: PutNovelsById200CreatedAt;
   updatedAt: PutNovelsById200UpdatedAt;

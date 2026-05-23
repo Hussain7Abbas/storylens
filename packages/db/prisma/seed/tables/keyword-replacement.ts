@@ -26,7 +26,7 @@ export async function seedKeywordReplacement(prisma: PrismaClient) {
 
   await prisma.replacement.createMany({
     data: seedReplacements.flatMap((replacement) => {
-      const novel = novelByName.get(replacement.novelSlug);
+      const novel = novelByName.get(replacement.novelName);
 
       if (!novel) {
         return [];

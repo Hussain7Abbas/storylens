@@ -104,8 +104,9 @@ model File {
 model Novel {
   id String @id @default(uuid())
 
-  name String
+  name String @unique
   description String?
+  slugs String[] @default([])
 
   imageId String?
   image File? @relation(fields: [imageId], references: [id], name: "NovelImages")
@@ -118,7 +119,6 @@ model Novel {
   Keywords Keyword[] @relation("NovelKeywords") 
   chapters Chapter[] @relation("NovelChapters")
   replacements Replacement[] @relation("NovelReplacements")
-  @@index([name])
 }
 
 model Chapter {

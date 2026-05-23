@@ -12,4 +12,5 @@ export type PutNovelsByIdBodyThree = {
   /** @minLength 1 */
   description?: string;
   imageId?: string;
+  slugs?: string[];
 };

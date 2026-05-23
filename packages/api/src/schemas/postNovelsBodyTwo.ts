@@ -12,4 +12,5 @@ export type PostNovelsBodyTwo = {
   /** @minLength 1 */
   description?: string;
   imageId?: string;
+  slugs?: string[];
 };

@@ -59,13 +59,16 @@ export function HomePage() {
       });
       if (currentNovel) {
         setCurrentTabNovel(currentNovel);
-        const novel = novelsData?.data?.data?.find(
-          (novel: Novel) => novel.name === currentNovel.novelName,
+        const novel = novelsData?.data?.data?.find((novel: Novel) =>
+          novel.slugs.includes(currentNovel.novelSlug),
         );
         if (novel) {
           setSelectedNovel(novel);
         } else {
-          setSelectedNovel({ name: currentNovel.novelName });
+          setSelectedNovel({
+            name: currentNovel.novelSlug,
+            slugs: [currentNovel.novelSlug],
+          });
           setMode('add');
         }
         console.log('🔥', 'novel', { novel, currentNovel });
@@ -179,7 +182,12 @@ function NovelMenu({
           leftSection={<IconPlus size={14} color="green" />}
           onClick={() => {
             setSelectedNovel(
-              currentTabNovel ? { name: currentTabNovel.novelName } : undefined,
+              currentTabNovel
+                ? {
+                    name: currentTabNovel.novelSlug,
+                    slugs: [currentTabNovel.novelSlug],
+                  }
+                : undefined,
             );
             setMode('add');
           }}

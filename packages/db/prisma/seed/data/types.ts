@@ -1,11 +1,11 @@
 export type SeedNovel = {
-  slug: string;
   name: string;
+  slugs: string[];
   lastModified: string;
 };
 
 export type SeedKeyword = {
-  novelSlug: string;
+  novelName: string;
   name: string;
   description: string;
   color: string;
@@ -16,7 +16,7 @@ export type SeedKeyword = {
 };
 
 export type SeedReplacement = {
-  novelSlug: string;
+  novelName: string;
   from: string;
   to: string;
 };

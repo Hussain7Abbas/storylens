@@ -27,7 +27,7 @@ export async function seedKeywords(prisma: PrismaClient) {
 
   await prisma.keyword.createMany({
     data: seedKeywordsData.flatMap((keyword) => {
-      const novel = novelByName.get(keyword.novelSlug);
+      const novel = novelByName.get(keyword.novelName);
       const { category, nature } = mapLegacyRole(keyword.role);
       const categoryRecord = categoryByName.get(category);
       const natureRecord = natureByName.get(nature);

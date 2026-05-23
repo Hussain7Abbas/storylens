@@ -14,6 +14,7 @@ export type GetNovels200DataItem = {
   id: string;
   name: string;
   description: GetNovels200DataItemDescription;
+  slugs: string[];
   imageId: GetNovels200DataItemImageId;
   createdAt: GetNovels200DataItemCreatedAt;
   updatedAt: GetNovels200DataItemUpdatedAt;

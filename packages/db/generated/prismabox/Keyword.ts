@@ -82,6 +82,7 @@ export const KeywordRelations = t.Object(
         id: t.String(),
         name: t.String(),
         description: __nullable__(t.String()),
+        slugs: t.Array(t.String(), { additionalProperties: false }),
         imageId: __nullable__(t.String()),
         createdAt: t.Date(),
         updatedAt: t.Date(),

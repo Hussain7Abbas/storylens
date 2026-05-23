@@ -9,6 +9,7 @@ export const NovelPlain = t.Object(
     id: t.String(),
     name: t.String(),
     description: __nullable__(t.String()),
+    slugs: t.Array(t.String(), { additionalProperties: false }),
     imageId: __nullable__(t.String()),
     createdAt: t.Date(),
     updatedAt: t.Date(),
@@ -89,7 +90,11 @@ export const NovelRelations = t.Object(
 );
 
 export const NovelPlainInputCreate = t.Object(
-  { name: t.String(), description: t.Optional(__nullable__(t.String())) },
+  {
+    name: t.String(),
+    description: t.Optional(__nullable__(t.String())),
+    slugs: t.Optional(t.Array(t.String(), { additionalProperties: false })),
+  },
   { additionalProperties: false },
 );
 
@@ -97,6 +102,7 @@ export const NovelPlainInputUpdate = t.Object(
   {
     name: t.Optional(t.String()),
     description: t.Optional(__nullable__(t.String())),
+    slugs: t.Optional(t.Array(t.String(), { additionalProperties: false })),
   },
   { additionalProperties: false },
 );
@@ -276,6 +282,7 @@ export const NovelWhere = t.Partial(
           id: t.String(),
           name: t.String(),
           description: t.String(),
+          slugs: t.Array(t.String(), { additionalProperties: false }),
           imageId: t.String(),
           createdAt: t.Date(),
           updatedAt: t.Date(),
@@ -291,12 +298,16 @@ export const NovelWhereUnique = t.Recursive(
     t.Intersect(
       [
         t.Partial(
-          t.Object({ id: t.String() }, { additionalProperties: false }),
+          t.Object(
+            { id: t.String(), name: t.String() },
+            { additionalProperties: false },
+          ),
           { additionalProperties: false },
         ),
-        t.Union([t.Object({ id: t.String() })], {
-          additionalProperties: false,
-        }),
+        t.Union(
+          [t.Object({ id: t.String() }), t.Object({ name: t.String() })],
+          { additionalProperties: false },
+        ),
         t.Partial(
           t.Object({
             AND: t.Union([
@@ -317,6 +328,7 @@ export const NovelWhereUnique = t.Recursive(
               id: t.String(),
               name: t.String(),
               description: t.String(),
+              slugs: t.Array(t.String(), { additionalProperties: false }),
               imageId: t.String(),
               createdAt: t.Date(),
               updatedAt: t.Date(),
@@ -336,6 +348,7 @@ export const NovelSelect = t.Partial(
       id: t.Boolean(),
       name: t.Boolean(),
       description: t.Boolean(),
+      slugs: t.Boolean(),
       imageId: t.Boolean(),
       image: t.Boolean(),
       createdAt: t.Boolean(),
@@ -372,6 +385,9 @@ export const NovelOrderBy = t.Partial(
         additionalProperties: false,
       }),
       description: t.Union([t.Literal("asc"), t.Literal("desc")], {
+        additionalProperties: false,
+      }),
+      slugs: t.Union([t.Literal("asc"), t.Literal("desc")], {
         additionalProperties: false,
       }),
       imageId: t.Union([t.Literal("asc"), t.Literal("desc")], {

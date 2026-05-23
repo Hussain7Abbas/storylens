@@ -121,5 +121,5 @@ export function getAllNovelData(
     return;
   }
 
-  return { novelName: novel, chapter };
+  return { novelSlug: novel, chapter };
 }

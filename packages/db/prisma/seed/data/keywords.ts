@@ -2,7 +2,7 @@ import type { SeedKeyword } from './types';
 
 export const seedKeywords: SeedKeyword[] = [
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'الاخ تشو',
     description: 'بطل القصة',
     color: '#6e9bff',
@@ -12,7 +12,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660418588035,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'الجدة تشو',
     description: 'رئيسة عشيرة النساء',
     color: '#ff6fd6',
@@ -21,7 +21,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660321366478,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'الشيخ يوان',
     description: 'مدير مكتب العمال الذي اصبح صديق البطل',
     color: '#c3940f',
@@ -30,7 +30,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674047156756,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'الشيخ يون',
     description: 'شيخ طائفة السماء-الغامضة',
     color: '#ff7878',
@@ -39,7 +39,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674156038198,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'الشيطان يانج ',
     description: 'الشيخ السمين صديق رئيس طائفة البطل',
     color: '#55db3d',
@@ -48,7 +48,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674156398122,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'الشيطان يين',
     description: 'المبجل صديق رئيس طائفة البطل',
     color: '#55db3d',
@@ -57,7 +57,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674162569943,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'المبجل باي',
     description: 'جد المتدربة التي منعت المتدربين من الخروج من السجن',
     color: '#55db3d',
@@ -66,7 +66,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674123177690,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'المبجل شاي',
     description: 'رئيس التلاميذ الداخليين',
     color: '#ff7878',
@@ -75,7 +75,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674059018831,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'المخطط الشيطاني',
     description: 'طائفة البطل',
     color: '#c9a877',
@@ -84,7 +84,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674155981429,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'المنظم تشو',
     description: 'بطل القصة',
     color: '#6e9bff',
@@ -94,7 +94,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674156331362,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'باي ليان',
     description: 'التي منعت الطلاب المعاقبين من الخروج من السجن',
     color: '#ff6fd6',
@@ -103,7 +103,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674059135301,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'باي مي',
     description: 'احد التنانين المزدوجة بعد دان-تشين-شين',
     color: '#c3940f',
@@ -112,7 +112,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674163683544,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'بوابة الازدهار',
     description: 'اسم عشيرة البطل بعد ارتفاعها الى منزل ثامن',
     color: '#c9a877',
@@ -121,7 +121,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660397628793,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'تاي ينج',
     description: 'المتدرب الذي اتهم باختلاس النظر في حزب العمال',
     color: '#55db3d',
@@ -130,7 +130,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674047037641,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'تشو فان',
     description: 'بطل القصة',
     color: '#6e9bff',
@@ -140,7 +140,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660418595791,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'تشوجي تشانغ فينغ',
     description: 'المفكر رئيس الوزرائ والاعمدة الاربعة',
     color: '#ff7878',
@@ -149,7 +149,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673627952682,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'تشي تشانغلونغ',
     description: 'احد متدربين طائفة البطل المشاركين في المسابقة',
     color: '#55db3d',
@@ -158,7 +158,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674160720216,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'تشين تشين',
     description: 'زوجة البطل من عشيرة النساء',
     color: '#ff6fd6',
@@ -167,7 +167,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674155924769,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'تشين يا',
     description: 'احد شيوخ طائفة شعلة-الجحيم',
     color: '#ff7878',
@@ -176,7 +176,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674155475749,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'تشيو يانهاي',
     description: 'شيخ النار في عشيرة لوه',
     color: '#c3940f',
@@ -185,7 +185,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660389801018,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'تووبا تيشان',
     description: 'مارشال امبراطورية كوان-رونغ',
     color: '#ff7878',
@@ -194,7 +194,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673696987638,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'تووبا ليو فينغ',
     description: 'المفكر ابن مارشال امبراطورية كوان-رونغ',
     color: '#ff7878',
@@ -203,7 +203,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673697006140,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'جناح التنين',
     description: 'عشيرة التجار',
     color: '#c9a877',
@@ -212,7 +212,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660318609315,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'جو سان تونج',
     description: 'ابن البطل بالتبني',
     color: '#55db3d',
@@ -222,7 +222,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660418819175,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'جوي هو',
     description: 'تلميذ الشيخ الاكبر الذي اراد تدريب قلبه في حزب العمال',
     color: '#55db3d',
@@ -231,7 +231,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674047093746,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'دانتشين شين',
     description: 'الاسطورة الذي جاب الاراضي الغربية وحكمها',
     color: '#c3940f',
@@ -240,7 +240,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674052164603,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'دان’اير',
     description: 'تلميذة طائفة السماء-العميقة التي هاجمت البطل قبل المسابقة',
     color: '#ff6fd6',
@@ -249,7 +249,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674156219676,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'دوجو تشانتيان',
     description: 'جنرال الدولة',
     color: '#c3940f',
@@ -258,7 +258,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660352353810,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'دوغو',
     description: 'المارشال ذو الجيش القوي',
     color: '#55db3d',
@@ -267,7 +267,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660258670825,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'ربن كونج',
     description: 'ابن طائفة السيف الذي جاء مغرور قبل المباراة في المنافسة',
     color: '#ff7878',
@@ -276,7 +276,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674168747634,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'رضيع الدم',
     description: 'نسخة البطل من دمه',
     color: '#ceab00',
@@ -285,7 +285,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673773224851,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'زهي بي',
     description: 'رامي السهام ثالث الذئاب لامبراطورية كوان-رونغ',
     color: '#ff7878',
@@ -294,7 +294,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673697161712,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'سيما هوي',
     description: 'التنين السماوي الذي يلعب بالشطرنج',
     color: '#c3940f',
@@ -303,7 +303,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660393365881,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'شعلة الجحيم',
     description: 'الطائفة العليا التي هاجم تلميذهم البطل بمصفوفة الضباب قبل المسابقة',
     color: '#c9a877',
@@ -312,7 +312,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674155429055,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'شو تشين جيان',
     description: 'شيخة الماء في عشيرة لوه',
     color: '#c3940f',
@@ -321,7 +321,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660390982432,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'شوان شاويو',
     description: 'السيد الشاب لطائفة زوجة البطل',
     color: '#ff7878',
@@ -330,7 +330,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674132356681,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: "شوانغ'اير",
     description: 'بنت رئيس عشيرة التنبؤ',
     color: '#ff6fd6',
@@ -339,7 +339,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660419382290,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'شوي روهوا',
     description:
       'المتدربة التي اهداها البطل نبات الدرجة التاسعة مقابل معلومات عن تشو تشو',
@@ -349,7 +349,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674014103712,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'شي تيان تشي',
     description: 'الملقب باحد التنينانين من عشيرة السيف اخ صديق البطل',
     color: '#55db3d',
@@ -358,7 +358,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660318427250,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'شي تيان يانغ',
     description: 'من عشيرة السيف صديق البطل',
     color: '#55db3d',
@@ -367,7 +367,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660318419588,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'شي شياو فينغ',
     description: 'رئيس عشيرة السيف',
     color: '#55db3d',
@@ -376,7 +376,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660316708470,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'شي وو يوي',
     description: "رئيس طائفة المخطط-الشيطاني الذي اراد عقد صفقة مع البطل عن يون'اير",
     color: '#c3940f',
@@ -385,7 +385,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674050912234,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'شياو داندان',
     description: 'من عشيرة النساء التي تدعو البطل بـ زوجي',
     color: '#ff6fd6',
@@ -394,7 +394,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660319615967,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'شيخ لي',
     description: 'الشيخ حامي عائلة لو',
     color: '#c3940f',
@@ -403,7 +403,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660352253178,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'صرح هوايو',
     description: 'عشيرة النساء',
     color: '#c9a877',
@@ -412,7 +412,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660318581069,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'طائفة السماء الغامضة',
     description: 'الطائفة الصالحة التي فيها تشين-تشين',
     color: '#c9a877',
@@ -421,7 +421,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674155880161,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'طائفة روح الشيطان',
     description:
       'طائفة متوسطة التي واجه البطل تلميذهم عند الذهاب الى التسجيل في طائفته',
@@ -431,7 +431,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674160112026,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'عائلة لوه',
     description: 'عائلة البطل',
     color: '#6e9bff',
@@ -440,7 +440,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660255708428,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'فانغ تشيو باي',
     description: 'التنين السماوي ذو المزمار الذي اشرف على المسابقة',
     color: '#c3940f',
@@ -449,7 +449,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660393351257,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'قصر التنين المزدوج',
     description: 'القصر الذي اقيمت فيه المسابقة',
     color: '#c9a877',
@@ -458,7 +458,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674155955766,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'قصر جيان',
     description: 'عشيرة السيف',
     color: '#c9a877',
@@ -467,7 +467,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660318596704,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'كوان رونغ',
     description: 'الامبراطورية التي تربي الوحوش',
     color: '#ff7878',
@@ -476,7 +476,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673697035437,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'كونج شان',
     description: 'احد تلاميذ طائفة السيف في المسابقة',
     color: '#ff7878',
@@ -485,7 +485,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674169201945,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'كونج لين',
     description: 'احد تلاميذ طائفة السيف في المسابقة',
     color: '#ff7878',
@@ -494,7 +494,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674169209239,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'كوي جانج',
     description: 'تلميذ البطل الذي ناداه عمي',
     color: '#55db3d',
@@ -503,7 +503,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674045381388,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'كوي لانج',
     description: 'خادم البطل الذي انقذ البطل النه وناداه الاخير عمي',
     color: '#55db3d',
@@ -512,7 +512,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674042117902,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'لونج جيو',
     description: 'الشيخ من عائلة التجار الذي لديه عين البرق',
     color: '#55db3d',
@@ -521,7 +521,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660341491604,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'لونج كوي',
     description: 'المغرورة التي يريد الامير الثالث تزوجها',
     color: '#ff6fd6',
@@ -530,7 +530,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660392616246,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'لونغ شين يون',
     description: 'الملقب باحد التنانين من عشيرة لونغ التجارية',
     color: '#55db3d',
@@ -539,7 +539,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660316936832,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'لونغ ييفي',
     description: 'رئيس عشيرة التجار',
     color: '#55db3d',
@@ -548,7 +548,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660321381848,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'لوه شي',
     description: 'تلميذ المبجل شاي',
     color: '#ff7878',
@@ -557,7 +557,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674058988757,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'لوه يون تشانغ',
     description: 'السيدة الشابة لعشيرة لوه',
     color: '#ff6fd6',
@@ -566,7 +566,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673627697213,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'لي جينجتيان',
     description: 'الشيخ حامي عائلة لو',
     color: '#c3940f',
@@ -575,7 +575,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660352233576,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'لي يوتينج',
     description: 'قائدة فيلق الظل لعشيرة لوه',
     color: '#ff6fd6',
@@ -584,7 +584,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673636904025,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'لين شوان فينغ',
     description: 'تنين عائلة غابة المتعة',
     color: '#ff7878',
@@ -593,7 +593,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673632597578,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'لينغ وو تشانغ',
     description: 'المفكر مدبر البوابة الامبراطورية',
     color: '#ff7878',
@@ -602,7 +602,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673627132714,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'ليو يي تشين',
     description: 'الكيميائي الذي خان البطل في المسابقة',
     color: '#ff7878',
@@ -611,7 +611,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660334594635,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'نينغ’ير',
     description: 'اخت البطل من جبل الوحوش',
     color: '#ff6fd6',
@@ -620,7 +620,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660315572491,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'هان تيمو',
     description:
       'المعلم الامبراطوري لامبراطورية كوان-رونغ الذي بمكانه رئيس الوزراء تشوجي',
@@ -630,7 +630,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673697293266,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'هان يون فينغ',
     description: 'افضل تلميذ لطائفة روح-الشيطان',
     color: '#ff7878',
@@ -639,7 +639,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674160062196,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'هاي ران',
     description: 'احد التنانين المزدوجة بعد دان-تشين-شين الذي التقاه البطل في الغابة',
     color: '#c3940f',
@@ -648,7 +648,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674163703457,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: "هو ميي 'اير",
     description: 'الاخت الكبرى الذي راها البطل عند دخوله للطائفة',
     color: '#ff6fd6',
@@ -657,7 +657,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674014910605,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'هوا شينغ رو',
     description: 'جوهر الماء الذي سرقه البطل من كهف الثعبان',
     color: '#ceab00',
@@ -666,7 +666,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660305678828,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'هوانغبو تشينغتيان',
     description: 'الملقب باحد التنينانين واقواهم من البوابة الامبراطورية',
     color: '#ff7878',
@@ -675,7 +675,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660316586413,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'هوانغبو تيانيوان',
     description: 'رئيس البوابة الامبراطورية',
     color: '#ff7878',
@@ -684,7 +684,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660316686658,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'هوانغبو فينجلي',
     description:
       'الشيخ من البوابة الامبراطورية الذي تقاتل مع جنقلة المجنون في مراسيم تكريم العائلة الثامنة',
@@ -694,7 +694,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660394000156,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'هوي شيونغ',
     description:
       'من طائفة ترويض-الوحوش الذي اراد التباهي على البطل قبل المسابقة في الغرف',
@@ -704,7 +704,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674156912857,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'وو تشين تشيو',
     description: 'تلميذ احد الطوائف العليا الملقب افضل موهبة في الاراضي الغربية',
     color: '#55db3d',
@@ -713,7 +713,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674168900129,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يان بانغ غوي',
     description: 'الملقب باحد التنانين من عائلة بيت ملك الطب',
     color: '#ff7878',
@@ -722,7 +722,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660348153968,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يان بانغي',
     description: 'احد التنانين من قاعة ملك الطب',
     color: '#ff7878',
@@ -731,7 +731,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673632081824,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يان بو غونغ',
     description: 'رئيس قاعة ملك الطب',
     color: '#ff7878',
@@ -740,7 +740,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660337893762,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يان بوجونج',
     description: 'رئيس عائلة السم',
     color: '#ff7878',
@@ -749,7 +749,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673630915416,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يان سونج',
     description: 'شيخ الكيمياء في عشيرة لوه',
     color: '#55db3d',
@@ -758,7 +758,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660389142214,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يان فو',
     description: 'تلميذ سيد كيمياء عائلة لوه',
     color: '#55db3d',
@@ -767,7 +767,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660347753878,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يان مو',
     description:
       'من الطائفة العليا شعلة-الجحيم الذي هاجم البطل بمصفوفة الضباب قبل المسابقة',
@@ -777,7 +777,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674155437157,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'ياو يو شان',
     description: 'من طائفة الروح',
     color: '#ff7878',
@@ -786,7 +786,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660339149131,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يو مي',
     description: 'متدربة من طائفة شعلة-الجحيم',
     color: '#ff7878',
@@ -795,7 +795,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674155631959,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يون شانغ',
     description: 'رئيسة عائلة لوه',
     color: '#ff6fd6',
@@ -804,7 +804,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660256442912,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يون شوانجي',
     description: 'احد الاعمدة الاربعة للامبراطورية القسيس المتنبأ',
     color: '#c3940f',
@@ -813,7 +813,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660399282273,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يون شوانغ',
     description: 'بنت رئيس عشيرة التنبؤ',
     color: '#ff6fd6',
@@ -822,7 +822,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660418953272,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يونغ نينغ',
     description: 'اميرة الامبراطورية',
     color: '#ff6fd6',
@@ -831,7 +831,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660393834518,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يونهاي',
     description: 'وريث عائلة لوه ورئيسها',
     color: '#55db3d',
@@ -840,7 +840,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660256422332,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يوو مينج',
     description: 'تلميذ الشيخ السابع',
     color: '#ff7878',
@@ -849,7 +849,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660388635640,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يوو وانشان',
     description: 'رئيس عشيرة وادي الجحيم',
     color: '#ff7878',
@@ -858,7 +858,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660392479368,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يوو يوشان',
     description: 'تنين عائلة الشيخ الخامس الذكي الذي قتله البطل',
     color: '#ff7878',
@@ -867,7 +867,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673632576880,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يوي لينغ',
     description: 'الاخت الكبرى ليوي اير الاي دربها البطل',
     color: '#ff6fd6',
@@ -876,7 +876,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674041773080,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يوين بو',
     description: 'ولي عهد الامبراطورية',
     color: '#ff7878',
@@ -885,7 +885,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660391920295,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يوين كونج',
     description: 'الامير الثالث السمين',
     color: '#ff7878',
@@ -894,7 +894,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673648749312,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يوين كونغ',
     description: 'الامير الثالث للامبراطورية واخ البطل',
     color: '#55db3d',
@@ -903,7 +903,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660398532222,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يوين يونغ',
     description: 'الامير الثاني للامبراطورية',
     color: '#ff7878',
@@ -912,7 +912,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660391942052,
   },
   {
-    novelSlug: 'demonic emperor',
+    novelName: 'magic emperor',
     name: 'يي لين',
     description: 'منافس البطل في المنافسة الذي في جسده جزء من وحش مقدس',
     color: '#55db3d',
@@ -921,7 +921,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674164051642,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: '[ضفة النهر]',
     description: 'مدرنة الذي تسبب بمقتل عشبة-الربيع',
     color: '#c9a877',
@@ -930,7 +930,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657540292733,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'آه شينغ',
     description: 'خادم الجدة شا-دو',
     color: '#55db3d',
@@ -939,7 +939,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657634112745,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'اركانوم',
     description: 'الخالد-السماوي السلف الذي اراد الانتقام من البطل',
     color: '#ff7878',
@@ -948,7 +948,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658534482889,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'ازور فوكس',
     description: 'احد قيادات الشق الصغير',
     color: '#ff7878',
@@ -957,7 +957,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658865018975,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'استيلاء النجوم',
     description: 'مهارة السيد الاول للقصر المائي',
     color: '#ceab00',
@@ -966,7 +966,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657710967831,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'الثعبان ذو الاجنحة',
     description: 'الثعبان المجنح ذو الالف عام الذي اراد قتل البطل لانه قتل ابنه',
     color: '#ff7878',
@@ -975,7 +975,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657533599064,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'السن الاسود',
     description: 'والد عشب-الربيع خادمة البطل',
     color: '#55db3d',
@@ -984,7 +984,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657525548719,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'السيف مقسم السماء',
     description:
       'الطائقة التي اراد البطل الانضمام اليها في مدينة ستيل-ووتر ولكنه تراجع',
@@ -994,7 +994,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657720279185,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'القصر البنفسجي',
     description: 'مرحلة تدريب تطيل العمر 500 عام',
     color: '#ceab00',
@@ -1003,7 +1003,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657649323443,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'المظاهر',
     description: 'مرحلة تدريب تطيل العمر 800 عام',
     color: '#ceab00',
@@ -1012,7 +1012,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657484265282,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'الهلال ثلاثي النجوم',
     description: 'طائفة البطل بعد شيا',
     color: '#c9a877',
@@ -1021,7 +1021,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658667363480,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'اوكهورن',
     description: 'الجبل الذي نصبت عشيرة جي فيه المصفوفة الدفاعية',
     color: '#c9a877',
@@ -1030,7 +1030,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657649052900,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'ايفرغرين',
     description: 'خالد-حقيقي للين يانغ مدرب البطل بعد المسابقة',
     color: '#c3940f',
@@ -1039,7 +1039,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658665309531,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'اينرهيرث',
     description: 'المكان الذي تدرب فيه البطل بعد شيا',
     color: '#c9a877',
@@ -1048,7 +1048,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658703775517,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'بايوي',
     description: 'مبعوث من مدينة ستيل-ووتر الذي وقع عقد المنجم مع عشيرة البطل',
     color: '#55db3d',
@@ -1057,7 +1057,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657712853499,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'برافيسهيل',
     description: 'الذي اراد اخذ خادمة البطل',
     color: '#ff7878',
@@ -1066,7 +1066,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657531844480,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'بلاداسك',
     description: 'الذي اراد منع البطل من العبور من اخر اختبار في الطائفة',
     color: '#ff7878',
@@ -1075,7 +1075,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657722227300,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'بلادشادو',
     description: 'المتدرب في الطائفة ذو النابين من جيش المطر',
     color: '#55db3d',
@@ -1084,7 +1084,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658238932925,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'بلاك هيفن',
     description: 'الذي وعد فيو-ليت ان يلبي لها 3 وعود',
     color: '#ff7878',
@@ -1093,7 +1093,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658865567728,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'بلاك-وايت',
     description: 'الطائفة التي انضم لها البطل في مدينة ستيل-ووتر',
     color: '#c9a877',
@@ -1102,7 +1102,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657720245238,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'بلاكتايغر',
     description: 'اب صديق البطل',
     color: '#55db3d',
@@ -1111,7 +1111,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657717840431,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'بلاكورنت',
     description: 'قريب باي-وي في طائفة بلاك وا-يت',
     color: '#55db3d',
@@ -1120,7 +1120,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657719124194,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'بلايند فيش',
     description: 'امهر رامي سهام في يعشيرة البطل',
     color: '#c3940f',
@@ -1129,7 +1129,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657486703237,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'بلوستون',
     description: 'اخ عشب-الربيع',
     color: '#55db3d',
@@ -1138,7 +1138,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657570202787,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'بو ينغ',
     description: 'الذي اراد هزيمة البطل عن وصوله الى الطائفة',
     color: '#ff7878',
@@ -1147,7 +1147,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657741564836,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'بي زيشان',
     description: 'تلميذ زي-فو الذي جمع ارواز زيان-تيان لصقل كنز قوي',
     color: '#ff7878',
@@ -1156,7 +1156,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657624659225,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'تروكيب',
     description:
       'تلميذ زيفو رقم واحد من المقاطعة الشمالية لعشيرة جي بنفس مستوى اب البطل',
@@ -1166,7 +1166,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657631181880,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'تريفات',
     description: 'المركز الاول من الجيل الثالث في الطائفة',
     color: '#55db3d',
@@ -1175,7 +1175,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658223727361,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'تريلايف',
     description: 'السيد الاول للقصر المائي',
     color: '#c3940f',
@@ -1185,7 +1185,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658664552137,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'تشو لي',
     description: 'خبير وانشيانغ من طائفة السي التي انضم اليها البطل',
     color: '#55db3d',
@@ -1194,7 +1194,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657712527675,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'تشوي',
     description: 'لورد القصر الذي ساعد البطل في العالم السفلي في اول فصل',
     color: '#c3940f',
@@ -1203,7 +1203,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657479817442,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'تشي روفانغ',
     description: 'ولي عهد سلالة تشي المدمرة',
     color: '#55db3d',
@@ -1212,7 +1212,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658695673327,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'تشين جين',
     description: 'الذي يحب ناين-لوتس',
     color: '#ff7878',
@@ -1221,7 +1221,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658495047341,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'تشينغ تشينغ',
     description: 'الافعى اللازووردية وحش البطل الروحي',
     color: '#ff6fd6',
@@ -1230,7 +1230,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658404475234,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'جادتشيلد',
     description: 'متدرب ذروة زي-فو من جبل التنين-الثلجي الذي اراد ابادة عشيرة جي',
     color: '#ff7878',
@@ -1239,7 +1239,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657641221465,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'جادفين',
     description: 'سيدة نورث-سون صديق البطل',
     color: '#c3940f',
@@ -1248,7 +1248,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658255090288,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'جادويتش',
     description: 'ابن جي-لي',
     color: '#ff7878',
@@ -1257,7 +1257,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657527671558,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'جاديسيا',
     description: 'مدير الطائفة',
     color: '#c3940f',
@@ -1266,7 +1266,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657724892579,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'جبل التنين الثلجي',
     description: 'الطائفة المعادية لعشيرة جي',
     color: '#c9a877',
@@ -1275,7 +1275,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657632569152,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'جريزلي',
     description: 'الابن بالتبني الذي وجده جي-لي في كهف الدب الضهبي',
     color: '#ff7878',
@@ -1284,7 +1284,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657488815994,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'جون',
     description:
       'ابن الخالد الارضي لعشيرة فلايم الذي زايد على ريشات العناصر مع البطل',
@@ -1294,7 +1294,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658570008117,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'جوهوا',
     description: 'الخالد الذي اراد تلميذ ودخل البطل الى اختباراته بالصدفة',
     color: '#c3940f',
@@ -1303,7 +1303,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657551427956,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'جي لي',
     description: 'اخ جد البطل الذي يريد اخذ منصب الحكم',
     color: '#ff7878',
@@ -1312,7 +1312,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657488883104,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'جي مو',
     description: 'تلميذ الجدة شا-دو',
     color: '#55db3d',
@@ -1321,7 +1321,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657629902650,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'جي نينج',
     description: 'اسم البطل',
     color: '#6e9bff',
@@ -1331,7 +1331,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657549181012,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'جيانغ',
     description: 'المتدرب الذي جلب البطل من عالم شيا',
     color: '#55db3d',
@@ -1340,7 +1340,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658667178899,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'حرس تنين المطر',
     description: 'ممارسين وانشيانغ يحمون نظام سلالة شيا',
     color: '#c3940f',
@@ -1349,7 +1349,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657557796344,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'خالد ارضي',
     description: 'مرحلة تدريب فيها تنزل المحنة',
     color: '#ceab00',
@@ -1358,7 +1358,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657639194558,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'خالد حقيقي',
     description: 'الخالد الذي بعد الخالد-السماوي',
     color: '#ceab00',
@@ -1367,7 +1367,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658609029397,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'خالد حقيقي لليانغ النقي',
     description: 'الخالد الذي بعد الخالد-السماوي',
     color: '#ceab00',
@@ -1376,7 +1376,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658617072322,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'خالد سماوي',
     description: 'الذي تجاوز المحنة السماوية',
     color: '#c3940f',
@@ -1385,7 +1385,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658484588003,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'خالد طليق',
     description: 'الذي لم يتجاوز المحنة السماوية',
     color: '#c3940f',
@@ -1394,7 +1394,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658484637559,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'خالدين حقيقيين لليانغ النقي',
     description: 'الخالدين الذين بعد الخالد-السماوي',
     color: '#ceab00',
@@ -1403,7 +1403,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658617092593,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'خالدين سماويين',
     description: 'الذين تجاوزوا المحنة السماوية',
     color: '#c3940f',
@@ -1412,7 +1412,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658484666407,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'خالدين طليقين',
     description: 'الذين لم يتجاوزوا المحنة السماوية',
     color: '#c3940f',
@@ -1421,7 +1421,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658484650816,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'داركنورث',
     description: 'لقب البطل',
     color: '#6e9bff',
@@ -1430,7 +1430,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657725520357,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'دالا',
     description: 'العم الذي انقذ البطل حياته وارشد البطل في المستنقعات',
     color: '#55db3d',
@@ -1439,7 +1439,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657528492571,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'داويست البدائي',
     description: 'مرحلة تدريب بعد وانش-يانغ',
     color: '#ceab00',
@@ -1448,7 +1448,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657725283604,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'دونغ سيفن',
     description: 'العدو الذي حاصر اب البطل وامه وخاله في الماضي وجده داويست بدائي',
     color: '#ff7878',
@@ -1457,7 +1457,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657709621300,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'دونغ وان',
     description: 'خبير وان-شيانغ من جبل التنين-الثلجي',
     color: '#ff7878',
@@ -1466,7 +1466,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658259559202,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'دونغبين',
     description: 'زعيم الخالدين الثمانية في الكهوف العليا صديق حاكم شيا',
     color: '#c3940f',
@@ -1475,7 +1475,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658612491967,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'دونغيان',
     description: 'طائفة ناين-لوتس',
     color: '#c9a877',
@@ -1484,7 +1484,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658494946463,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'ديانكاي',
     description: 'مدرب البطل في الطائفة الذي لديه نفس ميراث البطل للسيف',
     color: '#c3940f',
@@ -1493,7 +1493,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657724657052,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'ديدجراس',
     description: 'العشب الذي اصبح خالد سماوي ويريد الانتقام من البطل',
     color: '#ff7878',
@@ -1502,7 +1502,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658865000313,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'رامبارت',
     description: 'السيد الرابع للقصر الخالد',
     color: '#c3940f',
@@ -1511,7 +1511,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657555332594,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'رايفر سانسي',
     description: 'من مدرينة ضفة النهر جد رايفر-هو',
     color: '#ff7878',
@@ -1520,7 +1520,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657540244156,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'رايفر هو',
     description: 'من مدرينة ضفة النهر الذي اراد ان ياخذ عشب-الربيع',
     color: '#ff7878',
@@ -1529,7 +1529,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657539516256,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'روكي',
     description:
       'صديق البطل الذي اراد التضحية بنفسه عند مجيء البطل الى مدينة ستيل-ووتر',
@@ -1539,7 +1539,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658241868682,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'ريدتيب',
     description: 'الوحش الثعبان ذو السلالة السماوية ابن الثعبان الطائر ذو الالف عام',
     color: '#ff7878',
@@ -1548,7 +1548,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657523719944,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'زان',
     description:
       'من عشيرة الخشب الحديدي الذي نصب فخ للبطل عندما قاتل الافعى اللازووردية',
@@ -1558,7 +1558,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657533890664,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'زيانتيان',
     description: 'مرحلة تدريب تطيل العمر ل 200 عام',
     color: '#ceab00',
@@ -1567,7 +1567,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657484208873,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'زيتر فييري',
     description: 'عازفة القانون التي ابهرت البطل',
     color: '#ff6fd6',
@@ -1576,7 +1576,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657713200688,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'زيداو',
     description: 'خبير المصفوفات من جبل التنين-الابيض',
     color: '#ff7878',
@@ -1585,7 +1585,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657648367991,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'زيشان',
     description: 'الذي اتقن 4 داو في داو البرق',
     color: '#ff7878',
@@ -1594,7 +1594,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658616782806,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'زيفو',
     description: 'مرحلة تدريب تطيل العمر 500 عام',
     color: '#ceab00',
@@ -1603,7 +1603,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657484230041,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'زيكي',
     description: 'متدرب الجسد الذي ساوم على المنجم',
     color: '#ff7878',
@@ -1612,7 +1612,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657632534160,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'سبهوتو',
     description: 'سلف الداو صديق تري-لايف الذي قبل البطل كتلميذ',
     color: '#c3940f',
@@ -1622,7 +1622,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658863418542,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'ستيلووتر',
     description: 'مدينة المركيز التي ذهب اليها البطل',
     color: '#c9a877',
@@ -1631,7 +1631,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657711005566,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'سلوبي',
     description: 'المركز الاول من الجيل الثالث في الطائفة',
     color: '#55db3d',
@@ -1640,7 +1640,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658223744578,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'سنو ',
     description: 'ام البطل',
     color: '#ff6fd6',
@@ -1649,7 +1649,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658502800079,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'سنوبلوم',
     description: 'الداويست البدائي لطائفة التنين-الثلجي',
     color: '#ff7878',
@@ -1658,7 +1658,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658502855968,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'سيف الثلاثة اقدام',
     description: 'تقنية البطل التي ورثها من جدار الطائفة',
     color: '#ceab00',
@@ -1667,7 +1667,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657724504325,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'سيف قطرة المطر',
     description: 'لقب والد البطل',
     color: '#55db3d',
@@ -1676,7 +1676,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657480317134,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'سيلفرمون',
     description: 'المسؤول عن دار الداو الاول',
     color: '#55db3d',
@@ -1685,7 +1685,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658669493327,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'شو فانغ',
     description:
       'خبير وان-شيانغ الذي يسيطر على مدينة جبل التنين-الثلجي في جبال سوالو',
@@ -1695,7 +1695,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658502532296,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'شوانوو',
     description: 'صاحب الارث الذي ورثه سلو-بي',
     color: '#c3940f',
@@ -1704,7 +1704,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658621562323,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'شوي يي',
     description: 'متواطئ في حادثة والدا البطل في الماضي',
     color: '#ff7878',
@@ -1713,7 +1713,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657709697186,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'شيامنغ',
     description: 'رئيس عالم شيا',
     color: '#c3940f',
@@ -1722,7 +1722,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658612411178,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'شياو لانغ',
     description: 'المختل عقليا الذي لديه عقدة النقص في مائدة القصر',
     color: '#ff7878',
@@ -1731,7 +1731,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658602711277,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'شياويو',
     description: 'اول تلميذة للبطل',
     color: '#ff6fd6',
@@ -1740,7 +1740,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658696083498,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'شيوشوي',
     description: 'الخالد الارضي لعشيرة فلايم الذي زايد على ريشات العناصر مع البطل',
     color: '#ff7878',
@@ -1749,7 +1749,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658569998442,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'شيوهي',
     description: 'بنت خال البطل',
     color: '#ff6fd6',
@@ -1758,7 +1758,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658567313484,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'عشب الربيع',
     description: 'خادمة البطل في بيت والده التي استعادت حريتها مع والدها السن-الاسود',
     color: '#ff6fd6',
@@ -1767,7 +1767,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657525531238,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'غادي',
     description:
       'امبراطور-حقيقي متقن داو شيوريكن الاعلى الذي هاجم البطل ومنعه حاكم شيا',
@@ -1777,7 +1777,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658865632199,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'غودبلوم',
     description: 'دوق عشيرة يونغ-فلايم',
     color: '#ff7878',
@@ -1786,7 +1786,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658541220581,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'غولدكروو',
     description: 'خالد الغراب الذهبي الذي شارك في المنافسة',
     color: '#ff7878',
@@ -1795,7 +1795,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658605661655,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'فاستريفر',
     description: 'الخالد المتجسد الذي هنأ البطل في الجزيرة',
     color: '#55db3d',
@@ -1804,7 +1804,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658517557172,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'فانغ ينغو',
     description: 'زوج شيو-هي بنت خال البطل',
     color: '#55db3d',
@@ -1813,7 +1813,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658738277444,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'فايفكريز',
     description: 'خالد في الطائفة',
     color: '#c3940f',
@@ -1822,7 +1822,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657740609732,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'فلوكلاود',
     description: 'الذي يحب ناين-لوتس',
     color: '#ff7878',
@@ -1831,7 +1831,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658516063917,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'فورغارد',
     description: 'احد حراس با-يوي وخادم البطل',
     color: '#55db3d',
@@ -1840,7 +1840,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657742962096,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'فينوم فريك',
     description: 'سلف عشيرة يونغ-فلايم',
     color: '#ff7878',
@@ -1849,7 +1849,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658840352117,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'فينومبلاد',
     description: 'المتدرب في الطائفة الذي يتقن 3 نطاقات داو',
     color: '#55db3d',
@@ -1858,7 +1858,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658237568920,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'فيوليت',
     description: 'التي قتلها البطل في المعركة الاولى التي تدخل فيها حاكم شيا',
     color: '#ff7878',
@@ -1867,7 +1867,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658865652360,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'كانغوو جيو',
     description: 'صديق شيامنغ-زيشان في المسابقة',
     color: '#ff7878',
@@ -1876,7 +1876,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658616312433,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'كريمسونبرايت',
     description: 'الخالد سيد رئيس شيا',
     color: '#c3940f',
@@ -1885,7 +1885,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658621358610,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'كلاودجيد',
     description: 'اخت كلاود-شيب خادمة البطل',
     color: '#ff6fd6',
@@ -1894,7 +1894,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657743004167,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'كلاودشيب',
     description: 'خادم البطل طويل نحيف من قبيلة السحاب تلميذ زي-فو مبكر',
     color: '#55db3d',
@@ -1903,7 +1903,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657742513876,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'ماوو',
     description:
       'محارب من المخالب التسعة للفرسان السود المدرعين الذي يرافق البطل في مغامرته الاولى',
@@ -1913,7 +1913,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657525823555,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'مخطط جسد السماوات التسعة',
     description: 'تقنية تدريب الجسد للبطل',
     color: '#ceab00',
@@ -1922,7 +1922,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657485786209,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'مراوغة اجنحة الرياح',
     description: 'مهارة الحركة للبطل',
     color: '#ceab00',
@@ -1931,7 +1931,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657657146160,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'موزي',
     description: 'العدو من جبل التنين الثلجي الذي يستخدم الكروم',
     color: '#ff7878',
@@ -1940,7 +1940,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657632517761,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'ناينديث',
     description: 'المتجسدة 9 مرات في المسابقة',
     color: '#ff6fd6',
@@ -1949,7 +1949,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658618441098,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'ناينلوتس',
     description: 'تلميذة الخالد فايف-كريز',
     color: '#ff6fd6',
@@ -1959,7 +1959,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658223314756,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'نورثسون',
     description:
       'ممارس داو البناء الذي ارسل للبطل صوائق بالصدفة في اختبار دخول الطائفة',
@@ -1969,7 +1969,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657722738665,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'نورثمونت بايوي',
     description: 'مبعوث من مدينة ستيل-ووتر الذي وقع عقد المنجم مع عشيرة البطل',
     color: '#55db3d',
@@ -1978,7 +1978,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657668411093,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'نورثمونت بلاكتايغر',
     description: 'اب صديق البطل',
     color: '#55db3d',
@@ -1987,7 +1987,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657712897567,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'نورثمونت فوكس',
     description: 'ابن عم نورثمونت-بايوي صديق البطل',
     color: '#ff7878',
@@ -1996,7 +1996,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657712842344,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'نورثمونت يين',
     description: 'عم صديق البطل',
     color: '#ff7878',
@@ -2005,7 +2005,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657712952415,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'نورثوولكر',
     description:
       'الخالد الطليق بمستوى الخالد السماوي الذي اورث البطل سيف الثلاثة اقدام',
@@ -2015,7 +2015,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657724456283,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'نورشوك',
     description: 'الخالد-الطليق الذي اعاد ناين-لوتس الى العشيرة',
     color: '#ff7878',
@@ -2024,7 +2024,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658500658470,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'نووا',
     description: 'الامبراطورة المقدسة الاولى التي تدعى ملكة الجمال مستواها بانغو',
     color: '#c3940f',
@@ -2033,7 +2033,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657627428995,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'نينج',
     description: 'اسم البطل',
     color: '#6e9bff',
@@ -2043,7 +2043,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657521639365,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'نينفاير',
     description: 'رئيس عشيرة جي',
     color: '#c3940f',
@@ -2052,7 +2052,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657625098594,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'هانشموت',
     description: 'الخالد-السماوي لكلية بلاك-وايت',
     color: '#c3940f',
@@ -2061,7 +2061,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658534639444,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'هايدراغا',
     description: 'جنس من الاباطرة',
     color: '#c3940f',
@@ -2070,7 +2070,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658526214682,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'هوتيان',
     description: 'مرحلة تدريب تطيل العمر 100 عام',
     color: '#ceab00',
@@ -2079,7 +2079,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657484213337,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'هوليفاير',
     description: 'الذي شهد قتال البطل مع تشين-جين في البحيرة',
     color: '#55db3d',
@@ -2088,7 +2088,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658517646364,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'هونغاي',
     description: 'خبير وان-شيانغ الذي ارسل لتفقد موت شو-لي',
     color: '#ff7878',
@@ -2097,7 +2097,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657667645844,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'وانشيانغ',
     description: 'مرحلة تدريب تطيل العمر 800 عام',
     color: '#ceab00',
@@ -2106,7 +2106,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657484255505,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'وانفانج',
     description:
       'احد التلاميذ التسعة لوالد البطل الذي ساعد البطل في قتل رجال الذي اراد اخذ خادمة البطل',
@@ -2116,7 +2116,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657533472879,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'وايت',
     description: 'الكلب صديق والد البطل',
     color: '#55db3d',
@@ -2125,7 +2125,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657549623627,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'وايت سنو',
     description:
       'المتدربة في الطائفة ذات شبكة خيوط الحرير التي حاربت البطل في نقاش الداو الاخير',
@@ -2135,7 +2135,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658237368856,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'ورقة الخريف',
     description: 'خادمة البطل في بيت والده',
     color: '#ff6fd6',
@@ -2144,7 +2144,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657549528491,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'ووجي',
     description: 'صديق نورثمونت باي-وي صديث البطل',
     color: '#55db3d',
@@ -2153,7 +2153,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657713158343,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'وودكاتر',
     description: 'الاخ الاكبر للبطل المتدرب الذي لم يغادر مسكن الهلال ذو الثلاث نجوم',
     color: '#55db3d',
@@ -2162,7 +2162,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658667296580,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'ويفانغ',
     description: 'الخادم السادس للبطل في الطائفة والاقوى',
     color: '#55db3d',
@@ -2171,7 +2171,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658254374480,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'وينتران',
     description: 'الفتاة التي دعت نورث-سون لجدال الداو',
     color: '#ff6fd6',
@@ -2180,7 +2180,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657739626810,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'يو تشي',
     description: 'التاجر الذي باع البطل له الكنوز في المدينة الامبراطورية',
     color: '#55db3d',
@@ -2189,7 +2189,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658571983561,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'يو دونغ',
     description: 'متواطئ في حادثة والدا البطل في الماضي',
     color: '#ff7878',
@@ -2198,7 +2198,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657709688682,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'يو وي',
     description: 'الخالدة المتجسدة التي هزمت البطل في مناقشة الداو',
     color: '#ff6fd6',
@@ -2208,7 +2208,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658527912402,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'يون بينغ',
     description: 'الذي يريد الزواج من بنت خال البطل',
     color: '#ff7878',
@@ -2217,7 +2217,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658738325675,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'يونغفلايم',
     description: 'العشيرة التي ابادت عائلة ام البطل',
     color: '#ff7878',
@@ -2226,7 +2226,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658776704330,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'يونيتي',
     description: 'الخالد السماوي حليف البطل في مدينة ستيل-ووتر',
     color: '#55db3d',
@@ -2235,7 +2235,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1658851074418,
   },
   {
-    novelSlug: 'desolate era',
+    novelName: 'desolate era',
     name: 'يي شوان',
     description: 'اب البطل',
     color: '#55db3d',
@@ -2244,7 +2244,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657549577924,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: ' سوي',
     description: 'احد الخالدين الثلاثة',
     color: '#c3940f',
@@ -2253,7 +2253,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698367653239,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: ' شي ',
     description: 'احد الخالدين الثلاثة',
     color: '#c3940f',
@@ -2262,7 +2262,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698367663496,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: ' شينغ شوان',
     description: 'امير مملكة ازور',
     color: '#ff7878',
@@ -2271,7 +2271,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648935290497,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: '"الشهيرة"',
     description: 'اول مدينة دخلها البطل في البحر في عالم الامبراطور البشري',
     color: '#c9a877',
@@ -2280,7 +2280,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686486473266,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'أكاديمية الداو السماوي',
     description: 'الاكاديمية التي لديها بوابة-الفراغ',
     color: '#c9a877',
@@ -2289,7 +2289,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649504322762,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'ارض سيف الاله المقدسة',
     description: 'الطائفة التي جائت منها الفتاة صاحبة السيف في مدينة الجثث',
     color: '#c9a877',
@@ -2298,7 +2298,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648938134945,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'الادراك القمري',
     description: 'صديقة هونغ-تيان',
     color: '#ff6fd6',
@@ -2307,7 +2307,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698148324175,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'الارتداد الفاني',
     description: 'العاهل الخالد الاقوى في العالم العاشر',
     color: '#c3940f',
@@ -2316,7 +2316,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698107335007,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'الامير الذهبي',
     description:
       'الذي اراد اخذ النبات الملكي من البطل عند ذهاب البطل الى النهر مع يوان-شايهي في عالم الكيمياء',
@@ -2326,7 +2326,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676570946696,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'البخور المطهرة',
     description: 'طائفة البطل',
     color: '#c9a877',
@@ -2335,7 +2335,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649078164548,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'البنية الجسدية الخالدة',
     description: 'احد البنيات ال 12 في المراكز الاولى',
     color: '#ceab00',
@@ -2344,7 +2344,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687024985310,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'الحاكم فو',
     description: 'حاكم في بوابة طائفة القديس الشيطاني',
     color: '#ff7878',
@@ -2353,7 +2353,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648655115856,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'الحامي مو',
     description: 'الحامي الذي ذهب مع البطل الى طائفة الشيطان',
     color: '#55db3d',
@@ -2362,7 +2362,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648656698996,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'الحامي هوا',
     description: 'احد حماة طائفة الشيطان ومعلم شو هوي ودو يوان غوانغ',
     color: '#ff7878',
@@ -2371,7 +2371,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648656979178,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'الحامي يو',
     description: 'اقوى حامي في طائفة الشيطان',
     color: '#ff7878',
@@ -2380,7 +2380,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648657003137,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'الحديقة الهادئة',
     description: 'الطائفة التي انشأها امبراطور الكيمياء تيان-ونغ',
     color: '#c9a877',
@@ -2389,7 +2389,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676569350063,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'الخريف الصغير',
     description: 'دودة الابعاد',
     color: '#c3940f',
@@ -2398,7 +2398,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649450065881,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'الخيزران العملاق',
     description: 'البلد الذي انشأته خادمة البطل سابقاً في عالم الكيمياء',
     color: '#c9a877',
@@ -2407,7 +2407,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676492306016,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'السيف الالهي للارض المقدسة',
     description: 'طائفة الفتاة ذات جو الدم والقتل في مدينة الجثث',
     color: '#c9a877',
@@ -2416,7 +2416,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648850684993,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'الشجرة الجافة',
     description:
       'مهاجم الامبراطور الذي جلبه الطفل-المزدوج معه لقتال البطل في عالم الروح السماوية',
@@ -2426,7 +2426,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686181041043,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'الشرارة الالهية',
     description: 'طائفة في الغيمة-الجنوبة التي انجبت العنقاء العذراء',
     color: '#c9a877',
@@ -2435,7 +2435,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676148501319,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'الشرس',
     description: 'لقب البطل الذي اطلقه الناس عليه',
     color: '#6e9bff',
@@ -2444,7 +2444,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687019244049,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'الشيخ جيانغ',
     description: 'الشيخ الذي يتواصل مع البطل من معبد اله الحرب',
     color: '#55db3d',
@@ -2453,7 +2453,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649079753623,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'الطبيب المقدس',
     description: 'الطبيب الشاب اليد الشيطانية اخ الكيميائي-الابيض',
     color: '#ff7878',
@@ -2462,7 +2462,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1677877067082,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'الطفل المزدوج',
     description:
       'مهاجم الامبراطور الذي اراد اوراق-التناسخ من البطل بعد حصوله عليها في عالم الروح السماوية',
@@ -2472,7 +2472,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686181164732,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'العاهل الجهنمي',
     description: 'مهاجم الامبراطور واحد المؤسسين للهاوية في عالم الروح السماوية',
     color: '#ff7878',
@@ -2481,7 +2481,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686179739439,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'العجوز شينغ',
     description: 'الكيميائي الذي صنغ معجون الجسد للبطل من طائفة الشيطان',
     color: '#55db3d',
@@ -2490,7 +2490,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648734743054,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'العنقاء العذراء',
     description:
       'اخت الامير الذي قتله البطل قبل الصعود الى مدينة السماء في العالم تحت البحر الاسود وهي من طائفة في الغيمة-الجنوبة وخطيبها دي-زو',
@@ -2500,7 +2500,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676148681608,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'الغراب الاسود',
     description: 'البطل عندما كان غراب',
     color: '#6e9bff',
@@ -2510,7 +2510,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686559557860,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'القائد الاول',
     description: 'القائد الاول لطائفة البخور',
     color: '#55db3d',
@@ -2519,7 +2519,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648733241155,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'القائد الثاني',
     description: 'القائد الثاني لطائفة البخور',
     color: '#ff7878',
@@ -2528,7 +2528,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648731710687,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'القائد سون',
     description: 'الكيميائي في طائفة البخور ومدرب الحامي مو',
     color: '#55db3d',
@@ -2537,7 +2537,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648734795835,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'القديس الشيطاني التاسع',
     description: 'الامبراطور الدجاجة تلميذ البطل',
     color: '#55db3d',
@@ -2546,7 +2546,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674424863003,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'القمة السماوية',
     description:
       'الطائفة البشرية التي انشأها الجنرال الذي خدم البطل في الماضي وهي في عالم الكيمياء',
@@ -2556,7 +2556,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676569242110,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'القوس الحقيقي للتسعة كلمات',
     description:
       'اول كنز-حياة للبطل الذي نشأ من المعدن-الدنيوي-الابتداءي ذو التسعة كلمات الذي وجده بعد صعوده في قارب الجحيم',
@@ -2566,7 +2566,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1685906735142,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'الكيميائي الابيض',
     description: 'احد المعجزات الاربعة في عالم الكيمياء من عشيرة بيليا-ن',
     color: '#ff7878',
@@ -2575,7 +2575,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1677876016245,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'اللاواعي',
     description:
       'المجنح اللاواعي هو الامبراطور الاول الذي ظهر لسرقة اكاديمية الغطرسة',
@@ -2585,7 +2585,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698069922085,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'اللورد الملكي العنقاء',
     description: 'سيد عشيرة العنقاء الذي حضر حفل عيد الميلاد في العالم العاشر',
     color: '#ff7878',
@@ -2594,7 +2594,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687962774354,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'المتغيرات الستة للكونغ بينغ',
     description: 'مهارة الامبراطور لقصر الداو للبطل',
     color: '#ceab00',
@@ -2603,7 +2603,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674750257853,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'الملك القاتل للجوهرة السماوية',
     description: 'الذي حاصر طائفة البخور لقتل البطل وهو بنفس قوة ملك طائفة الشيطان',
     color: '#ff7878',
@@ -2612,7 +2612,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649078146471,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'المملكة الجنوبية السماوية',
     description: 'مملكة عشيرة نان تيان',
     color: '#c9a877',
@@ -2621,7 +2621,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648934991019,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'المملكة الخالدة',
     description:
       'المملكة التي لديها الشجرة الذين جائوا عند افتتاح المقبرة وسليلهم شيان-فان في العالم السفلي',
@@ -2631,7 +2631,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676310380396,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'المملكة القديمة لكل العصور',
     description:
       'المملكة في العالم السفلي التي لديها امبراطورين خالدين بفاصل حقبة واحدة، يعتقد ان الثاني تناسخ للاول',
@@ -2641,7 +2641,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676137098253,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'المينغ',
     description: 'العرق الذي حقبة البطل',
     color: '#ff7878',
@@ -2650,7 +2650,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698105277412,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'اله الحرب مو',
     description:
       'من معبد اله الحرب الذي دفنه في المقبرة ليعاد احيائه البطل عندما كان غراب',
@@ -2660,7 +2660,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1675079772382,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'امبراطور الجنوب',
     description:
       'متملص العصر الذي قابل البطل في العالم البوذي في عالم الامبراطور البشري',
@@ -2670,7 +2670,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687796598197,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'امبراطور العالم',
     description: 'امبراطور ال 12 ارادة الذي خطب البطل ابنته',
     color: '#ff7878',
@@ -2679,7 +2679,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698070421124,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'اوشين',
     description:
       'ذو الاكمال الكبير للبنية الجسدية الخالدة من طائفة الارتفاع-الخالد في عالم الامبراطور البشري',
@@ -2689,7 +2689,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687018828199,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'اير بو',
     description: 'الشاب الذي تهجم على البطل في الصحراء في عالم الامبراطور',
     color: '#ff7878',
@@ -2698,7 +2698,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678986073553,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'اير شي',
     description:
       'الامبراطور الخالد الثاني للمملكة-القديمة-لكل-العصور في العالم السفلي',
@@ -2708,7 +2708,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676137028764,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'با شيا',
     description:
       'الذي يمتلك بنية عاهل المستبد لدولة القديس-الخالد الذي حضر في اجتماع البوابة',
@@ -2718,7 +2718,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649513446016,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بازيليسق',
     description: 'الدجاجة الافعى في نطاق الوحش في عالم الكيمياء',
     color: '#55db3d',
@@ -2727,7 +2727,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678534970980,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'باو تشو',
     description:
       'الطفل المقدس لمدرسة جوهرة العمود المقدس الذي اكمل بنيته الجسدية برتبة ملك',
@@ -2737,7 +2737,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648844712248,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'باو غوي',
     description: 'رئيس طائفة نهر-الالف-شبوط',
     color: '#55db3d',
@@ -2746,7 +2746,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676033716274,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'باو يون',
     description: 'الاميرة التي يحبها شي شياو-داو',
     color: '#ff6fd6',
@@ -2755,7 +2755,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649443620450,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'باي جيانزن',
     description: 'سليلة ارض سيف-الاله المقدسة',
     color: '#ff6fd6',
@@ -2764,7 +2764,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648938093985,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'باي ليان',
     description:
       'الامبراطور الخالد من عالم الحجر-الطبي الذي اراد سرقة اكاديمية الغطرسة',
@@ -2774,7 +2774,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698069799898,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'باي ونغ',
     description:
       'الجد سيد الكيميائيين في مدينة الصنوبر قرب القرية التي نزل بها البطل في عالم الكيمياء',
@@ -2784,7 +2784,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676325678189,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بايلي',
     description:
       'العبقري الذي احب اميرة عشيرة جيل-ين الذي التقى بها في السفينة في العالم العاشر',
@@ -2794,7 +2794,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687982172283,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بحر دم يين يانغ',
     description: 'بدون وصف',
     color: '#ceab00',
@@ -2803,7 +2803,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648832457590,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بحيرة دونغتينغ',
     description: 'البحيرة التي تظم 3 عشائر في عالم الروح الساحرة',
     color: '#c9a877',
@@ -2812,7 +2812,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1684615530349,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بلد الغاضب الخالد المقدسة',
     description: 'الطائفة التي جاء منها سيما-لونغيون',
     color: '#c9a877',
@@ -2821,7 +2821,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649437590490,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بلد هدير الأسد',
     description: 'اول طائفة دخل اليها البطل عند ذهابه للاراضي الشرقية',
     color: '#c9a877',
@@ -2830,7 +2830,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649098571104,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بنية الارتفاع الخالدة',
     description:
       'احد البنيات الخالدة ال12 من الكتاب المقدس للبنيات الخالدة مشتقة من كلمة نقاء التي تجعله مستخدمها سريع ويوقف الوقت',
@@ -2840,7 +2840,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1677914776098,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بنية الجسدية الخالدة',
     description: 'احد البنيات ال 12 في المراكز الاولى',
     color: '#ceab00',
@@ -2849,7 +2849,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1675510848807,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بنية المحطمة للجحيم',
     description:
       'البنية الخالدة من البنيات ال 12 من الكتاب المقدس مشتقة من كلمة تلوث ذات الوزن الذي يدمر السماوات والارض',
@@ -2859,7 +2859,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676323749509,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بنية تدمير السماء',
     description:
       'البنية الخالدة من البنيات ال 12 من الكتاب المقدس مشتقة من كلمة تلوث ذات القوة التدميرية المهولة',
@@ -2869,7 +2869,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678644028574,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بنية جسدية خالدة',
     description: 'احد البنيات ال 12 في المراكز الاولى',
     color: '#ceab00',
@@ -2878,7 +2878,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1675510826494,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بنية نقص الفراغ',
     description:
       'احد البنيات الخالدة ال12 من الكتاب المقدس للبنيات الخالدة مشتقة من كللمة نقاء التي تجعله مستخدمها تتجنبه قوانين الداو',
@@ -2888,7 +2888,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676323698184,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بو سي',
     description:
       'الامبراطور الخالد لبوابة-اللاميتين في عالم الروح السماوية الذي يدعى ان لديه فن الخلود',
@@ -2898,7 +2898,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1685894937989,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بو ليانشيانغ',
     description: 'اميرة القارة-الوسطى زوجة البطل',
     color: '#ff6fd6',
@@ -2907,7 +2907,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681757876519,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بوابة الفراغ',
     description: 'احد الكنوز السماوية التسعة',
     color: '#ceab00',
@@ -2916,7 +2916,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649453447483,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بوابة قديس الشيطان التاسعة',
     description: 'طائفة الشيطان',
     color: '#c9a877',
@@ -2925,7 +2925,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648804800201,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بوابة هدير الأسد',
     description: 'اول طائفة دخل اليها البطل عند ذهابه للاراضي الشرقية',
     color: '#c9a877',
@@ -2934,7 +2934,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649098533574,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بوابة يين يانغ',
     description: 'البوابة الخاصة باحد العباقرة الثلاث في العالم السفلي تشان-يانغ',
     color: '#c9a877',
@@ -2943,7 +2943,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676217085291,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بينغ  يوكسيا',
     description: 'سليلة قصر ريشة-الجليد',
     color: '#ff6fd6',
@@ -2952,7 +2952,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649438070720,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بينغ تشوانغ',
     description: 'المتدرب البسيط من قبيلة ظل الثلج في العالم السفلي',
     color: '#55db3d',
@@ -2961,7 +2961,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676059140711,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بينغ وي',
     description: 'الشاب المتغطرس من محكمة-الجنون',
     color: '#ff7878',
@@ -2970,7 +2970,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698237361008,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بينغ يو',
     description: 'الامبراطورة الخالدة لقصر ريشة-الجليد',
     color: '#c3940f',
@@ -2979,7 +2979,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649430564613,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بينغ يي',
     description:
       'سيد عشيرة ال*له العالي الذي زار البطل عيد الميلاد في عشيرته في العالم العاشر',
@@ -2989,7 +2989,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687962843592,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'بينغ_يوكسيا',
     description: 'سليلة قصر ريشة-الجليد',
     color: '#ff6fd6',
@@ -2998,7 +2998,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649430576795,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تا كونغ',
     description: 'اخر امبراطور خالد',
     color: '#ff7878',
@@ -3007,7 +3007,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648851051121,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تاي لان',
     description: 'اخر من تبقى من عشيرة جنرالة البطل في نطاق الوحش في عالم الكيمياء',
     color: '#ff6fd6',
@@ -3016,7 +3016,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678527108092,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تاي يي',
     description: 'الشيطان النملة في عالم الكيمياء',
     color: '#55db3d',
@@ -3025,7 +3025,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676635108832,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تايشو ونغ',
     description:
       'العجوز سيد طائفة كف-ساغو ذو البصيرة الذي التقى بالبطل في بداية العالم العاشر',
@@ -3035,7 +3035,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687868768060,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تشان يانغ',
     description: 'احد العباقرة الابطال الثلاثة في العالم السفلي من نطاق-الاسلاف',
     color: '#ff7878',
@@ -3044,7 +3044,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676137881726,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تشانغ بيتو',
     description: 'العجوز الذي كان يحمي قاعة الاجنرالات في عالم الروح السماوي',
     color: '#55db3d',
@@ -3053,7 +3053,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1684611605708,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تشو جيانشي',
     description: 'سيدة مدرسة الربيع-المقدس في عالم الروح الساحرة',
     color: '#ff6fd6',
@@ -3062,7 +3062,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686491647148,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تشو يونتيان',
     description: 'اسم البطل في في الارك البوذي',
     color: '#6e9bff',
@@ -3071,7 +3071,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681756572622,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تشوانغ تشو',
     description: 'اميرة الاراضي-الوسطى',
     color: '#ff6fd6',
@@ -3080,7 +3080,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1675599749943,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تشوانغ هوانغ',
     description: 'الامبراطور الخالد لقبيلة شبح-ملك-الحشرات في العالم السفلي',
     color: '#ff7878',
@@ -3089,7 +3089,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698103308613,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تشوي تشي',
     description: 'امبراطور خالد دربه البطل',
     color: '#c3940f',
@@ -3098,7 +3098,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674743436421,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تشي تشن',
     description: 'اول امبراطور خالد لطائفة حارس-السماء',
     color: '#c3940f',
@@ -3107,7 +3107,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678990686720,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تشي زيشيان',
     description: 'التلميذ الاول لمملكة الليل-القرمزي في عالم الامبراطور البشري',
     color: '#ff6fd6',
@@ -3116,7 +3116,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1679089692832,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تشي شان',
     description: 'الابن المقدس لعشيرة شين الذي نشر شائعات على خادمة البطل الثانية',
     color: '#ff7878',
@@ -3125,7 +3125,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648911676979,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تشي قونغ',
     description: 'جد لاو-لي قائد العصابة الذي التقى بالبطل في بداية العالم العاشر',
     color: '#c3940f',
@@ -3134,7 +3134,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687941180452,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تشي هينغ',
     description: 'اصغر معلم في اكاديمية قارة العجرفة ذو 6 طواطم',
     color: '#ff7878',
@@ -3143,7 +3143,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698066506780,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تشي يون',
     description: 'احد شيوخ طائفة الشيطان الذي يساعد البطل',
     color: '#55db3d',
@@ -3152,7 +3152,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648918391777,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تشين جوانجوانج',
     description: 'العفريت القديم في مدينة-الاشباح',
     color: '#55db3d',
@@ -3161,7 +3161,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676147387923,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تشينغ لينغ',
     description: 'العبقرية لمحكمة-الجنون',
     color: '#ff6fd6',
@@ -3170,7 +3170,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698316990634,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تنغ جيوين',
     description: 'الشاب من الترنت الذي شاهد البطل مع الشيوخ عند شجرة-الاب',
     color: '#55db3d',
@@ -3179,7 +3179,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1682894976354,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تو بو يو',
     description: 'تلميذ سيدة طائفة البخور',
     color: '#55db3d',
@@ -3188,7 +3188,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648760471075,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تون ري',
     description: 'امبراطور طائفة الارتفاع الخالد الاول من العوالم التسعة',
     color: '#c3940f',
@@ -3197,7 +3197,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698109654946,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تون ريز',
     description: 'امبراطورة خالدة دربها البطل',
     color: '#c3940f',
@@ -3206,7 +3206,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674743464892,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تيان تو',
     description: 'امبراطور خالد لعرق-المينغ',
     color: '#c3940f',
@@ -3215,7 +3215,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678645818109,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تيان سويون',
     description:
       'ابنة الجد من العالم العاشر التي انقذها البطل من هناك واصبح لورد بوذي الان في معبد نالا-ندا',
@@ -3225,7 +3225,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1682720430307,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تيان لونهوي',
     description:
       'احد العباقرة الابطال الثلاثة في العالم السفلي من نسب المملكة-القديمة-لكل-العصور والذي جاء للعالم تحت البحر الاسود في مدينة-الاشباح',
@@ -3235,7 +3235,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676136828957,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تيان لي',
     description:
       'الامبراطورة الخالدة لنهر-الالف-شبوط صديقة التنين الاسود التي دربها البطل وهي اخر امبراطور خالد في العالم السفلي',
@@ -3245,7 +3245,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686562042436,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تيان ونغ',
     description: 'امبراطور الكيمياء البشري للحديقة-الهادئة في عالم الكيمياء',
     color: '#c3940f',
@@ -3254,7 +3254,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676569326465,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تيان يو',
     description: 'الطفل المقدس الذي اراد اتباع مي-سوياو',
     color: '#ff7878',
@@ -3263,7 +3263,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649446616474,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تيانبي',
     description:
       'العجوز من عشيرة شيونغ الذي حصل على التابوت من مقبرة العظام في عالم الروح السماوي',
@@ -3273,7 +3273,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1684789175240,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تيانشوان',
     description: 'احد المعلمين في اكاديمية الغطرسة التي خدمت البطل',
     color: '#ff6fd6',
@@ -3282,7 +3282,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697962314483,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'تيران الحياة',
     description:
       'النيران الخاصة بفرن-الحياة في قصر-القدر يعتقد العلماء انها يمكنها حرق اي شيء',
@@ -3292,7 +3292,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674590955076,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جدول الخيزران',
     description: 'مهاجم الامبرطور من تيرا-الاسلاف في عالم الروح السماوية',
     color: '#ff7878',
@@ -3301,7 +3301,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686179428094,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جو تشون',
     description:
       'اول امبراطور الخالد في عصر الاباطرة وهو من عرق الروح-الساحرة ولديه 11 قصر',
@@ -3311,7 +3311,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676257805618,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جونغسان',
     description: 'محضية العاهل في عالم الامبراطور الساحر',
     color: '#ff7878',
@@ -3320,7 +3320,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1684618384228,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جوهرة العمود المقدس',
     description:
       'المدرسة التي جاء منها الملك-الفاني الذي لديه البنية المحطمة-للجحيم في عالم الامبراطور-البشري',
@@ -3330,7 +3330,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681759024424,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جوي فوشو',
     description:
       'من جنس الاشباح الذي يحب اميرة بلد النمر هوانغ-فو ودعمها في حلبة الحياة او الموت',
@@ -3340,7 +3340,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649506062324,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جوياو',
     description: 'احد المعجزات الاربعة في عالم الكيمياء من دولة كا-و',
     color: '#ff7878',
@@ -3349,7 +3349,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1677875753048,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جيان تشن',
     description: 'الشيخ الاعلى الاول من الشيوخ العليا الاربعة لطائفة-الشيطان',
     color: '#55db3d',
@@ -3358,7 +3358,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1675457135388,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جيان شوان',
     description: 'الراهب في العالم السفلي',
     color: '#55db3d',
@@ -3367,7 +3367,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676139269371,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جيان شياوتي',
     description: 'خليفة عشيرة جيان في مدينة قوس قزح في عالم الروح الساحرة',
     color: '#55db3d',
@@ -3376,7 +3376,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1684615039751,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جيان لونجوي',
     description: 'السيد الحالي لعشيرة-جيان في عالم الروح الساحر',
     color: '#55db3d',
@@ -3385,7 +3385,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1684621667017,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جيان ووشوانغ',
     description: 'الفتاة العنقاء التي تكبرت على البطل في عالم الكيمياء',
     color: '#ff6fd6',
@@ -3394,7 +3394,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676624666509,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جيان ويندي',
     description: 'السلف المؤسس لعشيرة جيان في مدينة قوس القزح في عالم الروح الساحر',
     color: '#55db3d',
@@ -3403,7 +3403,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1684787028217,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جيانشي',
     description:
       'الاخ الاكبر ل لو-ري بطلة القصة الدرامية عند مجئ البطل الى المدينة الشهيرة في عالم الامبراطور البشري',
@@ -3413,7 +3413,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686491705475,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جيانغ زيو',
     description: 'عشيرة اقدم من عشيرة البخور',
     color: '#c9a877',
@@ -3422,7 +3422,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648805629320,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جيانغزيو تيايي',
     description: 'نبيل ملكي والاخ الاكبر لسيد عشيرة جيانغ زيو',
     color: '#ff7878',
@@ -3431,7 +3431,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648806104154,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جياو هينغ',
     description:
       'اول امبراطور للبشي ذي ال 12 قصر الوحيد وهو اعظم امبراطور خالد بعد لي-تشي',
@@ -3441,7 +3441,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1685907675060,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جيكونغ جيان',
     description: 'تلميذ سحق جبل-الفضاء الذي قتله البطل في مدينة السماء القديمة',
     color: '#ff7878',
@@ -3450,7 +3450,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649444436779,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جيكونغ وودي',
     description: 'سليل جبل سحق-الفراغ الذي حضر في وعض مي-سوياو',
     color: '#ff7878',
@@ -3459,7 +3459,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649444286494,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جيكونغ ووندي',
     description: 'سليل جبل سحق-الفراغ ذو ثلال قدرات قديس',
     color: '#ff7878',
@@ -3468,7 +3468,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649453335300,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جين شينغ',
     description: 'العجوز المتستر في الاكاديمية اصبح تلميذ البطل في فصل المكتبة',
     color: '#55db3d',
@@ -3477,7 +3477,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697960787145,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جين قه',
     description: 'من عشيرة عاهل-الحرب وصهر عشيرة العنقاء في العالم العاشر',
     color: '#ff7878',
@@ -3486,7 +3486,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687963124367,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جين لونغ',
     description: 'السيد الشاب لبوابة الشمس في جيلين الذي دخل في الارض المشؤومة',
     color: '#ff7878',
@@ -3495,7 +3495,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687942104996,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جينغشيان',
     description:
       'ذات القدر الخالد التي تستطيع فهم قوانين الامبراطور بنظرة من قلعة الوحش في عالم الكيمياء',
@@ -3505,7 +3505,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678536979672,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'جيوتشو',
     description: 'تلميذ ثو-زون في مدينة التنين في عالم الامبراطور البشري',
     color: '#ff7878',
@@ -3514,7 +3514,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686498140302,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'داوست بينغ',
     description:
       'الداوي الذي تدرب على بنية النوم-الابدي الذي كان نائم على الجبل قرب دودة-الفراغ',
@@ -3524,7 +3524,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1675676451374,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'دو يوان غوانغ',
     description: 'تلميذ خارجي لطائفة الشيطان في البداية',
     color: '#ff7878',
@@ -3533,7 +3533,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648655768190,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'دونغ فانغ',
     description:
       'الخطيب الذي قابل البطل في القصة الدرامية التي دخل بها البطل في بحر التنين في عالم الامبراطور البشري',
@@ -3543,7 +3543,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686491544894,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'دونغ لونغ',
     description: 'القائد الزائر لطائفة البخور',
     color: '#ff7878',
@@ -3552,7 +3552,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648724219310,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'دي جيان',
     description:
       'الامبراطور الخالد الذي انشأ عشيرة الفتاة العنقاء التي التقت البطل في عالم الكيمياء',
@@ -3562,7 +3562,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676383292231,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'دي زو',
     description:
       'احد العباقرة الابطال الثلاثة والسليل الوحيد لعرش العظام-الوافرة في العالم السفلي',
@@ -3572,7 +3572,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676137909918,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'دي وي',
     description:
       'الجد الذي ساعد البطل في العالم الامبراطوري في عالم الامبراطور البشري',
@@ -3582,7 +3582,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1682709736004,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'دي يو',
     description:
       'الامبراطور الخالد الذي عاش ل 5 اجيال وبعدها اصبح امبراطور خالد في العالم السفلي وانشأ مملكة-الخلود',
@@ -3592,7 +3592,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676257540838,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'رافع الحجارة',
     description: 'خريج اكاديمية الغطرسة الذي جاء لمساعدتها',
     color: '#55db3d',
@@ -3601,7 +3601,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698069707051,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'رونان',
     description:
       'سيدة الفنون القتالية في عالم الروح السماوي وهي قائدة الفيلق الرابع للبطل فيلق طائر-الكركي-الابيض',
@@ -3611,7 +3611,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686144414671,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'رين شيان',
     description:
       'الامبراطور الخالد الخامس والاخير لطائفة الارتفاع-الخالد في عالم الامبراطور البشري',
@@ -3621,7 +3621,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686579109460,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'زان شيان',
     description: 'القانون العالمي الذي خدعه البطل في نهاية عالم الكيمياء',
     color: '#55db3d',
@@ -3630,7 +3630,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678985552654,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'زهان هو',
     description: 'احد نبلاء مملكة الجوهرة-السماوية',
     color: '#ff7878',
@@ -3639,7 +3639,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674598538035,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'زهانغ',
     description: 'صديق هواي-رين الذي يكره البطل',
     color: '#ff7878',
@@ -3648,7 +3648,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674598553601,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'زهانغ يو',
     description:
       'اقدم متدرب في الطائفة الخارجية الذي كان شجاع ودربه البطل مع التلاميذ',
@@ -3658,7 +3658,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674598597794,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'زو تشونج',
     description: 'الخالدة ما-جو ذاتت البنية الجسدية الابدية',
     color: '#c3940f',
@@ -3667,7 +3667,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649455319984,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'زو تشي',
     description:
       'الامبراطور الخالد الذي جلبه البطل الى تلال-الشر-المنتشر لزيادة فهمه',
@@ -3677,7 +3677,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674766497828,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'زو هوانغوو',
     description: 'القديس الذي جاء الى حلبة الموت والحياة لانقاذ جوي-فوشو',
     color: '#ff7878',
@@ -3686,7 +3686,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649507172504,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'زونتيان',
     description: 'متملص العصر صديق الامبراطور تاكو-نغ في عالم الروح السماوية',
     color: '#ff7878',
@@ -3695,7 +3695,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1684871020802,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'زي شان',
     description: 'نبيل ملكي لطائفة الجوهرة-السماوية الذي اتى في وقت الاعدام',
     color: '#ff7878',
@@ -3704,7 +3704,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674673869677,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'زي يان',
     description: 'اللورد الملكي للخيزران-العملاق في عالم الكيمياء',
     color: '#ff6fd6',
@@ -3713,7 +3713,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676322773650,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'زيجي',
     description: 'الثعلب الابيض الذي قصف البطل جبهته من محكمة-الجنون',
     color: '#ff7878',
@@ -3722,7 +3722,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698318131281,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'سان غوي يي',
     description: 'الذي اعطى البطل امر طائقة البخور عند ايصاله لها',
     color: '#55db3d',
@@ -3731,7 +3731,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648592056165,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'سحق جبل الفضاء',
     description: 'طائفة الامبراطور تا كونغ',
     color: '#ff7878',
@@ -3740,7 +3740,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648851086183,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'سلطة السماء',
     description: 'مجموعة الاباطرة الذين من الاعراق الثلاثة في العالم العاشر',
     color: '#ff7878',
@@ -3749,7 +3749,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698099926420,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'سلف هوانغفو',
     description:
       'سلف اول عشيرة جاء للانتقام من ضرب سليلهم من قبل البطل في مدينة الخيزران-العملاق في بداية عالم الكيمياء',
@@ -3759,7 +3759,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676566972969,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'سو رو',
     description: 'الجنرال التي ارادها البطل ان تصبح زوجة مين-رين ولكنه لم يحبها',
     color: '#ff6fd6',
@@ -3768,7 +3768,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674748248433,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'سو شين',
     description: 'الامبراطورة التي اصبحت محضية البطل من طائفة حراس-السماء',
     color: '#ff6fd6',
@@ -3777,7 +3777,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678991373863,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'سو مينجشين',
     description: 'ملك بلد الثور في نطاق الوحش في عالم الكيمياء',
     color: '#55db3d',
@@ -3786,7 +3786,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678526854709,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'سو يو هي',
     description: 'مشاعر الحب المتبقية للامبراطور مين-رين',
     color: '#ff6fd6',
@@ -3796,7 +3796,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674667764434,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'سي تو',
     description: 'الكائن المستنير الذي عادى البطل قبل فتح بوابات شر-التلال-المنتشرة',
     color: '#ff7878',
@@ -3805,7 +3805,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674758320559,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'سي يوانيوان',
     description: 'مربية نحل اليشم في عالم الامبراطور البشري',
     color: '#ff6fd6',
@@ -3814,7 +3814,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1679035178105,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'سيجينغ',
     description: 'خادمة البطل الاولى في عالم الخالدين الثلاث من عرق صمت-الهلاك',
     color: '#ff6fd6',
@@ -3823,7 +3823,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698154743843,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'سيكونغ توتيان',
     description: 'اللص صاحب التحولات ال 989',
     color: '#55db3d',
@@ -3832,7 +3832,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1675618247904,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'سيما لونغيون',
     description:
       'الشاب من بلد القديس البدل صاحب البنية الجسدية الاسطورية في مزاد الكيميائي',
@@ -3842,7 +3842,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649437397641,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شانغ يانغ',
     description: 'الاخ الاول في عشيرة جيل-ين الذي استقبل البطل في العالم العاشر',
     color: '#ff7878',
@@ -3851,7 +3851,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687949366720,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شاولونغ',
     description:
       'من الجناح-السماوي الذي دعا البطل لشرب النبيذ في مدينة العظام في يعالم الروح السماوي',
@@ -3861,7 +3861,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1684792558427,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شبح ملك الحشرات',
     description:
       'التي لديها امبراطور خالد واحد الذي وجد ارث قديم للحشرات قبل عصر الاباطرة في العالم السفلي',
@@ -3871,7 +3871,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676138796806,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شجرة الاب',
     description:
       'شجرة-الاب-لكل-الصنوبر الذي حرره البطل من ارتباطه بوريد جبال كل الصنوبر واصبح احد جنرالاته في عالم الكيمياء',
@@ -3881,7 +3881,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678651859886,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شجرة الحياة',
     description: 'احد اسرار قصر القدر للمتدرب يعتقد العلماء انها تجلب الحظ للشخص',
     color: '#ceab00',
@@ -3890,7 +3890,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674591002766,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شر التلال المنتشر',
     description: 'الارض التي تمتلكها طائفة-البخور التي فيها كنوز',
     color: '#c9a877',
@@ -3899,7 +3899,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674758350703,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شمس الجنوب',
     description: 'ذو ال 3 طواطم تلميذ العاهل جي-لين في العالم العاشر',
     color: '#55db3d',
@@ -3908,7 +3908,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687952552062,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شمس النقية',
     description: 'الداوي من المدارس الاربعة الذي اعجب به البطل في عالم الروح السماوي',
     color: '#55db3d',
@@ -3917,7 +3917,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1684870981875,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شو بي',
     description:
       'تلميذة البطل التي اختارها رئيسة للتلاميذ وكافئها بحلقة عمر مليون سنة',
@@ -3927,7 +3927,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648842395001,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شو هوي',
     description: 'الطالب الذي اراد قتل البطل في طائفة الشيطان عند قتل صديقه',
     color: '#ff7878',
@@ -3936,7 +3936,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648656951428,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شو وي',
     description:
       'من عشيرة تشين في محكمة-الجنون الذي جلبه بينغ-وي بعد ان تم صفعه للمرة الثانية',
@@ -3946,7 +3946,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698318100547,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شوان شاوجون',
     description:
       'منافس لو-بايكيو الذي جاء مع المستشار الامبراطوري لاستفسار البطل عن الجزيرة',
@@ -3956,7 +3956,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676030215708,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شي سو',
     description: 'الذي كلف بحماية البطل من طائفة كف-ساغو في العالم العاشر',
     color: '#55db3d',
@@ -3965,7 +3965,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687859614672,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شي شياو داو',
     description: 'الشاب من عشيرة شي الذي رآه البطل عند البركة مع قصر قدر سلحفاة واسد',
     color: '#55db3d',
@@ -3974,7 +3974,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649081328479,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شي غان دانغ',
     description: 'العجوز خادم شين باو خادمة البطل الثانية',
     color: '#55db3d',
@@ -3983,7 +3983,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648834706873,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شي هاو',
     description: 'الشاب الكيميائي الذي انقذ البطل عند وصوله الى عالم-الحجر-الطبي',
     color: '#55db3d',
@@ -3992,7 +3992,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676322016999,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شيان فان',
     description:
       'البشري سليل المملكة-الخالدة-البسيطة الذي جاء وعارض دي-زو عندما رمى العلم في ارض البطل',
@@ -4002,7 +4002,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676219193963,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شيان لي',
     description: 'الامبراطور الخالد في العالم السفلي الذي انشأ طائفة نهر-الالف-شبوط',
     color: '#c3940f',
@@ -4011,7 +4011,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676032010967,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شياو دي',
     description: 'اميرة بلاد هدير الاسد',
     color: '#ff6fd6',
@@ -4021,7 +4021,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1675633196689,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شياوشان',
     description:
       'الفتاة الاولى التي التقاها البطل في طائفة كف-ساغو اول مكان للبطل في العالم العاشر',
@@ -4031,7 +4031,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687859365760,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شياوشياو',
     description:
       'اميرة الجزيرة الذهبية التي ارادوا تزويجها للبطل في عالم الروح-الساحرة',
@@ -4042,7 +4042,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1685887068327,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شين باو جياو',
     description: 'ثاني خادمة للبطل من عشيرة شين',
     color: '#ff6fd6',
@@ -4052,7 +4052,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674668215076,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شين منغتيان',
     description: 'السلف المؤسس للحلم-السماوي في عالم الروح السماوية',
     color: '#ff7878',
@@ -4061,7 +4061,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686179943764,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شين مينهوي',
     description:
       'سليل طائفة ازور بعد ان قتل البطل سليلهم السابق ف يعالم الامبراطور البشري',
@@ -4071,7 +4071,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1682694456138,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شين يو',
     description: 'الامبراطور الخالد لطائفة حارس-السماء',
     color: '#c3940f',
@@ -4080,7 +4080,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678990619901,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شينغ بينغ',
     description: 'العجوز من محكمة-الجنون الذي رافق البطل اليها',
     color: '#55db3d',
@@ -4089,7 +4089,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698154992786,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شينغ تيان',
     description: 'طفل الداو من عشيرة طائفة الاله-السماوية الذي كان خطيب شين باو-جياو',
     color: '#ff7878',
@@ -4098,7 +4098,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648928486387,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شينغ شوان',
     description: 'امير مملكة ازور',
     color: '#ff7878',
@@ -4107,7 +4107,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648936861989,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شينغ فينغ',
     description: 'متحد الامبراطور المنعزل في الحانة صديق التنين-الاسود',
     color: '#55db3d',
@@ -4116,7 +4116,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686571944955,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شينغ-شوان يوانشان',
     description: 'ابن عم شينغ-شوان-يوانهي',
     color: '#ff7878',
@@ -4125,7 +4125,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648940034046,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شينغ-شوان يوانهي',
     description: 'العجوز التاسع لمملكة ازور',
     color: '#ff7878',
@@ -4134,7 +4134,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648936910893,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'شيو شوي',
     description: 'الامبراطورة سلف مدرسة النهر-الخالد',
     color: '#c3940f',
@@ -4143,7 +4143,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649443724633,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'طائفة أزور القديمة الغامضة',
     description: 'المملكة التي احتوت على امبراطوريين خالدين',
     color: '#c9a877',
@@ -4152,7 +4152,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648937146781,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'طائفة الارتفاع الخالدة',
     description: 'التي انشأها الامبراطور الخالد فا-ي الذي افتتح 11 قصر',
     color: '#c9a877',
@@ -4161,7 +4161,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676257885649,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'طائفة الاله السماوي ',
     description: 'التي هزمت طائفة البخور قديما',
     color: '#c9a877',
@@ -4170,7 +4170,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648935984833,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'طائفة الاله السماوية',
     description: 'التي هزمت طائفة البخور قديما',
     color: '#c9a877',
@@ -4179,7 +4179,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648843671706,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'طائفة البخور المطهرة العتيقة',
     description: 'طائفة البطل عند رجوعه للحياة',
     color: '#c9a877',
@@ -4188,7 +4188,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648838102368,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'طائفة حارس السماء',
     description:
       'الطائفة ذات ال 3 اباطرة التي التي خدمت البطل في حربه قديما وزارها البطل عند رجوعه الى عالم الامبراطور البشري',
@@ -4198,7 +4198,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678990734125,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'طائفة حراس السماء',
     description:
       'الطائفة ذات ال 3 اباطرة التي التي خدمت البطل في حربه قديما وزارها البطل عند رجوعه الى عالم الامبراطور البشري',
@@ -4208,7 +4208,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678990768613,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'طفل الشر',
     description: 'سليل طائفة شبح-ملك-الحشرات في العالم السفلي',
     color: '#ff7878',
@@ -4217,7 +4217,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676138891539,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'طفل المائة عشيرة',
     description:
       'من عرق الاشباح الذي دعا البطل للانضمام الى مجموعة طفل-الهلال في العالم تحت البحر الاسود',
@@ -4227,7 +4227,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676144588552,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'طفل الهلال',
     description:
       'قائد فريق العباقرة الذي اراد عبور البحر في العالم تحت البحر الاسود في العالم السفلي',
@@ -4237,7 +4237,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676138939085,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'عاهل الحرب',
     description: 'طائفة جين-قه صهر عشيرة العنقاء في العالم العاشر',
     color: '#c9a877',
@@ -4246,7 +4246,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687963162812,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'عبور مستنقع السفلي',
     description:
       'الذي انشأها الامبراطور الخالد مينغ-دو واتى منها الراهب في العالم السفلي',
@@ -4256,7 +4256,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676139385893,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'عرش العظام الوافرة',
     description: 'طائفة في العالم السفلي لديها نسب 3 اباطرة',
     color: '#c9a877',
@@ -4265,7 +4265,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676061023246,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'عشيرة تاي',
     description:
       'العشيرة التي انشأتها اقوى جنرال انثى لدى البطل في الماضي في مجال الوحش في عالم الكيمياء',
@@ -4275,7 +4275,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678528003041,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'عشيرة تشينغ',
     description:
       'الطائفة التي ارادت الاستيلاء على مدينة الخيزران-العملاق في بداية عالم الكيمياء',
@@ -4285,7 +4285,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676567068752,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'عشيرة نان تيان',
     description: 'عشيرة اقدم من عشيرة جيانغ زيو',
     color: '#c9a877',
@@ -4294,7 +4294,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648758134689,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'عشيرة هوانغفو',
     description: 'اول عشيرة هاجمت البطل في عالم الكيمياء',
     color: '#c9a877',
@@ -4303,7 +4303,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676492148814,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'عمود الحياة',
     description: 'احد اسرار قصر القدر للمتدرب يعتقد العلماء انه مصدر الحياة',
     color: '#ceab00',
@@ -4312,7 +4312,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674591090585,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'غراب الظلام',
     description: 'البطل في الماضي',
     color: '#6e9bff',
@@ -4321,7 +4321,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649080534280,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'غضب القديس الخالد',
     description: 'الطائفة التي ارادت خطبة شياو-دي',
     color: '#c9a877',
@@ -4330,7 +4330,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649512663893,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'غو تاي تشو',
     description: 'القائد الاول لطائفة البخور',
     color: '#55db3d',
@@ -4339,7 +4339,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648754746564,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'غو تشون',
     description: 'اول امبراطور خالد من عرق الروح الساحرة',
     color: '#c3940f',
@@ -4348,7 +4348,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648934746326,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'غو زون',
     description:
       'السلف المعادي للبطل في مدينة-السماء-الحامية التابعة الى الملك-التنين-الاسود',
@@ -4358,7 +4358,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1675607052919,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'غوان لو',
     description:
       'رئيس عشيرة جيلين الذي ترأس الاجتماع عند مجيء البطل اليهم في العالم العاشر',
@@ -4368,7 +4368,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687950151668,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'فان تشن',
     description: 'الامبراطور الثاني للمملكة-الخالدة في العالم السفلي',
     color: '#c3940f',
@@ -4377,7 +4377,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676310359197,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'فاي ',
     description: 'الامبراطور الذي انشأ طائفة-الارتفاع-الساحقة ولديه 11 قصر',
     color: '#c3940f',
@@ -4386,7 +4386,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676257793549,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'فرن الحياة',
     description:
       'احد اسرار قصر القدر للمتدرب يعتقد العلماء ان نيرانه نيران-الحياة يمكنها حرق اي شيء',
@@ -4396,7 +4396,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674590914779,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'فنيغ شوي',
     description: 'توزيع العناصر الخمسة في جغرافية الارض',
     color: '#ceab00',
@@ -4405,7 +4405,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1675619747586,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'فيان',
     description:
       'اخت الامير الذي قتله البطل في مدينة قوس القزح في عالم الروح الساحرة',
@@ -4415,7 +4415,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1684620841196,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'فينغ شوي',
     description: 'توزيع العناصر الخمسة في جغرافية الارض',
     color: '#ceab00',
@@ -4424,7 +4424,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1675619783216,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'فينغ يي',
     description:
       'تلميذ العبقري الذي احب اميرة عشيرة جيل-ين الذي التقى بها في السفينة في العالم العاشر',
@@ -4434,7 +4434,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687982203721,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'فينغ يينغ',
     description: 'سيدة قلعة التنين التي التقت بالبطل على السفينة في العالم العاشر',
     color: '#ff6fd6',
@@ -4443,7 +4443,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687983779365,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'فينغين',
     description: 'مهاجم الامبراطور للمحار-القاصف في عالم الروح السماوي',
     color: '#ff7878',
@@ -4452,7 +4452,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686178648299,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'قانون قفل السماء التسعة شموس',
     description:
       'مهارة النار الشريرة لطائفة البخور والتي احرقت لينغ_شينغ فينغ ولي-شي من طائفة الشيطان',
@@ -4462,7 +4462,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648930103372,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'قصر القدر',
     description: 'الحد الاركان الثلاثة للمتدرب الذي يحتوي على 4 اسرار',
     color: '#ceab00',
@@ -4471,7 +4471,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674598721314,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'قصر ريشة الجليد',
     description: 'القصر من المدن الشرقية الذي حضر المزاد العلني للكيميائي',
     color: '#c9a877',
@@ -4480,7 +4480,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649423093327,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'قو زون',
     description: 'السلف من مدينة التنين الذي توسل التنين-الاسود للبطل لتركه يعيش',
     color: '#ff7878',
@@ -4489,7 +4489,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686494080236,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'قو قوه',
     description: 'امبراطور-الجنوب',
     color: '#55db3d',
@@ -4498,7 +4498,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687796645775,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'قوان فينغ',
     description: 'الامبراطور الخالد الثالث لمدرسة-النهر-الخالد',
     color: '#c3940f',
@@ -4507,7 +4507,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1675625073649,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'قونغ شينغ',
     description: 'سليل العنقاء الذي حضر حفل عيد الميلاد في العالم العاشر',
     color: '#ff7878',
@@ -4516,7 +4516,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687962750189,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'قوه قوه',
     description: 'امبراطور-الجنوب',
     color: '#55db3d',
@@ -4525,7 +4525,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698099491789,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'كاو شيونغ',
     description: 'القائد الثاني لطائفة البخور',
     color: '#ff7878',
@@ -4534,7 +4534,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648731704400,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'كاو كوجيان',
     description: 'اصغر تلميذ لمتملص الععصر منغ-زونتيان في عالم الروح السماوي',
     color: '#ff7878',
@@ -4543,7 +4543,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1684842725870,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'كل الصنوبر',
     description:
       'شجرة-الاب-لكل-الصنوبر الذي حرره البطل من ارتباطه بوريد جبال كل الصنوبر واصبح احد جنرالاته في عالم الكيمياء',
@@ -4553,7 +4553,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678651898785,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'كو داو لي',
     description: 'تلميذ الجيل الثالث الذي نصح البطل في المكتبة',
     color: '#55db3d',
@@ -4562,7 +4562,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648734311445,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'كون بينغ',
     description: 'مهارة البطل الاساسية للسرعة',
     color: '#ceab00',
@@ -4571,7 +4571,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648735730929,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'كونغ كينرو',
     description: 'سيدة الوادي-المتقن في عالم الروح-السماوي',
     color: '#ff6fd6',
@@ -4580,7 +4580,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1682892918674,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'كوينينغ',
     description: 'سليلة الملك-التنين-الاسود',
     color: '#ff6fd6',
@@ -4589,7 +4589,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687026255313,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'كيورونغ',
     description:
       'زعيمة فريق قبيلة الظل الابيض الذي رافقهم البطل في المقبرة في العالم السفلي',
@@ -4600,7 +4600,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676145567365,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'كيورونغ وانكسو',
     description:
       'زعيمة فريق قبيلة الظل الابيض الذي رافقهم البطل في المقبرة في العالم السفلي',
@@ -4611,7 +4611,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676145578013,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'لان يونزو',
     description: 'التي تورط البطل في خطبتها في العالم السفلي',
     color: '#ff6fd6',
@@ -4620,7 +4620,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676033591193,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'لانغ شوان',
     description: 'المثمن الشاب الموهوب الذي يثمن اجنة-الداو في بداية العالم العاشر',
     color: '#55db3d',
@@ -4629,7 +4629,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687865912891,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'لاولي',
     description: 'رئيس العصابة الذي التقى بالبطل في بداية العالم العاشر',
     color: '#55db3d',
@@ -4638,7 +4638,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687892415837,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'لو بايكيو',
     description:
       'الفتاة التي دعت البطل لركوب السفينة وهي لورد منطقة التيار الثابت بلد جزر الالف في العالم السفلي',
@@ -4648,7 +4648,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676026058471,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'لو ري',
     description: 'ملك الشياطين لطائفة الشيطان الحالية',
     color: '#55db3d',
@@ -4657,7 +4657,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648663858938,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'لونغ زونتان',
     description:
       'الرجل في منتصف العمر العبقري الذي ولد في العصر الصعب للداو والذي لديه تدريب ملك واكمال كبير لنبية القديس الالماس',
@@ -4667,7 +4667,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676261138390,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'لونغ شوان',
     description: 'السيدة من جرف-التنين التي التقت بالبطل في المعبد البوذي',
     color: '#ff6fd6',
@@ -4676,7 +4676,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686493193209,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'لونغ شياو',
     description: 'الفتاة التي على القماش من الحقبة المفقودة',
     color: '#ff6fd6',
@@ -4685,7 +4685,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698111205505,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'لي تشي',
     description: 'بطل الرواية',
     color: '#6e9bff',
@@ -4694,7 +4694,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674667658602,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'لي تيانهاو',
     description: 'حفيد الاله-السامي في العالم العاشر',
     color: '#ff7878',
@@ -4703,7 +4703,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687943368454,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'لي شوانغيان',
     description: 'اول خادمة للبطل من طائفة الشيطان',
     color: '#ff6fd6',
@@ -4713,7 +4713,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1682690474414,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'لي شي',
     description: 'شيخ من طائفة الشيطان مدرب لينغ شينغ-فينغ',
     color: '#ff7878',
@@ -4722,7 +4722,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1675501609232,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'لي فانمنغ',
     description:
       'العجوز الذي حارب الامبراطور الخالد تا-كونغ وطرده من عالم الكيمياء قديما',
@@ -4732,7 +4732,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678650102658,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'لي يي',
     description: 'التلميذ الاول لاكاديمية الداو-السماوي',
     color: '#55db3d',
@@ -4741,7 +4741,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649454640182,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'لين تياندي',
     description: 'العبقري الاول في الاراضي الغربية في عالم الامبراطور البشري',
     color: '#ff7878',
@@ -4750,7 +4750,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1679130528264,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'لين ري',
     description: 'الملك الشيطان لبوابة-الشيطان',
     color: '#55db3d',
@@ -4759,7 +4759,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1675079725535,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'لين مياو',
     description: 'الفتاة من عشيرة لين في البحيرة في عالم الروح الساحر',
     color: '#ff6fd6',
@@ -4768,7 +4768,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1684784538781,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'لين هاو',
     description:
       'تلميذ طائفة الارتفاع-الخالد الذي كان قرب جبل الخطوات الاثني عشر في عالم الامبراطور البشري',
@@ -4778,7 +4778,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686568046218,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'لينغ شي زهي',
     description: 'تلميذ القائد الثاني في طائفة البخور',
     color: '#ff7878',
@@ -4787,7 +4787,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648722866818,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'لينغ شينغ فينغ',
     description: 'اقدم تلميذ لطائفة الشيطان',
     color: '#ff7878',
@@ -4796,7 +4796,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648803960084,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'ليو رويان',
     description:
       'سيدة مدرسة التهام-الشر التي تدربت على بنية التهام-الشر في عالم الروح الساحرة',
@@ -4806,7 +4806,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1684607303657,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'ليو شان جان',
     description:
       'تلميذ القائد الاعلى بث الرعب في قلب طائفة الاله-السماوي قبل 30000 سنة',
@@ -4816,7 +4816,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674674139573,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'ما شينغ',
     description:
       'الاخ الصغير في عشيرة جيل-ين الذي اراد من خدم البطل تسليم اسلحتهم في العالم العاشر',
@@ -4826,7 +4826,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687949218517,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'ماجو',
     description: 'الخالدة زو-تشونج ذاتت البنية الجسدية الابدية',
     color: '#c3940f',
@@ -4835,7 +4835,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649455310773,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'ماغو',
     description: 'العشق',
     color: '#ff6fd6',
@@ -4844,7 +4844,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698099043963,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'محكمة الجنون',
     description:
       'النسب الذي انشأه الشخصية التي تبادل البطل معها بحر الذكريات في عالم الحجر-الطبي',
@@ -4854,7 +4854,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698155221116,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مدرسة النهر الخالد',
     description: 'الطائفة رقم 1 في المدن الشرقية',
     color: '#c9a877',
@@ -4863,7 +4863,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649443254668,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مدرسة جوهرة العمود المقدس',
     description: 'طائفة شين-باو-جياو ثاني خادمة للبطل',
     color: '#c9a877',
@@ -4872,7 +4872,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674756429391,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مدرسة عواء النمر',
     description: 'الطائفة التي جاء منها السليل الذي خطب باو-يون',
     color: '#c9a877',
@@ -4881,7 +4881,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649512629204,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مدينة السماء الحامية',
     description: 'مدينة الملك-التنين-الاسود',
     color: '#c9a877',
@@ -4890,7 +4890,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1675606671779,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مذبحة الروح',
     description: 'الهجوم فوق المذبحة-الامبراطورية',
     color: '#ceab00',
@@ -4899,7 +4899,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686167178944,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مذبحة امبراطورية',
     description: 'الهجوم النهائي لكنوز-الحقيقية للامبراطور الخالد',
     color: '#ceab00',
@@ -4908,7 +4908,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686167153935,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مروض التنين',
     description:
       'المتدرب على متن السفينة الذي اقترح على البطل المساعدة ظنا منه انه يتعرض للتنمر في العالم العاشر',
@@ -4918,7 +4918,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687982778165,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'معبد اله الحرب',
     description: 'بدون وصف',
     color: '#c9a877',
@@ -4927,7 +4927,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649079894638,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مغارة كل السماء',
     description:
       'المكان الذي يدعوه البطل ببلده والذي جاء منها الشيخ الذي اراد فتح الصندوق الاسود في مدينة-الجثث والذي اراد البطل كتلميذ له',
@@ -4937,7 +4937,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1675503108345,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'ملك التنين الاسود',
     description: 'تلميذ البطل الذي عاصر 3 حقب ومزق ارادة السماء عند قتاله مع تاك-ونغ',
     color: '#c3940f',
@@ -4946,7 +4946,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686150720606,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'ملكة مياه اليشم',
     description:
       'من عرق الروح الساحرة التي ذهبت الى عالم المياه في ارض-الدفن في العالم السفلي',
@@ -4956,7 +4956,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676260551040,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مملكة أزور الغامضة القديمة',
     description: 'المملكة التي احتوت على امبراطوريين خالدين',
     color: '#c9a877',
@@ -4965,7 +4965,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648803887840,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مملكة التألق القديمة',
     description: 'الطائفة التي جاء منها جوي-فوشو الذي مات في حلبة الحياة او الموت',
     color: '#c9a877',
@@ -4974,7 +4974,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649512777502,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مملكة الجنوب السماوي',
     description: 'مملكة عشيرة نان تيان',
     color: '#c9a877',
@@ -4983,7 +4983,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648758140965,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مملكة الجوهرة السماوية',
     description: 'المملكة التي حاربت طائفة-البخور قبل 3000 عام',
     color: '#c9a877',
@@ -4992,7 +4992,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674673916275,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مملكة الخلود',
     description:
       'طائفة الامبراطور الذي عاش 5 اجيال واصبح بعدها امبراطور خالد والتي لديها شجرة جلبتها الى عالم الخشب في ارض-الدفن في العالم السفلي',
@@ -5002,7 +5002,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676257607390,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مملكة الليل القرمزي',
     description:
       'الطائفة التي عادت البطل في الاراضي الغربية في عالم الامبراطور البشري',
@@ -5012,7 +5012,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1679089650424,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'منغ زونتيان',
     description: 'متملص العصر صديق الامبراطور تاكو-نغ في عالم الروح السماوية',
     color: '#ff7878',
@@ -5021,7 +5021,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1684790296291,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مو تشن',
     description: 'تلميذ اله الحرب مو',
     color: '#c3940f',
@@ -5030,7 +5030,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649078591181,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مو تيان',
     description: 'الامبراطور الخالد لطائفة حارس-السماء',
     color: '#c3940f',
@@ -5039,7 +5039,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678990624864,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مو شاوهوانغ',
     description: 'الرجل ذو السلاسل امام بنى الاسلحة في طائفة-البخور',
     color: '#55db3d',
@@ -5048,7 +5048,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1682722847973,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مو شاوودي',
     description: 'الشيخ السكير في طائفة-البخور',
     color: '#55db3d',
@@ -5057,7 +5057,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1682721965865,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مو شياو',
     description: 'احد المعجزات الاربعة في عالم الكيمياء من مملكة الكيمياء',
     color: '#ff7878',
@@ -5066,7 +5066,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1677875735989,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مو ليدو',
     description:
       'سليل بوابة شيطان-السماء الذي التجأ اليه المغتال في مدينة-الاشباح في العالم السفلي',
@@ -5076,7 +5076,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676132017912,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مو يويلي',
     description: 'جنية-الاداراك-القمري',
     color: '#ff6fd6',
@@ -5085,7 +5085,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698148274079,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مي اوكسه',
     description:
       'العبقري من الحافة الامبراطورية في عالم الكيمياء اخ مي-اونان التي دربها التمثال الحجري الذي نفي من عالم الوحش-بيان',
@@ -5095,7 +5095,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678649894379,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مي اونان',
     description:
       'المتدربة لدى الحجر التمثال الذي اغرقه البطل في المستنقع سابقاً في مجال الوحش في عالم الكيمياء',
@@ -5105,7 +5105,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678640722748,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مي سوياو',
     description: 'سليلة النهر الخالد الطائفة رقم واحد في المدن الشرقية',
     color: '#ff6fd6',
@@ -5114,7 +5114,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649443190513,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مياو تشان',
     description: 'عبقرية الوادي الذي اراد قتل البطل في نطاق الوحش في عالم الكيمياء',
     color: '#ff6fd6',
@@ -5123,7 +5123,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678527719281,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مين رين',
     description: 'الامبراطور الاخير الذي دربه البطل',
     color: '#c3940f',
@@ -5133,7 +5133,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674741997225,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مينغ دو',
     description:
       'الامبراطور الخالد الذي بنى عبور-مستنقع-السفلي الذي اتى منه الراهب في العالم السفلي',
@@ -5143,7 +5143,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676139338592,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'مينغ ياكسوو',
     description:
       'السليلة الرئيسية لمملكة الكيمياء التي لقاها البطل في العربة مع المرأة العجوز في عالم الكيمياء',
@@ -5153,7 +5153,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1677874249216,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'نان تيان',
     description: 'العاهل السماوي لمملكة الجنوب-السماوي',
     color: '#ff7878',
@@ -5162,7 +5162,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1675597828788,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'نان تيان هودو',
     description:
       'القديس من المملكة-الجنوبية-السماوية ذو ال 8 قصور الذي حارب البطل في ارض المقابر قبل القوارب',
@@ -5172,7 +5172,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1675597782049,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'نطاق الاسلاف',
     description: 'احد اراضي الدفن الاثني عشر المحرمة وهو عالم صغير',
     color: '#c9a877',
@@ -5181,7 +5181,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676137836879,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'نهر الالف شبوط',
     description: 'الطائفة في العالم السفلي الذي اقامها الامبراطور شيان-لي',
     color: '#c9a877',
@@ -5190,7 +5190,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676031995321,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'نو زان',
     description: 'الامبراطور الخالد الثاني لمدرسة-النهر-الخالد من العرق البشري',
     color: '#c3940f',
@@ -5199,7 +5199,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1675625087729,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'نونغ',
     description: 'الكيميائي احد الخالدين الثلاثة',
     color: '#c3940f',
@@ -5208,7 +5208,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698367635379,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'نيو فين',
     description: 'الحلزون مطية البطل',
     color: '#55db3d',
@@ -5217,7 +5217,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648745562232,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'هاو هاي',
     description: 'الامبراطور الذي دخل بوابة-الفراغ',
     color: '#c3940f',
@@ -5226,7 +5226,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649510203508,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'هلال المقدس',
     description:
       'طائفة الامبراطور التي لديها طفل-الهلال والتي سرق البطل منهم جرس-نزول-الجبل',
@@ -5236,7 +5236,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676297374033,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'هو شين',
     description: 'التلميذ لطائفة كف-ساغو اول مكان زاره البطل في العالم العاشر',
     color: '#55db3d',
@@ -5245,7 +5245,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687859908641,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'هو يو',
     description: 'سليل بوابة-النمر الذي خطب باو-يون',
     color: '#ff7878',
@@ -5254,7 +5254,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649445605518,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'هوانغ جياوفو',
     description:
       'المشاعر التاجر الذي اراد الخروج من مدينة-الاشباح وسال البطل عن ذلك في العالم السفلي',
@@ -5264,7 +5264,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676135558131,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'هوانغ فو',
     description: 'اميرة مدرسة زئير-النمر في المطعم',
     color: '#ff7878',
@@ -5273,7 +5273,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649505846431,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'هوانغفو هاو',
     description:
       'الشاب الكيميائي الذي زايد على المرجل ضد البطل في المزاد في عالم الكيمياء',
@@ -5283,7 +5283,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676406395826,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'هواي رين',
     description: 'التلميذ الذي ارشد البطل عندما دخل طائفة البخور',
     color: '#55db3d',
@@ -5292,7 +5292,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648650955459,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'هوايو',
     description:
       'الطفلة التي التقى بها البطل مع والدتها ونادته بابا في المدينة الشهيرة في عالم الامبراطور البشري',
@@ -5302,7 +5302,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686488133377,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'هونغ تيان',
     description: 'الامبراطورة التي دربها البطل',
     color: '#c3940f',
@@ -5311,7 +5311,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649080500413,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'هونغ تيانتشو',
     description: 'السيد الحالي للبحيرة في عالم الروح الساحر',
     color: '#55db3d',
@@ -5320,7 +5320,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1684615407565,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'هونغ يوجياو',
     description:
       'المتدربة التي سالت البطل عن الهوية في البحيرة في عالم الروح السماوي',
@@ -5330,7 +5330,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1684611556134,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'وادي السماء',
     description: 'طائفة اللص سيكونغ-توتيان',
     color: '#c9a877',
@@ -5339,7 +5339,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649444614032,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'وان شي',
     description: 'اول امبراطور خالد من عرق الغولم في عالم الكيمياء',
     color: '#c3940f',
@@ -5348,7 +5348,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676407342733,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'وان شينغ جيان',
     description:
       'قديس ذو انجاز كامل من طائفة الاله-السماوية الذي اتى لنجدة طفل الداو شينغ تيان',
@@ -5358,7 +5358,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1675501786365,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'وان غو',
     description: 'اول امبراطور خالد لعرق الاشباح وهو من لعرش-العظام-الوافر',
     color: '#c3940f',
@@ -5367,7 +5367,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676319032555,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'وانغ هان',
     description: 'ملكة محكمة-الجنون',
     color: '#ff6fd6',
@@ -5376,7 +5376,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698234645638,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'وو بينغلان',
     description: 'التي باعت قطعة القرميد للبطل في متجر الكيميائي',
     color: '#ff6fd6',
@@ -5385,7 +5385,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1648941550421,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'وو ليان',
     description: 'الذي اطعمه البطل التراب',
     color: '#ff7878',
@@ -5394,7 +5394,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698430451531,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'وينرين',
     description: 'العشيرة الحاكمة لمدينة "الشه-يرة" في عالم الامبراطور البشري',
     color: '#c9a877',
@@ -5403,7 +5403,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686486444831,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'وينرين جيانشي',
     description: 'اكبر الرجال سنا في عشيرة وين-رين في عالم الامبراطور البشري',
     color: '#ff7878',
@@ -5412,7 +5412,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686486411582,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'يانغ شينغ',
     description: 'الامبراطور الخالد الثاني لعرش-العظام-الوافرة',
     color: '#c3940f',
@@ -5421,7 +5421,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676301057215,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'يانغ يينغ',
     description:
       'من مدينة الصقر الذي شارك في القصة الدرامية في المدينة الشهيرة عند محاكمة البطل في عالم الامبراطور البشري',
@@ -5431,7 +5431,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686491851828,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'ياو تينغ',
     description: 'الفتاة الصغيرة تلميذة البطل من المكتبة',
     color: '#ff6fd6',
@@ -5440,7 +5440,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1696069089720,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'ياو شي',
     description:
       'الامبراطور الخالد الثالث لعرش-العظام-الوافرة الذي حصل على عبارات من كتاب الموت ووضع الخطوط العريضة لداو الظلام',
@@ -5450,7 +5450,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676301032923,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'ياي يي',
     description: 'الامبراطور الخالد للاعراق ال 100 في العالم العاشر ذو ال 12 ارادة',
     color: '#c3940f',
@@ -5459,7 +5459,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698107048843,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'ينبوع الحياة',
     description:
       'احد اسرار قصر القدر للمتدرب يعتقد العلماء انه مصدر الحياة وطاقة القدر',
@@ -5469,7 +5469,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674590851736,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'يوان شايهي',
     description:
       'الكيميائية البشرية من القمة-السماوية من الحديقة-الهادئة وهي احد المعجزات الاربعة في عالم الكيمياء',
@@ -5479,7 +5479,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676569423372,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'يوانهو',
     description:
       'العبقري في عصر الداو الصعب من جنت وحوش البحر الذي دافع عن لين التنين ذو المخالب الاربعة في عالم الامبراطور البشري',
@@ -5489,7 +5489,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687018881704,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'يوجيان',
     description: 'المغتالة التي ارادت اغتيال البطل في عالم الروح السماوي',
     color: '#ff6fd6',
@@ -5498,7 +5498,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1684839602265,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'يوجيانغ',
     description:
       'من الحلم الامبراطوري تلميذ متملص العصر منغ-زونتيان الذي دعا البطل لشرب النبيذ في مدينة العظام في يعالم الروح السماوي',
@@ -5508,7 +5508,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1684792531062,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'يوليان',
     description:
       'سليلة عشيرة يو المغرمة بسليل طائفة الارتفاع-الخالد ذو الاكمال الكبير للبنية الجسدية',
@@ -5518,7 +5518,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686568231513,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'يونزو',
     description: 'التي تورط البطل في خطبتها في العالم السفلي',
     color: '#ff6fd6',
@@ -5527,7 +5527,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676033570505,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'يونغ هوانغ',
     description: 'سيدة طائفة البخور',
     color: '#ff6fd6',
@@ -5536,7 +5536,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686144904763,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'يي تشوان',
     description:
       'الرجل العجوز المتدرب الذي التقى بالبطل في الصحراء في عالم الامبراطور',
@@ -5546,7 +5546,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678986032414,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'يي تشويون',
     description:
       'وريثة بلد اللوتس الصافية التي جلبتها بينغ-يوكيسا الى البطل في بوابة-الفراغ',
@@ -5556,7 +5556,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649531279666,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'يي تشينغ',
     description: 'دي-زو عالم الكيمياء ههههههه',
     color: '#ff7878',
@@ -5565,7 +5565,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1678527434519,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'يي تو',
     description:
       'تلميذ مدرسة نقص-الفراغ في عالم الروح-الساحرة الذي قاد البطل الى مدرستهم عند الساحل-الضحل',
@@ -5575,7 +5575,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1682951313488,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'يي تي',
     description: 'امبراطور السيف الذي قطع قلبه اب الاخوة جيان من عالم الروح السماوي',
     color: '#c3940f',
@@ -5584,7 +5584,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1686566909341,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'يي جيان',
     description: 'امبراطور القوس',
     color: '#c3940f',
@@ -5593,7 +5593,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1687891857896,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'يي شا',
     description:
       'مصاص الدماء الذي جاء الى النهر-الشبحي في مدينة-الموتى لاختبار حظه وهو من طائفة سائر-الليل الشبحية في العالم السفلي',
@@ -5603,7 +5603,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1676125673233,
   },
   {
-    novelSlug: 'emperors domination',
+    novelName: 'emperors domination',
     name: 'يي شي ',
     description:
       'الامبراطور الخالد الاول للمملكة-القديمة-لكل-العصور في العالم السفلي',
@@ -5613,7 +5613,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1682890588792,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'Beiyu Canyon',
     description: 'منحدر البطل',
     color: '#c9a877',
@@ -5622,7 +5622,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680754785334,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'Bull Demon',
     description: 'الثور الامريكي - الوحش الثاني للبطل',
     color: '#55db3d',
@@ -5631,7 +5631,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680833984383,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'Chuanfu',
     description: 'مدينة البطل',
     color: '#c9a877',
@@ -5640,7 +5640,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680754807938,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'Equal order',
     description: 'مستوى الكائن',
     color: '#ceab00',
@@ -5649,7 +5649,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680725899066,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'Lifespan',
     description: 'عمر الكائن',
     color: '#ceab00',
@@ -5658,7 +5658,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680725912443,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: "Ling'er",
     description: 'الاخت التوأم الصغرى',
     color: '#ff6fd6',
@@ -5667,7 +5667,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680719859895,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'Linghe',
     description: 'النهر الروحي تحت البطل',
     color: '#c9a877',
@@ -5676,7 +5676,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680830719991,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'Natal Talent',
     description: 'المهارة الولادية للكائن',
     color: '#ceab00',
@@ -5685,7 +5685,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680730586774,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'Natural Talent',
     description: 'المهارة الطبيعية للكائن',
     color: '#ceab00',
@@ -5694,7 +5694,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680725960266,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'Natural talent',
     description: 'المهارة الطبيعية للكائن',
     color: '#ceab00',
@@ -5703,7 +5703,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680756472422,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'Nine tails',
     description: 'الثعلب الناري للبطل - اول وحش',
     color: '#55db3d',
@@ -5712,7 +5712,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680849300334,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: "Qing'er",
     description: 'الاخت التوأم الكبرى ',
     color: '#ff6fd6',
@@ -5721,7 +5721,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680719844952,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'Race',
     description: 'عرق الكائن',
     color: '#ceab00',
@@ -5730,7 +5730,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680725932033,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'Special Abilities',
     description: 'مهارات خاصة للكائن',
     color: '#ceab00',
@@ -5739,7 +5739,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680726082800,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'Yan Gaoyuan',
     description: 'الجندي الذي اتى للتحقق من وادي البطل لاول مرة',
     color: '#ff7878',
@@ -5748,7 +5748,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680809825671,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'Yu Ziyu',
     description: 'بطل القصة',
     color: '#6e9bff',
@@ -5758,7 +5758,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680751932683,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'Zhang Zui',
     description: 'رئيس فوج التحقيق في اول تحقيق لوادي البطل',
     color: '#ff7878',
@@ -5767,7 +5767,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680813561346,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'bison',
     description: 'ثور امريكي - ثاني حيوان للبطل',
     color: '#55db3d',
@@ -5776,7 +5776,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680730108295,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'canyon',
     description: 'منحدر البطل',
     color: '#c9a877',
@@ -5785,7 +5785,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680754992196,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'crane',
     description: 'طائر الكركي - حيوان البطل',
     color: '#55db3d',
@@ -5794,7 +5794,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680730763782,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'disaster-level',
     description: 'المستوى الثاني من التحول',
     color: '#ceab00',
@@ -5803,7 +5803,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680853147535,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'extraordinary first-order',
     description: 'المستوى الاول من التحول',
     color: '#ceab00',
@@ -5812,7 +5812,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680853111596,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'extraordinary people',
     description: 'شخص استثنائي لديه قوى خارقة',
     color: '#ceab00',
@@ -5821,7 +5821,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680815190467,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'extraordinary person',
     description: 'شخص استثنائي لديه قوى خارقة',
     color: '#ceab00',
@@ -5830,7 +5830,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680815208314,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'extraordinary second-order',
     description: 'المستوى الثاني من التحول',
     color: '#ceab00',
@@ -5839,7 +5839,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680853101207,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'fire element talen',
     description: 'موهبة التحكم بالنار لخادمة البطل',
     color: '#ceab00',
@@ -5848,7 +5848,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680851880809,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'flat head',
     description: 'ذور الرأس المسطح - احد حيوانات البطل',
     color: '#55db3d',
@@ -5857,7 +5857,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680730167024,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'gray wolf',
     description: 'ذئاب البطل',
     color: '#55db3d',
@@ -5866,7 +5866,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680755947780,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'gray wolves',
     description: 'ذئاب البطل',
     color: '#55db3d',
@@ -5875,7 +5875,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680817022034,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'honeypot',
     description: 'ذور الرأس المسطح - احد حيوانات البطل',
     color: '#55db3d',
@@ -5884,7 +5884,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680730792621,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'peregrine falcon',
     description: 'صقور الشاهين',
     color: '#55db3d',
@@ -5893,7 +5893,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680719028528,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'red fox',
     description: 'الثعلب - الحيوان الاول للبطل',
     color: '#55db3d',
@@ -5902,7 +5902,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680723320160,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'spiritual talent',
     description: 'الموهبة العقلية لخادمة البطل',
     color: '#ceab00',
@@ -5911,7 +5911,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680851907249,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'taproot',
     description: 'الجذر الرئيسي للبطل',
     color: '#ceab00',
@@ -5920,7 +5920,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680720831250,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'twig',
     description: 'غصن شجرة البطل',
     color: '#ceab00',
@@ -5929,7 +5929,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680755920413,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'willow tree',
     description: 'بطل القصة',
     color: '#6e9bff',
@@ -5939,7 +5939,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680751930020,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'wind wolf',
     description: 'ذئاب البطل',
     color: '#55db3d',
@@ -5948,7 +5948,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680830458217,
   },
   {
-    novelSlug: 'evolution from the big tree',
+    novelName: 'evolution from the big tree',
     name: 'wind wolves',
     description: 'ذئاب البطل',
     color: '#55db3d',
@@ -5957,7 +5957,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680830468538,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'آكارا',
     description: 'العمة الحكيمة من اللعبة',
     color: '#ff6fd6',
@@ -5967,7 +5967,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1759773506296,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'آوبيني',
     description:
       'احد النسور الخمسة الفارس من المستوى ال 4 الذي اراد شراء حيوانات اليفة ل اي-لينا',
@@ -5977,7 +5977,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663416960472,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'ابراموفيتش',
     description: 'مدير مجموعة سورو-س التجارية في مدينة الاعلام المزدوجة',
     color: '#55db3d',
@@ -5986,7 +5986,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664271549446,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'اجاكس',
     description: 'الامبراطورية التي حاربها البطل بفيلق انياب-الذئب',
     color: '#ff7878',
@@ -5995,7 +5995,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664269541185,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'ارشفان',
     description: 'الامير المبجل الاول من زينا-يت',
     color: '#55db3d',
@@ -6004,7 +6004,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663441259331,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'اريانغ',
     description: 'العجوز والد رو-بن الذي عالجه البطل',
     color: '#55db3d',
@@ -6013,7 +6013,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663978317204,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'اكينيف',
     description: 'ملك الجان صديق البطل',
     color: '#55db3d',
@@ -6022,7 +6022,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664635859165,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'الاصابع المدمرة',
     description: 'القائد الاول لحراس الملك وقائد الجيش للملك',
     color: '#55db3d',
@@ -6031,7 +6031,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663966766185,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'الاميرة الساقطة',
     description: 'فيكتور-يا من امبراطورية مستوى 4 خادمة زوجة البطل',
     color: '#ff6fd6',
@@ -6040,7 +6040,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664273236444,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'الطفل النائم',
     description:
       'مهارة البطل التي انشأها بعد دمج الصاعقة مع قبضة تجميد السماء التي تجعل الخصم غير واعي لاجزاء من الثانية',
@@ -6050,7 +6050,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664626641430,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'الفارس متعطش للدماء',
     description: 'من الحرس الامبراطورية الذي قاتل البطل قبل المسابقة',
     color: '#ff7878',
@@ -6059,7 +6059,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663847891036,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'الكسندر',
     description: 'اسم البطل في العالم المنتقل اليه',
     color: '#6e9bff',
@@ -6068,7 +6068,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663364985188,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'انجيلا',
     description: 'خطيبة البطل',
     color: '#ff6fd6',
@@ -6078,7 +6078,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1759773305222,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'اندريا',
     description: 'الشيطانة في المهمة الاخيرة من خريطة معسكر البطل في اللعبة',
     color: '#ff7878',
@@ -6087,7 +6087,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663448264096,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'اندهوفن',
     description:
       'الامبراطور كروم-كامب الذي اعترض البطل في بوابات المستوى 35 من اثار البحر',
@@ -6097,7 +6097,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664452972782,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'انزاغي',
     description:
       'الطفل المغتال الخجول بجانب يو-رك الذي التقاه البطل في الحانة الذي اصبح تلميذ البطل',
@@ -6107,7 +6107,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663760500846,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'اوكوتشا',
     description:
       'الامير الذي هو احد النسور الخمسة الذي حارس حارسه اراد اخافة البطل في الزقاق',
@@ -6117,7 +6117,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663431893331,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'اوليغ',
     description: 'مسؤول السجن الذي لم يشارك في الحرب',
     color: '#55db3d',
@@ -6126,7 +6126,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663501972829,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'ايلينا',
     description: 'شخصية عالم ديا-بلو المغامرة رامية النبال',
     color: '#ff6fd6',
@@ -6136,7 +6136,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1759773266771,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'ايما',
     description: 'خادمة خطيبة البطل',
     color: '#ff6fd6',
@@ -6146,7 +6146,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1759773352271,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'اينلي',
     description: 'صديق الامير من اجا-كس الذي حاصر مدينة الاعلام المزدوجة',
     color: '#ff7878',
@@ -6155,7 +6155,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664273573436,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'باتيستوتا',
     description: 'الشماس من ضريح القماش-الاسود الذي اراد ضم البطل اليه',
     color: '#55db3d',
@@ -6164,7 +6164,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664486951187,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'باريس',
     description: 'السا*** التي قتلت خطيبة البطل في حفل التتويج',
     color: '#ff7878',
@@ -6173,7 +6173,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663441059141,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'باست ',
     description: 'والد البطل في القانون',
     color: '#55db3d',
@@ -6182,7 +6182,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663398111713,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'بالادينز',
     description: 'شخصية اللعبة المعززة',
     color: '#ceab00',
@@ -6191,7 +6191,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664353834528,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'باليسي',
     description: 'الكاهن من الكنيسة الذي اراد اخذ انجي-لا',
     color: '#ff7878',
@@ -6200,7 +6200,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663968966983,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'بروك',
     description: 'العقل المفكر للبطل',
     color: '#55db3d',
@@ -6209,7 +6209,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663366932309,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'بلاكستون',
     description: 'الحصن المعادي لمملكة البطل',
     color: '#ff7878',
@@ -6218,7 +6218,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663518070755,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'بنك هازل',
     description: 'كاهن اللاموتى الذي انضم للبطل',
     color: '#55db3d',
@@ -6227,7 +6227,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664454676795,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'بول كاثوس',
     description:
       'من العرق البربري الذي كان شديد القوة وقاد البرابرة للتحرير وطنه وحصل البطل على سيفيه',
@@ -6237,7 +6237,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663759827253,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'بيرس',
     description:
       'المحارب الذي اعجب به البطل حين دافع عن الجدران ودمر السلالم بتضحيته بنفسه',
@@ -6247,7 +6247,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663434733118,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'تروبينسكي',
     description: 'الامير الذي اراد قتل البطل بعد الحرب',
     color: '#ff7878',
@@ -6256,7 +6256,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663363868707,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'تشارسي',
     description: 'الحدادة في اللعبة',
     color: '#ff6fd6',
@@ -6266,7 +6266,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1759773526456,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'تشيك',
     description: 'القائد الاول لحراس الملك وقائد الجيش للملك الملقب بالاصابع-المدمرة',
     color: '#55db3d',
@@ -6275,7 +6275,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664290209648,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'توريس',
     description: 'الشاب الذي قطع عنقه في الحفل بعد الحرب',
     color: '#55db3d',
@@ -6284,7 +6284,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663364967168,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'توني',
     description: 'اول محارب القمر من جا-كس الذي حاربه البطل في حصار مدينة الاعلام',
     color: '#ff7878',
@@ -6293,7 +6293,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664290584360,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'ثاغ',
     description: 'تنين النار للبطل',
     color: '#55db3d',
@@ -6302,7 +6302,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664491275008,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'جاكس',
     description: 'اول امبراطورية يواجهها البطل',
     color: '#ff7878',
@@ -6311,7 +6311,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664278806007,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'جبال مورو',
     description: 'الجبال التي يتدرب بها البطل مع مدربه المجهول في الامبراطورية',
     color: '#c9a877',
@@ -6320,7 +6320,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663965214044,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'جونينيو',
     description: 'الامبراطور الذي هزم ياس-ين',
     color: '#ff7878',
@@ -6329,7 +6329,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664472519764,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'جيرارد بيل',
     description: 'ملك الاقزام الذي قرأ البطل يومياته في مكان الاجداد',
     color: '#c3940f',
@@ -6338,7 +6338,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664630082426,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'جيرانو',
     description:
       'الساحر فئة القمر الذي اطلق هجوم سحري في حدث القتال بين الامبراطوريين القتاليين',
@@ -6348,7 +6348,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664034853306,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'جيسي',
     description: 'الكاهن النخبة من نصف قمر من ضريح القماش الاسود الذي انضم الى البطل',
     color: '#55db3d',
@@ -6357,7 +6357,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664368945236,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'حصن الابطال',
     description: 'الحصن الذي بناه البطل في سجن المياه الحديدي',
     color: '#c9a877',
@@ -6366,7 +6366,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663507736709,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'دروغبا',
     description: 'المقاتل الذي اراد انقاذ البطل في الجسر',
     color: '#55db3d',
@@ -6375,7 +6375,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663599565582,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'دومينغيز',
     description: 'الامير الثاني للامبراطورية',
     color: '#ff7878',
@@ -6384,7 +6384,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663446766036,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'دومينيك',
     description:
       'ساحر الحمم مستوى شمس الذي حاصر البطل والمجموعة معه في العالم تحت المياه',
@@ -6394,7 +6394,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664470729541,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'ديابلو',
     description: 'عالم اللعبة الخاص بالبطل',
     color: '#c9a877',
@@ -6403,7 +6403,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663344995786,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'روبن',
     description:
       'المحارب الذي دعاه البطل لتشامبورد بعد هزيمته لتلميذ البطل المغتال انزا-غي',
@@ -6413,7 +6413,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663963668919,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'روجو',
     description: 'المخيم الذي نزل فيه البطل في عالم ديا-بلو',
     color: '#c9a877',
@@ -6422,7 +6422,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663404287638,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'ريدناب',
     description:
       'احد مدراء شركة سور-وس التجارية الذي انقذه البطل في رحلته الى الامبراطورية',
@@ -6432,7 +6432,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663758735760,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'زولا',
     description:
       'المسؤول عن الكنيسة في مملكة البطل واسم عم الصبي الذي انقذه البطل من الصلب',
@@ -6442,7 +6442,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663517609286,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'زينيت',
     description: 'الامبراطورية المسيطرة على مملكة البطل',
     color: '#c9a877',
@@ -6451,7 +6451,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663498591791,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'سامويل',
     description: 'افضل الحدادين في مملكة البطل وهو رجل في منتصف العمر',
     color: '#55db3d',
@@ -6460,7 +6460,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663413965795,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'سانت بطرسبرغ',
     description: 'المدينة الامبراطورية',
     color: '#c9a877',
@@ -6469,7 +6469,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663758804763,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'سانت سيا ',
     description: 'فرقة الفرسان المقدسين لمملكة البطل',
     color: '#ceab00',
@@ -6478,7 +6478,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663758452487,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'سوتون',
     description:
       'الشاب المراهق من الحرس الامبراطوري الذي واجه البطل في الجبال قرب الامبراطورية',
@@ -6488,7 +6488,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663679303553,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'سوروس',
     description:
       'الشركة التجارية التي احد مدرائها انقذه البطل في رحلته الى الامبراطورية',
@@ -6498,7 +6498,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663758771087,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'سوزان',
     description: 'الحارسة الشخصية للاميرة ناتا-شا',
     color: '#55db3d',
@@ -6507,7 +6507,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663437747805,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'شامبورد',
     description: 'مملكة البطل',
     color: '#c9a877',
@@ -6516,7 +6516,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664045017563,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'شيك',
     description: 'تنين الجليد للبطل',
     color: '#55db3d',
@@ -6525,7 +6525,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664491324511,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'ضريح القماش الاسود',
     description: 'الضريح من الكنيسة الذي سقط منذ 100 عام ولم يحبه احد',
     color: '#c9a877',
@@ -6534,7 +6534,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664369075538,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'فارس الشمس الذهبية',
     description:
       'الشاب المراهق من الحرس الامبراطوري الذي واجه البطل في الجبال قرب الامبراطورية',
@@ -6544,7 +6544,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663758481743,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'فاي ',
     description: 'اسم البطل الحقيقي',
     color: '#6e9bff',
@@ -6553,7 +6553,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663345975666,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'فاي.',
     description: 'اسم البطل الحقيقي',
     color: '#6e9bff',
@@ -6562,7 +6562,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664482885878,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'فيرنتون',
     description: 'امير امبراطورية اجا-كس الذي حاصر مدينة الاعلام المزدوجة',
     color: '#ff7878',
@@ -6571,7 +6571,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664273644967,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'فيكتوريا',
     description: ' الاميرة-الساقطة من امبراطورية مستوى 4 خادمة زوجة البطل',
     color: '#ff6fd6',
@@ -6580,7 +6580,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664273247316,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'فيلق انياب الذئب',
     description: 'فيلق البطل في الحرب ضد امبراطورية اجا-كس',
     color: '#6e9bff',
@@ -6589,7 +6589,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664269507634,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'فيليب',
     description: 'الرجل الخجول بجانب يو-رك الذي التقاه البطل في الحانة',
     color: '#55db3d',
@@ -6598,7 +6598,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663760058131,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'كاباريكرون',
     description: 'لقب بيرس بعد ان اصبح احد الفرسان الذهبيين للبطل',
     color: '#55db3d',
@@ -6607,7 +6607,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663435033451,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'كاكا',
     description: 'الطفل المفضل للالهة الذي اصبح صديق البطل في المسابقة',
     color: '#55db3d',
@@ -6617,7 +6617,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1759773553641,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'كراسيتش',
     description: 'القديس القتالي لامبراطورية البطل',
     color: '#c3940f',
@@ -6626,7 +6626,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663959234902,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'كرومكامب',
     description:
       'امبراطور اندهو-فن الذي اعترض البطل في بوابات المستوى 35 من اثار البحر',
@@ -6636,7 +6636,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664452981181,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'كلاود',
     description:
       'الفارس متعطش-للدماء من الحرس الامبراطورية الذي قاتل البطل قبل المسابقة',
@@ -6646,7 +6646,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663847879948,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'كوستاكارتا',
     description:
       'الجنرال من فئة القمر الذي هاجم الامبراطور القتالي في المنافسة على الجبال وهاجمه البطل',
@@ -6656,7 +6656,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664038000105,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'لامبارد',
     description: 'الفارس 3 نجوم الذي كان يحمي البطل',
     color: '#55db3d',
@@ -6665,7 +6665,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663365749687,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'لانجي',
     description: 'ابنة كوستاكار-تا الذي هاجمه البطل في الحدث فوق الجبال',
     color: '#ff7878',
@@ -6674,7 +6674,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664044898604,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'لاندز',
     description: 'محارب ال 3 نجوم الذي حارب البطل على الجسر',
     color: '#ff7878',
@@ -6683,7 +6683,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663359645220,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'لوكاس',
     description: 'الصبي الصغير الذي انقذه البطل من الصلب في قلعة الحصن الاسود',
     color: '#55db3d',
@@ -6692,7 +6692,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663517091059,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'لوكانتا',
     description: 'القديس القتالي لامبراطورية سبارت-اكوس',
     color: '#ff7878',
@@ -6701,7 +6701,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664032570065,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'لويز',
     description: 'ابنة تور-يس التي اصبحت ساحرة في اكاديمية البطل',
     color: '#ff6fd6',
@@ -6710,7 +6710,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664614777075,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'ليون',
     description:
       'امبراطورية مستوى 6 الذي اتى الساحر ذو الرداء الابيض منها في القصر تحت الماء',
@@ -6720,7 +6720,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664470791143,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'مات رازي',
     description: 'الشاعر القوي',
     color: '#ff7878',
@@ -6729,7 +6729,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663973691877,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'مملكة البحيرة',
     description: 'المملكة التي ساعدت البطل في تطويق مملكة ثرا-سيا قبل الحفل',
     color: '#c9a877',
@@ -6738,7 +6738,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663432195900,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'مملكة ثراسيا',
     description: 'المملكة التي اميرها اراد اخافة البطل في الزقاق قبل الحفل',
     color: '#c9a877',
@@ -6747,7 +6747,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663432239274,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'ميرفي',
     description: 'الحارس الشخصي لبار-يس ذو 6 نجوم',
     color: '#ff7878',
@@ -6756,7 +6756,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663441031756,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'ناتاشا',
     description: 'اميرة امبراطورية ازمو-رث',
     color: '#ff6fd6',
@@ -6765,7 +6765,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663439538453,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'هوليغان',
     description: 'تنين المعدن للبطل',
     color: '#55db3d',
@@ -6774,7 +6774,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1664491344143,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'هيرشزن',
     description: 'المحارب 4 نجوم الذي اراد اخافة البطل في الزقاق',
     color: '#ff7878',
@@ -6783,7 +6783,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663430905459,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'ياسين',
     description: 'امبراطور زين-يت',
     color: '#c3940f',
@@ -6793,7 +6793,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1759773392667,
   },
   {
-    novelSlug: 'hail the king',
+    novelName: 'hail the king',
     name: 'يورك',
     description: 'الرجل في 50 من عمره الذي جلس مع البطل في الحانة',
     color: '#55db3d',
@@ -6802,7 +6802,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1663758996149,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'cxvxc',
     description: 'cxvcx',
     color: '#55db3d',
@@ -6811,7 +6811,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662558314137,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'الامبراطور لينغ',
     description: 'الوحش الامبراطور ذو موهبة الفضاء الاعلى',
     color: '#ff7878',
@@ -6820,7 +6820,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681419500473,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'الجناح السماوي',
     description: 'الطائفة التي انشأها البطل',
     color: '#c9a877',
@@ -6829,7 +6829,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681421201363,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'السيد الكبير',
     description: 'مستوى 4 من الزراعة يعيش ل 200 عام',
     color: '#ceab00',
@@ -6838,7 +6838,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662558303080,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'الفنان القتالي',
     description: 'مستوى 2 من الزراعة',
     color: '#ceab00',
@@ -6847,7 +6847,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662466787521,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'المتدرب القتالي',
     description: 'مستوى 1 من الزراعة',
     color: '#ceab00',
@@ -6856,7 +6856,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662466794945,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'المحارب العظيم',
     description: 'مستوى 3 من الزراعة',
     color: '#ceab00',
@@ -6865,7 +6865,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662470459405,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'تحالف سان شيو',
     description: 'التحالف الذي انظم له البطل في القاعدة الفائقة',
     color: '#c9a877',
@@ -6874,7 +6874,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681409843414,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'تشانغ باو',
     description: 'صديق البطل السمين في الاكاديمية',
     color: '#55db3d',
@@ -6883,7 +6883,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662487083444,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'تشين دونغ',
     description: 'متدرب الفنون القتالية الاول الذي في كلية البطل',
     color: '#ff7878',
@@ -6892,7 +6892,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662470738373,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'تشين يانغ',
     description: 'الامبراطور من قاعدة تيان-فو الذي ساله البطل امام برج المجد',
     color: '#55db3d',
@@ -6901,7 +6901,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681587642809,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'تيانفو',
     description: 'القاعدة التي باعت مصفوفة النقل البعدية ب 10 ملايين',
     color: '#c9a877',
@@ -6910,7 +6910,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681581964442,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'سون تشينغهي',
     description: 'والد العبقري من قاعدة الناب-الحديدي',
     color: '#ff7878',
@@ -6919,7 +6919,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680982643508,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'سون فنغ',
     description: 'العبقري من قاعدة الناب الحديدي ذو موهبة الزراعة المتقدمة',
     color: '#ff7878',
@@ -6928,7 +6928,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680978250219,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'سيد كبير',
     description: 'مستوى 4 من الزراعة يعيش ل 200 عام',
     color: '#ceab00',
@@ -6937,7 +6937,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662494601205,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'شق السماء',
     description: 'مهارة السيف الفضية التي ابتكرها البطل',
     color: '#ceab00',
@@ -6946,7 +6946,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681405692265,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'شوي تشيان يو',
     description: 'المرأة من القاعدة الفائقة التي يكررها سيد تشكيلات برج تشينغهاي',
     color: '#ff7878',
@@ -6955,7 +6955,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681410773215,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'شي يو',
     description: 'الحكيمة التي ساعدها البطل في ترويض فأر الزمن',
     color: '#ff6fd6',
@@ -6964,7 +6964,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681423309051,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'شياو جين',
     description: 'الفهد التنين الذهبي حيوان البطل الاول - ذو السرعة مستوى اعلى',
     color: '#55db3d',
@@ -6973,7 +6973,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680977648702,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'شياو زي',
     description: 'فار الكنوز للبطل',
     color: '#55db3d',
@@ -6982,7 +6982,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681389048508,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'شياو شوي',
     description: 'تنين البطل',
     color: '#55db3d',
@@ -6991,7 +6991,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681397073320,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'طائفة القمر الالهي',
     description: 'طائفة زوجة البطل',
     color: '#c9a877',
@@ -7000,7 +7000,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681412717207,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'فنان قتالي',
     description: 'مستوى 2 من الزراعة',
     color: '#ceab00',
@@ -7009,7 +7009,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662466781401,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'فينغ لوشو',
     description: 'القديس الذي كان في المركز الاول في قائمة الملوك في برج اله الحرب',
     color: '#55db3d',
@@ -7018,7 +7018,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681423594520,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'قاعدة الناب الحديدي',
     description: 'القاعدة التي تدمرت وهاجرت الى قاعدة البطل الاولى',
     color: '#c9a877',
@@ -7027,7 +7027,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680978873829,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'قاعدة لينهاي',
     description: 'قاعدة البطل الاولى',
     color: '#c9a877',
@@ -7036,7 +7036,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680978891363,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'قاعدة موهاي',
     description: 'القاعدة الثانية التي ذهب لها البطل',
     color: '#c9a877',
@@ -7045,7 +7045,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681339306874,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'كينغ كونغ',
     description: 'القرد الامبراطور الذي هاجم البطل من خلال بوابة الابعاد',
     color: '#ff7878',
@@ -7054,7 +7054,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681419372460,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'لي يون شينغ',
     description: 'ذو موهبة السيف في المسابقة',
     color: '#55db3d',
@@ -7063,7 +7063,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662488030310,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'لين زي',
     description: 'اول تلميذ ضمه البطل الى طائفته',
     color: '#55db3d',
@@ -7072,7 +7072,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681420732264,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'لين يي',
     description: 'اول تلميذة في طائفة البطل اخت لين-زي',
     color: '#ff6fd6',
@@ -7081,7 +7081,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681421002799,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'ليو شنغ',
     description: 'الشخصية التي انتحلها البطل في سكان الجزيرة',
     color: '#6e9bff',
@@ -7090,7 +7090,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681579652189,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'متدرب قتالي',
     description: 'مستوى 1 من الزراعة',
     color: '#ceab00',
@@ -7099,7 +7099,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662466803121,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'محارب عظيم',
     description: 'مستوى 3 من الزراعة',
     color: '#ceab00',
@@ -7108,7 +7108,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662470468053,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'مو تشانغ تشينغ',
     description: 'محارب-عظيم الجد في عائلة مو',
     color: '#ff7878',
@@ -7117,7 +7117,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662491734181,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'مو شاوبي',
     description: 'عدو البطل الذي اراد خطف اخته',
     color: '#ff7878',
@@ -7126,7 +7126,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662490188795,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'موهبة اولية',
     description: 'موهبة مستوى C',
     color: '#ceab00',
@@ -7135,7 +7135,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662466494892,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'موهبة ضعيفة',
     description: 'موهبة مستوى E',
     color: '#ceab00',
@@ -7144,7 +7144,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662466434993,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'موهبة متدنية',
     description: 'موهبة مستوى D',
     color: '#ceab00',
@@ -7153,7 +7153,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662466476080,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'موهبة متقدمة',
     description: 'موهبة مستوى A',
     color: '#ceab00',
@@ -7162,7 +7162,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662466526376,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'موهبة متوسطة',
     description: 'موهبة مستوى B',
     color: '#ceab00',
@@ -7171,7 +7171,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662466512323,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'مينغ كونغ',
     description: 'سلف عشيرة وحوش السراب التي لديها موهبة التخفي والتمويه',
     color: '#ff7878',
@@ -7180,7 +7180,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681418820657,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'وان فو تياندي',
     description: 'اسم البطل في عالم المجد الافتراضي',
     color: '#6e9bff',
@@ -7189,7 +7189,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681587178703,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'وانغ يان',
     description: 'اول شخص التقى به البطل في القاعدة الفائقة - المقيمة',
     color: '#ff6fd6',
@@ -7198,7 +7198,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681408304398,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'يون فنغ',
     description: 'العبقري ذو الزراعة الاستثنائية وموهبة شفرة الرياح في قاعدة يونهاي',
     color: '#55db3d',
@@ -7207,7 +7207,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681389286576,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'يون مينغ لي',
     description: 'سلف عشيرة يون التجارية في قاعدة موهاي',
     color: '#55db3d',
@@ -7216,7 +7216,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681582213991,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'يوي اير',
     description: 'زوجة البطل',
     color: '#ff6fd6',
@@ -7225,7 +7225,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681498329959,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'يوي بينغ',
     description: 'الجد سلف عائلة يوي التجارية الذي حصل على موهبة النار',
     color: '#55db3d',
@@ -7234,7 +7234,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1681406762454,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'يوي لينغ',
     description: 'مديرة جناح وو ذات موهبة الزراعة المتقدمة',
     color: '#ff6fd6',
@@ -7243,7 +7243,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662492504557,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'يي تيان',
     description: 'بطل القصة',
     color: '#6e9bff',
@@ -7253,7 +7253,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662466635833,
   },
   {
-    novelSlug: 'i can copy all the talents',
+    novelName: 'i can copy all the talents',
     name: 'يي يو',
     description: 'اخت البطل',
     color: '#ff6fd6',
@@ -7262,7 +7262,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1662487588963,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'الروح الوليدة',
     description: 'عالم زراعة 4',
     color: '#ceab00',
@@ -7271,7 +7271,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715814422832,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'الفراشة الحمراء',
     description: 'بقرية سوزاكو التي وصلت الى قطع-الروح خلال 100 سنة',
     color: '#ff7878',
@@ -7280,7 +7280,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1718016680044,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'اللورد الشيطان الرغبات الستة',
     description: 'ذو تدريب قطع-الروح الذي دخل مع البطل الى عالم الاختبارات',
     color: '#ff7878',
@@ -7289,7 +7289,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1716122014401,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'اويانغ',
     description: 'شيخ طائفة شوان-داو عدوة طائفة البطل الاولى',
     color: '#ff7878',
@@ -7298,7 +7298,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715675605381,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'بناء الاساس',
     description: 'عالم زراعة 2',
     color: '#ceab00',
@@ -7307,7 +7307,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715814394071,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'بون نانزي',
     description: 'سلف طائفة شوان-داو',
     color: '#ff7878',
@@ -7316,7 +7316,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715816889996,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تاي تشو',
     description: 'اسم البطل في القرية',
     color: '#6e9bff',
@@ -7325,7 +7325,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715523125015,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تحول الروح',
     description: 'عالم زراعة 6',
     color: '#ceab00',
@@ -7334,7 +7334,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715814455429,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تشانغ كوانغ',
     description: 'المتدرب الذي جلب البطل الى الطائفة لاول مرة',
     color: '#55db3d',
@@ -7343,7 +7343,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715672620517,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تشانغ هو',
     description: 'شريك البطل في الغرفة عند دخوله الى الطائفة',
     color: '#55db3d',
@@ -7352,7 +7352,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715549233762,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تشاو لونغ',
     description: 'الاخ الاكبر الموهوب في طائفة البطل',
     color: '#55db3d',
@@ -7361,7 +7361,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715671902005,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تشو بينغ',
     description: 'متدرب الطبقة العاشرة من الطائفة عدوة البطل',
     color: '#ff7878',
@@ -7370,7 +7370,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715689090786,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تشو رو',
     description: 'زوجة البطل بعد ان فقدت ذكرياتها',
     color: '#ff6fd6',
@@ -7379,7 +7379,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1718059564557,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تشو سي',
     description: 'التي ارادت قتل البطل في دولة هو-فن',
     color: '#ff6fd6',
@@ -7388,7 +7388,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715897979009,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تشو شيهونغ',
     description: 'المتدربة الذي اعجب بها ماي-ليانغ',
     color: '#ff6fd6',
@@ -7397,7 +7397,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715861503787,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تشو ووتاي',
     description: 'متدرب الروح-الوليدة ذو الاذان الطويلة الذي تحول لبشري مثل ابطل',
     color: '#55db3d',
@@ -7406,7 +7406,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1717854680817,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تشو يي',
     description: 'متدرب تحول-الروح من طائفة الخمسة-عناصر الذي اراد احياء جثة زوجته',
     color: '#c3940f',
@@ -7415,7 +7415,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1718016321613,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تشي هو',
     description:
       'سيد طائفة العمالقة الذي شارك البطل في مغامرة العالم-السماوي خارج كوكب-سوزاكو',
@@ -7425,7 +7425,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1718007723169,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تشيان فينغ',
     description: 'المتدرب الذي قتل الفراشة-الحمراء الذي اراد الحصول على لقب سوزاكو',
     color: '#ff7878',
@@ -7434,7 +7434,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1718055064416,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تشيان مو',
     description: 'اسم البطل في طائفة بلو',
     color: '#6e9bff',
@@ -7443,7 +7443,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1718057793824,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تكثيف التشي',
     description: 'عالم زراعة 1',
     color: '#ceab00',
@@ -7452,7 +7452,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715814383611,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تكوين النواة',
     description: 'عالم زراعة 3',
     color: '#ceab00',
@@ -7461,7 +7461,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715814415697,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تو سي',
     description: 'السامي-القديم الذي دخل البطل جسده',
     color: '#c3940f',
@@ -7470,7 +7470,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1716157107275,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تيان يون زي',
     description: 'العجوز الذي شاهده البطل على نيزك عند محاولة البطل اختراق قطع-الروح',
     color: '#c3940f',
@@ -7479,7 +7479,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1717853549462,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تيان يونزي',
     description: 'العجوز ذو مجال القتل الذي لعب مع البطل وصديقه عند تكوين سيوف-المطر',
     color: '#c3940f',
@@ -7488,7 +7488,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1718020633008,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تينغ لي',
     description: 'الشاب الذي طارد البطل الى الغابة واستولى البطل على اساسه',
     color: '#ff7878',
@@ -7497,7 +7497,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715811640022,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'تينغ هوايوان',
     description: 'جد الشاب الذي طارد البطل الى الغابة واستولى البطل على اساسه',
     color: '#ff7878',
@@ -7506,7 +7506,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715811632903,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'دو تيان',
     description: 'سيد طائفة تكرير-الروح الذي اهدى البطل 3 هدايا',
     color: '#c3940f',
@@ -7515,7 +7515,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1718063057966,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'دوانمو',
     description: 'متدرب قطع-الروح الذي اخذ البطل الى فضاء الاختبارات',
     color: '#c3940f',
@@ -7524,7 +7524,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1716125713664,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'سنو وايت',
     description: 'المتدربة من طائفة المسار-الخالد في قارة-سوزاكو',
     color: '#ff6fd6',
@@ -7533,7 +7533,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1718052734308,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'سون تاي',
     description: 'رئيس طائفة-الجثة الذي اصبح عبد البطل',
     color: '#ff7878',
@@ -7542,7 +7542,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1718018748751,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'سون داتشو',
     description: 'اول سيد للبطل',
     color: '#ff7878',
@@ -7551,7 +7551,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715551393473,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'سون ديان',
     description: 'العجوز الراكب على السلحفاة الذي اتخذ البطل كتلميذ',
     color: '#c3940f',
@@ -7560,7 +7560,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1716209563875,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'سون هاو',
     description: 'المتدرب من طائفة البطل الذي تم النصب عليه بالقنابل-النتنة',
     color: '#55db3d',
@@ -7569,7 +7569,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715672297847,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'سون يوكاي',
     description: 'ذو تقنية حركة القدم الذي اراد قتل البطل',
     color: '#ff7878',
@@ -7578,7 +7578,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715869457720,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'سيتو نان',
     description: 'الروح المحجوزة داخل الخرزة',
     color: '#c3940f',
@@ -7587,7 +7587,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715692032407,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'سينغ نيو',
     description: 'اسم البطل في العالم-السماوي',
     color: '#6e9bff',
@@ -7596,7 +7596,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1718007807266,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'شو ليغو',
     description: 'اول شيطان للبطل',
     color: '#ff7878',
@@ -7605,7 +7605,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1716125265846,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'شو مو',
     description: 'اقوى تلميذ لدى طائفة شوان-داو',
     color: '#ff7878',
@@ -7614,7 +7614,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715675656693,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'شوان داو',
     description: 'طائفة معادية لطائفة البطل في المسابقة',
     color: '#c9a877',
@@ -7623,7 +7623,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715599727402,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'شوكيوي زي',
     description: 'الذي يحمل لقب سوزاكو الحالي',
     color: '#ff7878',
@@ -7632,7 +7632,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1718116777762,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'شيو سيبينغ',
     description:
       'الذي اراد ازالة تقييدات البطل من المتدربة التي احتجزها البطل بعد محيط النجوم-المكسورة',
@@ -7642,7 +7642,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1716207816215,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'شيويه يو',
     description: 'عشيرة الجليد من خارج كوكب-سوزاكو',
     color: '#c9a877',
@@ -7651,7 +7651,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1718007886803,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'طائفة اليشم السماوي',
     description: 'طائفة من المستوى ال 5 في سوزاكو التي تنتمي اليها الفراشة-الحمراء',
     color: '#c9a877',
@@ -7660,7 +7660,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1718052817866,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'عشيرة الشيطان العملاق',
     description: 'العشيرة من خارج كوكب-سوزاكو التي في جبين متدربيها علامة فأس',
     color: '#c9a877',
@@ -7669,7 +7669,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1718007942507,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'غونغ سونبو',
     description: 'شيخ جبل سوزاكو الذي كان القاضي على معركة البطل مع الفراشة-الحمراء',
     color: '#c3940f',
@@ -7678,7 +7678,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1718053232793,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'قطع الروح',
     description: 'عالم زراعة 5',
     color: '#ceab00',
@@ -7687,7 +7687,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715814434643,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'لو سونغ',
     description: 'الاخ الاكبر الموهوب في طائفة البطل الذي خسر قبل 20 عام',
     color: '#55db3d',
@@ -7696,7 +7696,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715672720164,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'لي شان',
     description: 'النصاب الذي باع القنابل-النتنة',
     color: '#ff7878',
@@ -7705,7 +7705,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715672318247,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'لي مووان',
     description: 'الكيميائية زوجة البطل الاولى',
     color: '#ff6fd6',
@@ -7714,7 +7714,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1718023675597,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'لي يوانفينغ',
     description: 'متدرب تحول-الروح الاضعف لشيويه-يو',
     color: '#ff7878',
@@ -7723,7 +7723,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1718096934663,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'لينغ تيانهو',
     description: 'العجوز الذي اراد الاستيلاء على سيوف-المطر',
     color: '#ff7878',
@@ -7732,7 +7732,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1718020671045,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'ليو فينغ',
     description: 'المتدرب ذو جذر الماء الموهوب في طائفة شوان-داو عدوة طائفة البطل',
     color: '#55db3d',
@@ -7741,7 +7741,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715602948640,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'ليو مي',
     description: 'المتدربة ذات جذر الماء في طائفة شوان-داو',
     color: '#ff6fd6',
@@ -7750,7 +7750,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715814113071,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'ماي ليانغ',
     description:
       'المتدرب الذي كان ينظف ساحة المعركة الاجنبية وشاهد البطل كنيزك خرزة وطارده',
@@ -7760,7 +7760,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715861243695,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'هو زي',
     description: 'ابن عم البطل الرابع',
     color: '#55db3d',
@@ -7769,7 +7769,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715529247883,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'هو فن',
     description: 'الدولة الاجنبية التي دخلها البطل بعد دمار ساحة المعركة الاجنبية',
     color: '#c9a877',
@@ -7778,7 +7778,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715863093063,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'هو هونغفاي',
     description: 'سيد تشو-شيهونغ من الضريح-السامي',
     color: '#55db3d',
@@ -7787,7 +7787,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715862831951,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'هوانغ لونغ',
     description: 'الشيخ الكبير في طائفة البطل',
     color: '#55db3d',
@@ -7796,7 +7796,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715675593467,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'هينغ يوي',
     description: 'الطائفة الاولى التي قبل بها البطل',
     color: '#c9a877',
@@ -7805,7 +7805,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715526565524,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'وانغ تشو',
     description: 'ابن عم البطل الذي استهزأ به في الوليمة التي اعدها والد البطل',
     color: '#ff7878',
@@ -7814,7 +7814,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715526635927,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'وانغ تيانشوي',
     description: 'اب البطل',
     color: '#6e9bff',
@@ -7823,7 +7823,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715526489271,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'وانغ شينغيوي',
     description: 'متدرب قطع-الروح المتقن لتقنية هروب-العناصر-الخمسة',
     color: '#ff7878',
@@ -7832,7 +7832,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1716125764821,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'وانغ لين',
     description: 'اسم البطل',
     color: '#6e9bff',
@@ -7841,7 +7841,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715526176682,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'وانغ هاو',
     description: 'ابن عم البطل المتحمس',
     color: '#55db3d',
@@ -7850,7 +7850,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715528059201,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'يانغ شيونغ',
     description: 'المتدرب الذي اخذه البطل كعبد في ساحة المعركة الغريبة',
     color: '#ff7878',
@@ -7859,7 +7859,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715868569361,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'يون فاي',
     description:
       'المحضية من قصر الافتتان التي شاهدت البطل يخرج من فضاء النجوم-المكسورة',
@@ -7869,7 +7869,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1716156487029,
   },
   {
-    novelSlug: 'immor ree-novel',
+    novelName: 'immor ree-novel',
     name: 'يي زيزاي',
     description: 'من طائفة-الجثة الذي يريد الاستيلاء على جسد بون-نانزي',
     color: '#ff7878',
@@ -7878,7 +7878,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715805682586,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: ' دون',
     description: 'رئيس صقور-الليل',
     color: '#55db3d',
@@ -7887,7 +7887,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1656792660260,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'ازيك',
     description:
       'استاذ الجامعة صديق استاذ البطل الذي اعطى بحث جبال اورانيكس الى البطل',
@@ -7897,7 +7897,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657376954925,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'اليزابيث',
     description: 'صديقة اخت البطل التي انقذها البطل من المرآة الشريرة',
     color: '#ff6fd6',
@@ -7906,7 +7906,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657385461058,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'انتيغونوس',
     description: 'العائلة التي لديها دفتر الملاحظات',
     color: '#c9a877',
@@ -7915,7 +7915,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657377931037,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'اودري',
     description: 'العضو الثاني في نادي التاروت',
     color: '#ff6fd6',
@@ -7924,7 +7924,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657383709100,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'بينسون',
     description: 'اخ البطل الكبير',
     color: '#55db3d',
@@ -7933,7 +7933,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1656777082074,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'تريس',
     description: 'المحرض الذي يبحث عنه البطل والذي تحول الى فتاة',
     color: '#ff6fd6',
@@ -7942,7 +7942,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1656788700680,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'تشو مينغ روي',
     description: 'اسم البطل الاصلي',
     color: '#6e9bff',
@@ -7951,7 +7951,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1656746389639,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'تينغن',
     description: 'مدينة البطل',
     color: '#c9a877',
@@ -7960,7 +7960,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657377645917,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'جبال هورناكيس',
     description: 'الجبال التي جاءت الى وحي البطل',
     color: '#c9a877',
@@ -7969,7 +7969,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657380321409,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'دكستر غودريان',
     description: 'الكيميائي النفسي الذي اشترى جرعة المتنبأ في السوق',
     color: '#55db3d',
@@ -7978,7 +7978,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657431993298,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'روزان',
     description: 'المستقبلة في مكتب التامين لفريق صقور-الليل',
     color: '#ff6fd6',
@@ -7987,7 +7987,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1656788753751,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'روزيل',
     description: 'الامبراطور الذي جاء الى هذا العالم قبل البطل',
     color: '#c3940f',
@@ -7996,7 +7996,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657377819883,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'رويال',
     description: 'اللانائم من صقور الليل التي حرست البوابة مع البطل',
     color: '#ff6fd6',
@@ -8005,7 +8005,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657384716651,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'زاراتول',
     description: 'النظام السري الذي يلاحق اثار عائلة-انتيغو-نوس',
     color: '#c9a877',
@@ -8014,7 +8014,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657377869580,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'سولي',
     description: '12 بنسات',
     color: '#c9a877',
@@ -8023,7 +8023,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1656788561627,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'سيريوس',
     description: 'الذي اقترض بحوث عن قمم جبال ارانوس من المكتبة',
     color: '#ff7878',
@@ -8032,7 +8032,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657379186999,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'سيلينا',
     description: 'صديقة اخت البطل التي ساعدت البطل في انقاذ ايليز-ابيث',
     color: '#ff6fd6',
@@ -8041,7 +8041,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657385402783,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'صقور الليل',
     description: 'فريق الشرطة الذي ينتمي اليه البطل',
     color: '#c9a877',
@@ -8050,7 +8050,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1656785485059,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'فورس',
     description:
       'المتجاوزة التي تخترق الجدران التي طلبت مساعدة اودري لتهريب صديقاتها من السجن',
@@ -8060,7 +8060,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657384024748,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'كلاين',
     description: 'اسم البطل الاول',
     color: '#6e9bff',
@@ -8070,7 +8070,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657311641998,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'كلاين موريتي',
     description: 'بطل الرواية',
     color: '#6e9bff',
@@ -8079,7 +8079,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1656702138869,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'كوهين كوينتين',
     description: 'استاذ البطل في الجامعة',
     color: '#c3940f',
@@ -8088,7 +8088,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657376115982,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'كينلي',
     description:
       'اللانائم من صقور-الليل الذي ترقى من موظف مدني الذي التقى بالبطل في الاجتماع',
@@ -8098,7 +8098,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657384676123,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'ليونارد',
     description: 'اللانائم من صقور-الليل الذي حرس البوابة مع البطل',
     color: '#55db3d',
@@ -8107,7 +8107,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657384665473,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'ميليسا',
     description: 'اخت البطل',
     color: '#ff6fd6',
@@ -8117,7 +8117,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657311829084,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'نايا',
     description: 'صديقة البطل التي درست دفتر الملاحظات معه وماتت',
     color: '#ff6fd6',
@@ -8126,7 +8126,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657377743916,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'نيل',
     description: 'العجوز الذي درب البطل في الشرطة',
     color: '#c3940f',
@@ -8136,7 +8136,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657277729043,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'هاناس فينسنت',
     description: 'العراف من نادي العرافة الذي مات والذي يعلم عرافة المرآة',
     color: '#ff7878',
@@ -8145,7 +8145,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657377623926,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'هود أوغين',
     description: 'المريض الذي عالجه دكستر',
     color: '#55db3d',
@@ -8154,7 +8154,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657431982000,
   },
   {
-    novelSlug: 'lord of the mysteries',
+    novelName: 'lord of the mysteries',
     name: 'ولش',
     description: 'صديق البطل الذي اشترى دفتر الملاحظات ومات',
     color: '#55db3d',
@@ -8163,7 +8163,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1657377752279,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'الاخ تشو',
     description: 'بطل القصة',
     color: '#6e9bff',
@@ -8173,7 +8173,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660418588035,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'الجدة تشو',
     description: 'رئيسة عشيرة النساء',
     color: '#ff6fd6',
@@ -8182,7 +8182,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660321366478,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'الشيخ يوان',
     description: 'مدير مكتب العمال الذي اصبح صديق البطل',
     color: '#c3940f',
@@ -8191,7 +8191,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674047156756,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'الشيخ يون',
     description: 'شيخ طائفة السماء-الغامضة',
     color: '#ff7878',
@@ -8200,7 +8200,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674156038198,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'الشيطان يانج ',
     description: 'الشيخ السمين صديق رئيس طائفة البطل',
     color: '#55db3d',
@@ -8209,7 +8209,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674156398122,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'الشيطان يين',
     description: 'المبجل صديق رئيس طائفة البطل',
     color: '#55db3d',
@@ -8218,7 +8218,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674162569943,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'المبجل باي',
     description: 'جد المتدربة التي منعت المتدربين من الخروج من السجن',
     color: '#55db3d',
@@ -8227,7 +8227,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674123177690,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'المبجل شاي',
     description: 'رئيس التلاميذ الداخليين',
     color: '#ff7878',
@@ -8236,7 +8236,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674059018831,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'المخطط الشيطاني',
     description: 'طائفة البطل',
     color: '#c9a877',
@@ -8245,7 +8245,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674155981429,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'المنظم تشو',
     description: 'بطل القصة',
     color: '#6e9bff',
@@ -8255,7 +8255,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674156331362,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'باي ليان',
     description: 'التي منعت الطلاب المعاقبين من الخروج من السجن',
     color: '#ff6fd6',
@@ -8264,7 +8264,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674059135301,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'باي مي',
     description: 'احد التنانين المزدوجة بعد دان-تشين-شين',
     color: '#c3940f',
@@ -8273,7 +8273,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674163683544,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'بوابة الازدهار',
     description: 'اسم عشيرة البطل بعد ارتفاعها الى منزل ثامن',
     color: '#c9a877',
@@ -8282,7 +8282,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660397628793,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'تاي ينج',
     description: 'المتدرب الذي اتهم باختلاس النظر في حزب العمال',
     color: '#55db3d',
@@ -8291,7 +8291,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674047037641,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'تشو فان',
     description: 'بطل القصة',
     color: '#6e9bff',
@@ -8301,7 +8301,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660418595791,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'تشوجي تشانغ فينغ',
     description: 'المفكر رئيس الوزرائ والاعمدة الاربعة',
     color: '#ff7878',
@@ -8310,7 +8310,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673627952682,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'تشي تشانغلونغ',
     description: 'احد متدربين طائفة البطل المشاركين في المسابقة',
     color: '#55db3d',
@@ -8319,7 +8319,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674160720216,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'تشين تشين',
     description: 'زوجة البطل من عشيرة النساء',
     color: '#ff6fd6',
@@ -8328,7 +8328,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674155924769,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'تشين يا',
     description: 'احد شيوخ طائفة شعلة-الجحيم',
     color: '#ff7878',
@@ -8337,7 +8337,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674155475749,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'تشيو يانهاي',
     description: 'شيخ النار في عشيرة لوه',
     color: '#c3940f',
@@ -8346,7 +8346,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660389801018,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'تووبا تيشان',
     description: 'مارشال امبراطورية كوان-رونغ',
     color: '#ff7878',
@@ -8355,7 +8355,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673696987638,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'تووبا ليو فينغ',
     description: 'المفكر ابن مارشال امبراطورية كوان-رونغ',
     color: '#ff7878',
@@ -8364,7 +8364,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673697006140,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'جناح التنين',
     description: 'عشيرة التجار',
     color: '#c9a877',
@@ -8373,7 +8373,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660318609315,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'جو سان تونج',
     description: 'ابن البطل بالتبني',
     color: '#55db3d',
@@ -8383,7 +8383,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660418819175,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'جوي هو',
     description: 'تلميذ الشيخ الاكبر الذي اراد تدريب قلبه في حزب العمال',
     color: '#55db3d',
@@ -8392,7 +8392,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674047093746,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'دانتشين شين',
     description: 'الاسطورة الذي جاب الاراضي الغربية وحكمها',
     color: '#c3940f',
@@ -8401,7 +8401,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674052164603,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'دان’اير',
     description: 'تلميذة طائفة السماء-العميقة التي هاجمت البطل قبل المسابقة',
     color: '#ff6fd6',
@@ -8410,7 +8410,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674156219676,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'دوجو تشانتيان',
     description: 'جنرال الدولة',
     color: '#c3940f',
@@ -8419,7 +8419,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660352353810,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'دوغو',
     description: 'المارشال ذو الجيش القوي',
     color: '#55db3d',
@@ -8428,7 +8428,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660258670825,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'ربن كونج',
     description: 'ابن طائفة السيف الذي جاء مغرور قبل المباراة في المنافسة',
     color: '#ff7878',
@@ -8437,7 +8437,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674168747634,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'رضيع الدم',
     description: 'نسخة البطل من دمه',
     color: '#ceab00',
@@ -8446,7 +8446,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673773224851,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'زهي بي',
     description: 'رامي السهام ثالث الذئاب لامبراطورية كوان-رونغ',
     color: '#ff7878',
@@ -8455,7 +8455,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673697161712,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'سيما هوي',
     description: 'التنين السماوي الذي يلعب بالشطرنج',
     color: '#c3940f',
@@ -8464,7 +8464,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660393365881,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'شعلة الجحيم',
     description: 'الطائفة العليا التي هاجم تلميذهم البطل بمصفوفة الضباب قبل المسابقة',
     color: '#c9a877',
@@ -8473,7 +8473,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674155429055,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'شو تشين جيان',
     description: 'شيخة الماء في عشيرة لوه',
     color: '#c3940f',
@@ -8482,7 +8482,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660390982432,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'شوان شاويو',
     description: 'السيد الشاب لطائفة زوجة البطل',
     color: '#ff7878',
@@ -8491,7 +8491,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674132356681,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: "شوانغ'اير",
     description: 'بنت رئيس عشيرة التنبؤ',
     color: '#ff6fd6',
@@ -8500,7 +8500,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660419382290,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'شوي روهوا',
     description:
       'المتدربة التي اهداها البطل نبات الدرجة التاسعة مقابل معلومات عن تشو تشو',
@@ -8510,7 +8510,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674014103712,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'شي تيان تشي',
     description: 'الملقب باحد التنينانين من عشيرة السيف اخ صديق البطل',
     color: '#55db3d',
@@ -8519,7 +8519,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660318427250,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'شي تيان يانغ',
     description: 'من عشيرة السيف صديق البطل',
     color: '#55db3d',
@@ -8528,7 +8528,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660318419588,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'شي شياو فينغ',
     description: 'رئيس عشيرة السيف',
     color: '#55db3d',
@@ -8537,7 +8537,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660316708470,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'شي وو يوي',
     description: "رئيس طائفة المخطط-الشيطاني الذي اراد عقد صفقة مع البطل عن يون'اير",
     color: '#c3940f',
@@ -8546,7 +8546,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674050912234,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'شياو داندان',
     description: 'من عشيرة النساء التي تدعو البطل بـ زوجي',
     color: '#ff6fd6',
@@ -8555,7 +8555,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660319615967,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'شيخ لي',
     description: 'الشيخ حامي عائلة لو',
     color: '#c3940f',
@@ -8564,7 +8564,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660352253178,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'صرح هوايو',
     description: 'عشيرة النساء',
     color: '#c9a877',
@@ -8573,7 +8573,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660318581069,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'طائفة السماء الغامضة',
     description: 'الطائفة الصالحة التي فيها تشين-تشين',
     color: '#c9a877',
@@ -8582,7 +8582,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674155880161,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'طائفة روح الشيطان',
     description:
       'طائفة متوسطة التي واجه البطل تلميذهم عند الذهاب الى التسجيل في طائفته',
@@ -8592,7 +8592,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674160112026,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'عائلة لوه',
     description: 'عائلة البطل',
     color: '#6e9bff',
@@ -8601,7 +8601,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660255708428,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'فانغ تشيو باي',
     description: 'التنين السماوي ذو المزمار الذي اشرف على المسابقة',
     color: '#c3940f',
@@ -8610,7 +8610,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660393351257,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'قصر التنين المزدوج',
     description: 'القصر الذي اقيمت فيه المسابقة',
     color: '#c9a877',
@@ -8619,7 +8619,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674155955766,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'قصر جيان',
     description: 'عشيرة السيف',
     color: '#c9a877',
@@ -8628,7 +8628,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660318596704,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'كوان رونغ',
     description: 'الامبراطورية التي تربي الوحوش',
     color: '#ff7878',
@@ -8637,7 +8637,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673697035437,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'كونج شان',
     description: 'احد تلاميذ طائفة السيف في المسابقة',
     color: '#ff7878',
@@ -8646,7 +8646,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674169201945,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'كونج لين',
     description: 'احد تلاميذ طائفة السيف في المسابقة',
     color: '#ff7878',
@@ -8655,7 +8655,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674169209239,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'كوي جانج',
     description: 'تلميذ البطل الذي ناداه عمي',
     color: '#55db3d',
@@ -8664,7 +8664,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674045381388,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'كوي لانج',
     description: 'خادم البطل الذي انقذ البطل النه وناداه الاخير عمي',
     color: '#55db3d',
@@ -8673,7 +8673,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674042117902,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'لونج جيو',
     description: 'الشيخ من عائلة التجار الذي لديه عين البرق',
     color: '#55db3d',
@@ -8682,7 +8682,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660341491604,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'لونج كوي',
     description: 'المغرورة التي يريد الامير الثالث تزوجها',
     color: '#ff6fd6',
@@ -8691,7 +8691,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660392616246,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'لونغ شين يون',
     description: 'الملقب باحد التنانين من عشيرة لونغ التجارية',
     color: '#55db3d',
@@ -8700,7 +8700,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660316936832,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'لونغ ييفي',
     description: 'رئيس عشيرة التجار',
     color: '#55db3d',
@@ -8709,7 +8709,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660321381848,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'لوه شي',
     description: 'تلميذ المبجل شاي',
     color: '#ff7878',
@@ -8718,7 +8718,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674058988757,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'لوه يون تشانغ',
     description: 'السيدة الشابة لعشيرة لوه',
     color: '#ff6fd6',
@@ -8727,7 +8727,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673627697213,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'لي جينجتيان',
     description: 'الشيخ حامي عائلة لو',
     color: '#c3940f',
@@ -8736,7 +8736,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660352233576,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'لي يوتينج',
     description: 'قائدة فيلق الظل لعشيرة لوه',
     color: '#ff6fd6',
@@ -8745,7 +8745,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673636904025,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'لين شوان فينغ',
     description: 'تنين عائلة غابة المتعة',
     color: '#ff7878',
@@ -8754,7 +8754,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673632597578,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'لينغ وو تشانغ',
     description: 'المفكر مدبر البوابة الامبراطورية',
     color: '#ff7878',
@@ -8763,7 +8763,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673627132714,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'ليو يي تشين',
     description: 'الكيميائي الذي خان البطل في المسابقة',
     color: '#ff7878',
@@ -8772,7 +8772,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660334594635,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'نينغ’ير',
     description: 'اخت البطل من جبل الوحوش',
     color: '#ff6fd6',
@@ -8781,7 +8781,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660315572491,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'هان تيمو',
     description:
       'المعلم الامبراطوري لامبراطورية كوان-رونغ الذي بمكانه رئيس الوزراء تشوجي',
@@ -8791,7 +8791,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673697293266,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'هان يون فينغ',
     description: 'افضل تلميذ لطائفة روح-الشيطان',
     color: '#ff7878',
@@ -8800,7 +8800,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674160062196,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'هاي ران',
     description: 'احد التنانين المزدوجة بعد دان-تشين-شين الذي التقاه البطل في الغابة',
     color: '#c3940f',
@@ -8809,7 +8809,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674163703457,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: "هو ميي 'اير",
     description: 'الاخت الكبرى الذي راها البطل عند دخوله للطائفة',
     color: '#ff6fd6',
@@ -8818,7 +8818,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674014910605,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'هوا شينغ رو',
     description: 'جوهر الماء الذي سرقه البطل من كهف الثعبان',
     color: '#ceab00',
@@ -8827,7 +8827,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660305678828,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'هوانغبو تشينغتيان',
     description: 'الملقب باحد التنينانين واقواهم من البوابة الامبراطورية',
     color: '#ff7878',
@@ -8836,7 +8836,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660316586413,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'هوانغبو تيانيوان',
     description: 'رئيس البوابة الامبراطورية',
     color: '#ff7878',
@@ -8845,7 +8845,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660316686658,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'هوانغبو فينجلي',
     description:
       'الشيخ من البوابة الامبراطورية الذي تقاتل مع جنقلة المجنون في مراسيم تكريم العائلة الثامنة',
@@ -8855,7 +8855,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660394000156,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'هوي شيونغ',
     description:
       'من طائفة ترويض-الوحوش الذي اراد التباهي على البطل قبل المسابقة في الغرف',
@@ -8865,7 +8865,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674156912857,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'وو تشين تشيو',
     description: 'تلميذ احد الطوائف العليا الملقب افضل موهبة في الاراضي الغربية',
     color: '#55db3d',
@@ -8874,7 +8874,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674168900129,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يان بانغ غوي',
     description: 'الملقب باحد التنانين من عائلة بيت ملك الطب',
     color: '#ff7878',
@@ -8883,7 +8883,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660348153968,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يان بانغي',
     description: 'احد التنانين من قاعة ملك الطب',
     color: '#ff7878',
@@ -8892,7 +8892,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673632081824,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يان بو غونغ',
     description: 'رئيس قاعة ملك الطب',
     color: '#ff7878',
@@ -8901,7 +8901,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660337893762,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يان بوجونج',
     description: 'رئيس عائلة السم',
     color: '#ff7878',
@@ -8910,7 +8910,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673630915416,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يان سونج',
     description: 'شيخ الكيمياء في عشيرة لوه',
     color: '#55db3d',
@@ -8919,7 +8919,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660389142214,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يان فو',
     description: 'تلميذ سيد كيمياء عائلة لوه',
     color: '#55db3d',
@@ -8928,7 +8928,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660347753878,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يان مو',
     description:
       'من الطائفة العليا شعلة-الجحيم الذي هاجم البطل بمصفوفة الضباب قبل المسابقة',
@@ -8938,7 +8938,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674155437157,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'ياو يو شان',
     description: 'من طائفة الروح',
     color: '#ff7878',
@@ -8947,7 +8947,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660339149131,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يو مي',
     description: 'متدربة من طائفة شعلة-الجحيم',
     color: '#ff7878',
@@ -8956,7 +8956,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674155631959,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يون شانغ',
     description: 'رئيسة عائلة لوه',
     color: '#ff6fd6',
@@ -8965,7 +8965,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660256442912,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يون شوانجي',
     description: 'احد الاعمدة الاربعة للامبراطورية القسيس المتنبأ',
     color: '#c3940f',
@@ -8974,7 +8974,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660399282273,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يون شوانغ',
     description: 'بنت رئيس عشيرة التنبؤ',
     color: '#ff6fd6',
@@ -8983,7 +8983,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660418953272,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يونغ نينغ',
     description: 'اميرة الامبراطورية',
     color: '#ff6fd6',
@@ -8992,7 +8992,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660393834518,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يونهاي',
     description: 'وريث عائلة لوه ورئيسها',
     color: '#55db3d',
@@ -9001,7 +9001,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660256422332,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يوو مينج',
     description: 'تلميذ الشيخ السابع',
     color: '#ff7878',
@@ -9010,7 +9010,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660388635640,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يوو وانشان',
     description: 'رئيس عشيرة وادي الجحيم',
     color: '#ff7878',
@@ -9019,7 +9019,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660392479368,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يوو يوشان',
     description: 'تنين عائلة الشيخ الخامس الذكي الذي قتله البطل',
     color: '#ff7878',
@@ -9028,7 +9028,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673632576880,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يوي لينغ',
     description: 'الاخت الكبرى ليوي اير الاي دربها البطل',
     color: '#ff6fd6',
@@ -9037,7 +9037,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674041773080,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يوين بو',
     description: 'ولي عهد الامبراطورية',
     color: '#ff7878',
@@ -9046,7 +9046,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660391920295,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يوين كونج',
     description: 'الامير الثالث السمين',
     color: '#ff7878',
@@ -9055,7 +9055,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1673648749312,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يوين كونغ',
     description: 'الامير الثالث للامبراطورية واخ البطل',
     color: '#55db3d',
@@ -9064,7 +9064,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660398532222,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يوين يونغ',
     description: 'الامير الثاني للامبراطورية',
     color: '#ff7878',
@@ -9073,7 +9073,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1660391942052,
   },
   {
-    novelSlug: 'magic emperor',
+    novelName: 'magic emperor',
     name: 'يي لين',
     description: 'منافس البطل في المنافسة الذي في جسده جزء من وحش مقدس',
     color: '#55db3d',
@@ -9082,7 +9082,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1674164051642,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: ' مويي',
     description: 'بدون وصف',
     color: '#55db3d',
@@ -9090,7 +9090,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: ' يانغ لين',
     description: 'ولي العهد',
     color: '#55db3d',
@@ -9098,7 +9098,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'أوي تشينغ فينغ',
     description: 'امير المملكة الالهية الصهر السماوي',
     color: '#55db3d',
@@ -9106,7 +9106,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'أوي تشينغ يون',
     description: 'اميرة المملكة الالهية الصهر السماوي',
     color: '#ff6fd6',
@@ -9114,7 +9114,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'أوي هوا',
     description: 'العم الكبير لمبراطور الصهر الالهي',
     color: '#55db3d',
@@ -9122,7 +9122,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'أويانغ ديهوا',
     description: 'المبعوث الذي يزرع قوة الاكاسيا',
     color: '#ff7878',
@@ -9130,7 +9130,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'إمبيريان الحلم الالهي',
     description: 'التي انشأت ارض الاحلام',
     color: '#c3940f',
@@ -9139,7 +9139,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650743374580,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'ابادة رعد النار',
     description: 'قوة متفجرة من دمج الرعد والنار من بذرة الاله المهرطق',
     color: '#ceab00',
@@ -9147,7 +9147,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'احجار الفوضى',
     description: 'الحجارة التي نقشت عليها مفاهيم القوانين وتاريخ الكون',
     color: '#ceab00',
@@ -9155,7 +9155,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'اختراق قوس قزح',
     description: 'بدون وصف',
     color: '#ceab00',
@@ -9163,7 +9163,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'الأثيري',
     description:
       'النية القتالية التي دخل بها البطل عندما تأمل تحت مصفوفة بحيرة الشلال البارد',
@@ -9172,7 +9172,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'الأمير الوحش',
     description: 'من جنس الوحوش الذي اراد محاربة البطل في البطولة النهائية',
     color: '#ff7878',
@@ -9181,7 +9181,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1651332292866,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'الأميرة هانليش',
     description: 'مضيفة المزاد في المدينة على مستوى ملك عالم من جنس الثعلب الثلجي',
     color: '#ff6fd6',
@@ -9190,7 +9190,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650626986464,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'البوابات الثمانية من السيقان المخفية السماوية',
     description: 'بدون وصف',
     color: '#ceab00',
@@ -9198,7 +9198,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'التفكك الافتراضي',
     description: 'المهارة التي انشأها البطل من مفهوم النار المستوى الخامس',
     color: '#ceab00',
@@ -9207,7 +9207,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650749084735,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'الجنية عاصفة الثلج',
     description: 'بدون وصف',
     color: '#ff6fd6',
@@ -9215,7 +9215,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'الجنية فينغ',
     description: 'المبعوثة في اختبار الملك للعنقاء',
     color: '#ff6fd6',
@@ -9223,7 +9223,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'الحلم الثلجي',
     description: 'قديسة قصر الحلم الالهي',
     color: '#ff6fd6',
@@ -9232,7 +9232,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650744776522,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'الدوق السيف الذهبي',
     description: 'المبعوث من طائفة العنقاء في اختبار الصهر',
     color: '#55db3d',
@@ -9240,7 +9240,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'الرجل العجوز حسن الحظ',
     description:
       'العجوز الذي ساعد البطل في معركته مع مملكة اشورا الالهية في عالم الابعاد لعشيرة الاله المنبوذ',
@@ -9249,7 +9249,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مدرب',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'الرخ الذهبي يحطم الفراغ',
     description: 'مهارة حركة',
     color: '#ceab00',
@@ -9257,7 +9257,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'الشفرة البنفسجية',
     description: 'الذي ساعد البطل في التصفيات النهائية',
     color: '#55db3d',
@@ -9266,7 +9266,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1651277987321,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'الشيطان الابيض',
     description: 'الروح التي تملكت يانغ تشن',
     color: '#ff7878',
@@ -9274,7 +9274,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'الضباب العظيم',
     description: 'اساس الكون',
     color: '#ceab00',
@@ -9282,7 +9282,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'الفوضى القاتلة ميريدياس',
     description: 'بدون وصف',
     color: '#ceab00',
@@ -9290,7 +9290,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'القتال الأثيري',
     description:
       'النية القتالية التي دخل بها البطل عندما تأمل تحت مصفوفة بحيرة الشلال البارد',
@@ -9299,7 +9299,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'المحارب المدرع الأحمر',
     description: 'المشرف على تقييم ال 100 يوم في اختبار الملك في العنقاء',
     color: '#55db3d',
@@ -9307,7 +9307,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'المذنب الارجواني',
     description: 'سلاح البطل الارضي درحة عالية ذو سمة النار والبرق',
     color: '#ceab00',
@@ -9315,7 +9315,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'المطر البنفسجي',
     description: 'مستخدمة الرعد في فريق البطل في الحرب',
     color: '#ff6fd6',
@@ -9323,7 +9323,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'المطرد البري',
     description: 'اسم البطل في الحرب',
     color: '#6e9bff',
@@ -9331,7 +9331,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'بطل',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'اويانغ بويان',
     description: 'شيخ في فصيل الاكاسيا الذي يريد الانتقام من البطل',
     color: '#ff7878',
@@ -9339,7 +9339,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'اويانغ زيفنغ',
     description: 'الثالث من فصيل الاكاسيا في مسابقة التجمع القتالي',
     color: '#ff7878',
@@ -9347,7 +9347,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'اويانغ شينشيو',
     description: 'سلف فصيل الاكاسيا',
     color: '#ff7878',
@@ -9355,7 +9355,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'اويانغ مينغ',
     description: 'المصنف الاول في فرقة اكاسيا',
     color: '#ff7878',
@@ -9363,7 +9363,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'باي جينغ يون',
     description: 'المصنفة 22 في المعهد التي حضرت تقييم لين مينغ الثاني',
     color: '#ff6fd6',
@@ -9371,7 +9371,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'باي رونغ رونغ',
     description: 'صاحبة تصنيف 72 في الدار السماوية',
     color: '#ff6fd6',
@@ -9379,7 +9379,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'بذرة الاله المهرطق',
     description: 'مهارة زيادة القوة بنسبة معينة حسب احتراف المهارة',
     color: '#ceab00',
@@ -9387,7 +9387,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'بريمورديوس',
     description: 'الامبريان الذي انشأ طريق الامبراطور',
     color: '#c3940f',
@@ -9395,7 +9395,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مدرب',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'بلاكستون',
     description: 'بدون وصف',
     color: '#ff7878',
@@ -9403,7 +9403,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'بلاكوود',
     description: 'حارس نجم اختبار الصهر',
     color: '#55db3d',
@@ -9411,7 +9411,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'بي تينغهوا',
     description: 'متدرب الوهم في مسابقة الفصائل',
     color: '#ff7878',
@@ -9419,7 +9419,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'بي رويو',
     description:
       'المبعوث الامبراطوري التي لاحقت البطل الى سيادرة الرعد في بحر المعجزات',
@@ -9428,7 +9428,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تاكو',
     description: 'مصنف رقم 2 في المعهد',
     color: '#55db3d',
@@ -9436,7 +9436,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تدفق مثل الحرير',
     description: 'بدون وصف',
     color: '#ceab00',
@@ -9444,7 +9444,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تشانغ غوانيو',
     description: 'مصنف رقم 3 في المعهد',
     color: '#ff7878',
@@ -9452,7 +9452,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تشانغ قوانيو',
     description: 'مصنف رقم 3 في المعهد',
     color: '#ff7878',
@@ -9460,7 +9460,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تشانغ كانغ',
     description: 'الذي حاول سرقة احجار طاقة البطل',
     color: '#ff7878',
@@ -9468,7 +9468,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تشاو جي',
     description: 'التلميذ الرئيسي لنصف خطوة امبريان الفضاء-الشاسع',
     color: '#ff7878',
@@ -9477,7 +9477,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1651269322751,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تشو ريدكلاود',
     description: 'الشيخة المسئولة عن قصر العنقاء الساحر في اختبار الصهر',
     color: '#ff7878',
@@ -9485,7 +9485,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تشو شين يو',
     description: 'التلميذة الرئيسية لطائفة القمر',
     color: '#ff6fd6',
@@ -9493,7 +9493,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تشو فاي',
     description: 'المصنف الاول في قاعة النار في قصر صرخة العنقاء',
     color: '#ff7878',
@@ -9501,7 +9501,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تشو كون',
     description: 'مدير متجر الخشب الروحي الذي واجهه البطل في المملكة الالهية',
     color: '#ff7878',
@@ -9509,7 +9509,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تشو لاي',
     description: 'كلب الرعد من طائفة الرعد',
     color: '#ff7878',
@@ -9517,7 +9517,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تشو يان',
     description: 'العدو الاول للبطل',
     color: '#ff7878',
@@ -9525,7 +9525,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تشو يو',
     description: 'التلميذ الاساسي مع فريق البيت القتالي في المستبقة',
     color: '#55db3d',
@@ -9533,7 +9533,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تشو يوي',
     description: 'شامان قبيلة دودة النار',
     color: '#ff7878',
@@ -9541,7 +9541,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تشونغ وينشو',
     description:
       'فتى البحر الالهي الذي زايد على كريستال الطفل ذو 9 فتحات الذي اراده البطل لتعزيز رمحه في المزاد',
@@ -9551,7 +9551,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650626457980,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تشي يان',
     description: 'كبير المصفوفات في طائفة العنقاء الذي ساعد البطل في صقل رمحه',
     color: '#c3940f',
@@ -9559,7 +9559,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مدرب',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تشيان بشيان',
     description: 'المصنف 150 في الممالك الالهية الذي باع احجار عباد الشمس للبطل',
     color: '#55db3d',
@@ -9567,7 +9567,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تشين زيا',
     description: 'سيد البيت القتالي',
     color: '#55db3d',
@@ -9575,7 +9575,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تشين شيا ',
     description: 'المشرف على فريق البيت القتالي في المسابقة',
     color: '#c3940f',
@@ -9583,7 +9583,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مدرب',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تشين شينغ شوان',
     description: 'متدربة النقش ذات موهبة درجة 5',
     color: '#ff6fd6',
@@ -9591,7 +9591,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تشين ياو',
     description: 'صديقة تشين شينغ شوان التي ساعدتها في الحرب',
     color: '#ff6fd6',
@@ -9599,7 +9599,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تقسية النخاع',
     description: 'مهارة تدريب الجسد',
     color: '#ceab00',
@@ -9607,7 +9607,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تقنية اساس الحركة',
     description: 'مهارة حركة من المعهد',
     color: '#ceab00',
@@ -9615,7 +9615,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تقنية اساس الرمح',
     description: 'اساسيات استعمال الرمح',
     color: '#ceab00',
@@ -9623,7 +9623,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تكتيكات الروح المذهلة',
     description: 'بدون وصف',
     color: '#ceab00',
@@ -9631,7 +9631,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تيان غوانغ',
     description: 'السيد في الجوهر الدوار لطائفة العنقاء صاحب عيد الميلاد',
     color: '#55db3d',
@@ -9639,7 +9639,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تيان مينجزي',
     description: 'العدو الذي قتل والد مو-ايفرسنو',
     color: '#ff7878',
@@ -9648,7 +9648,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649967969314,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تيان مينغزي',
     description: 'صاحبة المكعب السحري',
     color: '#ff6fd6',
@@ -9656,7 +9656,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'تيانهوا',
     description: 'الاخ الاكبر للمعجزات الثلاثة في مسابقة ارض الحلم',
     color: '#ff7878',
@@ -9665,7 +9665,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650654616045,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'جبل الروح',
     description: 'متدربين الروح اعداء جزيرة-كيرفري',
     color: '#c9a877',
@@ -9674,7 +9674,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650023916814,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'جبل بوتالا',
     description: 'طائفة الرهبان المستمرة منذ 3.6 مليون سنة',
     color: '#c9a877',
@@ -9683,7 +9683,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1651277952240,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'جزيرة كيرفري',
     description: 'الجزيرة التي تسكن بها عمة مو-ايفرسنو',
     color: '#c9a877',
@@ -9692,7 +9692,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649967934238,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'جورو اللهب الازرق',
     description: 'رئيس مدينة العنقاء في اختبار الملك',
     color: '#55db3d',
@@ -9700,7 +9700,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'جورو بلوواي',
     description: 'مقيم النقش لخشب الروح ',
     color: '#55db3d',
@@ -9708,7 +9708,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'جون بلومون',
     description: 'صاحب السيف الصدأ الذي يتحكم باليين يانع',
     color: '#55db3d',
@@ -9717,7 +9717,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1651329630400,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'جون يونرو',
     description:
       'تابعة الجنية فينغ التي امرت بالعناية بالبطل عندما وصل الى قصر العنقاء',
@@ -9726,7 +9726,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'جيانغ باويون',
     description: 'المصنف الاول لفصيل السيف',
     color: '#55db3d',
@@ -9734,7 +9734,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'جيانغ زيجي',
     description: 'امبراطور الرعد صاحب معبد بحر المعجزات',
     color: '#c3940f',
@@ -9742,7 +9742,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مدرب',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'جيانغ لانجيان',
     description: 'المصنف الثاني لفصيل السيف الذي فهم قانون الرياح',
     color: '#55db3d',
@@ -9750,7 +9750,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'جينغ شانيو',
     description: 'صاحبة سمة الارض من الدرجة السادسة في مسابقة التجمع القتالي',
     color: '#ff6fd6',
@@ -9758,7 +9758,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'جيويانغ',
     description: 'نائب رئيس القصر في عشيرة العنقاء عدو الجنية فينغ',
     color: '#ff7878',
@@ -9766,7 +9766,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'حجارة الفوضى',
     description: 'الحجارة التي نقشت عليها مفاهيم القوانين وتاريخ الكون',
     color: '#ceab00',
@@ -9774,7 +9774,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'حكم الداو السماوي',
     description:
       'المخارة التي انشأها البطل التي تمثل بداية القوة الالهية الفائقة الخاصة به',
@@ -9784,7 +9784,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650630806271,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'خاتم التطرف البنفسجي',
     description: 'خاتم البطل الذي حصل عليه من قصر بحر المعجزات',
     color: '#ceab00',
@@ -9792,7 +9792,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'دا جو',
     description: 'المصنف الرابع ضمن شياطين النجوم السبعة في الطابق الثالث من البرج',
     color: '#55db3d',
@@ -9800,7 +9800,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'دفن السماوات',
     description: 'مهارة دمج النار والفضاء',
     color: '#ceab00',
@@ -9808,7 +9808,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'دليل الطاغية السماوي',
     description:
       'نظام تحويل الجسم الذي اعطته مو-ايفرسنو للبطل افضل من فضائل-الفوضى-القتالية',
@@ -9818,7 +9818,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650019848581,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'دوانمو شين',
     description: 'احد المواهب المميزة في البرج',
     color: '#55db3d',
@@ -9826,7 +9826,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'ديمونشن',
     description: 'روح الكلب في البحر لروحي للبطل',
     color: '#c3940f',
@@ -9834,7 +9834,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مدرب',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'رمز علاج الروح السفلي',
     description: 'نقش دوائي للحبوب',
     color: '#ceab00',
@@ -9842,7 +9842,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'روز ووتر',
     description: 'التي جهزت له اقامة في جزيرة كيرفري بعد لقائه ب مو-ريفربليس',
     color: '#ff6fd6',
@@ -9851,7 +9851,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649969480647,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'ريفر فيذر',
     description:
       'السيد الشاب الذي ساعد البطل في العثور على المواد الكيميائية في بنك ربط النجوم',
@@ -9861,7 +9861,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650101663762,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'زو لاي',
     description: 'كلب الرعد من طائفة الرعد',
     color: '#55db3d',
@@ -9869,7 +9869,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'سترايفكلاود',
     description: 'ملك المعركة الذي حقق 1000 قتل في مصفوفة القتل في اختبار الصهر',
     color: '#ff7878',
@@ -9877,7 +9877,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'سلسلة النجوم',
     description: 'المهارة التي انشأها البطل في القانون الثاني للنار من مرآة الاله',
     color: '#ceab00',
@@ -9885,7 +9885,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'سون شينغ',
     description:
       'طالب المعهد الذي اراد دخول مصفوفة بحيرة الشلال البارد وكان البطل فيها',
@@ -9894,7 +9894,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'سون يوداو',
     description: 'نائب رئيس البيت القتالي',
     color: '#55db3d',
@@ -9902,7 +9902,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'سونغ بايفينغ',
     description:
       'الحارس الذي عرقل مجموعة البطل عند اختياره لسلاح من قاعة الاسلحة في قصر العنقاء',
@@ -9911,7 +9911,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'سونغ شياو يو',
     description: 'تلميذة مباشرة طائفة العنقاء 19 عام',
     color: '#ff6fd6',
@@ -9919,7 +9919,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'سويتي فوكس',
     description: 'المبعوث من طائفة العنقاء في اختبار الصهر',
     color: '#ff6fd6',
@@ -9927,7 +9927,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'سيتو باي',
     description: 'تلميذ ملك مملكة اشورا الالهية',
     color: '#ff7878',
@@ -9935,7 +9935,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'سيتو بونان',
     description: 'عم امبراطور مملكة اشورا الالهية الذي دمر البطل جزء من روح معركته',
     color: '#ff7878',
@@ -9943,7 +9943,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'سيتو تشينغ شاو',
     description:
       'ابنة عم ملك مملكة اشورا الالهية التي تحمي سيتو ياويو في عشيرة الاله المنبوذ',
@@ -9952,7 +9952,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'سيتو شوان',
     description: 'امير مملكة اشورا الالهية في مأدبة التسع زهرات الذي هزمه البطل',
     color: '#ff7878',
@@ -9960,7 +9960,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'سيتو فينغ',
     description: 'صديق امير مملكة اشورا الالهية في مأدبة التسع زهرات',
     color: '#ff7878',
@@ -9968,7 +9968,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'سيتو لوشا',
     description: 'المصنف 12 في مرسوم القدر تابع لمملكة اشورا الالهية',
     color: '#ff7878',
@@ -9976,7 +9976,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'سيتو هوتيان',
     description: 'الامبراطور الالهي لمملكة اشورا الالهية',
     color: '#ff7878',
@@ -9984,7 +9984,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'سيتو ياوتشي',
     description: 'اخت ملك مملكة اشورا الالهية',
     color: '#ff7878',
@@ -9992,7 +9992,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'سيتو ياويو',
     description: 'متدربة مملكة اشورا الالهية (البطاقة الخفية)',
     color: '#ff7878',
@@ -10000,7 +10000,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'شوان شيانغ',
     description: 'العدو الذي واجهه البطل في البعد المنفصل في الحرب',
     color: '#ff7878',
@@ -10008,7 +10008,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'شوان ووجي',
     description: 'رئيس طائفة بحر الجنوب',
     color: '#ff7878',
@@ -10016,7 +10016,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'شوان يوكي',
     description: 'بدون وصف',
     color: '#ff7878',
@@ -10024,7 +10024,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'شي تشونغ',
     description: 'شيخ طائفة الارض الذي اهانه البطل كلاميا',
     color: '#ff7878',
@@ -10032,7 +10032,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'شي دونغ',
     description: 'موظف مصفوفة بحيرة الشلال الجليدية',
     color: '#55db3d',
@@ -10040,7 +10040,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'شيانغ تشن',
     description: 'الزميل الاكبر للبطل في طائفة العنقاء',
     color: '#55db3d',
@@ -10048,7 +10048,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'شيانغ يان تشاو',
     description: 'مستخدم صابر الدم',
     color: '#55db3d',
@@ -10056,7 +10056,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'شياو بروك',
     description: 'ثاني اكبر شيخ في جزيرة-كيرفري',
     color: '#ff7878',
@@ -10065,7 +10065,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650028019740,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'شياو دونغ',
     description: 'صديق طفولة البطل',
     color: '#55db3d',
@@ -10073,7 +10073,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'شياو رينجيم',
     description:
       'متدربة البحر الالهي التي وقفت مع البطل للمراقبة في المنجم في عالم الصحراء',
@@ -10083,7 +10083,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650022113895,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'شياو سكاي وايت',
     description: 'رئيس جزيرة-كيرفري',
     color: '#55db3d',
@@ -10092,7 +10092,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649970677367,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'شياو طفل الداو',
     description: 'التلميذ 76 لامبريان الكون-الشاسع',
     color: '#c3940f',
@@ -10101,7 +10101,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650749533986,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'شياو موشيان',
     description:
       'المصنفى الاولى في المرسوم الالهي في مسابقة ارض الاحلام من قصر شيطان الغروب السماوي',
@@ -10111,7 +10111,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650709169271,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'شياو هوجان',
     description: 'الشيخ الاكبر لجزيرة-كيرفري سيد شياو-بروك',
     color: '#ff7878',
@@ -10120,7 +10120,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650027968029,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'شياو وايت',
     description: 'الذي دخل مع البطل لاختيار طوطم قوانين في تجربة الصهر',
     color: '#55db3d',
@@ -10128,7 +10128,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'شياوشياو',
     description: 'ابنة رئيس شركة هاينكرافت',
     color: '#ff6fd6',
@@ -10136,7 +10136,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'شيباي',
     description: 'بطريك عشيرة الاله المنبوذ',
     color: '#55db3d',
@@ -10144,7 +10144,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'شيخ صن',
     description: 'المسؤول عن التلاميذ الجدد في اختبار الصهر في قصر صرخة العنقاء',
     color: '#55db3d',
@@ -10152,7 +10152,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'شينغ شوان',
     description: 'بدون وصف',
     color: '#ff6fd6',
@@ -10160,7 +10160,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'شينغ يانغ',
     description: 'الامير من طائفة اليين يانع',
     color: '#ff7878',
@@ -10168,7 +10168,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'صن سايبرستار',
     description: 'المسؤول عن التلاميذ الجدد في اختبار الصهر في قصر صرخة العنقاء',
     color: '#55db3d',
@@ -10176,7 +10176,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'صيغة الفوضى البدائية',
     description: 'مهارة تدريب الجسد الخاصة بالبطل',
     color: '#ceab00',
@@ -10184,7 +10184,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'طائفة عدم الكسر',
     description: 'الطائفة التابعة لعالم حسن الحظ التي انضممن لها زوجات البطل',
     color: '#c9a877',
@@ -10193,7 +10193,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650738759292,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'عالم القتال الحقيقي',
     description: 'العالم الذي اتجه له البطل مع قديسة عشيرة الريشة لسترداد مواردها',
     color: '#c9a877',
@@ -10202,7 +10202,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649966413753,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'عالم فجر الشيطان العظيم',
     description: 'العالم الذي يترأسه تيان-مينجزي',
     color: '#c9a877',
@@ -10211,7 +10211,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650747307122,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'عشيرة العظم الغامض',
     description: 'متدربين قوانين الحياة والموت اعداء جزيرة-كيرفري',
     color: '#c9a877',
@@ -10220,7 +10220,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650023972734,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'غيل فيوليتسون',
     description: 'بطريك عشيرة العنقاء',
     color: '#55db3d',
@@ -10228,7 +10228,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'فانغ تشي',
     description: 'تلميذ مباشر لفصير الصفيف في مسابقة الفصائل',
     color: '#ff7878',
@@ -10236,7 +10236,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'فضائل خطوط الزوال الفوضى القتالية',
     description: 'بدون وصف',
     color: '#ceab00',
@@ -10244,7 +10244,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'فن المطرد المقفر العظيم',
     description: 'بدون وصف',
     color: '#ceab00',
@@ -10252,7 +10252,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'فنون شيطان الفوضى العالية',
     description:
       'هجوم الروح الذي حصل عليه البطل بعد قتل رئيس سهول الذبح السابق بعد خروجه من طريق الامبراطور',
@@ -10261,7 +10261,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'فوضى مزايا قتال القمة',
     description: 'بدون وصف',
     color: '#ceab00',
@@ -10269,7 +10269,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'فينغ شين',
     description: 'المصنف الاول من النجوم السبعة في البرج في الطابق الثالث',
     color: '#55db3d',
@@ -10277,7 +10277,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'قديسة ارض الريشة الخضراء المقدسة',
     description: 'صاحبة المكعب السحري',
     color: '#ff6fd6',
@@ -10285,7 +10285,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'قصر تسعة نجوم',
     description: 'بدون وصف',
     color: '#ceab00',
@@ -10293,7 +10293,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'قصر كيرفري',
     description: 'القصر الذي تقيم فيه مو-ريفربليس عمة مو-ايفرسنو',
     color: '#c9a877',
@@ -10302,7 +10302,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649970840084,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'قوة الاله المهرطق',
     description: 'مهارة زيادة القوة بنسبة معينة حسب احتراف المهارة',
     color: '#ceab00',
@@ -10310,7 +10310,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'كاي يانغ',
     description: 'احد شياطين النجوم السبعة في الطابق الثالث من البرج',
     color: '#ff7878',
@@ -10318,7 +10318,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'كف قطع النبض',
     description: 'مهارة تدمير تدريب العدو',
     color: '#ceab00',
@@ -10326,7 +10326,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'كورسمانسر',
     description: 'متدرب الجثث المصنف 230 في مرسوم القدر',
     color: '#ff7878',
@@ -10334,7 +10334,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'كين زينغزوان',
     description: 'بدون وصف',
     color: '#ff6fd6',
@@ -10342,7 +10342,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'لان شين',
     description: 'الجنية صديقة البطل في البرج التي اتت معه الى قارة انسكاب السماء',
     color: '#ff6fd6',
@@ -10350,7 +10350,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'لان يون يوي',
     description: 'صديقة طفولة البطل الخاينة',
     color: '#ff6fd6',
@@ -10358,7 +10358,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'لو شياويون',
     description: 'المتدربة الاولى في قصر العنقاء الساحرة',
     color: '#ff6fd6',
@@ -10366,7 +10366,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'لوشا',
     description: 'امبراطور سهول الذبح ذو ال 12 جناح',
     color: '#ff7878',
@@ -10374,7 +10374,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'لوه شا',
     description: 'مصنف ال 12 جناح في البرج',
     color: '#ff7878',
@@ -10382,7 +10382,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'لي جينغ تيان',
     description: 'سيد في طائفة الرعد',
     color: '#ff7878',
@@ -10390,7 +10390,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'لي موباي',
     description: 'الذي يتدرب على فنون البرق الشيطانية',
     color: '#ff7878',
@@ -10398,7 +10398,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'لي يوكسياو',
     description: 'امبراطور مملكة السبعة نجوم الالهية',
     color: '#55db3d',
@@ -10406,7 +10406,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'لي يي فينغ',
     description: 'الذي حضر زفاف البطل من الممالك الالهية',
     color: '#55db3d',
@@ -10414,7 +10414,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'ليان تشينغ جي',
     description: 'جد الذي قتله البطل في العالم المكسور',
     color: '#ff7878',
@@ -10422,7 +10422,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'ليانغ لونغ',
     description: 'التلميذ الاساسي مع فريق البيت القتالي في المستبقة',
     color: '#55db3d',
@@ -10430,7 +10430,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'ليتلمون',
     description: 'منافسة البطل في اختبار الصهر',
     color: '#ff6fd6',
@@ -10438,7 +10438,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'لين زياودونغ',
     description: 'بدون وصف',
     color: '#55db3d',
@@ -10446,7 +10446,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'لين شياوجي',
     description: 'اخت البطل',
     color: '#ff6fd6',
@@ -10454,7 +10454,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'لين فو',
     description: 'اب البطل',
     color: '#55db3d',
@@ -10462,7 +10462,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'لين لانجيان',
     description: 'اسم البطل في المدن الالهية',
     color: '#6e9bff',
@@ -10470,7 +10470,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'بطل',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'لين مو',
     description: 'ام البطل',
     color: '#ff6fd6',
@@ -10478,7 +10478,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'لين مينغ',
     description: 'بطل الرواية',
     color: '#6e9bff',
@@ -10486,7 +10486,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'بطل',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'لين وو',
     description: 'ابن عم البطل في المعهد',
     color: '#55db3d',
@@ -10494,7 +10494,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'لينغ سين',
     description: 'مصنف رقم 1 في المعهد',
     color: '#55db3d',
@@ -10502,7 +10502,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'ليو مينغ شيانغ',
     description: 'صديق الذي حاول سرقة احجار طاقة البطل',
     color: '#ff7878',
@@ -10510,7 +10510,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'ليو يون',
     description:
       'التلميذ الذي اراد عمل مشاكل امام جناح البطل في جزيرة-كيرفري بعد الاجتماع',
@@ -10520,7 +10520,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649970635293,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'ما جون هوي',
     description: 'تلميذ طائفة العاصفة الذي هزمه البطل في عيد الميلاد',
     color: '#ff7878',
@@ -10528,7 +10528,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'ماها',
     description: 'احد شياطين النجوم السبعة في الطابق الثالث من البرج',
     color: '#ff7878',
@@ -10536,7 +10536,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'مرآة تحول الاله',
     description: 'المهارة التي تحتوي على المفاهيم ال 9 للنار',
     color: '#ceab00',
@@ -10544,7 +10544,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'مطاردة الرعد',
     description: 'بدون وصف',
     color: '#ceab00',
@@ -10552,7 +10552,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'مطاردة الشمس',
     description: 'بدون وصف',
     color: '#ceab00',
@@ -10560,7 +10560,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مهارة',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'مو إيفرسنو',
     description: 'صاحبة المكعب السحري',
     color: '#ff6fd6',
@@ -10569,7 +10569,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649967274593,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'مو بينج يون',
     description: 'شقيقة مو شيان يو',
     color: '#ff6fd6',
@@ -10577,7 +10577,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'مو بينغ يون',
     description: 'اخت قديسة طائفة العنقاء',
     color: '#ff6fd6',
@@ -10585,7 +10585,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'مو تشينغ شو',
     description: 'ابن عم قديسة طائفة العنقاء',
     color: '#ff7878',
@@ -10593,7 +10593,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'مو تشينغ هونغ',
     description: 'سليلة العنقاء ضيفة مسابقة التجمع القتالي',
     color: '#ff6fd6',
@@ -10601,7 +10601,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'مو تشيهو',
     description: 'شيخ في طائفة العنقاء',
     color: '#ff7878',
@@ -10609,7 +10609,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'مو ريفربليس',
     description: 'عمة مو-ايفرسنو',
     color: '#ff6fd6',
@@ -10618,7 +10618,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649969353842,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'مو شي هو',
     description: 'شيخ في طائفة العنقاء',
     color: '#ff7878',
@@ -10626,7 +10626,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'مو شيان يو',
     description: 'صاحبة دماء العنقاء التي ساعدت البطل في استيعاب روح الرعد',
     color: '#ff6fd6',
@@ -10634,7 +10634,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'مو فينغ شيان',
     description: 'سلف طائفة العنقاء',
     color: '#c3940f',
@@ -10642,7 +10642,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مدرب',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'مو لين',
     description: 'اسم البطل الوهمي',
     color: '#6e9bff',
@@ -10650,7 +10650,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'بطل',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'مو يانشو',
     description: 'شيخ العنقاء الذي لم يساعد في معركة البطل في العالم المكسور',
     color: '#ff7878',
@@ -10658,7 +10658,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'موجات المئات من الطبقات للطاغية السماوية',
     description:
       'تقنية قتالية لدليل-الطاغية السماوي التي تسمح لقوة الفنان القتالي بالتضاعف عند القتال',
@@ -10668,7 +10668,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650020723905,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'مورونغ زي',
     description: 'المصنفة 28 في المعهد التي حضرت تقييم لين مينغ الثاني',
     color: '#ff6fd6',
@@ -10676,7 +10676,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'موشيانغ جيان',
     description: 'اسم البطل عندما ارتدى قناع خشب الروح',
     color: '#6e9bff',
@@ -10684,7 +10684,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'بطل',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'موك غو',
     description: 'بدون وصف',
     color: '#55db3d',
@@ -10692,7 +10692,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'نا شوي',
     description: 'الاخت الصغيرة من قبيلة المشعوذين',
     color: '#ff6fd6',
@@ -10700,7 +10700,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'نا يي',
     description: 'الاخت الكبيرة من قبيلة المشعوذين',
     color: '#ff6fd6',
@@ -10708,7 +10708,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'ناب التنين',
     description: 'المصنف الخامس في عالم القتال الحقيقي في مسابقة ارض الاحلام',
     color: '#ff7878',
@@ -10717,7 +10717,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650737794498,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'نانيون وانغ',
     description:
       'سيد المرحلة الثالثة من تدمير الحياة الذي ساعد البطل داخل القصر في البعد المكسور في الحرب',
@@ -10726,7 +10726,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'نايفسكير',
     description:
       'مدير متجر يشم الخشب الروحي الي لقاه البطل عند وصوله الى المملكة الالهية',
@@ -10735,7 +10735,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'نويان مينغ',
     description: 'اسم البطل في عشيرة العنقاء الالهية',
     color: '#6e9bff',
@@ -10743,7 +10743,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'بطل',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'نيثر ليمتلس',
     description: 'سليل تيان مينجزي',
     color: '#ff7878',
@@ -10752,7 +10752,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650747244604,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'هانغ تشي',
     description: 'الراهب من جبل بوتالا',
     color: '#55db3d',
@@ -10761,7 +10761,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1651278043194,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'هايان',
     description: 'السيد الاعلى اذي اراد قتل البطل في قفص الملك',
     color: '#ff7878',
@@ -10769,7 +10769,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'هايدراغون',
     description:
       'احد المصنفين في المراتب ال 10 في عالم القتال-الحقيقي في مسابقة ارض الحلم',
@@ -10779,7 +10779,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650739127203,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'هوانغ يويغونغ',
     description: 'متدرب المرحلة التاسعة من تدمير الحياة في قاعة العنقاء',
     color: '#ff7878',
@@ -10787,7 +10787,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'هونغ شي',
     description: 'اول مدرب واجهه في المعهد',
     color: '#c3940f',
@@ -10795,7 +10795,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مدرب',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'هوه بينغ',
     description: 'من عشيرة هوه من عالم الالهة شارك في اختبار الملك',
     color: '#ff7878',
@@ -10803,7 +10803,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'هوه رو يان',
     description: 'المرتبة الثانية من التلاميذ المباشرين في طائفة العنقاء',
     color: '#ff6fd6',
@@ -10811,7 +10811,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'هوه وين لونغ',
     description: 'الموهبة في العنقاء في اختبار مستوى الملك الاول',
     color: '#ff7878',
@@ -10819,7 +10819,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'هوه يو',
     description: 'من عشيرة هوه من عالم الالهة شاركت في اختبار الملك',
     color: '#ff6fd6',
@@ -10827,7 +10827,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'هوو فيولينت ستون',
     description: 'الجد الاعلى (بطريك) لعائلة هوو في العنقاء',
     color: '#55db3d',
@@ -10835,7 +10835,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'هوو هايدراجون',
     description: 'مبعوث الشؤون الداخلية لعشيرة العنقاء',
     color: '#55db3d',
@@ -10843,7 +10843,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'هوو يانغوانغ',
     description: 'متدرب قاعة العنقاء الي اراد تحدي البطل للحصول على الرمح الدموي',
     color: '#ff7878',
@@ -10851,7 +10851,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'وانغ شوانجي',
     description: 'الجد رئيس اتحاد النقش',
     color: '#55db3d',
@@ -10859,7 +10859,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'وانغ غان',
     description: 'قائد قوات الحرس الملكي في مدينة ثروة السماء',
     color: '#55db3d',
@@ -10867,7 +10867,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'وانغ يان فنغ',
     description: 'الطالب صاحب المركز الثاني في اختبارات المعهد',
     color: '#ff7878',
@@ -10875,7 +10875,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'وانغ يغاو',
     description: 'بدون وصف',
     color: '#ff7878',
@@ -10883,7 +10883,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'وانغ يوهان',
     description: 'مساعدة البطل في النقش',
     color: '#ff6fd6',
@@ -10891,7 +10891,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'وايت داوهوانغ',
     description: 'المتدرب الاول في قصر صرخة العنقاء',
     color: '#55db3d',
@@ -10899,7 +10899,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'وايت ميرورجاد',
     description:
       'التلميذ الاساسي الذي اراد منع البطل من الحصول على شجرة الداو في اجتماع جزيرة-كيرفري',
@@ -10909,7 +10909,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1649970328711,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'وو فاينكلود',
     description: 'المصنف الاول في عالم القتال الحقيقي في مسابقة ارض الاحلام',
     color: '#ff7878',
@@ -10918,7 +10918,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650737678643,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'يان تشي',
     description: 'متدرب الروح ضمن النجوم السبعة في الطابق الثالث في البرج',
     color: '#ff7878',
@@ -10926,7 +10926,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'يان جونشوان',
     description: 'الشاب في المطعم الذي اراد الحصول على مكافئة القبض على البطل',
     color: '#ff7878',
@@ -10934,7 +10934,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'يان فينغ شيان',
     description: 'الجنية فينغ من عشيرة العنقاء',
     color: '#ff6fd6',
@@ -10942,7 +10942,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'انثى',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'يان ليتلفيش',
     description:
       'الفتاة التي تاكل الاحجار البنفسجية التي اشتراها البطل في المزاد تحت الارض',
@@ -10952,7 +10952,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650104705950,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'يانران',
     description: 'الاخت احد المعجزات الثلاثة في مسابقة ارض الحلم',
     color: '#ff7878',
@@ -10961,7 +10961,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650654672751,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'يانغ شياوهي',
     description: 'امبراطور مملكة الصهر الالهية',
     color: '#55db3d',
@@ -10969,7 +10969,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'يانغ لاوتيان',
     description: 'الامبراطور الالهي التسعة افران',
     color: '#55db3d',
@@ -10977,7 +10977,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'يانغ يون',
     description: 'ولي العهد في مملكة التسع افران',
     color: '#ff7878',
@@ -10985,7 +10985,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'عدو',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'يلرايت مين',
     description: 'البشري الذي التقى به البطل في عالم العنقاء',
     color: '#55db3d',
@@ -10993,7 +10993,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'صديق',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'يو ايرونروك',
     description:
       'الشاب الذي دخل الى المزاد تحت الارض وزايد على فتاة الاحجار البنفسجية مع البطلالذي ولد قبل 100 سنة وعمره 30 سنة',
@@ -11003,7 +11003,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650103017770,
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'يو هوانغ',
     description: 'مدربة البطل في طائفة العنقاء',
     color: '#c3940f',
@@ -11011,7 +11011,7 @@ export const seedKeywords: SeedKeyword[] = [
     role: 'مدرب',
   },
   {
-    novelSlug: 'martial world',
+    novelName: 'martial world',
     name: 'يويبينغ',
     description: 'الاخ الثاني للمعجزات الثلاثة في مسابقة ارض الحلم',
     color: '#ff7878',
@@ -11020,7 +11020,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1650654591567,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'افاكانيا',
     description: 'مستوى رجل الابادة-العجوز',
     color: '#ceab00',
@@ -11029,7 +11029,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1714138410503,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'التنين الخفي',
     description: 'طائفة دي-تيان في الاراضي-القاحلة-الشرقية',
     color: '#c9a877',
@@ -11038,7 +11038,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700654466670,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'التنين المظلم',
     description: 'قبيلة حبيبة البطل باي-لينغ',
     color: '#c9a877',
@@ -11047,7 +11047,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697733736520,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'الجبل الاسود',
     description: 'القبيلة عدوة قبيلة البطل',
     color: '#c9a877',
@@ -11056,7 +11056,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697733760142,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'الجبل المظلم',
     description: 'قبيلة البطل',
     color: '#c9a877',
@@ -11065,7 +11065,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697733774895,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'السماء المتجمدة',
     description:
       'العشيرة المشهورة في المنطقة الجنوبية عندما تم امتصاص البطل في الدوامة',
@@ -11075,7 +11075,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697912319964,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'الصباح الجنوبي',
     description: 'المنطقة التي عاش به البطل بعد نقله في نفق المضاء',
     color: '#c9a877',
@@ -11084,7 +11084,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698577205690,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'الفراغ الغامض',
     description: 'العالم المكافئ الى عالم-الحياة',
     color: '#ceab00',
@@ -11093,7 +11093,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1714133814198,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'القبيلة الهادئة الشرقية',
     description: 'القبيلة التي عالج البطل ابن زعيمهم',
     color: '#c9a877',
@@ -11102,7 +11102,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697922825723,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'الكركي الاصلع',
     description: 'صديق البطل',
     color: '#55db3d',
@@ -11111,7 +11111,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1713870134504,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'المصير والحياة والموت',
     description: 'العوالم الثلاث بعد عالم-السيادة',
     color: '#ceab00',
@@ -11120,7 +11120,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1714071718177,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'اوريول',
     description: 'اسم البطل الذي سماه عليه زعيم طائفة روح-الشر',
     color: '#6e9bff',
@@ -11129,7 +11129,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700656957459,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'باو تشيو',
     description: 'الخالدة من طائفة الشر التي سيطر البطل على عقلها',
     color: '#ff6fd6',
@@ -11138,7 +11138,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700499259331,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'باي تشونغ',
     description: 'الجنرال الالهي الذي يحمي حاجز مدينة الصباح-الجنوبي',
     color: '#55db3d',
@@ -11147,7 +11147,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698578790296,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'باي سو',
     description: 'الفتاة بجوار سي-ما التي تشبه باي-لينغ',
     color: '#ff6fd6',
@@ -11156,7 +11156,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698592641513,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'باي لينغ',
     description:
       'الفتاة من قبيلة التنين الاسود التي قابلت البطل في الساحة التجارية لقبيلة الرياح',
@@ -11166,7 +11166,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697719005924,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'بحيرة الالوان',
     description: 'احد العشائر الثلاث التي تتحكم في مدينة جبل-هان',
     color: '#c9a877',
@@ -11175,7 +11175,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697912914854,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'بوشيانغ',
     description: 'قبيلة فن الجثث في المنطقة الجنوبية',
     color: '#c9a877',
@@ -11184,7 +11184,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697912537752,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'بي تو',
     description: 'سيد قبيلة الجبل-الاسود عدو قبيلة البطل',
     color: '#ff7878',
@@ -11193,7 +11193,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697828520033,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'بي سو',
     description: 'الشاب الغامض من قبيلة الجبل-الاسود',
     color: '#ff7878',
@@ -11202,7 +11202,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697791873474,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'بي شيونغ',
     description: 'العجوز الذي اراد خداع البطل بالاعشاب في مسابقة قبيلة تيار-الرياح',
     color: '#ff7878',
@@ -11211,7 +11211,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697827364897,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'بي لينغ',
     description: 'العبقري في قبيلة البطل',
     color: '#ff7878',
@@ -11220,7 +11220,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697551037912,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'تشان اير',
     description: 'الفتاة التي جلبت الهدايا للبطل من القمة السابعة',
     color: '#ff6fd6',
@@ -11229,7 +11229,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698610524909,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'تشانغ جي داو',
     description: 'حيازة البطل بعد ان اكتشف حقيقة والديه',
     color: '#6e9bff',
@@ -11238,7 +11238,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1714140267888,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'تشانغ هي',
     description:
       'تلميذ الكائن السامي لعالم يين-المقدس الذي اراد احياء زوجته عندما دخل الفرن الخامس',
@@ -11248,7 +11248,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1713909837846,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'تشو جي',
     description: 'من قبيلة الحدود-الشمالية الذي اذى زي-شي',
     color: '#ff7878',
@@ -11257,7 +11257,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698696234270,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'تشو دي',
     description: 'قائد الجبهة الجنوبية للحرب',
     color: '#c3940f',
@@ -11266,7 +11266,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1713868580841,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'تشو كانغ',
     description: 'الخالد الذي ماتت زوجته في اختبارات النصب الحجري',
     color: '#55db3d',
@@ -11275,7 +11275,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1701087222795,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'تشو نو',
     description: 'احد اتباع الضيف الرئيسي لقبيلة الرياح-الشرقية',
     color: '#55db3d',
@@ -11284,7 +11284,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698499886006,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'تشو يو كاي',
     description:
       'الشخص الذي لديه ارتبطاب برمح انحراف-الحياة والذي ارجعه للبطل في الفرن الخامس',
@@ -11294,7 +11294,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1713901426312,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'تشي شان بو',
     description: 'سيد البيرسيرك الثاني',
     color: '#c3940f',
@@ -11303,7 +11303,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700243940764,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'تشيان شين',
     description: 'العجوز رئيس العمال في طائفة الشر',
     color: '#55db3d',
@@ -11312,7 +11312,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700654317495,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'تشين تشونغ',
     description: 'من قبيلة تيار-الرياح ذو الحضور الاستثنائي',
     color: '#ff7878',
@@ -11321,7 +11321,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697741525006,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'تشين شيانغ',
     description: 'الانثى المتنكرة كذكر في قاعة التجهيزات الاثرية',
     color: '#ff6fd6',
@@ -11330,7 +11330,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698593276778,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'تشين شين',
     description: 'ابنة زعيم القبيلة والاخت الصغرى للبطل',
     color: '#ff6fd6',
@@ -11339,7 +11339,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697551084488,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'تيار الرياح',
     description: 'القبيلة من المستوى المتوسط قرب قبيلة البطل',
     color: '#c9a877',
@@ -11348,7 +11348,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697736910873,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'تيان شي زي',
     description: 'العجوز الذي قبل البطل كتلميذ',
     color: '#c3940f',
@@ -11358,7 +11358,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698698562154,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'تيان شيو لوه',
     description: 'حاكم الداو من عشيرة-اشورا',
     color: '#c3940f',
@@ -11367,7 +11367,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715267638138,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'تيان لان مينغ',
     description: 'صاحبة المركز الاول في السماء-المتجمدة',
     color: '#ff6fd6',
@@ -11376,7 +11376,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698610762366,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'تيان لان يو',
     description:
       'المتكبرة قائدة الجبهة الشرقية في الحرب اخت صاحبة المركز الاول في عشيرة السماء-المتجمدة',
@@ -11386,7 +11386,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1699817856598,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'تيان لين',
     description: 'سيد العالم في كوكب الشعلة',
     color: '#55db3d',
@@ -11395,7 +11395,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700857455676,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'جبل هان',
     description:
       'الجبل الذي زاره البطل بعد امتصاصه في الدوامة، وتتقاسم مدينته 3 قبائل',
@@ -11405,7 +11405,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697912286463,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'جي ان',
     description: 'الخالد رئيس طوائف الشر في الاراضي القاحلة-الشرقية',
     color: '#55db3d',
@@ -11414,7 +11414,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700664784853,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'جي يون هاي',
     description: 'شامان الحشرات الدمية للمرأة التي هاجمت البطل',
     color: '#ff7878',
@@ -11423,7 +11423,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700070658042,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'جينغ نان',
     description: 'رئيس قبيلة تيار-الرياح في عالم-الصحوة',
     color: '#c3940f',
@@ -11432,7 +11432,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697737329041,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'داو تشين',
     description: 'سيد عالم داو-الصباح',
     color: '#c3940f',
@@ -11441,7 +11441,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700773078972,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'داو كونغ',
     description: 'العبقرية من داو الصباح الذي اراد البطل اخذ جسده كنسخة له',
     color: '#6e9bff',
@@ -11450,7 +11450,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1714054129773,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'داو يوان',
     description: 'السيد الشاب لطائفة داو-الصباح',
     color: '#ff7878',
@@ -11459,7 +11459,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700846840207,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'دونغ فانغ',
     description: 'ذو رقم البطاقة 7 الذي جاء مع البطل كضيف لقبيلة الرياح-االشرقية',
     color: '#55db3d',
@@ -11468,7 +11468,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698499944824,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'دي تيان',
     description: 'الوجود الذي ظهر امام سو مينغ الحقيقي في بحر ذكرياته',
     color: '#ff7878',
@@ -11477,7 +11477,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698508361451,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'دي شون',
     description: 'الشاب الذي اعلن عن تجارته عند منافسة البطل في مسابقات داو-الصباح',
     color: '#55db3d',
@@ -11486,7 +11486,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1714071025903,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'ديجو مو شا',
     description: 'الاخ الخامس للبطل',
     color: '#55db3d',
@@ -11495,7 +11495,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1701534219729,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'رو يو',
     description:
       'الطالبة الخارجية المتغطرسة التي صعبت الاختبار على البطل من عشيرة السماء-المتجمدة',
@@ -11505,7 +11505,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698577295088,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'روح الشر',
     description:
       'الطائفة التي عالج البطل بها نفسه بعد معركته مع دي-تيان في الاراضي-القاحلة-الشرقية',
@@ -11515,7 +11515,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700654516598,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'رونغ وو',
     description:
       'اقوى عرق بين الاجناس الاربعة في محيط الجوهر-السماوي-النجمي والذي يتكون من انصاف وحوش هاجموا البطل قبل دخوله للعالم الخامس',
@@ -11525,7 +11525,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1713956783361,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'زونغ زي',
     description: 'شامان الموتى المتوسط من قبيلة الخريف',
     color: '#ff7878',
@@ -11534,7 +11534,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700054039761,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'زي شان',
     description: 'تلميذة الذي بنى للبطل الغرفة التاسعة في المزاد',
     color: '#ff6fd6',
@@ -11543,7 +11543,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698706802546,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'زي شي',
     description: 'الذي جاء الى الجبل-التاسع لتعطيل تأمل البطل',
     color: '#55db3d',
@@ -11552,7 +11552,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698696244036,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'زي لونغ',
     description: 'الرجل الذي اراد التحالف مع البطل في الفرن الخامس',
     color: '#ff7878',
@@ -11561,7 +11561,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1713901632127,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'زي يان',
     description: 'التي تجسس عليها الاخ الثالث بالمرآة الجليدية',
     color: '#ff6fd6',
@@ -11570,7 +11570,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698608768064,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'سا شان',
     description:
       'التلميذ المفكر الذي حجزه البطل في كهف طائفة التنين-الخفي في الاراضي القاحلة-الشرقية',
@@ -11580,7 +11580,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700661133767,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'سلف شياطين اللهب',
     description: 'الذي اراد قتل البطل في الفرن الخامس واصبح حارسه لسنة',
     color: '#55db3d',
@@ -11589,7 +11589,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1713911144082,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'سو شوان يي',
     description: 'اب البطل',
     color: '#6e9bff',
@@ -11598,7 +11598,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1701987817823,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'سو مينغ',
     description: 'اسم البطل',
     color: '#6e9bff',
@@ -11607,7 +11607,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697461090344,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'سوي تشين زي',
     description: 'البار-غون السماوي الذي انشأ مسابقة النصب الحجري الاعلى',
     color: '#c3940f',
@@ -11616,7 +11616,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1701092461095,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'سي كونغ',
     description: 'الذي طارد البطل من فبيلة التنين-المظلم',
     color: '#ff7878',
@@ -11625,7 +11625,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697734467010,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'سي ما',
     description: 'من قبيلة الرياح-الشرقية الذي اصاب ابن زعيمها',
     color: '#ff7878',
@@ -11634,7 +11634,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698519442205,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'شان هوا',
     description: 'محارب عالم الروح الذي اخذ البطل و6 معه الى ارض الشامان في الحرب',
     color: '#c3940f',
@@ -11643,7 +11643,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1699808231617,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'شان هين',
     description: 'رئيس الصيادين لقبيلة البطل',
     color: '#55db3d',
@@ -11652,7 +11652,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697735059967,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'شو تشونغ فان',
     description: 'سيد البطل في طائفة الاقمار-السبعة',
     color: '#55db3d',
@@ -11661,7 +11661,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715262168314,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'شو هوي',
     description: 'خطيبة نسخة البطل الثالثة من عالم داو-الصباح',
     color: '#ff6fd6',
@@ -11670,7 +11670,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1701522155060,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'شوان زانغ',
     description: 'الرجل ذو الرداء الاسود الذي امتص المورس-البا',
     color: '#ff7878',
@@ -11679,7 +11679,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715272766517,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'شوان لون',
     description: 'متدرب عالم الصحوة من الجثث بو-شيان',
     color: '#ff7878',
@@ -11688,7 +11688,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697912857361,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'شي هاي',
     description: 'الشيخ من قبيلة الرياح الذي تناول حبوب البطل الاولى',
     color: '#55db3d',
@@ -11697,7 +11697,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697736314575,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'شياو هوانغ',
     description: 'تنين الهاوية الذي ساعد البطل في الدفاع عن القمة-التاسعة',
     color: '#55db3d',
@@ -11706,7 +11706,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1701345417419,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'شياو هونغ',
     description: 'القرد صديق البطل في البداية',
     color: '#55db3d',
@@ -11715,7 +11715,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697541794216,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'شين دونغ',
     description: 'زعيم طائفة الشر في الاكمال في عالم الروح',
     color: '#55db3d',
@@ -11724,7 +11724,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700668331556,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'شينغ جي داو',
     description:
       'الخالد الذي نزل على عالم-الثالوث لمساعدة دي-تيان في حيازة جسد البطل',
@@ -11734,7 +11734,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1714138094002,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'شينغ غان',
     description: 'المستنسخ الذي ولد الاخ الاكبر للبطل من  نسله',
     color: '#c3940f',
@@ -11743,7 +11743,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700772909208,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'صن كون',
     description: 'سيد العالم القزم ذو التشكيلات الذي ساعد البطل في كوكب الشعلة',
     color: '#55db3d',
@@ -11752,7 +11752,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700861126916,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'طائفة الاقمار السبعة',
     description: 'طائفة البطل الاخيرة',
     color: '#c9a877',
@@ -11761,7 +11761,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715262193067,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'عالم الحياة',
     description: 'العالم بعد عالم-المصير',
     color: '#ceab00',
@@ -11770,7 +11770,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1713911061929,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'عالم السيادة',
     description: 'العالم بعد عالم الكالبا-الشمسي',
     color: '#ceab00',
@@ -11779,7 +11779,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1714071671317,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'عالم المصير',
     description: 'العالم بعد عالم-السيادة',
     color: '#ceab00',
@@ -11788,7 +11788,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1713911083313,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'غو تاي',
     description: 'الشيخ الاكبر في طائفة الافمار-السبعة',
     color: '#55db3d',
@@ -11797,7 +11797,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715261578606,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'غو دي',
     description: 'حاكم الداو الامبراطور',
     color: '#c3940f',
@@ -11806,7 +11806,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715267625755,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'غو هونغ',
     description: 'حاكم الداو العجوز الذي درب البطل في القرية على تقطيع الخشب',
     color: '#c3940f',
@@ -11815,7 +11815,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1715267646937,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'فانغ شين',
     description: 'زعيم القبيلة الهادئة-الشرقية',
     color: '#55db3d',
@@ -11824,7 +11824,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697922742857,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'فانغ مو',
     description: 'المراهق المصاب الذي عالجه البطل عندما ذهب الى ارض الجنوب',
     color: '#55db3d',
@@ -11833,7 +11833,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697845364947,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'فراغ الروح',
     description: 'العالم المكافئ الى عالم-المصير',
     color: '#ceab00',
@@ -11842,7 +11842,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1714133795300,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'فراغ المحنة',
     description: 'العالم المكافئ الى عالم-الموت',
     color: '#ceab00',
@@ -11851,7 +11851,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1714133832836,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'فراغ النيرفانا',
     description: 'العالم المكافئ الى عالم-السيادة',
     color: '#ceab00',
@@ -11860,7 +11860,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1714133722350,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'كانغ زي',
     description: 'نفسها كانغ-لان لكن هذا اسمها في قبيلة الرياح-الشرقية',
     color: '#ff6fd6',
@@ -11869,7 +11869,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698495090290,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'كانغ لان',
     description: 'الفتاة التي تحدت سلاسل جبل-هان ودخلت عشيرة السماء-المتجمدة',
     color: '#ff6fd6',
@@ -11878,7 +11878,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697912335332,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'كونغ مو',
     description: 'اسم الكركي-الاصلع قبل ان يفقد ذكرياته',
     color: '#55db3d',
@@ -11887,7 +11887,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1713870115469,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'لا سو',
     description: 'بدون وصف',
     color: '#6e9bff',
@@ -11896,7 +11896,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697460575611,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'لاي شان شيو',
     description: 'سيد البيرسيرك الاول',
     color: '#c3940f',
@@ -11905,7 +11905,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1713958394391,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'لو يا',
     description: 'صاحب القرع الذي اراد قتل الكر-كي',
     color: '#ff7878',
@@ -11914,7 +11914,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1701045614592,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'لونغ لي',
     description: 'سيد العالم العجوز ذو العين اليمنى ذات البؤبؤ العمودي',
     color: '#ff7878',
@@ -11923,7 +11923,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700861337092,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'لونغ هاي',
     description: 'سلف داو-الصباح الذي انقذه البطل من الفرن الخامس',
     color: '#55db3d',
@@ -11932,7 +11932,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1713911212393,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'لي تشين',
     description: 'صديق البطل في القبيلة',
     color: '#55db3d',
@@ -11941,7 +11941,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697547374630,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'مو سانغ',
     description: 'الحجوز شيخ البطل',
     color: '#c3940f',
@@ -11950,7 +11950,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697737195502,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'مو سو',
     description: 'اسم البطل في مسابقة قبيلة تيار-الرياح',
     color: '#6e9bff',
@@ -11959,7 +11959,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697792164379,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'مو شان',
     description: 'شيخ قبيلة الحدود-الشمالية في تدريب عالم الروح',
     color: '#ff7878',
@@ -11968,7 +11968,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698696898119,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'نان تيان',
     description: 'الضيف الرئيسي لقبيلة الرياح-الشرقية',
     color: '#55db3d',
@@ -11977,7 +11977,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698499897684,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'نان جونج',
     description: 'الشامان المتوسط الذي ساعده البطل بعد الغابة في عالم التسعة-لي',
     color: '#55db3d',
@@ -11986,7 +11986,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700077511850,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'نان سونغ',
     description: 'شيخ قاعة الاعشاب في عشيرة البطل',
     color: '#55db3d',
@@ -11995,7 +11995,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697833914397,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'هان في زي',
     description:
       'معجزة قبيلة بحيرة-الالوان التي قبلت كتلميذة في عشيرة السماء-المتجمدة',
@@ -12005,7 +12005,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697913309449,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'هان كونغ',
     description: 'سلف جبل-هان',
     color: '#c3940f',
@@ -12014,7 +12014,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698507794552,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'هو زي',
     description: 'الاخ الاكبر الثالث للبطل',
     color: '#55db3d',
@@ -12023,7 +12023,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698581641085,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'هوانغ مي',
     description: 'الرجل ذو الحواجب الصفراء في الفرن الخامس',
     color: '#ff7878',
@@ -12032,7 +12032,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1713901580745,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'هونغ لو',
     description: 'السلف ابن امبراطور الخالدون الذي ختم بداخل البطل',
     color: '#c3940f',
@@ -12041,7 +12041,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700060777789,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'هوو تشو',
     description: 'المتدربة التي جذبت البطل بريش الكركي-الاصلع وهي تكره الكركي-الاصلع',
     color: '#ff6fd6',
@@ -12050,7 +12050,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1713972360582,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'هوو كوي',
     description: 'اسم سلف_شياطين_اللهب',
     color: '#55db3d',
@@ -12059,7 +12059,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1713972911978,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'هي فنغ',
     description: 'متدرب المستوى العاشر من عالم الدم الذي تحدى سلاسل جبل-هان',
     color: '#55db3d',
@@ -12068,7 +12068,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697912584420,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'وان تشيو',
     description:
       'الشامان من قبيلة الخريف التي ارادت اختبار قوة شعرة عاهل البيرسيرك للبطل',
@@ -12078,7 +12078,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700054084795,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'وو ديو',
     description: 'الشامان المتنكر كبيرسرك',
     color: '#ff7878',
@@ -12087,7 +12087,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698774516891,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'وو سين',
     description: 'احد العباقرة الثلاثة في قبيلة تيار-الرياح',
     color: '#ff7878',
@@ -12096,7 +12096,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697739779814,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'وو لا',
     description: 'التي خاضت الصحوة في نفس الوقت مع البطل من قبيلة البطل',
     color: '#ff6fd6',
@@ -12105,7 +12105,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697735092238,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'يا مو',
     description: 'من قبيلة شامان الخريف الذي اصبح صديق البطل',
     color: '#55db3d',
@@ -12114,7 +12114,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700054406176,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'يان بو',
     description: 'قائد فريق صيد ي-شي في الحرب',
     color: '#55db3d',
@@ -12123,7 +12123,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1699811041957,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'يان لوان',
     description: 'متدربة عالم الصحوة من عشيرة بحيرة-الالوان',
     color: '#ff7878',
@@ -12132,7 +12132,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698498922795,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'يو بينغ',
     description: 'التلميذ الخارجي من عشيرة السماء-المتجمدة الذي جاء لاختبار القبول',
     color: '#ff7878',
@@ -12141,7 +12141,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1698577099318,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'يو تشي',
     description: 'من قبيلة الجبل الاسود الذي خطف قرد البطل',
     color: '#ff7878',
@@ -12150,7 +12150,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697546858165,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'يو شوان',
     description: 'التي باعت البطل على انه صانع هاوية',
     color: '#ff6fd6',
@@ -12159,7 +12159,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700770007374,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'يون لاي',
     description: 'الشامان الحامي لجزيرة المستنقع-الجنوبي الذي يتدرب على النساء',
     color: '#ff7878',
@@ -12168,7 +12168,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700257832195,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'يوي هونغ يانغ',
     description: 'متدرب السماء الذي قدم البطل كقربان في عالم اللهب',
     color: '#55db3d',
@@ -12177,7 +12177,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700855761883,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'يي شينتونغ',
     description:
       'سيد العالم الذي استهزأ بالبطل في عالم الشعلة والقادر على امتصاص الهالة الجسدية',
@@ -12187,7 +12187,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1700861081212,
   },
   {
-    novelSlug: 'pursuit of the truth',
+    novelName: 'pursuit of the truth',
     name: 'يي وانغ',
     description: 'العبقري الاول لقبيلة تيار الرياح',
     color: '#ff7878',
@@ -12196,7 +12196,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1697736865092,
   },
   {
-    novelSlug: 'rise of the worm sovereign',
+    novelName: 'rise of the worm sovereign',
     name: 'Lin Wu',
     description: 'The Protagonist',
     color: '#6e9bff',
@@ -12205,7 +12205,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1728466870062,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'بينغ يويرو',
     description: 'معلمة البطل المنجمة',
     color: '#ff6fd6',
@@ -12214,7 +12214,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680154479248,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'جيندان',
     description: 'حيوان البطل الكتكوت',
     color: '#55db3d',
@@ -12223,7 +12223,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680156684538,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'دو زي',
     description: 'خادم البطل في العالم الصغير من عشيرة التنين الاسود',
     color: '#55db3d',
@@ -12232,7 +12232,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680156751197,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'دوان جيان',
     description: 'خادم البطل في العالم الصغير من عشيرة التنين الاسود',
     color: '#55db3d',
@@ -12241,7 +12241,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680162534731,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'زوان يوى',
     description:
       'الاخت الكبرى في طائفة النوتة-السماوية التي تريد تخريب العلاقة بين صديقات البطل',
@@ -12251,7 +12251,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680159227796,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'زيو مينغ',
     description:
       'من طائفة الهيئة-المخفية الذي حضر في طائفة النوتة-السماوية عند مجئء البطل',
@@ -12261,7 +12261,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680159452555,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'زيون',
     description: 'خطيبة البطل',
     color: '#ff6fd6',
@@ -12270,7 +12270,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680160668680,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'سحابة السماء',
     description: 'المبجل معلم البطل في طائفة الريشة-السماوية',
     color: '#c3940f',
@@ -12279,7 +12279,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680153212307,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'سيتو بيان',
     description: 'ابن رئيس طائفة الريشة-السماوية',
     color: '#55db3d',
@@ -12288,7 +12288,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680153102128,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'طائفة الريشة السماوية',
     description: 'الطائف التي اصبح البطل رئيسها',
     color: '#c9a877',
@@ -12297,7 +12297,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680153162584,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'طائفة النوتة السماوية',
     description: 'الطائفة التي ذهبت لها خطيبة البطل',
     color: '#c9a877',
@@ -12306,7 +12306,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680159251285,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'طائفة الهيئة المخفية',
     description: 'طائفة الذي حضر في طائفة النوتة-السماوية عند مجئء البطل',
     color: '#c9a877',
@@ -12315,7 +12315,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680159477113,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'طائفة لينغيون',
     description: 'طائفة تابعة لطائفة الريشة-السماوية',
     color: '#c9a877',
@@ -12324,7 +12324,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680157395635,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'غو بيي',
     description: 'من عشيرة التجار الذي تسممت اخته',
     color: '#55db3d',
@@ -12333,7 +12333,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680153949915,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'غو لان',
     description: 'اخت صديق البطل من عائلة التجار',
     color: '#ff6fd6',
@@ -12342,7 +12342,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680154103117,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'غو هينغ',
     description: 'اخ غو-بيي من عائلة التجار الذي نافسه على رئاسة العائلة',
     color: '#ff7878',
@@ -12351,7 +12351,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680154009330,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'لو بياو',
     description: 'صديق البطل من العالم الصغير، الذي تعاقد مع الكيلين',
     color: '#55db3d',
@@ -12360,7 +12360,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680154220784,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'لونغ تيان مينغ',
     description: 'الذي يريد رئاسة طائفة الريشة-السماوية',
     color: '#ff7878',
@@ -12369,7 +12369,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680153132570,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'لونغ يوين',
     description: 'تلميذة البطل التي تحبه',
     color: '#ff6fd6',
@@ -12378,7 +12378,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680153783009,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'لي زينغيون',
     description: 'ذو الشعر الاحمر الذي لديه رابطة السماء',
     color: '#55db3d',
@@ -12387,7 +12387,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680154277750,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'لينغ كونغ',
     description: 'الذي جاء لخطبة لونغ-يوين',
     color: '#ff7878',
@@ -12396,7 +12396,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680157226774,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'نانغونغ زيانين',
     description: 'رئيسة طائفة النوتة-السماوية',
     color: '#ff6fd6',
@@ -12405,7 +12405,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680159401888,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'ني لي',
     description: 'البطل',
     color: '#6e9bff',
@@ -12414,7 +12414,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680153174575,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'نينغ ير',
     description: 'التي تعشق البطل من العالم-الضئيل',
     color: '#ff6fd6',
@@ -12423,7 +12423,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680160662121,
   },
   {
-    novelSlug: 'tales of demons and gods',
+    novelName: 'tales of demons and gods',
     name: 'يو يان',
     description: 'روح النار من العالم الصغير',
     color: '#ff6fd6',
@@ -12432,7 +12432,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1680156638787,
   },
   {
-    novelSlug: 'warlock of the magus world',
+    novelName: 'warlock of the magus world',
     name: 'آنا',
     description: 'اول عبدة للبطل',
     color: '#ff6fd6',
@@ -12441,7 +12441,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1656697558753,
   },
   {
-    novelSlug: 'warlock of the magus world',
+    novelName: 'warlock of the magus world',
     name: 'جريم',
     description: 'اول فارس العبد للبطل',
     color: '#55db3d',
@@ -12450,7 +12450,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1656697509259,
   },
   {
-    novelSlug: 'warlock of the magus world',
+    novelName: 'warlock of the magus world',
     name: 'رقاقة',
     description: 'رقاقة الـ AI التي في روح البطل',
     color: '#ceab00',
@@ -12459,7 +12459,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1656689424005,
   },
   {
-    novelSlug: 'warlock of the magus world',
+    novelName: 'warlock of the magus world',
     name: 'فريزر',
     description: 'الفارس العبد الثاني للبطل',
     color: '#55db3d',
@@ -12468,7 +12468,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1656697541759,
   },
   {
-    novelSlug: 'warlock of the magus world',
+    novelName: 'warlock of the magus world',
     name: 'ليلين',
     description: 'بطل الرواية',
     color: '#6e9bff',
@@ -12477,7 +12477,7 @@ export const seedKeywords: SeedKeyword[] = [
     timestamp: 1656687453952,
   },
   {
-    novelSlug: 'warlock of the magus world',
+    novelName: 'warlock of the magus world',
     name: 'ويلكر',
     description: 'مدبر منزل البطل',
     color: '#55db3d',

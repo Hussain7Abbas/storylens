@@ -14,6 +14,7 @@ export type DeleteNovelsById200 = {
   id: string;
   name: string;
   description: DeleteNovelsById200Description;
+  slugs: string[];
   imageId: DeleteNovelsById200ImageId;
   createdAt: DeleteNovelsById200CreatedAt;
   updatedAt: DeleteNovelsById200UpdatedAt;

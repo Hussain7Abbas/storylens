@@ -33,13 +33,13 @@ type SourceNovel = {
 type SourceData = Record<string, SourceNovel>;
 
 type SeedNovel = {
-  slug: string;
   name: string;
+  slugs: string[];
   lastModified: string;
 };
 
 type SeedKeyword = {
-  novelSlug: string;
+  novelName: string;
   name: string;
   description: string;
   color: string;
@@ -49,7 +49,7 @@ type SeedKeyword = {
 };
 
 type SeedReplacement = {
-  novelSlug: string;
+  novelName: string;
   from: string;
   to: string;
 };
@@ -76,14 +76,14 @@ const replacements: SeedReplacement[] = [];
 
 for (const [slug, novel] of Object.entries(source)) {
   novels.push({
-    slug,
     name: slug,
+    slugs: [slug],
     lastModified: novel.settings.last_modified,
   });
 
   for (const character of Object.values(novel.characters)) {
     const keyword: SeedKeyword = {
-      novelSlug: slug,
+      novelName: slug,
       name: character.name,
       description: character.info,
       color: character.color,
@@ -100,7 +100,7 @@ for (const [slug, novel] of Object.entries(source)) {
 
   for (const replacement of Object.values(novel.replaces)) {
     replacements.push({
-      novelSlug: slug,
+      novelName: slug,
       from: replacement.name,
       to: replacement.with,
     });
@@ -117,13 +117,13 @@ console.log(`  ${replacements.length} replacements`);
 writeTsFile(
   'types.ts',
   `export type SeedNovel = {
-  slug: string;
   name: string;
+  slugs: string[];
   lastModified: string;
 };
 
 export type SeedKeyword = {
-  novelSlug: string;
+  novelName: string;
   name: string;
   description: string;
   color: string;
@@ -134,7 +134,7 @@ export type SeedKeyword = {
 };
 
 export type SeedReplacement = {
-  novelSlug: string;
+  novelName: string;
   from: string;
   to: string;
 };

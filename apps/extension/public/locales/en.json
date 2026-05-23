@@ -83,6 +83,8 @@
     "delete": "Delete Novel",
     "applyKeywordsAndReplacements": "Apply Keywords and Replacements",
     "name": "Novel Name",
+    "slugs": "URL Slugs",
+    "slugsPlaceholder": "Add slugs from different sites",
     "description": "Novel Description",
     "image": "Novel Image",
     "notFound": "Novel not found",

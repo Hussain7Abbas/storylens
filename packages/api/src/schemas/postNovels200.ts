@@ -15,6 +15,7 @@ export type PostNovels200 = {
   id: string;
   name: string;
   description: PostNovels200Description;
+  slugs: string[];
   imageId: PostNovels200ImageId;
   createdAt: PostNovels200CreatedAt;
   updatedAt: PostNovels200UpdatedAt;

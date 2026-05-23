@@ -16,6 +16,7 @@ export type GetNovelsById200 = {
   id: string;
   name: string;
   description: GetNovelsById200Description;
+  slugs: string[];
   imageId: GetNovelsById200ImageId;
   createdAt: GetNovelsById200CreatedAt;
   updatedAt: GetNovelsById200UpdatedAt;

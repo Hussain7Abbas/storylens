@@ -1,4 +1,4 @@
 export type currentNovelMeta = {
-  novelName: string;
+  novelSlug: string;
   chapter: number;
 };

@@ -5,6 +5,7 @@ import {
   Group,
   Paper,
   Stack,
+  TagsInput,
   TextInput,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
@@ -37,6 +38,7 @@ export function NovelForm({
       name: '',
       description: '',
       imageId: '',
+      slugs: [] as string[],
     },
   });
 
@@ -45,6 +47,7 @@ export function NovelForm({
       name: selectedNovel?.name || '',
       description: selectedNovel?.description || '',
       imageId: selectedNovel?.imageId || '',
+      slugs: selectedNovel?.slugs || [],
     });
   }, [selectedNovel]);
 
@@ -96,6 +99,7 @@ export function NovelForm({
           name: values.name,
           description: values.description || undefined,
           imageId: values.imageId || undefined,
+          slugs: values.slugs,
         },
       });
     } else if (mode === 'edit') {
@@ -105,6 +109,7 @@ export function NovelForm({
           name: values.name,
           description: values.description || undefined,
           imageId: values.imageId || undefined,
+          slugs: values.slugs,
         },
       });
     }
@@ -152,6 +157,11 @@ export function NovelForm({
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <Stack gap="xs">
           <TextInput label={t('novels.name')} {...form.getInputProps('name')} />
+          <TagsInput
+            label={t('novels.slugs')}
+            placeholder={t('novels.slugsPlaceholder')}
+            {...form.getInputProps('slugs')}
+          />
           <TextInput
             label={t('novels.description')}
             {...form.getInputProps('description')}
