@@ -1,6 +1,6 @@
 import { ActionIcon, Button, Group, Stack, TextInput } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { websiteSelectors } from '@/types/configs';
 import { useGetConfigsByKey, usePutConfigs } from '@repo/api/configs.js';
 import { useForm } from '@mantine/form';
@@ -8,7 +8,9 @@ import { WEBSITES_SELECTORS_KEY } from './constants';
 import { browser } from '#imports';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router';
-import { IconTrash } from '@tabler/icons-react';
+import { IconSparkles, IconTrash } from '@tabler/icons-react';
+import { sendMessage } from '@/entrypoints/background/messaging';
+import { detectChapterSelectors } from '@/utils/detect-chapter-selectors';
 
 interface NodeSelectorFormProps {
   onClose: () => void;
@@ -18,6 +20,7 @@ interface NodeSelectorFormProps {
 export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [isDetecting, setIsDetecting] = useState(false);
 
   useEffect(() => {
     if (!isEdit) {
@@ -89,16 +92,54 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
     const currentSelectors = { ...existingSelectors };
     delete currentSelectors[website];
 
-    // Otherwise update with remaining websites
     deleteConfig.mutate({
       data: { key: WEBSITES_SELECTORS_KEY, value: JSON.stringify(currentSelectors) },
     });
   }
 
+  async function handleAutoDetect() {
+    setIsDetecting(true);
+
+    try {
+      const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
+      if (!tab?.id) {
+        toast.error(t('nodeSelector.detectFailed'));
+        return;
+      }
+
+      const page = await sendMessage('getPageHtml', undefined, { tabId: tab.id });
+      if (!page?.url || !page.html) {
+        toast.error(t('nodeSelector.detectFailed'));
+        return;
+      }
+
+      const detection = await detectChapterSelectors({
+        url: page.url,
+        html: page.html,
+      });
+
+      form.setValues(detection.nodeSelectorForm);
+
+      if (detection.validation.errors.length > 0) {
+        toast.error(
+          `${t('nodeSelector.detectPartial')}: ${detection.validation.errors.join(', ')}`,
+        );
+        return;
+      }
+
+      toast.success(
+        `${t('nodeSelector.detectSuccess')} (${detection.result.confidence})`,
+      );
+    } catch {
+      toast.error(t('nodeSelector.detectFailed'));
+    } finally {
+      setIsDetecting(false);
+    }
+  }
+
   function handleSubmit(values: typeof form.values) {
     let newSelectors: websiteSelectors = { ...existingSelectors };
 
-    // Update with new website selector
     newSelectors = {
       ...newSelectors,
       [values.website]: {
@@ -121,10 +162,6 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
         },
       },
     };
-
-    console.log('🔥', 'currentSelectors', {
-      newSelectors,
-    });
 
     updateConfig.mutate({
       data: {
@@ -164,6 +201,14 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
         {...form.getInputProps('website')}
         disabled={!!isEdit}
       />
+      <Button
+        variant="light"
+        leftSection={<IconSparkles size={16} />}
+        onClick={handleAutoDetect}
+        loading={isDetecting}
+      >
+        {t('nodeSelector.autoDetect')}
+      </Button>
       {/* Novel Name */}
       {/* XPath */}
       <TextInput

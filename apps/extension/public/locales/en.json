@@ -139,6 +139,10 @@
     "websiteSavedFailed": "Website saved failed",
     "websiteDeleteSuccess": "Website deleted successfully",
     "websiteDeleteFailed": "Failed to delete website",
+    "autoDetect": "Auto-detect from current tab",
+    "detectSuccess": "Selectors detected successfully",
+    "detectPartial": "Selectors detected with validation warnings",
+    "detectFailed": "Failed to detect selectors",
     "noData": "There is no websites to show"
   }
 }

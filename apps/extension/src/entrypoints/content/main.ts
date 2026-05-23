@@ -11,6 +11,13 @@ export async function runContentScript(_ctx: ContentScriptContext): Promise<void
 
   console.log('🔥', 'StoryLens content script loaded');
 
+  onMessage('getPageHtml', () => {
+    return {
+      url: window.location.href,
+      html: document.documentElement.outerHTML,
+    };
+  });
+
   const websiteSelectorData = (await getConfigsByKey(
     WEBSITES_SELECTORS_KEY,
   )) as AxiosResponse<{

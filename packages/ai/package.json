@@ -1,0 +1,26 @@
+{
+  "name": "@repo/ai",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./agents/chapter-selector": "./src/agents/chapter-selector-agent.ts",
+    "./schemas/chapter-selector": "./src/schemas/chapter-selector.ts",
+    "./client": "./src/client.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "detect-selectors": "bun run ./src/cli/detect-selectors.ts"
+  },
+  "dependencies": {
+    "@openrouter/sdk": "^0.12.35",
+    "linkedom": "^0.18.12",
+    "xpath": "^0.0.34",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@repo/tsconfig": "workspace:*",
+    "@types/bun": "^1.2.22"
+  }
+}

@@ -25,7 +25,7 @@ export function getNovelName(
 
   if (websiteSelector.novel?.url) {
     return extractFromUrl(
-      websiteSelector.novel?.url?.value || '',
+      document.location.href,
       websiteSelector.novel?.url?.regex || '',
     );
   }
@@ -54,7 +54,7 @@ export function getChapterNumber(
   if (websiteSelector.chapter.url) {
     return Number.parseInt(
       extractFromUrl(
-        websiteSelector.chapter?.url?.value || '',
+        document.location.href,
         websiteSelector.chapter?.url?.regex || '',
       ) || '0',
       10,
