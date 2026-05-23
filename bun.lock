@@ -53,6 +53,7 @@
         "@repo/api": "workspace:*",
         "@repo/db": "workspace:*",
         "@repo/tsconfig": "workspace:*",
+        "@repo/utils": "workspace:*",
         "@tabler/icons-react": "^3.35.0",
         "@tanstack/react-query": "^5.90.2",
         "@webext-core/messaging": "^2.3.0",
@@ -94,6 +95,7 @@
       "version": "0.0.0",
       "dependencies": {
         "@openrouter/sdk": "^0.12.35",
+        "@repo/utils": "workspace:*",
         "jsdom": "^29.1.1",
         "linkedom": "^0.18.12",
         "xpath": "^0.0.34",

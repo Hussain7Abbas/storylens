@@ -6,7 +6,8 @@
     "./helpers": "./src/helpers.ts",
     "./constants": "./src/constants.ts",
     "./types": "./src/types.ts",
-    "./schemas": "./src/schemas.ts"
+    "./schemas": "./src/schemas.ts",
+    "./novel-title": "./src/novel-title.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"

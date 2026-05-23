@@ -4,11 +4,9 @@ export type NodeSelectorFormValues = {
   website: string;
   novelXpath: string;
   novelXpathRegex: string;
-  novelUrl: string;
   novelUrlRegex: string;
   chapterXpath: string;
   chapterXpathRegex: string;
-  chapterUrl: string;
   chapterUrlRegex: string;
 };
 

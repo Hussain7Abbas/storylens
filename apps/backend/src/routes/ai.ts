@@ -97,11 +97,9 @@ export const ai = new Elysia({
             website: t.String(),
             novelXpath: t.String(),
             novelXpathRegex: t.String(),
-            novelUrl: t.String(),
             novelUrlRegex: t.String(),
             chapterXpath: t.String(),
             chapterXpathRegex: t.String(),
-            chapterUrl: t.String(),
             chapterUrlRegex: t.String(),
           }),
           novelForm: t.Object({

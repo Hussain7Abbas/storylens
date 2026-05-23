@@ -11,35 +11,41 @@ import { useNavigate } from 'react-router';
 import { IconSparkles, IconTrash } from '@tabler/icons-react';
 import { sendMessage } from '@/entrypoints/background/messaging';
 import { detectChapterSelectors } from '@/utils/detect-chapter-selectors';
+import {
+  computeSelectorPreviews,
+  extractXpathText,
+  type SelectorPreviewInput,
+} from '@/utils/selector-preview';
+import { RegexPreview } from './regex-preview';
 
 interface NodeSelectorFormProps {
   onClose: () => void;
   editedWebsite?: string;
 }
 
+type PageContext = {
+  url: string;
+  html: string;
+};
+
+const INITIAL_FORM_VALUES: SelectorPreviewInput & { website: string } = {
+  website: '',
+  novelXpath: '',
+  novelXpathRegex: '(.*)',
+  novelUrlRegex: '/novel/([^/]+)/',
+  chapterXpath: '',
+  chapterXpathRegex: '\\d+',
+  chapterUrlRegex: '(\\d+)(?!.*\\d)',
+};
+
 export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [isDetecting, setIsDetecting] = useState(false);
-
-  useEffect(() => {
-    if (!isEdit) {
-      const getActiveTab = async () => {
-        const activeTab = await browser.tabs.query({
-          active: true,
-          currentWindow: true,
-        });
-        form.setValues({
-          website: new URL(activeTab?.[0].url || '').hostname,
-        });
-      };
-      getActiveTab();
-    }
-  }, []);
+  const [pageContext, setPageContext] = useState<PageContext | null>(null);
 
   const isEdit = !!editedWebsite;
 
-  // Fetch existing config
   const { data: configData } = useGetConfigsByKey<{
     data: { key: string; value: string };
   }>(WEBSITES_SELECTORS_KEY);
@@ -50,18 +56,25 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
   );
 
   const form = useForm({
-    initialValues: {
-      website: editedWebsite || '',
-      novelXpath: '',
-      novelXpathRegex: '.*',
-      novelUrl: '',
-      novelUrlRegex: '/^(?:[^/]*/){2}([^/]+)/',
-      chapterXpath: '',
-      chapterXpathRegex: 'd+',
-      chapterUrl: '',
-      chapterUrlRegex: '(d+)(?!.*d)',
-    },
+    mode: 'controlled',
+    initialValues: INITIAL_FORM_VALUES,
   });
+
+  const xpathTexts = useMemo(() => {
+    if (!pageContext) {
+      return { novel: null, chapter: null };
+    }
+
+    return {
+      novel: extractXpathText(pageContext.html, form.values.novelXpath),
+      chapter: extractXpathText(pageContext.html, form.values.chapterXpath),
+    };
+  }, [pageContext, form.values.novelXpath, form.values.chapterXpath]);
+
+  const previews = useMemo(
+    () => computeSelectorPreviews(form.values, { pageContext, xpathTexts }),
+    [form.values, pageContext, xpathTexts],
+  );
 
   const updateConfig = usePutConfigs({
     mutation: {
@@ -88,6 +101,43 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
     },
   });
 
+  async function loadPageContext(): Promise<PageContext | null> {
+    const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
+    if (!tab?.id) {
+      return null;
+    }
+
+    const page = await sendMessage('getPageHtml', undefined, { tabId: tab.id });
+    if (!page?.url || !page.html) {
+      return null;
+    }
+
+    return page;
+  }
+
+  useEffect(() => {
+    if (isEdit) {
+      return;
+    }
+
+    void loadPageContext().then((page) => {
+      if (!page) {
+        return;
+      }
+
+      setPageContext(page);
+      form.setFieldValue('website', new URL(page.url).hostname);
+    });
+  }, [isEdit]);
+
+  useEffect(() => {
+    void loadPageContext().then((page) => {
+      if (page) {
+        setPageContext(page);
+      }
+    });
+  }, []);
+
   function handleDelete(website: string) {
     const currentSelectors = { ...existingSelectors };
     delete currentSelectors[website];
@@ -101,17 +151,13 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
     setIsDetecting(true);
 
     try {
-      const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
-      if (!tab?.id) {
+      const page = await loadPageContext();
+      if (!page) {
         toast.error(t('nodeSelector.detectFailed'));
         return;
       }
 
-      const page = await sendMessage('getPageHtml', undefined, { tabId: tab.id });
-      if (!page?.url || !page.html) {
-        toast.error(t('nodeSelector.detectFailed'));
-        return;
-      }
+      setPageContext(page);
 
       const detection = await detectChapterSelectors({
         url: page.url,
@@ -138,26 +184,22 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
   }
 
   function handleSubmit(values: typeof form.values) {
-    let newSelectors: websiteSelectors = { ...existingSelectors };
-
-    newSelectors = {
-      ...newSelectors,
+    const newSelectors: websiteSelectors = {
+      ...existingSelectors,
       [values.website]: {
         website: values.website,
         novel: {
           xpath: values.novelXpath
             ? { value: values.novelXpath, regex: values.novelXpathRegex }
             : null,
-          url: values.novelUrl
-            ? { value: values.novelUrl, regex: values.novelUrlRegex }
-            : null,
+          url: values.novelUrlRegex.trim() ? { regex: values.novelUrlRegex } : null,
         },
         chapter: {
           xpath: values.chapterXpath
             ? { value: values.chapterXpath, regex: values.chapterXpathRegex }
             : null,
-          url: values.chapterUrl
-            ? { value: values.chapterUrl, regex: values.chapterUrlRegex }
+          url: values.chapterUrlRegex.trim()
+            ? { regex: values.chapterUrlRegex }
             : null,
         },
       },
@@ -172,34 +214,33 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
   }
 
   useEffect(() => {
-    console.log({ editedWebsite, configData });
     if (!editedWebsite) {
       return;
     }
+
     const existingSelector = {
       ...existingSelectors[editedWebsite],
     };
 
     form.setValues({
       website: existingSelector.website,
-      novelXpath: existingSelector.novel?.xpath?.value,
-      novelXpathRegex: existingSelector.novel?.xpath?.regex,
-      novelUrl: existingSelector.novel?.url?.value,
-      novelUrlRegex: existingSelector.novel?.url?.regex,
-      chapterXpath: existingSelector.chapter?.xpath?.value,
-      chapterXpathRegex: existingSelector.chapter?.xpath?.regex,
-      chapterUrl: existingSelector.chapter?.url?.value,
-      chapterUrlRegex: existingSelector.chapter?.url?.regex,
+      novelXpath: existingSelector.novel?.xpath?.value ?? '',
+      novelXpathRegex: existingSelector.novel?.xpath?.regex ?? '(.*)',
+      novelUrlRegex: existingSelector.novel?.url?.regex ?? '',
+      chapterXpath: existingSelector.chapter?.xpath?.value ?? '',
+      chapterXpathRegex: existingSelector.chapter?.xpath?.regex ?? '\\d+',
+      chapterUrlRegex: existingSelector.chapter?.url?.regex ?? '',
     });
-  }, [configData?.data?.value]);
+  }, [configData?.data?.value, editedWebsite, existingSelectors]);
 
   return (
     <Stack p="sm" gap="xs">
       <TextInput
+        key={form.key('website')}
         label={t('nodeSelector.website')}
         placeholder="example.com"
         {...form.getInputProps('website')}
-        disabled={!!isEdit}
+        disabled={isEdit}
       />
       <Button
         variant="light"
@@ -209,53 +250,53 @@ export function NodeSelectorForm({ onClose, editedWebsite }: NodeSelectorFormPro
       >
         {t('nodeSelector.autoDetect')}
       </Button>
-      {/* Novel Name */}
-      {/* XPath */}
+
       <TextInput
+        key={form.key('novelXpath')}
         label={t('nodeSelector.novelXpath')}
         placeholder="/html/body/div[1]/main"
         {...form.getInputProps('novelXpath')}
       />
+      <RegexPreview result={previews.novelXpathExtract} type="xpath" />
       <TextInput
+        key={form.key('novelXpathRegex')}
         label={t('nodeSelector.novelXpathRegex')}
-        placeholder={t('nodeSelector.novelXpathRegex')}
+        placeholder="(.*)"
         {...form.getInputProps('novelXpathRegex')}
       />
-      {/* URL */}
+      <RegexPreview result={previews.novelXpathRegex} />
+
       <TextInput
-        label={t('nodeSelector.novelUrl')}
-        placeholder={t('nodeSelector.novelUrl')}
-        {...form.getInputProps('novelUrl')}
-      />
-      <TextInput
+        key={form.key('novelUrlRegex')}
         label={t('nodeSelector.novelUrlRegex')}
-        placeholder={t('nodeSelector.novelUrlRegex')}
+        placeholder="/novel/([^/]+)/"
         {...form.getInputProps('novelUrlRegex')}
       />
+      <RegexPreview result={previews.novelUrl} />
 
-      {/* Chapter */}
-      {/* XPath */}
       <TextInput
+        key={form.key('chapterXpath')}
         label={t('nodeSelector.chapterXpath')}
         placeholder={t('nodeSelector.chapterXpath')}
         {...form.getInputProps('chapterXpath')}
       />
+      <RegexPreview result={previews.chapterXpathExtract} type="xpath" />
       <TextInput
+        key={form.key('chapterXpathRegex')}
         label={t('nodeSelector.chapterXpathRegex')}
-        placeholder={t('nodeSelector.chapterXpathRegex')}
+        placeholder="\\d+"
         {...form.getInputProps('chapterXpathRegex')}
       />
-      {/* URL */}
+      <RegexPreview result={previews.chapterXpathRegex} />
+
       <TextInput
-        label={t('nodeSelector.chapterUrl')}
-        placeholder={t('nodeSelector.chapterUrl')}
-        {...form.getInputProps('chapterUrl')}
-      />
-      <TextInput
+        key={form.key('chapterUrlRegex')}
         label={t('nodeSelector.chapterUrlRegex')}
-        placeholder={t('nodeSelector.chapterUrlRegex')}
+        placeholder="(\\d+)(?!.*\\d)"
         {...form.getInputProps('chapterUrlRegex')}
       />
+      <RegexPreview result={previews.chapterUrl} />
+
       <Group justify="space-between" mt="md">
         <ActionIcon
           variant="transparent"

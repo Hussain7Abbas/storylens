@@ -1,5 +1,5 @@
 import type { WebsiteSelector } from '../schemas/chapter-selector';
-import { cleanNovelTitle } from './novel-title';
+import { cleanNovelTitle } from '@repo/utils/novel-title';
 import {
   createDocumentFromHtml,
   extractNovelNameFromXpath,

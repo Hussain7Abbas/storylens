@@ -34,11 +34,9 @@ export const nodeSelectorFormValuesSchema = z.object({
   website: z.string(),
   novelXpath: z.string(),
   novelXpathRegex: z.string(),
-  novelUrl: z.string(),
   novelUrlRegex: z.string(),
   chapterXpath: z.string(),
   chapterXpathRegex: z.string(),
-  chapterUrl: z.string(),
   chapterUrlRegex: z.string(),
 });
 
@@ -62,17 +60,15 @@ export type ChapterSelectorAgentInput = z.infer<
 
 export function toNodeSelectorFormValues(
   result: ChapterSelectorAgentResult,
-  sampleUrl: string,
+  _sampleUrl: string,
 ): NodeSelectorFormValues {
   return {
     website: result.website,
     novelXpath: result.selectors.novel.xpath?.value ?? '',
-    novelXpathRegex: result.selectors.novel.xpath?.regex ?? '.*',
-    novelUrl: result.selectors.novel.url?.value ?? sampleUrl,
-    novelUrlRegex: result.selectors.novel.url?.regex ?? '/^(?:[^/]*/){2}([^/]+)/',
+    novelXpathRegex: result.selectors.novel.xpath?.regex ?? '(.*)',
+    novelUrlRegex: result.selectors.novel.url?.regex ?? '/novel/([^/]+)/',
     chapterXpath: result.selectors.chapter.xpath?.value ?? '',
     chapterXpathRegex: result.selectors.chapter.xpath?.regex ?? '\\d+',
-    chapterUrl: result.selectors.chapter.url?.value ?? sampleUrl,
     chapterUrlRegex: result.selectors.chapter.url?.regex ?? '(\\d+)(?!.*\\d)',
   };
 }

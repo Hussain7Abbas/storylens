@@ -1,5 +1,5 @@
 import { JSDOM } from 'jsdom';
-import { cleanNovelTitle } from './novel-title';
+import { cleanNovelTitle } from '@repo/utils/novel-title';
 
 export function createDocumentFromHtml(html: string) {
   return new JSDOM(html).window.document;

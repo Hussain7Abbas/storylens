@@ -6,8 +6,8 @@ export interface websiteSelector {
       regex: string;
     } | null;
     url?: {
-      value: string;
       regex: string;
+      value?: string;
     } | null;
   };
   chapter: {
@@ -16,8 +16,8 @@ export interface websiteSelector {
       regex: string;
     } | null;
     url?: {
-      value: string;
       regex: string;
+      value?: string;
     } | null;
   };
 }

@@ -1,39 +1,4 @@
-const LEADING_SEPARATORS = /^[\s\-|:·–—]+/;
-
-const METADATA_SUFFIXES = [/\s*مترجمة\s*$/iu, /\s*translated\s*$/iu, /\s*raw\s*$/iu];
-
-function stripMetadataSuffixes(title: string): string {
-  let result = title;
-  for (const suffix of METADATA_SUFFIXES) {
-    result = result.replace(suffix, '').trim();
-  }
-  return result;
-}
-
-export function cleanNovelTitle(raw: string): string {
-  let title = raw.replace(/\s+/g, ' ').trim();
-  title = title.replace(LEADING_SEPARATORS, '').trim();
-
-  const dashParts = title.split(/\s[-–—]\s/);
-  if (dashParts.length >= 3) {
-    title = dashParts.slice(1, -1).join(' - ').trim();
-  } else if (dashParts.length === 2) {
-    const [first, second] = dashParts;
-    const firstPart = first?.trim() ?? '';
-    const secondPart = second?.trim() ?? '';
-
-    if (!firstPart || /^[\s\-|:·–—]+$/.test(firstPart)) {
-      title = secondPart;
-    } else if (secondPart.length <= firstPart.length) {
-      title = firstPart;
-    }
-  }
-
-  title = stripMetadataSuffixes(title);
-  title = title.replace(LEADING_SEPARATORS, '').trim();
-
-  return stripMetadataSuffixes(title);
-}
+import { cleanNovelTitle } from '@repo/utils/novel-title';
 
 function getRawTextFromXpath(xpath: string, document: Document): string {
   const element = document.evaluate(
@@ -93,3 +58,5 @@ export function extractFromXpath(
   const match = textContent.match(regex);
   return match ? (match[1] ?? match[0]) : null;
 }
+
+export { cleanNovelTitle };
