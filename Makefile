@@ -1,7 +1,7 @@
 # Story Lens meta-repo: delegates to backend and extension submodules.
 .PHONY: \
 	help init submodules-init pull update ensure-submodules \
-	backend-% extension-% \
+	backend extension backend-% extension-% \
 	install setup dev dev-backend dev-extension dev-firefox \
 	build build-backend build-extension build-firefox start-backend \
 	typecheck test \
@@ -37,7 +37,9 @@ help:
 	@echo "  $(GREEN)setup$(RESET)                backend setup (docker + db)"
 	@echo ""
 	@echo "$(BLUE)Development$(RESET)"
-	@echo "  $(GREEN)dev$(RESET)                   print dev commands for both apps"
+	@echo "  $(GREEN)dev$(RESET)                   start extension then backend (single terminal)"
+	@echo "  $(GREEN)backend$(RESET)               alias for $(GREEN)dev-backend$(RESET)"
+	@echo "  $(GREEN)extension$(RESET)             alias for $(GREEN)dev-extension$(RESET)"
 	@echo "  $(GREEN)dev-backend$(RESET)          $(YELLOW)make -C apps/backend dev$(RESET)"
 	@echo "  $(GREEN)dev-extension$(RESET)        $(YELLOW)make -C apps/extension dev$(RESET)"
 	@echo "  $(GREEN)dev-firefox$(RESET)          $(YELLOW)make -C apps/extension dev-firefox$(RESET)"
@@ -102,14 +104,15 @@ setup: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" setup
 
 dev: ensure-submodules
-	@echo "$(YELLOW)Start each app in its own terminal:$(RESET)"
-	@echo "  $(GREEN)make dev-backend$(RESET)"
-	@echo "  $(GREEN)make dev-extension$(RESET)"
+	@trap 'kill 0' INT TERM; \
+	$(MAKE) extension & \
+	$(MAKE) backend & \
+	wait
 
-dev-backend: ensure-submodules
+backend dev-backend: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" dev
 
-dev-extension: ensure-submodules
+extension dev-extension: ensure-submodules
 	@$(MAKE) -C "$(EXTENSION)" dev
 
 dev-firefox: ensure-submodules
