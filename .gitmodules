@@ -1,0 +1,6 @@
+[submodule "backend"]
+	path = backend
+	url = git@github.com-personal:Hussain7Abbas/storylens-backend.git
+[submodule "extension"]
+	path = extension
+	url = git@github.com-personal:Hussain7Abbas/storylens-extension.git

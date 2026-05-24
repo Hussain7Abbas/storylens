@@ -1,25 +1,17 @@
-# Story Lens monorepo: Turbo orchestration, shared Docker infra, per-app Makefiles.
+# Story Lens meta-repo: delegates to backend and extension submodules.
 .PHONY: \
-	help ensure-apps \
-	install prepare init-env setup db-setup \
-	docker-up docker-down docker-logs \
-	db-generate db-migrate-dev db-migrate-deploy db-reset db-seed db-studio \
-	storage-seed orval i18n-parse \
-	dev dev-backend dev-extension dev-firefox backend extension \
-	build build-seq build-backend build-extension build-firefox start-backend \
-	zip zip-firefox \
-	typecheck check test lint format \
-	cleanup reinstall update rmdeps
+	help init update \
+	backend-% extension-% \
+	install setup dev dev-backend dev-extension dev-firefox \
+	build build-backend build-extension build-firefox start-backend \
+	typecheck test \
+	db-generate db-migrate-dev db-migrate-deploy db-reset db-seed db-studio storage-seed \
+	orval i18n-parse zip zip-firefox \
+	docker-up docker-down docker-logs
 
 ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
-BACKEND := $(ROOT)/apps/backend
-EXTENSION := $(ROOT)/apps/extension
-DB := $(ROOT)/packages/db
-STORAGE := $(ROOT)/packages/storage
-API := $(ROOT)/packages/api
-
-BUN := bun
-RUN := $(BUN) run
+BACKEND := $(ROOT)/backend
+EXTENSION := $(ROOT)/extension
 
 BLUE := $(shell printf '\033[34m')
 GREEN := $(shell printf '\033[32m')
@@ -33,184 +25,132 @@ SHELL := /bin/bash
 
 help:
 	@echo ""
+	@echo "$(BLUE)Story Lens meta-repo$(RESET)"
+	@echo "  $(GREEN)init$(RESET)                 clone/init submodules ($(YELLOW)git submodule update --init --recursive$(RESET))"
+	@echo "  $(GREEN)update$(RESET)               pull latest submodule commits"
+	@echo ""
 	@echo "$(BLUE)Setup$(RESET)"
-	@echo "  $(GREEN)install$(RESET)             $(YELLOW)bun install$(RESET) at monorepo root"
-	@echo "  $(GREEN)prepare$(RESET)             Husky $(YELLOW)prepare$(RESET) hook"
-	@echo "  $(GREEN)init-env$(RESET)            interactive env setup ($(YELLOW)bun run scripts:init:env$(RESET))"
-	@echo "  $(GREEN)setup$(RESET)                 $(YELLOW)docker-up$(RESET) + $(YELLOW)install$(RESET) + $(YELLOW)db-generate$(RESET) + migrate deploy + seed"
-	@echo "  $(GREEN)db-setup$(RESET)              $(YELLOW)docker-up$(RESET) + db generate/migrate/seed ($(YELLOW)expects deps installed$(RESET))"
+	@echo "  $(GREEN)install$(RESET)              install deps in both submodules"
+	@echo "  $(GREEN)setup$(RESET)                backend setup (docker + db)"
 	@echo ""
-	@echo "$(BLUE)Docker ($(RESET)root $(GREEN)docker-compose.yml$(BLUE))$(RESET)"
-	@echo "  $(GREEN)docker-up$(RESET)           $(YELLOW)docker compose up -d$(RESET) — Postgres"
-	@echo "  $(GREEN)docker-down$(RESET)         $(YELLOW)docker compose down$(RESET)"
-	@echo "  $(GREEN)docker-logs$(RESET)         $(YELLOW)docker compose logs -f$(RESET)"
-	@echo ""
-	@echo "$(BLUE)Database ($(RESET)delegates to $(GREEN)packages/db/Makefile$(RESET)$(BLUE))$(RESET)"
-	@echo "  $(GREEN)db-generate$(RESET)         $(GREEN)make -C packages/db db-generate$(RESET)"
-	@echo "  $(GREEN)db-migrate-dev$(RESET)      $(GREEN)make -C packages/db db-migrate-dev$(RESET)"
-	@echo "  $(GREEN)db-migrate-deploy$(RESET)   $(GREEN)make -C packages/db db-migrate-deploy$(RESET)"
-	@echo "  $(GREEN)db-reset$(RESET)    $(GREEN)make -C packages/db db-reset$(RESET)"
-	@echo "  $(GREEN)db-seed$(RESET)             $(GREEN)make -C packages/db db-seed$(RESET)"
-	@echo "  $(GREEN)db-studio$(RESET)           $(GREEN)make -C packages/db db-studio$(RESET)"
-	@echo ""
-	@echo "$(BLUE)Storage & API$(RESET)"
-	@echo "  $(GREEN)storage-seed$(RESET)        seed storage bucket ($(YELLOW)packages/storage$(RESET))"
-	@echo "  $(GREEN)orval$(RESET)               regenerate API client ($(YELLOW)packages/api$(RESET); backend must expose OpenAPI)"
-	@echo "  $(GREEN)i18n-parse$(RESET)          $(GREEN)make -C apps/extension i18n-parse$(RESET)"
-	@echo ""
-	@echo "$(BLUE)Development servers$(RESET)"
-	@echo "  $(GREEN)dev$(RESET)                 $(YELLOW)turbo dev$(RESET) — all apps ($(YELLOW)or$(RESET) backend + extension in background)"
-	@echo "  $(GREEN)dev-backend$(RESET), $(GREEN)backend$(RESET)   API only ($(GREEN)make -C apps/backend dev$(RESET))"
-	@echo "  $(GREEN)dev-extension$(RESET), $(GREEN)extension$(RESET) Chrome extension ($(GREEN)make -C apps/extension dev$(RESET))"
-	@echo "  $(GREEN)dev-firefox$(RESET)         Firefox extension dev ($(GREEN)make -C apps/extension dev-firefox$(RESET))"
+	@echo "$(BLUE)Development$(RESET)"
+	@echo "  $(GREEN)dev-backend$(RESET)          $(YELLOW)make -C backend dev$(RESET)"
+	@echo "  $(GREEN)dev-extension$(RESET)        $(YELLOW)make -C extension dev$(RESET)"
+	@echo "  $(GREEN)dev-firefox$(RESET)          $(YELLOW)make -C extension dev-firefox$(RESET)"
 	@echo ""
 	@echo "$(BLUE)Build$(RESET)"
-	@echo "  $(GREEN)build$(RESET)                 $(YELLOW)turbo build$(RESET) — all workspaces"
-	@echo "  $(GREEN)build-seq$(RESET)             backend, then extension ($(YELLOW)sequential$(RESET))"
-	@echo "  $(GREEN)build-backend$(RESET)         $(GREEN)make -C apps/backend build$(RESET)"
-	@echo "  $(GREEN)build-extension$(RESET)       $(GREEN)make -C apps/extension build$(RESET)"
-	@echo "  $(GREEN)build-firefox$(RESET)         $(GREEN)make -C apps/extension build-firefox$(RESET)"
-	@echo "  $(GREEN)start-backend$(RESET)         build + run production API"
-	@echo "  $(GREEN)zip$(RESET)                   $(GREEN)make -C apps/extension zip$(RESET)"
-	@echo "  $(GREEN)zip-firefox$(RESET)           $(GREEN)make -C apps/extension zip-firefox$(RESET)"
+	@echo "  $(GREEN)build$(RESET)                build backend + extension"
+	@echo "  $(GREEN)build-backend$(RESET)        $(YELLOW)make -C backend build$(RESET)"
+	@echo "  $(GREEN)build-extension$(RESET)      $(YELLOW)make -C extension build$(RESET)"
+	@echo "  $(GREEN)build-firefox$(RESET)        $(YELLOW)make -C extension build-firefox$(RESET)"
+	@echo "  $(GREEN)start-backend$(RESET)        build + run production API"
+	@echo "  $(GREEN)zip$(RESET)                  $(YELLOW)make -C extension zip$(RESET)"
+	@echo "  $(GREEN)zip-firefox$(RESET)            $(YELLOW)make -C extension zip-firefox$(RESET)"
+	@echo ""
+	@echo "$(BLUE)Database & storage$(RESET) ($(YELLOW)backend submodule$(RESET))"
+	@echo "  $(GREEN)db-generate$(RESET) db-$(GREEN)migrate-dev$(RESET) db-$(GREEN)migrate-deploy$(RESET)"
+	@echo "  $(GREEN)db-reset$(RESET) db-$(GREEN)seed$(RESET) db-$(GREEN)studio$(RESET) $(GREEN)storage-seed$(RESET)"
+	@echo "  $(GREEN)docker-up$(RESET) $(GREEN)docker-down$(RESET) $(GREEN)docker-logs$(RESET)"
+	@echo ""
+	@echo "$(BLUE)Extension tooling$(RESET)"
+	@echo "  $(GREEN)orval$(RESET)                regenerate API client"
+	@echo "  $(GREEN)i18n-parse$(RESET)           extract i18n keys"
 	@echo ""
 	@echo "$(BLUE)Quality$(RESET)"
-	@echo "  $(GREEN)typecheck$(RESET)             $(YELLOW)turbo run typecheck$(RESET) — all workspaces"
-	@echo "  $(GREEN)check$(RESET)                 $(YELLOW)biome check --write$(RESET) at root"
-	@echo "  $(GREEN)lint$(RESET)                  $(YELLOW)biome lint --write$(RESET) at root"
-	@echo "  $(GREEN)format$(RESET)                $(YELLOW)biome format --write$(RESET) at root"
-	@echo "  $(GREEN)test$(RESET)                  $(YELLOW)turbo run test$(RESET)"
+	@echo "  $(GREEN)typecheck$(RESET)            typecheck both submodules"
+	@echo "  $(GREEN)test$(RESET)                 run backend tests"
 	@echo ""
-	@echo "$(BLUE)Maintenance$(RESET)"
-	@echo "  $(GREEN)cleanup$(RESET)               remove build artifacts ($(YELLOW)scripts/cleanup.sh$(RESET))"
-	@echo "  $(GREEN)reinstall$(RESET)             fresh $(YELLOW)bun install$(RESET) ($(YELLOW)scripts/reinstall.sh$(RESET))"
-	@echo "  $(GREEN)update$(RESET)                update dependencies ($(YELLOW)scripts/update.sh$(RESET))"
-	@echo "  $(GREEN)rmdeps$(RESET)                remove all $(YELLOW)node_modules$(RESET)"
+	@echo "$(BLUE)Pass-through$(RESET): $(GREEN)backend-<target>$(RESET) / $(GREEN)extension-<target>$(RESET)"
+	@echo "  e.g. $(YELLOW)make backend-dev$(RESET), $(YELLOW)make extension-typecheck$(RESET)"
 	@echo ""
 
-ensure-apps:
-	@if [ ! -f "$(BACKEND)/package.json" ] || [ ! -f "$(EXTENSION)/package.json" ]; then \
-		echo "$(YELLOW)App package.json missing under apps/. Check your checkout.$(RESET)"; \
-		exit 1; \
-	fi
+init:
+	@git submodule update --init --recursive
+
+update:
+	@git submodule update --remote --merge
 
 install:
-	@$(BUN) install
+	@$(MAKE) -C "$(BACKEND)" install
+	@$(MAKE) -C "$(EXTENSION)" install
 
-prepare:
-	@$(RUN) prepare
+setup:
+	@$(MAKE) -C "$(BACKEND)" setup
 
-init-env:
-	@$(RUN) scripts:init:env
-
-setup: docker-up install
-	@$(MAKE) -C "$(DB)" db-generate
-	@$(MAKE) -C "$(DB)" db-migrate-deploy
-	@$(MAKE) -C "$(DB)" db-seed
-	@echo "$(GREEN)Setup complete.$(RESET) Configure $(YELLOW).env$(RESET) if you have not already."
-
-db-setup: ensure-apps docker-up
-	@$(MAKE) -C "$(DB)" db-generate
-	@$(MAKE) -C "$(DB)" db-migrate-deploy
-	@$(MAKE) -C "$(DB)" db-seed
-
-docker-up:
-	@docker compose up -d
-
-docker-down:
-	@docker compose down
-
-docker-logs:
-	@docker compose logs -f
-
-db-generate: ensure-apps
-	@$(MAKE) -C "$(DB)" db-generate
-
-db-migrate-dev: ensure-apps
-	@$(MAKE) -C "$(DB)" db-migrate-dev
-
-db-migrate-deploy: ensure-apps
-	@$(MAKE) -C "$(DB)" db-migrate-deploy
-
-db-reset: ensure-apps
-	@$(MAKE) -C "$(DB)" db-reset
-
-db-seed: ensure-apps
-	@$(MAKE) -C "$(DB)" db-seed
-
-db-studio: ensure-apps
-	@$(MAKE) -C "$(DB)" db-studio
-
-storage-seed:
-	@$(RUN) storage:seed
-
-orval:
-	@$(MAKE) -C "$(API)" orval
-
-i18n-parse: ensure-apps
-	@$(MAKE) -C "$(EXTENSION)" i18n-parse
-
-dev:
-	@$(RUN) dev
-
-dev-backend backend: ensure-apps docker-up
-	@echo "$(GREEN)Backend dev (Postgres via root Docker)$(RESET)"
+dev-backend:
 	@$(MAKE) -C "$(BACKEND)" dev
 
-dev-extension extension: ensure-apps
+dev-extension:
 	@$(MAKE) -C "$(EXTENSION)" dev
 
-dev-firefox: ensure-apps
+dev-firefox:
 	@$(MAKE) -C "$(EXTENSION)" dev-firefox
 
-build:
-	@$(RUN) build
+build: build-backend build-extension
 
-build-seq: ensure-apps
-	@$(MAKE) -C "$(BACKEND)" build
-	@$(MAKE) -C "$(EXTENSION)" build
-
-build-backend: ensure-apps
+build-backend:
 	@$(MAKE) -C "$(BACKEND)" build
 
-build-extension: ensure-apps
+build-extension:
 	@$(MAKE) -C "$(EXTENSION)" build
 
-build-firefox: ensure-apps
+build-firefox:
 	@$(MAKE) -C "$(EXTENSION)" build-firefox
 
 start-backend: build-backend
 	@$(MAKE) -C "$(BACKEND)" start
 
-zip: ensure-apps
-	@$(MAKE) -C "$(EXTENSION)" zip
-
-zip-firefox: ensure-apps
-	@$(MAKE) -C "$(EXTENSION)" zip-firefox
-
 typecheck:
-	@$(RUN) typecheck
-
-check:
-	@$(RUN) check
-
-lint:
-	@$(RUN) lint
-
-format:
-	@$(RUN) format
+	@$(MAKE) -C "$(BACKEND)" typecheck
+	@$(MAKE) -C "$(EXTENSION)" typecheck
 
 test:
-	@$(RUN) test
+	@$(MAKE) -C "$(BACKEND)" test
 
-cleanup:
-	@$(RUN) scripts:cleanup
+docker-up:
+	@$(MAKE) -C "$(BACKEND)" docker-up
 
-reinstall:
-	@$(RUN) scripts:reinstall
+docker-down:
+	@$(MAKE) -C "$(BACKEND)" docker-down
 
-update:
-	@$(RUN) scripts:update
+docker-logs:
+	@$(MAKE) -C "$(BACKEND)" docker-logs
 
-rmdeps:
-	@$(RUN) scripts:rmdeps
+db-generate:
+	@$(MAKE) -C "$(BACKEND)" db-generate
+
+db-migrate-dev:
+	@$(MAKE) -C "$(BACKEND)" db-migrate-dev
+
+db-migrate-deploy:
+	@$(MAKE) -C "$(BACKEND)" db-migrate-deploy
+
+db-reset:
+	@$(MAKE) -C "$(BACKEND)" db-reset
+
+db-seed:
+	@$(MAKE) -C "$(BACKEND)" db-seed
+
+db-studio:
+	@$(MAKE) -C "$(BACKEND)" db-studio
+
+storage-seed:
+	@$(MAKE) -C "$(BACKEND)" storage-seed
+
+orval:
+	@$(MAKE) -C "$(EXTENSION)" orval
+
+i18n-parse:
+	@$(MAKE) -C "$(EXTENSION)" i18n-parse
+
+zip:
+	@$(MAKE) -C "$(EXTENSION)" zip
+
+zip-firefox:
+	@$(MAKE) -C "$(EXTENSION)" zip-firefox
+
+backend-%:
+	@$(MAKE) -C "$(BACKEND)" $(patsubst backend-%,%,$@)
+
+extension-%:
+	@$(MAKE) -C "$(EXTENSION)" $(patsubst extension-%,%,$@)
