@@ -75,6 +75,13 @@ This directory contains comprehensive Cursor rules for the **Novzella Extension*
 - Extension-specific patterns
 - API integration in extensions
 
+### 📴 [offline-mode-fields.mdc](mdc:offline-mode-fields.mdc)
+
+**Applied to:** Extension app, backend routes, and Prisma schema files
+
+- Ask user whether new persisted fields need offline support
+- Points to `browser-extension-offline-mode` skill for implementation
+
 ### 🌐 [api-patterns.mdc](mdc:api-patterns.mdc)
 
 **Applied to:** Extension and API package files

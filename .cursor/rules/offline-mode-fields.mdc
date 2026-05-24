@@ -1,0 +1,44 @@
+---
+description: Ask whether new fields need offline support; use browser-extension-offline-mode skill when yes
+globs: apps/extension/**/*,apps/backend/**/*.ts,**/*.prisma
+alwaysApply: false
+---
+
+# Offline Mode for New Fields
+
+When a task **adds or changes a persisted field** (Prisma schema, API body/response, generated schemas, extension forms, or list cards), **ask the user before implementing**:
+
+> Should this field support **offline mode** (included in download bundles, editable offline, and synced via the pending-ops queue)?
+
+Use `AskQuestion` when available; otherwise ask in chat. Do not assume offline support unless the user confirms.
+
+## If the user says yes
+
+1. Read and follow [.cursor/skills/browser-extension-offline-mode/SKILL.md](mdc:.cursor/skills/browser-extension-offline-mode/SKILL.md).
+2. Use the Story Lens reference: [.cursor/skills/browser-extension-offline-mode/reference.md](mdc:.cursor/skills/browser-extension-offline-mode/reference.md).
+3. Update all offline layers for that entity:
+   - Dexie row type / store (usually automatic if using full generated API types)
+   - Download bundle in `apps/extension/src/lib/offline/download.ts`
+   - Sync payload in `apps/extension/src/lib/offline/sync-engine.ts` push handlers
+   - Offline mutation hooks in `apps/extension/src/lib/offline/hooks.ts`
+   - Popup form + list UI
+   - i18n labels if user-facing
+4. Run `bun run typecheck` from `apps/extension/` when done.
+
+## If the user says no
+
+- Implement online-only behavior.
+- When the novel/scope is downloaded offline, either hide the field or show a read-only/disabled state with a short offline notice.
+
+## Triggers (always ask)
+
+- New column on `Keyword`, `Replacement`, `Novel`, or related models
+- New form input in coloring/replacing tabs or novel CRUD
+- New nested object on API list/detail responses used by the extension
+- New filter/sort field on offline-backed lists
+
+## Triggers (offline usually not needed)
+
+- Backend-only admin fields never shown in the extension
+- Ephemeral UI state (search text, tab selection)
+- Auth/session fields (not applicable until auth ships)
