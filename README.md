@@ -1,9 +1,9 @@
 # Story Lens
 
-Meta-repository for the Story Lens project. Application code lives in Git submodules:
+Meta-repository for the Story Lens project. Application code lives in Git submodules under `apps/`:
 
-- [storylens-backend](https://github.com/Hussain7Abbas/storylens-backend) — Elysia.js API, Prisma, storage, AI
-- [storylens-extension](https://github.com/Hussain7Abbas/storylens-extension) — WXT browser extension
+- `apps/backend` → [storylens-backend](https://github.com/Hussain7Abbas/storylens-backend) — Elysia.js API, Prisma, storage, AI
+- `apps/extension` → [storylens-extension](https://github.com/Hussain7Abbas/storylens-extension) — WXT browser extension
 
 ## Quick start
 

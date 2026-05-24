@@ -10,8 +10,8 @@
 	docker-up docker-down docker-logs
 
 ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
-BACKEND := $(ROOT)/backend
-EXTENSION := $(ROOT)/extension
+BACKEND := $(ROOT)/apps/backend
+EXTENSION := $(ROOT)/apps/extension
 
 BLUE := $(shell printf '\033[34m')
 GREEN := $(shell printf '\033[32m')
@@ -34,18 +34,18 @@ help:
 	@echo "  $(GREEN)setup$(RESET)                backend setup (docker + db)"
 	@echo ""
 	@echo "$(BLUE)Development$(RESET)"
-	@echo "  $(GREEN)dev-backend$(RESET)          $(YELLOW)make -C backend dev$(RESET)"
-	@echo "  $(GREEN)dev-extension$(RESET)        $(YELLOW)make -C extension dev$(RESET)"
-	@echo "  $(GREEN)dev-firefox$(RESET)          $(YELLOW)make -C extension dev-firefox$(RESET)"
+	@echo "  $(GREEN)dev-backend$(RESET)          $(YELLOW)make -C apps/backend dev$(RESET)"
+	@echo "  $(GREEN)dev-extension$(RESET)        $(YELLOW)make -C apps/extension dev$(RESET)"
+	@echo "  $(GREEN)dev-firefox$(RESET)          $(YELLOW)make -C apps/extension dev-firefox$(RESET)"
 	@echo ""
 	@echo "$(BLUE)Build$(RESET)"
 	@echo "  $(GREEN)build$(RESET)                build backend + extension"
-	@echo "  $(GREEN)build-backend$(RESET)        $(YELLOW)make -C backend build$(RESET)"
-	@echo "  $(GREEN)build-extension$(RESET)      $(YELLOW)make -C extension build$(RESET)"
-	@echo "  $(GREEN)build-firefox$(RESET)        $(YELLOW)make -C extension build-firefox$(RESET)"
+	@echo "  $(GREEN)build-backend$(RESET)        $(YELLOW)make -C apps/backend build$(RESET)"
+	@echo "  $(GREEN)build-extension$(RESET)      $(YELLOW)make -C apps/extension build$(RESET)"
+	@echo "  $(GREEN)build-firefox$(RESET)        $(YELLOW)make -C apps/extension build-firefox$(RESET)"
 	@echo "  $(GREEN)start-backend$(RESET)        build + run production API"
-	@echo "  $(GREEN)zip$(RESET)                  $(YELLOW)make -C extension zip$(RESET)"
-	@echo "  $(GREEN)zip-firefox$(RESET)            $(YELLOW)make -C extension zip-firefox$(RESET)"
+	@echo "  $(GREEN)zip$(RESET)                  $(YELLOW)make -C apps/extension zip$(RESET)"
+	@echo "  $(GREEN)zip-firefox$(RESET)            $(YELLOW)make -C apps/extension zip-firefox$(RESET)"
 	@echo ""
 	@echo "$(BLUE)Database & storage$(RESET) ($(YELLOW)backend submodule$(RESET))"
 	@echo "  $(GREEN)db-generate$(RESET) db-$(GREEN)migrate-dev$(RESET) db-$(GREEN)migrate-deploy$(RESET)"
