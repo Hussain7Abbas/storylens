@@ -109,8 +109,14 @@ function createKeywordElement(
 ): HTMLSpanElement {
   const span = document.createElement('span');
   span.className = 'tooltip1 keyword-tooltip storylens-keyword';
-  span.style.color = keyword.nature.color;
+  span.style.color = keyword.category.color;
   span.dataset.keywordId = keyword.id;
+
+  const natureIndicator = document.createElement('span');
+  natureIndicator.className = 'nature-indicator';
+  natureIndicator.style.backgroundColor = keyword.nature.color;
+  natureIndicator.setAttribute('aria-hidden', 'true');
+  span.append(natureIndicator);
   span.append(document.createTextNode(matchedText));
 
   const tooltip = document.createElement('span');
@@ -285,8 +291,11 @@ export function removeExtensionMarkup(): void {
       continue;
     }
 
-    const keywordTextNode = span.childNodes[0];
-    if (keywordTextNode instanceof Text) {
+    const keywordTextNode = [...span.childNodes].find(
+      (node): node is Text =>
+        node instanceof Text && Boolean(node.textContent?.trim()),
+    );
+    if (keywordTextNode) {
       span.replaceWith(keywordTextNode.cloneNode(true));
       continue;
     }
