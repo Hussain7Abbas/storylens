@@ -6,7 +6,7 @@
 	build build-backend build-extension build-firefox start-backend \
 	typecheck test \
 	db-generate db-migrate-dev db-migrate-deploy db-reset db-seed db-studio storage-seed \
-	orval i18n-parse zip zip-firefox \
+	orval i18n-parse zip zip-firefox release-chrome \
 	docker-up docker-down docker-logs
 
 ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
@@ -50,6 +50,7 @@ help:
 	@echo "  $(GREEN)start-backend$(RESET)        build + run production API"
 	@echo "  $(GREEN)zip$(RESET)                  $(YELLOW)make -C apps/extension zip$(RESET)"
 	@echo "  $(GREEN)zip-firefox$(RESET)            $(YELLOW)make -C apps/extension zip-firefox$(RESET)"
+	@echo "  $(GREEN)release-chrome$(RESET)         $(YELLOW)make -C apps/extension release-chrome$(RESET)"
 	@echo ""
 	@echo "$(BLUE)Database & storage$(RESET) ($(YELLOW)backend submodule$(RESET))"
 	@echo "  $(GREEN)db-generate$(RESET) db-$(GREEN)migrate-dev$(RESET) db-$(GREEN)migrate-deploy$(RESET)"
@@ -176,6 +177,9 @@ zip: ensure-submodules
 
 zip-firefox: ensure-submodules
 	@$(MAKE) -C "$(EXTENSION)" zip-firefox
+
+release-chrome: ensure-submodules
+	@$(MAKE) -C "$(EXTENSION)" release-chrome
 
 backend-%: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" $(patsubst backend-%,%,$@)
