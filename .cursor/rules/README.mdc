@@ -82,6 +82,14 @@ This directory contains comprehensive Cursor rules for the **Novzella Extension*
 - Ask user whether new persisted fields need offline support
 - Points to `browser-extension-offline-mode` skill for implementation
 
+### 🔐 [rbac.mdc](mdc:rbac.mdc)
+
+**Applied to:** Backend routes and extension auth UI
+
+- Role guards: `shouldBeGuest`, `shouldBeUser`, `shouldBeAdmin`
+- Permission matrix for guest/user/admin
+- Ask user when permissions are unclear
+
 ### 🌐 [api-patterns.mdc](mdc:api-patterns.mdc)
 
 **Applied to:** Extension and API package files

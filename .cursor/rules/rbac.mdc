@@ -1,0 +1,56 @@
+---
+description: Role-based access control for backend routes and extension features
+globs: apps/backend/**/*.ts,apps/extension/**/*.ts,apps/extension/**/*.tsx
+alwaysApply: false
+---
+
+# Role-Based Access Control (RBAC)
+
+Always enforce permissions on the **backend** with guards from
+`apps/backend/src/middleware/authorize.ts`. UI-only checks are not sufficient.
+
+## Guards
+
+| Guard | Who passes | Use for |
+| ----- | ---------- | ------- |
+| `shouldBeGuest()` | guest, user, admin | Authenticated read access |
+| `shouldBeUser()` | user, admin | Registered-user mutations |
+| `shouldBeAdmin()` | admin only | Full admin mutations |
+
+Routes must `.use(setup)` before role guards so `currentUser` is available.
+
+## Permission matrix
+
+| Action | guest | user | admin |
+| ------ | ----- | ---- | ----- |
+| Read novels, keywords, replacements, categories, natures, chapters | Yes | Yes | Yes |
+| Create/edit/delete keyword | No | Own only | Yes |
+| Create/edit/delete replacement | No | No | Yes |
+| Add novel | No | name + slugs only | Yes (full) |
+| Edit novel | No | add slug only (`slugs` field) | Yes (full) |
+| Delete novel | No | No | Yes |
+| Edit own profile (`PUT /auth/me`) | Yes (onboarding) | Yes | Yes |
+| Manage categories, natures, chapters, configs | No | No | Yes |
+| Upload files | No | Yes | Yes |
+
+## Ownership
+
+For user-owned resources (keywords), use `assertOwnsResource(createdById, authedUser)`
+after `shouldBeUser()` on update/delete.
+
+## Uniqueness
+
+- Keywords: unique `(name, novelId)` per novel
+- Replacements: unique `(from, novelId)` per novel
+
+## When adding new routes
+
+1. Pick the lowest guard that matches the matrix above.
+2. Apply `assertOwnsResource` when users may only touch their own rows.
+3. Restrict request body fields in handlers when users have partial edit rights
+   (e.g. user novel create: name + slugs only).
+4. If the matrix does not cover a new action, **ask the user** before implementing.
+
+## Extension UI
+
+Mirror backend rules in the UI (hide/disable actions), but never rely on UI alone.
