@@ -1,4 +1,5 @@
 import { Stack, Loader, Group, Text, type StackProps, Center } from '@mantine/core';
+import { ListItemCard } from '../list-item-card';
 import { getReplacements } from '@repo/api/replacements.js';
 import type {
   GetReplacements200DataItem,
@@ -63,23 +64,22 @@ export function ReplacingCards({
   return (
     <Stack gap="xs" {...props}>
       {items.map((replacement) => (
-        <Group
+        <ListItemCard
           key={replacement.id}
-          justify="space-between"
-          p="xs"
-          style={{ border: '1px solid #ddd', borderRadius: '4px' }}
           onClick={() => {
             setReplacement(replacement);
             setMode('edit');
           }}
         >
-          <div>
-            <Text fw={500}>{replacement.from}</Text>
-            <Text size="sm" c="dimmed">
+          <Group wrap="nowrap" align="flex-start" gap="xs" w="100%">
+            <Text fw={500} style={{ flex: 1 }}>
+              {replacement.from}
+            </Text>
+            <Text size="sm" c="dimmed" style={{ flex: 1 }}>
               {replacement.to}
             </Text>
-          </div>
-        </Group>
+          </Group>
+        </ListItemCard>
       ))}
       <div ref={loadMoreRef} />
       {isFetchingNextPage && (

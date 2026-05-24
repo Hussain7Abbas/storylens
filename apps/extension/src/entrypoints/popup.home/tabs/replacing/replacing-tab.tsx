@@ -1,4 +1,4 @@
-import { Button, Stack } from '@mantine/core';
+import { Box, Button, Stack } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import type { ReplacingFormModesType } from './replacing-form';
@@ -41,12 +41,20 @@ export function ReplacingTab({ selectedNovelId }: { selectedNovelId: string }) {
           >
             {t('_.add')}
           </Button>
-          <SearchInput
-            value={search}
-            onChange={setSearch}
-            w="100%"
-            variant="default"
-          />
+          <Box
+            pos="sticky"
+            top="var(--popup-tabs-sticky-height, 46px)"
+            py="xs"
+            style={{ zIndex: 1 }}
+            bg="var(--mantine-color-body)"
+          >
+            <SearchInput
+              value={search}
+              onChange={setSearch}
+              w="100%"
+              variant="default"
+            />
+          </Box>
           <ReplacingCards
             selectedNovelId={selectedNovelId}
             search={search}

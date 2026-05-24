@@ -1,4 +1,5 @@
 import { Stack, Loader, Group, Text, type StackProps, Center } from '@mantine/core';
+import { ListItemCard } from '../list-item-card';
 import { getKeywords } from '@repo/api/keywords.js';
 import type { GetKeywords200DataItem, GetKeywordsParams } from '@repo/api/schemas';
 import type { ColoringFormModesType } from './coloring-form';
@@ -60,22 +61,18 @@ export function ColoringCards({
   return (
     <Stack gap="xs" {...props}>
       {items.map((keyword) => (
-        <Group
+        <ListItemCard
           key={keyword.id}
-          justify="space-between"
-          p="xs"
-          style={{ border: '1px solid #ddd', borderRadius: '4px' }}
           onClick={() => {
             setKeyword(keyword);
             setMode('edit');
           }}
         >
-          <div>
-            <Text fw={500}>{keyword.name}</Text>
-            <Text size="sm" c="dimmed">
-              {keyword.description}
+          <Group wrap="nowrap" align="flex-start" gap="xs">
+            <Text fw={500} style={{ flex: 1 }}>
+              {keyword.name}
             </Text>
-            <Group gap="xs" mt="xs">
+            <Group gap="xs" wrap="nowrap">
               <Text size="xs" style={{ color: keyword.category.color }}>
                 {keyword.category.name}
               </Text>
@@ -83,8 +80,11 @@ export function ColoringCards({
                 {keyword.nature.name}
               </Text>
             </Group>
-          </div>
-        </Group>
+          </Group>
+          <Text size="sm" c="dimmed">
+            {keyword.description}
+          </Text>
+        </ListItemCard>
       ))}
       <div ref={loadMoreRef} />
       {isFetchingNextPage && (

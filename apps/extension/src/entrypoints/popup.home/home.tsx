@@ -101,7 +101,11 @@ export function HomePage() {
                 gap="xs"
                 pos="sticky"
                 top={0}
-                style={{ zIndex: 1 }}
+                style={{
+                  zIndex: 2,
+                  ['--popup-tabs-sticky-height' as string]:
+                    'calc(var(--mantine-spacing-xs) + 36px)',
+                }}
                 pt="xs"
                 styles={{
                   root: {
