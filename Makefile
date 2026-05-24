@@ -1,6 +1,6 @@
 # Story Lens meta-repo: delegates to backend and extension submodules.
 .PHONY: \
-	help init update \
+	help init submodules-init pull update ensure-submodules \
 	backend-% extension-% \
 	install setup dev dev-backend dev-extension dev-firefox \
 	build build-backend build-extension build-firefox start-backend \
@@ -12,6 +12,7 @@
 ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 BACKEND := $(ROOT)/apps/backend
 EXTENSION := $(ROOT)/apps/extension
+CHILDREN := $(BACKEND) $(EXTENSION)
 
 BLUE := $(shell printf '\033[34m')
 GREEN := $(shell printf '\033[32m')
@@ -26,14 +27,17 @@ SHELL := /bin/bash
 help:
 	@echo ""
 	@echo "$(BLUE)Story Lens meta-repo$(RESET)"
-	@echo "  $(GREEN)init$(RESET)                 clone/init submodules ($(YELLOW)git submodule update --init --recursive$(RESET))"
-	@echo "  $(GREEN)update$(RESET)               pull latest submodule commits"
+	@echo "  $(GREEN)submodules-init$(RESET)      clone/init submodules ($(YELLOW)git submodule update --init --recursive$(RESET))"
+	@echo "  $(GREEN)init$(RESET)                 alias for $(GREEN)submodules-init$(RESET)"
+	@echo "  $(GREEN)pull$(RESET)                 pull umbrella + sync and pull each submodule"
+	@echo "  $(GREEN)update$(RESET)               bump submodules to latest remote commits"
 	@echo ""
 	@echo "$(BLUE)Setup$(RESET)"
 	@echo "  $(GREEN)install$(RESET)              install deps in both submodules"
 	@echo "  $(GREEN)setup$(RESET)                backend setup (docker + db)"
 	@echo ""
 	@echo "$(BLUE)Development$(RESET)"
+	@echo "  $(GREEN)dev$(RESET)                   print dev commands for both apps"
 	@echo "  $(GREEN)dev-backend$(RESET)          $(YELLOW)make -C apps/backend dev$(RESET)"
 	@echo "  $(GREEN)dev-extension$(RESET)        $(YELLOW)make -C apps/extension dev$(RESET)"
 	@echo "  $(GREEN)dev-firefox$(RESET)          $(YELLOW)make -C apps/extension dev-firefox$(RESET)"
@@ -64,93 +68,117 @@ help:
 	@echo "  e.g. $(YELLOW)make backend-dev$(RESET), $(YELLOW)make extension-typecheck$(RESET)"
 	@echo ""
 
-init:
+submodules-init:
 	@git submodule update --init --recursive
 
-update:
+init: submodules-init
+
+pull:
+	@echo "$(BLUE)Pulling umbrella$(RESET) ..."
+	@cd "$(ROOT)" && git pull --ff-only
+	@$(MAKE) submodules-init
+	@echo "$(BLUE)Pulling submodules$(RESET) ..."
+	@git submodule foreach --recursive 'git pull --ff-only'
+
+update: ensure-submodules
 	@git submodule update --remote --merge
 
-install:
+ensure-submodules:
+	@missing=0; \
+	for child in $(CHILDREN); do \
+		if [ ! -f "$$child/Makefile" ]; then \
+			echo "$(YELLOW)Missing $$child — run $(GREEN)make submodules-init$(RESET)"; \
+			missing=1; \
+		fi; \
+	done; \
+	[ "$$missing" -eq 0 ]
+
+install: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" install
 	@$(MAKE) -C "$(EXTENSION)" install
 
-setup:
+setup: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" setup
 
-dev-backend:
+dev: ensure-submodules
+	@echo "$(YELLOW)Start each app in its own terminal:$(RESET)"
+	@echo "  $(GREEN)make dev-backend$(RESET)"
+	@echo "  $(GREEN)make dev-extension$(RESET)"
+
+dev-backend: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" dev
 
-dev-extension:
+dev-extension: ensure-submodules
 	@$(MAKE) -C "$(EXTENSION)" dev
 
-dev-firefox:
+dev-firefox: ensure-submodules
 	@$(MAKE) -C "$(EXTENSION)" dev-firefox
 
-build: build-backend build-extension
+build: ensure-submodules build-backend build-extension
 
-build-backend:
+build-backend: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" build
 
-build-extension:
+build-extension: ensure-submodules
 	@$(MAKE) -C "$(EXTENSION)" build
 
-build-firefox:
+build-firefox: ensure-submodules
 	@$(MAKE) -C "$(EXTENSION)" build-firefox
 
-start-backend: build-backend
+start-backend: ensure-submodules build-backend
 	@$(MAKE) -C "$(BACKEND)" start
 
-typecheck:
+typecheck: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" typecheck
 	@$(MAKE) -C "$(EXTENSION)" typecheck
 
-test:
+test: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" test
 
-docker-up:
+docker-up: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" docker-up
 
-docker-down:
+docker-down: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" docker-down
 
-docker-logs:
+docker-logs: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" docker-logs
 
-db-generate:
+db-generate: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" db-generate
 
-db-migrate-dev:
+db-migrate-dev: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" db-migrate-dev
 
-db-migrate-deploy:
+db-migrate-deploy: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" db-migrate-deploy
 
-db-reset:
+db-reset: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" db-reset
 
-db-seed:
+db-seed: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" db-seed
 
-db-studio:
+db-studio: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" db-studio
 
-storage-seed:
+storage-seed: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" storage-seed
 
-orval:
+orval: ensure-submodules
 	@$(MAKE) -C "$(EXTENSION)" orval
 
-i18n-parse:
+i18n-parse: ensure-submodules
 	@$(MAKE) -C "$(EXTENSION)" i18n-parse
 
-zip:
+zip: ensure-submodules
 	@$(MAKE) -C "$(EXTENSION)" zip
 
-zip-firefox:
+zip-firefox: ensure-submodules
 	@$(MAKE) -C "$(EXTENSION)" zip-firefox
 
-backend-%:
+backend-%: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" $(patsubst backend-%,%,$@)
 
-extension-%:
+extension-%: ensure-submodules
 	@$(MAKE) -C "$(EXTENSION)" $(patsubst extension-%,%,$@)

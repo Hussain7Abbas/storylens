@@ -28,7 +28,7 @@ cd storylens
 If you already cloned without submodules:
 
 ```bash
-make init
+make submodules-init
 ```
 
 ## Quick start
@@ -61,8 +61,10 @@ All commands delegate to the Makefiles inside each submodule. Run `make help` fo
 
 | Command | Description |
 |---------|-------------|
-| `make init` | Initialize submodules after clone |
-| `make update` | Pull latest commits for all submodules |
+| `make submodules-init` | Initialize submodules after clone |
+| `make init` | Alias for `submodules-init` |
+| `make pull` | Pull umbrella repo, sync submodule pointers, pull each submodule |
+| `make update` | Bump submodules to latest remote commits (may diverge from umbrella pins) |
 
 ### Setup
 
@@ -133,7 +135,13 @@ make extension-orval
 
 ## Working with submodules
 
-Update a submodule to the latest remote commit:
+Sync the umbrella repo and all submodules to their remotes:
+
+```bash
+make pull
+```
+
+Bump submodules to the latest remote commit (without pulling the umbrella):
 
 ```bash
 make update
