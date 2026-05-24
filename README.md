@@ -163,6 +163,12 @@ storylens/
 └── .gitmodules
 ```
 
+## License
+
+This project is source available under the [PolyForm Noncommercial License 1.0.0](LICENSE.md).
+
+You may use, modify, and share it for **non-commercial purposes** only. Commercial use requires separate permission from the author.
+
 ## Further reading
 
 - [Backend README](apps/backend/README.md)
