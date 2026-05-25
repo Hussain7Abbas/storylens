@@ -31,6 +31,8 @@ Routes must `.use(setup)` before role guards so `currentUser` is available.
 | Delete novel | No | No | Yes |
 | Edit own profile (`PUT /auth/me`) | Yes (onboarding) | Yes | Yes |
 | Manage categories, natures, chapters, configs | No | No | Yes |
+| Get one website selector | Yes | Yes | Yes |
+| List/add/edit/delete website selectors | No | No | Yes |
 | Upload files | No | Yes | Yes |
 
 ## Ownership
