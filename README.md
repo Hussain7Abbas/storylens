@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="apps/extension/src/assets/storylens-128.png" alt="Story Lens logo" width="96" />
+  <img src="https://i.ibb.co/FkBkMNJ9/icon.png" alt="Story Lens logo" width="96" />
 </p>
 
 <h1 align="center">Story Lens</h1>
@@ -14,10 +14,10 @@ This is the umbrella repository for Story Lens. Application source lives in two 
 
 ## Repositories
 
-| Path | Repository | Description |
-|------|------------|-------------|
-| `apps/backend` | [storylens-backend](https://github.com/Hussain7Abbas/storylens-backend) | Elysia.js API, PostgreSQL (Prisma), file storage, AI |
-| `apps/extension` | [storylens-extension](https://github.com/Hussain7Abbas/storylens-extension) | WXT + React browser extension |
+| Path             | Repository                                                                  | Description                                          |
+| ---------------- | --------------------------------------------------------------------------- | ---------------------------------------------------- |
+| `apps/backend`   | [storylens-backend](https://github.com/Hussain7Abbas/storylens-backend)     | Elysia.js API, PostgreSQL (Prisma), file storage, AI |
+| `apps/extension` | [storylens-extension](https://github.com/Hussain7Abbas/storylens-extension) | WXT + React browser extension                        |
 
 ## Prerequisites
 
@@ -67,66 +67,66 @@ Run `make help` to see all available targets. All commands delegate to the Makef
 
 ### Submodules
 
-| Command | Description |
-|---------|-------------|
-| `make submodules-init` | Initialize submodules after clone |
-| `make init` | Alias for `submodules-init` |
-| `make pull` | Pull umbrella repo, sync submodule pointers, pull each submodule |
-| `make update` | Bump submodules to their latest remote commits |
+| Command                | Description                                                      |
+| ---------------------- | ---------------------------------------------------------------- |
+| `make submodules-init` | Initialize submodules after clone                                |
+| `make init`            | Alias for `submodules-init`                                      |
+| `make pull`            | Pull umbrella repo, sync submodule pointers, pull each submodule |
+| `make update`          | Bump submodules to their latest remote commits                   |
 
 ### Setup
 
-| Command | Description |
-|---------|-------------|
-| `make install` | `bun install` in backend and extension |
-| `make setup` | Backend setup: Docker Postgres + migrate + seed |
+| Command        | Description                                     |
+| -------------- | ----------------------------------------------- |
+| `make install` | `bun install` in backend and extension          |
+| `make setup`   | Backend setup: Docker Postgres + migrate + seed |
 
 ### Development
 
-| Command | Description |
-|---------|-------------|
-| `make dev-backend` | Start API in watch mode |
-| `make dev-extension` | Start Chrome extension dev server |
-| `make dev-firefox` | Start Firefox extension dev server |
+| Command              | Description                        |
+| -------------------- | ---------------------------------- |
+| `make dev-backend`   | Start API in watch mode            |
+| `make dev-extension` | Start Chrome extension dev server  |
+| `make dev-firefox`   | Start Firefox extension dev server |
 
 ### Build
 
-| Command | Description |
-|---------|-------------|
-| `make build` | Build backend and extension |
-| `make build-backend` | Production backend build |
-| `make build-extension` | Chrome extension build |
-| `make build-firefox` | Firefox extension build |
-| `make start-backend` | Build and run the production API |
-| `make zip` | Build and zip Chrome extension |
-| `make zip-firefox` | Build and zip Firefox extension |
+| Command                | Description                      |
+| ---------------------- | -------------------------------- |
+| `make build`           | Build backend and extension      |
+| `make build-backend`   | Production backend build         |
+| `make build-extension` | Chrome extension build           |
+| `make build-firefox`   | Firefox extension build          |
+| `make start-backend`   | Build and run the production API |
+| `make zip`             | Build and zip Chrome extension   |
+| `make zip-firefox`     | Build and zip Firefox extension  |
 
 ### Database & Storage
 
-| Command | Description |
-|---------|-------------|
-| `make docker-up` | Start Postgres container |
-| `make docker-down` | Stop Postgres container |
-| `make db-generate` | Generate Prisma client |
-| `make db-migrate-dev` | Create and apply dev migrations |
-| `make db-migrate-deploy` | Apply migrations (production) |
-| `make db-seed` | Seed database |
-| `make db-studio` | Open Prisma Studio |
-| `make storage-seed` | Upload seed assets to storage |
+| Command                  | Description                     |
+| ------------------------ | ------------------------------- |
+| `make docker-up`         | Start Postgres container        |
+| `make docker-down`       | Stop Postgres container         |
+| `make db-generate`       | Generate Prisma client          |
+| `make db-migrate-dev`    | Create and apply dev migrations |
+| `make db-migrate-deploy` | Apply migrations (production)   |
+| `make db-seed`           | Seed database                   |
+| `make db-studio`         | Open Prisma Studio              |
+| `make storage-seed`      | Upload seed assets to storage   |
 
 ### Extension Tooling
 
-| Command | Description |
-|---------|-------------|
-| `make orval` | Regenerate API client from the backend OpenAPI spec |
-| `make i18n-parse` | Extract i18n keys from extension source |
+| Command           | Description                                         |
+| ----------------- | --------------------------------------------------- |
+| `make orval`      | Regenerate API client from the backend OpenAPI spec |
+| `make i18n-parse` | Extract i18n keys from extension source             |
 
 ### Quality
 
-| Command | Description |
-|---------|-------------|
+| Command          | Description               |
+| ---------------- | ------------------------- |
 | `make typecheck` | Typecheck both submodules |
-| `make test` | Run backend tests |
+| `make test`      | Run backend tests         |
 
 ### Pass-Through Targets
 
