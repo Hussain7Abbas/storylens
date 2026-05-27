@@ -1,8 +1,16 @@
-# Story Lens
+<p align="center">
+  <img src="apps/extension/src/assets/storylens-128.png" alt="Story Lens logo" width="96" />
+</p>
 
-Umbrella repository for [Story Lens](https://github.com/Hussain7Abbas/storylens) — a browser extension and API for reading and annotating web novels with keyword highlighting, replacements, and AI-assisted chapter detection.
+<h1 align="center">Story Lens</h1>
 
-This repo does not contain application source directly. It links the two app repos as Git submodules and exposes a root `Makefile` to run common tasks across them.
+<p align="center">
+  A browser extension and API for reading web novels with keyword highlighting, text replacements, and AI-assisted chapter detection.
+</p>
+
+---
+
+This is the umbrella repository for Story Lens. Application source lives in two Git submodules — a backend API and a browser extension. The root `Makefile` exposes a unified set of commands that delegate to each submodule.
 
 ## Repositories
 
@@ -18,44 +26,44 @@ This repo does not contain application source directly. It links the two app rep
 - [Make](https://www.gnu.org/software/make/)
 - Git with SSH access to GitHub
 
-## Clone
+## Getting Started
+
+### Clone
 
 ```bash
 git clone --recurse-submodules git@github.com-personal:Hussain7Abbas/storylens.git
 cd storylens
 ```
 
-If you already cloned without submodules:
+Already cloned without submodules?
 
 ```bash
 make submodules-init
 ```
 
-## Quick start
+### Quick Start
 
 ```bash
 # 1. Install dependencies in both submodules
 make install
 
-# 2. Configure backend env (see apps/backend/README.md)
+# 2. Configure environment files
 cp apps/backend/.env.example apps/backend/.env
-
-# 3. Configure extension env
 cp apps/extension/.env.example apps/extension/.env
 
-# 4. Start Postgres, migrate, and seed the database
+# 3. Start Postgres, run migrations, and seed the database
 make setup
 
-# 5. Run the API and extension (separate terminals)
+# 4. Start the API and extension (open two terminals)
 make dev-backend
 make dev-extension
 ```
 
-The API runs at `http://localhost:3000` by default. OpenAPI docs are available when the backend is running.
+The API runs at `http://localhost:3000`. OpenAPI docs are available while the backend is running.
 
-## Root Makefile
+## Makefile Reference
 
-All commands delegate to the Makefiles inside each submodule. Run `make help` for the full list.
+Run `make help` to see all available targets. All commands delegate to the Makefiles inside each submodule.
 
 ### Submodules
 
@@ -64,7 +72,7 @@ All commands delegate to the Makefiles inside each submodule. Run `make help` fo
 | `make submodules-init` | Initialize submodules after clone |
 | `make init` | Alias for `submodules-init` |
 | `make pull` | Pull umbrella repo, sync submodule pointers, pull each submodule |
-| `make update` | Bump submodules to latest remote commits (may diverge from umbrella pins) |
+| `make update` | Bump submodules to their latest remote commits |
 
 ### Setup
 
@@ -89,30 +97,28 @@ All commands delegate to the Makefiles inside each submodule. Run `make help` fo
 | `make build-backend` | Production backend build |
 | `make build-extension` | Chrome extension build |
 | `make build-firefox` | Firefox extension build |
-| `make start-backend` | Build and run production API |
+| `make start-backend` | Build and run the production API |
 | `make zip` | Build and zip Chrome extension |
 | `make zip-firefox` | Build and zip Firefox extension |
 
-### Database & storage
-
-These targets run in `apps/backend`:
+### Database & Storage
 
 | Command | Description |
 |---------|-------------|
 | `make docker-up` | Start Postgres container |
 | `make docker-down` | Stop Postgres container |
 | `make db-generate` | Generate Prisma client |
-| `make db-migrate-dev` | Create/apply dev migrations |
+| `make db-migrate-dev` | Create and apply dev migrations |
 | `make db-migrate-deploy` | Apply migrations (production) |
 | `make db-seed` | Seed database |
 | `make db-studio` | Open Prisma Studio |
 | `make storage-seed` | Upload seed assets to storage |
 
-### Extension tooling
+### Extension Tooling
 
 | Command | Description |
 |---------|-------------|
-| `make orval` | Regenerate API client from backend OpenAPI spec |
+| `make orval` | Regenerate API client from the backend OpenAPI spec |
 | `make i18n-parse` | Extract i18n keys from extension source |
 
 ### Quality
@@ -122,9 +128,9 @@ These targets run in `apps/backend`:
 | `make typecheck` | Typecheck both submodules |
 | `make test` | Run backend tests |
 
-### Pass-through targets
+### Pass-Through Targets
 
-Run any submodule Make target from the root:
+Run any submodule Make target directly from the root:
 
 ```bash
 make backend-dev
@@ -133,7 +139,7 @@ make extension-typecheck
 make extension-orval
 ```
 
-## Working with submodules
+## Working with Submodules
 
 Sync the umbrella repo and all submodules to their remotes:
 
@@ -141,13 +147,13 @@ Sync the umbrella repo and all submodules to their remotes:
 make pull
 ```
 
-Bump submodules to the latest remote commit (without pulling the umbrella):
+Bump submodules to the latest remote commit without pulling the umbrella:
 
 ```bash
 make update
 ```
 
-Make changes inside a submodule, commit there, then bump the pointer in this repo:
+To make changes inside a submodule, commit there, then update the pointer in this repo:
 
 ```bash
 cd apps/backend
@@ -159,25 +165,25 @@ git add apps/backend
 git commit -m "chore: bump backend submodule"
 ```
 
-## Project layout
+## Project Layout
 
 ```
 storylens/
 ├── Makefile           # delegates to submodule Makefiles
 ├── README.md
 ├── apps/
-│   ├── backend/       # git submodule
-│   └── extension/     # git submodule
+│   ├── backend/       # git submodule — Elysia.js API
+│   └── extension/     # git submodule — WXT + React extension
 └── .gitmodules
 ```
 
 ## License
 
-This project is source available under the [PolyForm Noncommercial License 1.0.0](LICENSE.md).
+Source available under the [PolyForm Noncommercial License 1.0.0](LICENSE.md).
 
-You may use, modify, and share it for **non-commercial purposes** only. Commercial use requires separate permission from the author.
+You may use, modify, and share this project for **non-commercial purposes** only. Commercial use requires separate permission from the author.
 
-## Further reading
+## Further Reading
 
 - [Backend README](apps/backend/README.md)
 - [Extension README](apps/extension/README.md)
