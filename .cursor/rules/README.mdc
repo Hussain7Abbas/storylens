@@ -5,6 +5,9 @@ description: Overview of all Cursor rules for the Novzella Extension project
 
 # Cursor Rules Overview
 
+> **Source of truth for AI rules:** [AGENTS.md](mdc:AGENTS.md) (root), [apps/backend/AGENTS.md](mdc:apps/backend/AGENTS.md), [apps/extension/AGENTS.md](mdc:apps/extension/AGENTS.md).
+> The `.cursor/rules/` files below provide Cursor-specific activation (globs, alwaysApply) and link back to AGENTS.md sections for the actual rule content. When rules conflict, AGENTS.md wins.
+
 This directory contains comprehensive Cursor rules for the **Novzella Extension** (Story Lens) project. These rules provide context and guidelines for AI-assisted development.
 
 ## Available Rules

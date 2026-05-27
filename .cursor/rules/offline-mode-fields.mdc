@@ -6,6 +6,9 @@ alwaysApply: false
 
 # Offline Mode for New Fields
 
+> **Canonical rules:** [apps/extension/AGENTS.md](mdc:apps/extension/AGENTS.md) §"Offline Mode" and [apps/backend/AGENTS.md](mdc:apps/backend/AGENTS.md) §"Offline Mode Consideration" — this file is the Cursor activation wrapper.
+
+
 When a task **adds or changes a persisted field** (Prisma schema, API body/response, generated schemas, extension forms, or list cards), **ask the user before implementing**:
 
 > Should this field support **offline mode** (included in download bundles, editable offline, and synced via the pending-ops queue)?

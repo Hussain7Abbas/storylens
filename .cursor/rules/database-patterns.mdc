@@ -5,6 +5,8 @@ description: Database schema patterns and Prisma best practices
 
 # Database & Prisma Patterns
 
+> **Canonical rules:** [apps/backend/AGENTS.md](mdc:apps/backend/AGENTS.md) §"Database Patterns" — this file is the Cursor activation wrapper.
+
 ## Database Schema
 
 ### Schema Location

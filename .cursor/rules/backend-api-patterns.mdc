@@ -5,6 +5,8 @@ description: Backend API patterns and Elysia.js best practices
 
 # Backend API Patterns
 
+> **Canonical rules:** [apps/backend/AGENTS.md](mdc:apps/backend/AGENTS.md) — this file is the Cursor activation wrapper.
+
 ## Framework - Elysia.js
 
 ### Server Setup

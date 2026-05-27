@@ -5,6 +5,8 @@ description: WXT framework patterns for browser extension development
 
 # WXT Framework Patterns
 
+> **Canonical rules:** [apps/extension/AGENTS.md](mdc:apps/extension/AGENTS.md) §"WXT Framework Patterns" — this file is the Cursor activation wrapper.
+
 ## Framework Configuration
 
 ### WXT Config

@@ -5,6 +5,8 @@ description: TypeScript coding standards and best practices for the Novzella Ext
 
 # TypeScript Coding Standards
 
+> **Canonical rules:** [AGENTS.md](mdc:AGENTS.md) §"Universal Coding Rules" — this file is the Cursor activation wrapper.
+
 ## Core Rules
 
 ### Type Safety

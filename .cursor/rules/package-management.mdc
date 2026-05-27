@@ -5,6 +5,8 @@ description: Package management, tooling, and development workflow guidelines
 
 # Package Management & Tooling
 
+> **Canonical rules:** [AGENTS.md](mdc:AGENTS.md) §"Common Commands" — this file is the Cursor activation wrapper.
+
 ## Package Manager
 
 ### Bun Usage

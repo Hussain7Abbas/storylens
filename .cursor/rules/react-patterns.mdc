@@ -6,6 +6,9 @@ alwaysApply: false
 
 # React Component Patterns
 
+> **Canonical rules:** [apps/extension/AGENTS.md](mdc:apps/extension/AGENTS.md) §"React Component Patterns" — this file is the Cursor activation wrapper.
+
+
 ## Component Structure
 
 ### File Organization

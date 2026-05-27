@@ -5,6 +5,8 @@ description: API integration patterns and best practices for @repo/api usage
 
 # API Integration Patterns
 
+> **Canonical rules:** [apps/extension/AGENTS.md](mdc:apps/extension/AGENTS.md) §"API Integration" — this file is the Cursor activation wrapper.
+
 ## API Package Structure
 
 ### Orval Configuration

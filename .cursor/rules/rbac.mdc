@@ -6,6 +6,9 @@ alwaysApply: false
 
 # Role-Based Access Control (RBAC)
 
+> **Canonical rules:** [apps/backend/AGENTS.md](mdc:apps/backend/AGENTS.md) §"Role-Based Access Control" — this file is the Cursor activation wrapper.
+
+
 Always enforce permissions on the **backend** with guards from
 `apps/backend/src/middleware/authorize.ts`. UI-only checks are not sufficient.
 

@@ -5,6 +5,8 @@ description: Project structure and architecture guidelines for the Novzella Exte
 
 # Novzella Extension - Project Structure & Architecture
 
+> **Canonical rules:** [AGENTS.md](mdc:AGENTS.md) — this file is the Cursor activation wrapper.
+
 This is a **monorepo** using **Turbo** and **Bun** for a browser extension project called "Story Lens" (Novzella Extension).
 
 ## Project Architecture
