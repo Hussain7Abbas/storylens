@@ -63,7 +63,7 @@ Implementation is underway. Story points are relative estimates, not delivery da
 
 ## Current validation
 
-Client tests: 5 passed. Client, extension, and backend typechecks passed. Chrome and Firefox extension builds passed. Both provider CLIs returned `OK` in live low-effort calls. A packaged macOS app displayed its listening status, exposed capabilities, and returned a live NDJSON result. Playwright Chromium loaded the extension and verified an on-page summary after closing the popup with both Claude and Codex. macOS arm64 DMG and Windows x64 NSIS installer were produced; Windows runtime and Firefox browser checks remain pending. See [phase 6](06-validation-and-packaging.md) for the full matrix.
+Client tests: 5 passed. Client, extension, and backend typechecks passed. Chrome and Firefox extension builds passed. Both provider CLIs returned `OK` in live low-effort calls. A packaged macOS app displayed its listening status, exposed capabilities, and returned a live NDJSON result. Playwright Chromium loaded the extension and verified an on-page summary after closing the popup with both Claude and Codex. The [client CI workflow](https://github.com/Hussain7Abbas/storylens-client/actions/runs/36140334422) built and uploaded macOS arm64 DMG and Windows x64 NSIS artifacts on native runners; Windows runtime and Firefox browser checks remain pending. See [phase 6](06-validation-and-packaging.md) for the full matrix.
 
 ## Scope and later work
 
