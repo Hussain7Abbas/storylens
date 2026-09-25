@@ -1,9 +1,9 @@
-# Story Lens meta-repo: delegates to backend and extension submodules.
+# Story Lens meta-repo: delegates to backend, extension, and client submodules.
 .PHONY: \
 	help init submodules-init pull update ensure-submodules \
-	backend extension backend-% extension-% \
-	install setup dev dev-backend dev-extension dev-firefox \
-	build build-backend build-extension build-firefox start-backend \
+	backend extension client backend-% extension-% client-% \
+	install setup dev dev-backend dev-extension dev-client dev-firefox \
+	build build-backend build-extension build-client build-firefox start-backend \
 	typecheck test \
 	db-generate db-migrate-dev db-migrate-deploy db-reset db-seed db-studio storage-seed \
 	orval i18n-parse zip zip-firefox release-chrome \
@@ -12,7 +12,8 @@
 ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 BACKEND := $(ROOT)/apps/backend
 EXTENSION := $(ROOT)/apps/extension
-CHILDREN := $(BACKEND) $(EXTENSION)
+CLIENT := $(ROOT)/apps/client
+CHILDREN := $(BACKEND) $(EXTENSION) $(CLIENT)
 
 BLUE := $(shell printf '\033[34m')
 GREEN := $(shell printf '\033[32m')
@@ -33,7 +34,7 @@ help:
 	@echo "  $(GREEN)update$(RESET)               bump submodules to latest remote commits"
 	@echo ""
 	@echo "$(BLUE)Setup$(RESET)"
-	@echo "  $(GREEN)install$(RESET)              install deps in both submodules"
+	@echo "  $(GREEN)install$(RESET)              install deps in all three submodules"
 	@echo "  $(GREEN)setup$(RESET)                backend setup (docker + db)"
 	@echo ""
 	@echo "$(BLUE)Development$(RESET)"
@@ -42,12 +43,14 @@ help:
 	@echo "  $(GREEN)extension$(RESET)             alias for $(GREEN)dev-extension$(RESET)"
 	@echo "  $(GREEN)dev-backend$(RESET)          $(YELLOW)make -C apps/backend dev$(RESET)"
 	@echo "  $(GREEN)dev-extension$(RESET)        $(YELLOW)make -C apps/extension dev$(RESET)"
+	@echo "  $(GREEN)dev-client$(RESET)           $(YELLOW)make -C apps/client dev$(RESET)"
 	@echo "  $(GREEN)dev-firefox$(RESET)          $(YELLOW)make -C apps/extension dev-firefox$(RESET)"
 	@echo ""
 	@echo "$(BLUE)Build$(RESET)"
-	@echo "  $(GREEN)build$(RESET)                build backend + extension"
+	@echo "  $(GREEN)build$(RESET)                build backend + extension + client"
 	@echo "  $(GREEN)build-backend$(RESET)        $(YELLOW)make -C apps/backend build$(RESET)"
 	@echo "  $(GREEN)build-extension$(RESET)      $(YELLOW)make -C apps/extension build$(RESET)"
+	@echo "  $(GREEN)build-client$(RESET)         $(YELLOW)make -C apps/client build$(RESET)"
 	@echo "  $(GREEN)build-firefox$(RESET)        $(YELLOW)make -C apps/extension build-firefox$(RESET)"
 	@echo "  $(GREEN)start-backend$(RESET)        build + run production API"
 	@echo "  $(GREEN)zip$(RESET)                  $(YELLOW)make -C apps/extension zip$(RESET)"
@@ -64,11 +67,11 @@ help:
 	@echo "  $(GREEN)i18n-parse$(RESET)           extract i18n keys"
 	@echo ""
 	@echo "$(BLUE)Quality$(RESET)"
-	@echo "  $(GREEN)typecheck$(RESET)            typecheck both submodules"
-	@echo "  $(GREEN)test$(RESET)                 run backend tests"
+	@echo "  $(GREEN)typecheck$(RESET)            typecheck all three submodules"
+	@echo "  $(GREEN)test$(RESET)                 run backend + client tests"
 	@echo ""
-	@echo "$(BLUE)Pass-through$(RESET): $(GREEN)backend-<target>$(RESET) / $(GREEN)extension-<target>$(RESET)"
-	@echo "  e.g. $(YELLOW)make backend-dev$(RESET), $(YELLOW)make extension-typecheck$(RESET)"
+	@echo "$(BLUE)Pass-through$(RESET): $(GREEN)backend-<target>$(RESET) / $(GREEN)extension-<target>$(RESET) / $(GREEN)client-<target>$(RESET)"
+	@echo "  e.g. $(YELLOW)make backend-dev$(RESET), $(YELLOW)make extension-typecheck$(RESET), $(YELLOW)make client-pack$(RESET)"
 	@echo ""
 
 submodules-init:
@@ -89,7 +92,7 @@ update: ensure-submodules
 ensure-submodules:
 	@missing=0; \
 	for child in $(CHILDREN); do \
-		if [ ! -f "$$child/Makefile" ]; then \
+		if [ ! -f "$$child/package.json" ]; then \
 			echo "$(YELLOW)Missing $$child — run $(GREEN)make submodules-init$(RESET)"; \
 			missing=1; \
 		fi; \
@@ -99,6 +102,7 @@ ensure-submodules:
 install: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" install
 	@$(MAKE) -C "$(EXTENSION)" install
+	@$(MAKE) -C "$(CLIENT)" install
 
 setup: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" setup
@@ -115,16 +119,22 @@ backend dev-backend: ensure-submodules
 extension dev-extension: ensure-submodules
 	@$(MAKE) -C "$(EXTENSION)" dev
 
+client dev-client: ensure-submodules
+	@$(MAKE) -C "$(CLIENT)" dev
+
 dev-firefox: ensure-submodules
 	@$(MAKE) -C "$(EXTENSION)" dev-firefox
 
-build: ensure-submodules build-backend build-extension
+build: ensure-submodules build-backend build-extension build-client
 
 build-backend: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" build
 
 build-extension: ensure-submodules
 	@$(MAKE) -C "$(EXTENSION)" build
+
+build-client: ensure-submodules
+	@$(MAKE) -C "$(CLIENT)" build
 
 build-firefox: ensure-submodules
 	@$(MAKE) -C "$(EXTENSION)" build-firefox
@@ -135,9 +145,11 @@ start-backend: ensure-submodules build-backend
 typecheck: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" typecheck
 	@$(MAKE) -C "$(EXTENSION)" typecheck
+	@$(MAKE) -C "$(CLIENT)" typecheck
 
 test: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" test
+	@$(MAKE) -C "$(CLIENT)" test
 
 docker-up: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" docker-up
@@ -189,3 +201,6 @@ backend-%: ensure-submodules
 
 extension-%: ensure-submodules
 	@$(MAKE) -C "$(EXTENSION)" $(patsubst extension-%,%,$@)
+
+client-%: ensure-submodules
+	@$(MAKE) -C "$(CLIENT)" $(patsubst client-%,%,$@)

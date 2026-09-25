@@ -5,12 +5,12 @@
 <h1 align="center">Story Lens</h1>
 
 <p align="center">
-  A browser extension and API for reading web novels with keyword highlighting, text replacements, and AI-assisted chapter detection.
+  A browser extension, API, and desktop client for reading web novels with keyword highlighting, text replacements, AI-assisted chapter detection, and page summaries.
 </p>
 
 ---
 
-This is the umbrella repository for Story Lens. Application source lives in two Git submodules — a backend API and a browser extension. The root `Makefile` exposes a unified set of commands that delegate to each submodule.
+This is the umbrella repository for Story Lens. The backend API, browser extension, and desktop client are Git submodules. The root `Makefile` delegates commands to each app.
 
 ## Repositories
 
@@ -18,6 +18,7 @@ This is the umbrella repository for Story Lens. Application source lives in two 
 | ---------------- | --------------------------------------------------------------------------- | ---------------------------------------------------- |
 | `apps/backend`   | [storylens-backend](https://github.com/Hussain7Abbas/storylens-backend)     | Elysia.js API, PostgreSQL (Prisma), file storage, AI |
 | `apps/extension` | [storylens-extension](https://github.com/Hussain7Abbas/storylens-extension) | WXT + React browser extension                        |
+| `apps/client`    | [storylens-client](https://github.com/Hussain7Abbas/storylens-client)       | Electron desktop companion for Claude/Codex prompts  |
 
 ## Prerequisites
 
@@ -44,7 +45,7 @@ make submodules-init
 ### Quick Start
 
 ```bash
-# 1. Install dependencies in both submodules
+# 1. Install dependencies in all three submodules
 make install
 
 # 2. Configure environment files
@@ -64,9 +65,11 @@ Set the extension's `WXT_API_URL` to the backend address before using API featur
 its checked-in development example points to port 7001. See the
 [development guide](docs/development.md) for details.
 
+For page summaries, install and sign in to Claude Code and/or Codex CLI, then run `make dev-client`. Pair the extension with the token shown in the desktop window. See the [desktop client guide](docs/client.md).
+
 ## Makefile Reference
 
-Run `make help` to see all available targets. All commands delegate to the Makefiles inside each submodule.
+Run `make help` to see targets for all three apps. Client commands are also available through `make client-<target>` or directly in `apps/client`.
 
 ### Submodules
 
@@ -81,7 +84,7 @@ Run `make help` to see all available targets. All commands delegate to the Makef
 
 | Command        | Description                                     |
 | -------------- | ----------------------------------------------- |
-| `make install` | `bun install` in backend and extension          |
+| `make install` | `bun install` in all three apps                  |
 | `make setup`   | Backend setup: Docker Postgres + migrate + seed |
 
 ### Development
@@ -90,15 +93,17 @@ Run `make help` to see all available targets. All commands delegate to the Makef
 | -------------------- | ---------------------------------- |
 | `make dev-backend`   | Start API in watch mode            |
 | `make dev-extension` | Start Chrome extension dev server  |
+| `make dev-client`    | Start Electron desktop client      |
 | `make dev-firefox`   | Start Firefox extension dev server |
 
 ### Build
 
 | Command                | Description                      |
 | ---------------------- | -------------------------------- |
-| `make build`           | Build backend and extension      |
+| `make build`           | Build all three apps             |
 | `make build-backend`   | Production backend build         |
 | `make build-extension` | Chrome extension build           |
+| `make build-client`    | Desktop client build             |
 | `make build-firefox`   | Firefox extension build          |
 | `make start-backend`   | Build and run the production API |
 | `make zip`             | Build and zip Chrome extension   |
@@ -126,10 +131,10 @@ Run `make help` to see all available targets. All commands delegate to the Makef
 
 ### Quality
 
-| Command          | Description               |
-| ---------------- | ------------------------- |
-| `make typecheck` | Typecheck both submodules |
-| `make test`      | Run backend tests         |
+| Command          | Description                        |
+| ---------------- | ---------------------------------- |
+| `make typecheck` | Typecheck all three submodules     |
+| `make test`      | Run backend and client tests       |
 
 ### Pass-Through Targets
 
@@ -140,6 +145,7 @@ make backend-dev
 make backend-db-studio
 make extension-typecheck
 make extension-orval
+make client-pack
 ```
 
 ## Working with Submodules

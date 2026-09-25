@@ -4,3 +4,6 @@
 [submodule "apps/extension"]
 	path = apps/extension
 	url = git@github.com-personal:Hussain7Abbas/storylens-extension.git
+[submodule "apps/client"]
+	path = apps/client
+	url = https://github.com/Hussain7Abbas/storylens-client.git

@@ -4,6 +4,8 @@
 
 `apps/extension` is a WXT and React extension for Chrome and Firefox. The popup lets readers manage novels, keyword coloring, replacement rules, profile, and settings. The content script detects supported pages and applies reading features; the background service worker handles messaging, selector loading, API proxy requests, and synchronization.
 
+The popup also offers a desktop-client panel independent of novel detection. After pairing, readers choose a discovered Claude/Codex model and effort, then click **Summarize page**. The content script captures the active page's body and shows loading, result, or error at its top. The background worker contacts the authenticated loopback service. See the [client guide](client.md) for setup, limits, and privacy behavior.
+
 ## Main areas
 
 - `src/entrypoints/` contains background and content scripts, popup screens, and options UI. The popup uses React Router, Mantine, Jotai, and TanStack Query.
