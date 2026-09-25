@@ -6,7 +6,7 @@ The user requested implementation after the planning phase. This tracker now rec
 
 ## Goal
 
-Add a JavaScript desktop app named `client`, packaged as a Windows `.exe` installer and macOS `.app`/DMG. The browser extension sends commands to the app and receives results. The first business command is `ExecutePrompt(prompt, model, effort)`, using the user's authenticated Claude Code or Codex installation in headless mode.
+Add a JavaScript desktop app named `client`, packaged as a Windows `.exe` installer and macOS `.app`/DMG. The browser extension sends commands to the app and receives results. The first business command is `ExecutePrompt(prompt, model, effort, responseLanguage)`, using the user's authenticated Claude Code or Codex installation in headless mode.
 
 The first extension feature is a **Summarize** button: capture the active website's HTML body, send it with a summarization prompt, and display the returned text in a section at the beginning of that same page.
 
@@ -47,6 +47,7 @@ Implementation is underway. Story points are relative estimates, not delivery da
 - [ ] Catalog covers the installed provider's exposed models; documented local overrides cover validated IDs absent from picker discovery.
 - [x] Unsupported model/effort choices are rejected in service tests; the UI no longer substitutes a removed saved model.
 - [x] Summarize worked on a non-novel HTTP page in Playwright Chromium.
+- [x] A novel-site launcher opens the same popup within the page in Playwright Chromium and stays hidden without a selector.
 - [ ] Popup closure was verified in Chromium; navigation race handling and Firefox remain to be manually verified.
 - [ ] Authentication, limits, cancellation, and process cleanup pass behavioral tests.
 - [x] Client, extension, and backend typechecks pass; Chrome/Firefox builds pass.
@@ -63,7 +64,7 @@ Implementation is underway. Story points are relative estimates, not delivery da
 
 ## Current validation
 
-Client tests: 5 passed. Client, extension, and backend typechecks passed. Chrome and Firefox extension builds passed. Both provider CLIs returned `OK` in live low-effort calls. A packaged macOS app displayed its listening status, exposed capabilities, and returned a live NDJSON result. Playwright Chromium loaded the extension and verified an on-page summary after closing the popup with both Claude and Codex. The [client CI workflow](https://github.com/Hussain7Abbas/storylens-client/actions/runs/36140334422) built and uploaded macOS arm64 DMG and Windows x64 NSIS artifacts on native runners; Windows runtime and Firefox browser checks remain pending. See [phase 6](06-validation-and-packaging.md) for the full matrix.
+Client tests: 7 passed, including GUI-PATH Codex catalog discovery and required response language. Client, extension, and backend typechecks passed; the client and Chrome/Firefox extension builds passed. Playwright Chromium verified the novel-site circle and embedded popup. Earlier checks: both provider CLIs returned `OK` in live low-effort calls; a packaged macOS app displayed its listening status, exposed capabilities, and returned a live NDJSON result; Playwright Chromium verified an on-page summary after closing the popup with both Claude and Codex. The [client CI workflow](https://github.com/Hussain7Abbas/storylens-client/actions/runs/36140334422) built and uploaded macOS arm64 DMG and Windows x64 NSIS artifacts on native runners. Protocol 2 package/runtime checks, Windows runtime, and Firefox browser checks remain pending. See [phase 6](06-validation-and-packaging.md) for the full matrix.
 
 ## Scope and later work
 

@@ -23,6 +23,7 @@ Create a dedicated desktop-client module alongside extension libraries. Keep its
 - [x] Store credentials in extension-local storage, never sync storage, page DOM, logs, or content-script message payloads.
 - [ ] Restrict credential storage to trusted extension contexts where supported. Keep token reads/network calls in the background; document the Firefox-compatible storage approach.
 - [x] Fetch capabilities and validate schemas/protocol version; one provider error must not hide another usable provider.
+- [x] Send the selected extension language as `responseLanguage` on every desktop prompt and require protocol 2 from the client.
 - [x] Populate model and dependent effort selectors from the catalog. Changing a model selects a valid effort default.
 - [x] Persist canonical model/effort locally. If a saved model disappears, require a new selection rather than silently substituting one.
 - [ ] Add typed connection, capability, execution, and cancellation messages; validate senders/payloads and avoid generic external/window-message command bridges.

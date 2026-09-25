@@ -47,4 +47,4 @@ Every discovered model also gets a namespaced canonical ID such as `codex:gpt-6-
 
 ## Validation record
 
-Both providers discovered models/efforts and returned `OK` from live low-effort headless prompts. Synthetic parser and service tests pass. Codex now disables `shell_tool`; a live probe requesting a file-list tool returned `NO_TOOL`. **Open:** Windows npm shim execution, provider login failure UX, and cross-version tool-isolation regression tests.
+Both providers discovered models/efforts and returned `OK` from live low-effort headless prompts. Synthetic parser and service tests pass. Codex now disables `shell_tool`; a live probe requesting a file-list tool returned `NO_TOOL`. Codex catalog discovery was repaired for GUI launches with a minimal PATH and now waits for app-server initialization; a regression test exercises both conditions and local discovery returned eight Codex models. **Open:** Windows npm shim execution, provider login failure UX, and cross-version tool-isolation regression tests.

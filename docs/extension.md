@@ -6,6 +6,8 @@
 
 The popup also offers a desktop-client panel independent of novel detection. After pairing, readers choose a discovered Claude/Codex model and effort, then click **Summarize page**. The content script captures the active page's body and shows loading, result, or error at its top. The background worker contacts the authenticated loopback service. See the [client guide](client.md) for setup, limits, and privacy behavior.
 
+On a page whose domain has a website selector in the novel-site database or extension cache, a circular **SL** button appears in the top-right corner. It opens the same extension popup in an overlay iframe; readers can use either this button or the browser toolbar icon. The launcher is removed when the selector is unavailable and closes on outside click, Escape, or navigation. The popup page is listed as a web-accessible resource so it can load in the iframe. The selected extension language is also sent as `responseLanguage` with each desktop AI request.
+
 ## Main areas
 
 - `src/entrypoints/` contains background and content scripts, popup screens, and options UI. The popup uses React Router, Mantine, Jotai, and TanStack Query.

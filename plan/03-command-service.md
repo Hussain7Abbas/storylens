@@ -6,7 +6,7 @@
 
 As an extension, I want a validated local endpoint so I can send a prompt and receive predictable output without knowing provider CLI details.
 
-## Proposed v1 contract
+## Current protocol 2 contract
 
 One business endpoint: **`POST /ExecutePrompt`**. Require `Authorization: Bearer <pairing-token>` and `Content-Type: application/json`.
 
@@ -14,11 +14,12 @@ One business endpoint: **`POST /ExecutePrompt`**. Require `Authorization: Bearer
 {
   "prompt": "Summarize this page: ...",
   "model": "codex-sol6",
-  "effort": "medium"
+  "effort": "medium",
+  "responseLanguage": "en"
 }
 ```
 
-`prompt` is nonempty text. `model` is a registered runtime enum value/alias. `effort` must be supported by that model. Reject unknown properties; callers cannot provide executables, environment variables, shell flags, or working directories.
+`prompt` is nonempty text. `model` is a registered runtime enum value/alias. `effort` must be supported by that model. `responseLanguage` is required and currently accepts `en` or `ar`; the provider is instructed to write its final answer in that language. Reject unknown properties; callers cannot provide executables, environment variables, shell flags, or working directories.
 
 Success:
 
@@ -29,6 +30,7 @@ Success:
   "model": "codex:gpt-6-sol",
   "provider": "codex",
   "effort": "medium",
+  "responseLanguage": "en",
   "durationMs": 12500
 }
 ```
@@ -91,4 +93,4 @@ Do not silently truncate input/output. Byte limits do not guarantee token-contex
 
 ## Validation record
 
-Fastify `GET /capabilities` and `POST /ExecutePrompt` implemented. Packaged app served a live NDJSON `started`/`result` prompt. Tests cover token/Origin/Host rejection, dynamic effort validation, capacity, streaming, and cancellation. **Open:** real HTTP disconnect races and 240-second activity.
+Fastify `GET /capabilities` and `POST /ExecutePrompt` implemented. Capabilities report protocol 2, and service tests cover required response language, token/Origin/Host rejection, dynamic effort validation, capacity, streaming, and cancellation. Packaged app served a live NDJSON `started`/`result` prompt under the previous protocol; packaging has not yet been repeated for protocol 2. **Open:** real HTTP disconnect races and 240-second activity.

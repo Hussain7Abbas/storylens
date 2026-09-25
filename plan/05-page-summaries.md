@@ -10,11 +10,13 @@ As a reader, I want to click Summarize and read the result at the top of my curr
 
 1. Reader selects a paired model/effort and clicks **Summarize**.
 2. Popup captures the active tab ID once and asks that content script to start.
-3. Content script clones `document.body`, prepares the prompt, creates a loading section, and requests execution from the background.
+3. Content script clones `document.body`, prepares the prompt with the extension's selected response language, creates a loading section, and requests execution from the background.
 4. Background reads the token and calls `POST /ExecutePrompt`.
 5. Content script replaces loading text with the answer or error only if the result still belongs to that document/navigation.
 
 The explicit action works on HTTP(S) pages without novel detection. Popup closure does not cancel it. Results stay with the originating page when active tabs change.
+
+On a domain with a configured website selector, the content script also displays a top-right circular launcher. It opens the same extension popup in a page overlay; it is not a prerequisite for summarization, which remains available from the browser toolbar on other sites.
 
 ## Tasks
 
@@ -32,6 +34,7 @@ The explicit action works on HTTP(S) pages without novel detection. Popup closur
 - [x] Deduplicate in-flight requests per document. Subsequent summaries replace the prior section and never include that section in the next prompt.
 - [x] Cancel/clear stale work on teardown and SPA navigation using WXT content-context/location-change facilities; guard against late results even when cancellation races.
 - [ ] Verify highlighting, replacement, novel detection, and selector refresh do not remove or process summary shadow content.
+- [x] Show the circular launcher only when a selector is available; embed the popup page in a shadow-DOM overlay and close it on outside click, Escape, or navigation.
 
 ## Acceptance criteria
 
@@ -44,4 +47,4 @@ The explicit action works on HTTP(S) pages without novel detection. Popup closur
 
 ## Validation record
 
-Implemented cloned body capture, form/script removal, English/Arabic prompt, shadow DOM result panel, retry/close, and SPA cancellation guard. Playwright Chromium summary of a non-novel article passed after popup closure. **Open:** manual novel/form/SPA/restricted-page and Firefox checks.
+Implemented cloned body capture, form/script removal, English/Arabic prompt and required `responseLanguage`, shadow DOM result panel, retry/close, and SPA cancellation guard. Playwright Chromium summary of a non-novel article passed after popup closure. A separate Chrome smoke check confirmed the launcher stays hidden without a cached selector and opens/closes the embedded popup when one is available. **Open:** manual novel/form/SPA/restricted-page and Firefox checks.
