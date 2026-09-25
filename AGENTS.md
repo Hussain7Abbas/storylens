@@ -1,112 +1,42 @@
-# AGENTS.md — Storylens Umbrella Repo
+# Story Lens repository instructions
 
-Generic AI agent rules for the **Storylens** monorepo. Tool-specific config files (CLAUDE.md, .cursor/rules/) defer to this file.
+Story Lens is a browser extension for reading web novels with keyword highlighting, text replacement, and chapter detection, supported by an Elysia API. This repository coordinates two independent Git submodules; it has no root `package.json` or shared workspace packages. Start with [the documentation index](docs/intro.md) for design and workflow details.
 
-## Self-Maintenance Rule
+## Repository map
 
-**Whenever you make a change that affects architecture, commands, submodule layout, tooling, or conventions, update this AGENTS.md (and the relevant submodule AGENTS.md) to reflect the new state before finishing the task.**
+- `apps/backend/`: API, auth, Prisma schema and migrations, seeds, storage, and AI features. Follow [backend instructions](apps/backend/AGENTS.md).
+- `apps/extension/`: WXT extension, popup and content scripts, generated API client, localization, and offline storage. Follow [extension instructions](apps/extension/AGENTS.md).
+- `Makefile`: delegates setup, development, build, and quality targets to the submodules.
+- `.cursor/rules/`: Cursor guidance; `AGENTS.md` files are the source of truth for agent rules.
 
----
+## Shared rules and workflow
 
-## Repository Overview
+- Use Bun for dependency management and package scripts. Install in each submodule (`make install` delegates both); do not assume a root Bun workspace.
+- Use TypeScript types instead of `any`. Do not add `eslint-disable` comments. Prefer named exports except where a framework entry point requires a default export.
+- Follow the formatter and TypeScript configuration of the submodule being edited. The extension has Biome configuration; there is no root Biome configuration.
+- Keep code in the relevant submodule. Follow local imports and naming patterns, validate inputs at API boundaries, and use the backend's error and permission helpers for routes. Test behavior at the affected scope.
+- After every task, run `bun run typecheck` in both submodules and fix errors. Run backend tests for backend behavior changes.
+- Changes in a submodule are committed there first; then commit the updated submodule pointer in this umbrella repository. Do not move application source into the umbrella repository.
 
-This is an umbrella repo that links two Git submodules via a root `Makefile`. Source code lives entirely inside the submodules.
-
-```
-storylens/
-├── Makefile              # delegates to submodule Makefiles
-├── apps/
-│   ├── backend/          # git submodule → storylens-backend (Elysia.js API)
-│   └── extension/        # git submodule → storylens-extension (WXT + React)
-└── .cursor/rules/        # Cursor AI rules (reference this file)
-```
-
-There is **no shared `package.json`** or Turbo config at the umbrella root — each submodule is a self-contained repo with its own `bun install`.
-
----
-
-## Common Commands (run from repo root)
+## Commands from the repository root
 
 ```bash
-# Setup
-make submodules-init      # initialize submodules after fresh clone
-make install              # bun install in both submodules
-make setup                # Docker Postgres + migrate + seed
-
-# Development
-make dev-backend          # start API in watch mode (port 3000)
-make dev-extension        # start Chrome extension dev server
-make dev-firefox          # start Firefox extension dev server
-
-# Build
-make build                # build both
-make zip                  # build + zip Chrome extension
-make zip-firefox          # build + zip Firefox extension
-
-# Database
-make docker-up            # start Postgres container
-make db-migrate-dev       # create/apply dev migrations
-make db-seed              # seed database
-make db-studio            # open Prisma Studio
-
-# Quality
+make help                 # full target list
+make submodules-init      # initialize both submodules after cloning
+make install              # Bun install in each submodule
+make setup                # backend Docker Postgres, migrations, and seed
+make dev-backend          # API in watch mode (PORT defaults to 3000)
+make dev-extension        # Chrome extension development
+make dev-firefox          # Firefox extension development
+make build                # delegate builds to both submodules
 make typecheck            # typecheck both submodules
-make test                 # run backend tests
-make orval                # regenerate API client from OpenAPI spec
-make i18n-parse           # extract i18n keys from extension source
+make test                 # backend tests
+make orval                # regenerate extension API client; backend must run
+make i18n-parse           # extract extension translation keys
 ```
 
----
+The root also provides database, zip, and `backend-<target>` / `extension-<target>` pass-through targets. See `make help`, the [development guide](docs/development.md), and each submodule's `Makefile`. `make pull` updates the umbrella and pulls submodules; `make update` advances submodules to remote commits. Use them deliberately because they change checkout state.
 
-## Submodule Workflow
+## Documentation maintenance
 
-Changes always happen **inside a submodule**. Then bump the pointer in the umbrella:
-
-```bash
-cd apps/backend           # or apps/extension
-git add . && git commit -m "feat: ..."
-git push
-
-cd ../..
-git add apps/backend      # bump pointer
-git commit -m "chore: bump backend submodule"
-```
-
-To pull everything in sync:
-```bash
-make pull                 # umbrella + all submodule pointers + each submodule remote
-```
-
----
-
-## Technology Stack
-
-| Layer | Technology |
-|---|---|
-| Backend | Elysia.js, Prisma ORM, PostgreSQL, JWT (`jose`), `bcryptjs` |
-| Extension | WXT framework, React 19, Mantine UI, Jotai, React Router |
-| API client | Orval-generated React Query hooks from backend OpenAPI spec |
-| Build | Bun (package manager), Turbo (within each submodule) |
-| Code quality | Biome (lint + format), TypeScript strict mode |
-
----
-
-## Universal Coding Rules
-
-These apply in **both** submodules:
-
-- **Never use `any` type** — use proper TypeScript types or generics
-- **Always run `bun run typecheck` after completing a task** and fix all errors before finishing
-- **Never use eslint-disable comments** — fix the underlying issue
-- **Always use Bun** for all package management (`bun add`, `bun install`, `bun run`)
-- Use named exports, not default exports (except WXT entry points which require `export default`)
-- Biome enforces formatting: single quotes, 2-space indent, 86-char line width
-
----
-
-## Submodule-Specific Rules
-
-See each submodule's own AGENTS.md for domain-specific rules:
-
-- [`apps/backend/AGENTS.md`](apps/backend/AGENTS.md) — Elysia.js patterns, RBAC, database, auth
-- [`apps/extension/AGENTS.md`](apps/extension/AGENTS.md) — WXT patterns, React/Mantine, offline mode, API hooks
+As part of every task, keep project instructions and documentation synchronized with user-requested changes and relevant changes already made by the user. Before finishing, review the affected `AGENTS.md` files and `docs/` pages and update any rules, directory descriptions, code conventions, commands, architecture, interfaces, configuration, or behavior that changed. Add, move, or remove scoped instructions and documentation when project scopes change, and repair their indexes and links. Update affected documentation in the same task as the code changes; do not leave known stale guidance. Preserve unrelated user edits and document the current intended state without reverting code to match old documentation. If a change has no documentation or instruction impact, leave those files unchanged. Keep every `CLAUDE.md` as only `@AGENTS.md`, with the actual rules in its sibling `AGENTS.md`.

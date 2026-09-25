@@ -59,7 +59,10 @@ make dev-backend
 make dev-extension
 ```
 
-The API runs at `http://localhost:3000`. OpenAPI docs are available while the backend is running.
+The API defaults to `http://localhost:3000`. OpenAPI docs are available in development mode.
+Set the extension's `WXT_API_URL` to the backend address before using API features;
+its checked-in development example points to port 7001. See the
+[development guide](docs/development.md) for details.
 
 ## Makefile Reference
 
@@ -171,6 +174,7 @@ git commit -m "chore: bump backend submodule"
 storylens/
 ├── Makefile           # delegates to submodule Makefiles
 ├── README.md
+├── docs/              # development and architecture guides
 ├── apps/
 │   ├── backend/       # git submodule — Elysia.js API
 │   └── extension/     # git submodule — WXT + React extension
@@ -185,5 +189,6 @@ You may use, modify, and share this project for **non-commercial purposes** only
 
 ## Further Reading
 
+- [Documentation index](docs/intro.md)
 - [Backend README](apps/backend/README.md)
 - [Extension README](apps/extension/README.md)

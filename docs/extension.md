@@ -1,0 +1,17 @@
+# Browser extension
+
+[Documentation index](intro.md) · [Development](development.md)
+
+`apps/extension` is a WXT and React extension for Chrome and Firefox. The popup lets readers manage novels, keyword coloring, replacement rules, profile, and settings. The content script detects supported pages and applies reading features; the background service worker handles messaging, selector loading, API proxy requests, and synchronization.
+
+## Main areas
+
+- `src/entrypoints/` contains background and content scripts, popup screens, and options UI. The popup uses React Router, Mantine, Jotai, and TanStack Query.
+- `src/components/`, `src/hooks/`, `src/store/`, and `src/utils/` contain shared presentation, state, and page logic.
+- `src/api/generated/` contains Orval output from the backend OpenAPI spec. `orval.config.ts` writes endpoint functions, React Query hooks, and schemas; `src/api/axios-instance.ts` configures the Axios transport.
+- `src/lib/offline/` uses Dexie to store downloaded novel data. Download, mutation hooks, a pending-operation queue, and sync code support reading and editing while offline. The background worker also schedules periodic sync.
+- `src/i18n/messages/` holds extracted application translations. `public/_locales/` holds browser manifest messages. The content script's tooltip has its own localized strings and reads locale from extension storage.
+
+`wxt.config.ts` declares extension permissions, host permissions, React and icon modules, and an API URL fallback. Set `WXT_API_URL` to the running backend when developing locally; see the port caveat in [Development](development.md). Build and distribution targets are in the extension `Makefile` and `package.json`.
+
+See the [extension instructions](../apps/extension/AGENTS.md) for code conventions and offline change requirements. The [extension README](../apps/extension/README.md) has submodule commands.
