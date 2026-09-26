@@ -1,6 +1,6 @@
 # Story Lens Client
 
-[Documentation index](intro.md) · [Development](development.md) · [Implementation tracker](../plan/main.md)
+[Documentation index](intro.md) · [Development](development.md)
 
 `apps/client` is an Electron desktop companion for macOS and Windows. It starts an authenticated HTTP service on `127.0.0.1:43127` and runs the locally installed Claude Code or Codex CLI in headless mode. The extension's Summarize button sends the active HTTP(S) page body through this service to the selected provider and displays the returned plain text at the top of that page. The Elysia backend is not involved.
 
@@ -27,4 +27,6 @@ Claude requests disable tools, MCP servers, personal setting sources, hooks, sla
 
 ## Commands and verification
 
-From `apps/client`: `bun run typecheck`, `bun test`, `bun run build`, `bun run pack`, `bun run dist:mac`, and `bun run dist:win`. Windows packages must be built and smoke-tested on Windows. An unsigned macOS package is suitable for local testing but may need an OS override to launch on another Mac. Verification results and remaining manual checks live in the [tracker](../plan/main.md).
+From `apps/client`: `bun run typecheck`, `bun test`, `bun run build`, `bun run pack`, `bun run dist:mac`, and `bun run dist:win`. Windows packages must be built and smoke-tested on Windows. An unsigned macOS package is suitable for local testing but may need an OS override to launch on another Mac. Record verification results and remaining platform checks alongside release work.
+
+The desktop settings window links to the website, privacy policy, and terms in the system browser. The main process allows only those exact HTTPS URLs and continues denying external Electron windows.

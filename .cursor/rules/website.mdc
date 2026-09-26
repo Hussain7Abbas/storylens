@@ -1,0 +1,8 @@
+---
+globs: apps/website/**/*
+description: Static website guidance
+---
+
+# Website
+
+Follow [website instructions](../../apps/website/AGENTS.md) and [website documentation](../../docs/website.md). Use Bun and Biome; serve the static export through its separate Nginx deployment.

@@ -2,12 +2,12 @@
 
 [Documentation index](intro.md)
 
-The umbrella repository has no application dependencies of its own. `apps/backend`, `apps/extension`, and `apps/client` are separate Git submodules, each with a `package.json`, lockfile, and `Makefile`. The root `Makefile` delegates their commands. See [backend](backend.md), [extension](extension.md), and [client](client.md) for each project's design.
+The umbrella repository has no application dependencies of its own. `apps/backend`, `apps/extension`, `apps/client`, and `apps/website` are separate Git submodules, each with a `package.json`, lockfile, and `Makefile`. The root `Makefile` delegates their commands. See [backend](backend.md), [extension](extension.md), [client](client.md), and [website](website.md) for each project's design.
 
 ## Local setup
 
 1. Initialize the submodules with `make submodules-init` after a clone that omitted them.
-2. Run `make install` to install all three submodules with Bun.
+2. Run `make install` to install all four submodules with Bun.
 3. Copy `apps/backend/.env.example` and `apps/extension/.env.example` to `.env` files in their respective submodules, then fill in credentials and connection values.
 4. Run `make setup` for Docker Postgres, Prisma generation, migration deployment, and seed data. This needs Docker and a valid backend environment.
 5. Start `make dev-backend` and `make dev-extension` in separate terminals. `make dev-firefox` starts the Firefox build instead.
@@ -17,7 +17,7 @@ The backend's `PORT` defaults to 3000. The extension's checked-in development `W
 
 ## Commands
 
-`make help` lists the root targets. `make install`, `make build`, and `make typecheck` cover all three apps; `make test` runs backend and client tests. `make dev-client` starts the desktop app. `make client-pack`, `make client-dist-mac`, and `make client-dist-win` delegate its packaging commands. Other root targets include `make orval` (extension client from the running backend's OpenAPI spec), `make i18n-parse`, and `make zip` / `make zip-firefox`. Database targets such as `make db-migrate-dev` and `make db-seed` delegate to the backend. Run `make backend-<target>`, `make extension-<target>`, or `make client-<target>` to pass a target to a submodule Makefile.
+`make help` lists the root targets. `make install`, `make build`, and `make typecheck` cover all four apps; `make test` runs backend, client, and website tests. `make dev-client` starts the desktop app. `make client-pack`, `make client-dist-mac`, and `make client-dist-win` delegate its packaging commands. Other root targets include `make orval` (extension client from the running backend's OpenAPI spec), `make i18n-parse`, and `make zip` / `make zip-firefox`. Database targets such as `make db-migrate-dev` and `make db-seed` delegate to the backend. Run `make backend-<target>`, `make extension-<target>`, `make client-<target>`, or `make website-<target>` to pass a target to a submodule Makefile.
 
 The backend's current `build` script runs Prisma generation, and its `start` script runs `src/main.ts`. It does not produce the `dist/index.js` bundle mentioned in some older guidance. Production deploys use `make sync` in the backend (or `make backend-sync` from the root); see [Backend](backend.md#deployment-and-review-version). Consult the submodule scripts before changing deployment behavior.
 
@@ -28,3 +28,7 @@ Make source changes inside the relevant submodule, commit and push there when re
 ## Releases
 
 `make deploy` runs the globally installed `xeploy` CLI (`bun add -g xeploy`) with the settings in `.xeploy.json`. It bumps each app's version, creates `v<version>` tags, and publishes `develop` to `main` in each submodule. The extension's tag starts the Chrome Web Store publish workflow ([Extension](extension.md#chrome-web-store-release)). That workflow signals the backend repository, and the backend deploys once the store publishes the new version ([Backend](backend.md#deployment-and-review-version)). The production server must track `main`. Backend-only releases, where the extension version does not change, need `make backend-sync` on the server.
+
+## Website
+
+The fourth submodule is `apps/website`, tracked on `develop`. Run `make dev-website`, `make build-website`, `make website-lint`, `make website-test`, or `make website-lhci`. Root install/build/typecheck/test include it. Production has its own `main` checkout at `/srv/storylens-website` on `ssh raseen`; `make website-deploy` is a server-side command, not a local SSH wrapper. See [Website](website.md).

@@ -10,7 +10,7 @@
 
 ---
 
-This is the umbrella repository for Story Lens. The backend API, browser extension, and desktop client are Git submodules. The root `Makefile` delegates commands to each app.
+This is the umbrella repository for Story Lens. The backend API, browser extension, desktop client, and website are Git submodules. The root `Makefile` delegates commands to each app.
 
 ## Repositories
 
@@ -19,6 +19,7 @@ This is the umbrella repository for Story Lens. The backend API, browser extensi
 | `apps/backend`   | [storylens-backend](https://github.com/Hussain7Abbas/storylens-backend)     | Elysia.js API, PostgreSQL (Prisma), file storage, AI |
 | `apps/extension` | [storylens-extension](https://github.com/Hussain7Abbas/storylens-extension) | WXT + React browser extension                        |
 | `apps/client`    | [storylens-client](https://github.com/Hussain7Abbas/storylens-client)       | Electron desktop companion for Claude/Codex prompts  |
+| `apps/website` | [storylens-website](https://github.com/Hussain7Abbas/storylens-website) | Static English/Arabic Next.js landing and legal pages |
 
 ## Prerequisites
 
@@ -45,7 +46,7 @@ make submodules-init
 ### Quick Start
 
 ```bash
-# 1. Install dependencies in all three submodules
+# 1. Install dependencies in all four submodules
 make install
 
 # 2. Configure environment files
@@ -69,7 +70,7 @@ For page summaries, install and sign in to Claude Code and/or Codex CLI, then ru
 
 ## Makefile Reference
 
-Run `make help` to see targets for all three apps. Client commands are also available through `make client-<target>` or directly in `apps/client`.
+Run `make help` to see targets for all four apps. Client commands are also available through `make client-<target>` or directly in `apps/client`.
 
 ### Submodules
 
@@ -85,7 +86,7 @@ Run `make help` to see targets for all three apps. Client commands are also avai
 
 | Command        | Description                                     |
 | -------------- | ----------------------------------------------- |
-| `make install` | `bun install` in all three apps                  |
+| `make install` | `bun install` in all four apps                  |
 | `make setup`   | Backend setup: Docker Postgres + migrate + seed |
 
 ### Development
@@ -94,6 +95,7 @@ Run `make help` to see targets for all three apps. Client commands are also avai
 | -------------------- | ---------------------------------- |
 | `make dev-backend`   | Start API in watch mode            |
 | `make dev-extension` | Start Chrome extension dev server  |
+| `make dev-website` | Start the website development server |
 | `make dev-client`    | Start Electron desktop client      |
 | `make dev-firefox`   | Start Firefox extension dev server |
 
@@ -101,9 +103,10 @@ Run `make help` to see targets for all three apps. Client commands are also avai
 
 | Command                | Description                      |
 | ---------------------- | -------------------------------- |
-| `make build`           | Build all three apps             |
+| `make build`           | Build all four apps             |
 | `make build-backend`   | Production backend build         |
 | `make build-extension` | Chrome extension build           |
+| `make build-website` | Export the static website and CSP hashes |
 | `make build-client`    | Desktop client build             |
 | `make build-firefox`   | Firefox extension build          |
 | `make start-backend`   | Build and run the production API |
@@ -134,7 +137,7 @@ Run `make help` to see targets for all three apps. Client commands are also avai
 
 | Command          | Description                        |
 | ---------------- | ---------------------------------- |
-| `make typecheck` | Typecheck all three submodules     |
+| `make typecheck` | Typecheck all four submodules     |
 | `make test`      | Run backend and client tests       |
 
 ### Pass-Through Targets
@@ -199,3 +202,9 @@ You may use, modify, and share this project for **non-commercial purposes** only
 - [Documentation index](docs/intro.md)
 - [Backend README](apps/backend/README.md)
 - [Extension README](apps/extension/README.md)
+
+## Website
+
+[Story Lens website](https://storylens.iscoded.com) · [Website source](https://github.com/Hussain7Abbas/storylens-website) · [Privacy](https://storylens.iscoded.com/en/privacy/) · [Terms](https://storylens.iscoded.com/en/terms/)
+
+The fourth submodule, `apps/website`, contains the English/Arabic Next.js static website. Use `make dev-website`, `make build-website`, and `make website-lint`. Bun and Biome provide its tooling. The root quality and build targets include it. See [Website deployment](docs/website.md) for the separate server checkout and Nginx configuration.

@@ -1,6 +1,6 @@
-# Story Lens meta-repo: delegates to backend, extension, and client submodules.
+# Story Lens meta-repo: delegates to backend, extension, client, and website submodules.
 .PHONY: \
-	help init submodules-init pull update ensure-submodules \
+	help init submodules-init pull update ensure-submodules website dev-website build-website website-% \
 	backend extension client backend-% extension-% client-% \
 	install setup dev dev-backend dev-extension dev-client dev-firefox \
 	build build-backend build-extension build-client build-firefox start-backend \
@@ -13,7 +13,8 @@ ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 BACKEND := $(ROOT)/apps/backend
 EXTENSION := $(ROOT)/apps/extension
 CLIENT := $(ROOT)/apps/client
-CHILDREN := $(BACKEND) $(EXTENSION) $(CLIENT)
+WEBSITE := $(ROOT)/apps/website
+CHILDREN := $(BACKEND) $(EXTENSION) $(CLIENT) $(WEBSITE)
 
 BLUE := $(shell printf '\033[34m')
 GREEN := $(shell printf '\033[32m')
@@ -34,7 +35,7 @@ help:
 	@echo "  $(GREEN)update$(RESET)               bump submodules to latest remote commits"
 	@echo ""
 	@echo "$(BLUE)Setup$(RESET)"
-	@echo "  $(GREEN)install$(RESET)              install deps in all three submodules"
+	@echo "  $(GREEN)install$(RESET)              install deps in all four submodules"
 	@echo "  $(GREEN)setup$(RESET)                backend setup (docker + db)"
 	@echo ""
 	@echo "$(BLUE)Development$(RESET)"
@@ -46,8 +47,9 @@ help:
 	@echo "  $(GREEN)dev-client$(RESET)           $(YELLOW)make -C apps/client dev$(RESET)"
 	@echo "  $(GREEN)dev-firefox$(RESET)          $(YELLOW)make -C apps/extension dev-firefox$(RESET)"
 	@echo ""
+	@echo "  $(GREEN)dev-website$(RESET)          $(YELLOW)make -C apps/website dev$(RESET)"
 	@echo "$(BLUE)Build$(RESET)"
-	@echo "  $(GREEN)build$(RESET)                build backend + extension + client"
+	@echo "  $(GREEN)build$(RESET)                build backend + extension + client + website"
 	@echo "  $(GREEN)build-backend$(RESET)        $(YELLOW)make -C apps/backend build$(RESET)"
 	@echo "  $(GREEN)build-extension$(RESET)      $(YELLOW)make -C apps/extension build$(RESET)"
 	@echo "  $(GREEN)build-client$(RESET)         $(YELLOW)make -C apps/client build$(RESET)"
@@ -57,6 +59,7 @@ help:
 	@echo "  $(GREEN)zip-firefox$(RESET)            $(YELLOW)make -C apps/extension zip-firefox$(RESET)"
 	@echo "  $(GREEN)release-chrome$(RESET)         $(YELLOW)make -C apps/extension release-chrome$(RESET)"
 	@echo ""
+	@echo "  $(GREEN)build-website$(RESET)        $(YELLOW)make -C apps/website build$(RESET)"
 	@echo "$(BLUE)Database & storage$(RESET) ($(YELLOW)backend submodule$(RESET))"
 	@echo "  $(GREEN)db-generate$(RESET) db-$(GREEN)migrate-dev$(RESET) db-$(GREEN)migrate-deploy$(RESET)"
 	@echo "  $(GREEN)db-reset$(RESET) db-$(GREEN)seed$(RESET) db-$(GREEN)studio$(RESET) $(GREEN)storage-seed$(RESET)"
@@ -70,10 +73,10 @@ help:
 	@echo "  $(GREEN)deploy$(RESET)               interactive release with $(YELLOW)xeploy$(RESET) (bump, tag, publish to main)"
 	@echo ""
 	@echo "$(BLUE)Quality$(RESET)"
-	@echo "  $(GREEN)typecheck$(RESET)            typecheck all three submodules"
-	@echo "  $(GREEN)test$(RESET)                 run backend + client tests"
+	@echo "  $(GREEN)typecheck$(RESET)            typecheck all four submodules"
+	@echo "  $(GREEN)test$(RESET)                 run backend + client + website tests"
 	@echo ""
-	@echo "$(BLUE)Pass-through$(RESET): $(GREEN)backend-<target>$(RESET) / $(GREEN)extension-<target>$(RESET) / $(GREEN)client-<target>$(RESET)"
+	@echo "$(BLUE)Pass-through$(RESET): $(GREEN)backend-<target>$(RESET) / $(GREEN)extension-<target>$(RESET) / $(GREEN)client-<target>$(RESET) / $(GREEN)website-<target>$(RESET)"
 	@echo "  e.g. $(YELLOW)make backend-dev$(RESET), $(YELLOW)make extension-typecheck$(RESET), $(YELLOW)make client-pack$(RESET)"
 	@echo ""
 
@@ -110,6 +113,7 @@ install: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" install
 	@$(MAKE) -C "$(EXTENSION)" install
 	@$(MAKE) -C "$(CLIENT)" install
+	@$(MAKE) -C "$(WEBSITE)" install
 
 setup: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" setup
@@ -132,7 +136,7 @@ client dev-client: ensure-submodules
 dev-firefox: ensure-submodules
 	@$(MAKE) -C "$(EXTENSION)" dev-firefox
 
-build: ensure-submodules build-backend build-extension build-client
+build: ensure-submodules build-backend build-extension build-client build-website
 
 build-backend: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" build
@@ -153,10 +157,12 @@ typecheck: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" typecheck
 	@$(MAKE) -C "$(EXTENSION)" typecheck
 	@$(MAKE) -C "$(CLIENT)" typecheck
+	@$(MAKE) -C "$(WEBSITE)" typecheck
 
 test: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" test
 	@$(MAKE) -C "$(CLIENT)" test
+	@$(MAKE) -C "$(WEBSITE)" test
 
 docker-up: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" docker-up
@@ -211,3 +217,12 @@ extension-%: ensure-submodules
 
 client-%: ensure-submodules
 	@$(MAKE) -C "$(CLIENT)" $(patsubst client-%,%,$@)
+
+website dev-website: ensure-submodules
+	@$(MAKE) -C "$(WEBSITE)" dev
+
+build-website: ensure-submodules
+	@$(MAKE) -C "$(WEBSITE)" build
+
+website-%: ensure-submodules
+	@$(MAKE) -C "$(WEBSITE)" $(patsubst website-%,%,$@)
