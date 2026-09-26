@@ -187,7 +187,9 @@ storylens/
 ├── docs/              # development and architecture guides
 ├── apps/
 │   ├── backend/       # git submodule — Elysia.js API
-│   └── extension/     # git submodule — WXT + React extension
+│   ├── extension/     # git submodule — WXT + React extension
+│   ├── client/        # git submodule — Electron desktop companion
+│   └── website/       # git submodule — static Next.js website
 └── .gitmodules
 ```
 
@@ -202,6 +204,8 @@ You may use, modify, and share this project for **non-commercial purposes** only
 - [Documentation index](docs/intro.md)
 - [Backend README](apps/backend/README.md)
 - [Extension README](apps/extension/README.md)
+- [Client README](apps/client/README.md)
+- [Website README](apps/website/README.md)
 
 ## Website
 
