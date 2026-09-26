@@ -19,7 +19,7 @@ The backend's `PORT` defaults to 3000. The extension's checked-in development `W
 
 `make help` lists the root targets. `make install`, `make build`, and `make typecheck` cover all three apps; `make test` runs backend and client tests. `make dev-client` starts the desktop app. `make client-pack`, `make client-dist-mac`, and `make client-dist-win` delegate its packaging commands. Other root targets include `make orval` (extension client from the running backend's OpenAPI spec), `make i18n-parse`, and `make zip` / `make zip-firefox`. Database targets such as `make db-migrate-dev` and `make db-seed` delegate to the backend. Run `make backend-<target>`, `make extension-<target>`, or `make client-<target>` to pass a target to a submodule Makefile.
 
-The backend's current `build` script runs Prisma generation, and its `start` script runs `src/main.ts`. It does not produce the `dist/index.js` bundle mentioned in some older guidance. Consult the submodule scripts before changing deployment behavior.
+The backend's current `build` script runs Prisma generation, and its `start` script runs `src/main.ts`. It does not produce the `dist/index.js` bundle mentioned in some older guidance. Production deploys use `make sync` in the backend (or `make backend-sync` from the root); see [Backend](backend.md#deployment-and-review-version). Consult the submodule scripts before changing deployment behavior.
 
 ## Git workflow
 

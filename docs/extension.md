@@ -31,3 +31,9 @@ Registered users and admins can change their password from Profile, using the bu
 The navbar counts all queued changes, including uploads in progress and failed operations. Manual sync reports upload and download failures with server error details, including permission refusals; unresolved changes stay queued. Automatic sync stops retrying an operation after five failures, while clicking Sync explicitly retries failed operations. Keyword aliases and versions use their respective endpoints, and temporary IDs are mapped into queued dependent writes. Concurrent sync requests share the active run. Refreshes skip novels and lookups with unresolved writes so failed uploads cannot overwrite local edits. A successful sync timestamp is recorded only when no failures or queued changes remain. Failed immediate uploads show an error and retain the local change for retry.
 
 Run sync regression checks with `bun test test/sync-engine.test.ts` from `apps/extension`.
+
+## Chrome Web Store release
+
+Bump `version` in `apps/extension/package.json`, commit, and push a matching `v<version>` tag, or run the **Publish to Chrome Web Store** workflow manually. `.github/workflows/publish-chrome.yml` runs `make install`, `make typecheck`, `make release-chrome`, and `make submit-chrome`, then connects to the server over SSH and runs `make set-review-version VERSION=<version>` in the backend checkout. The backend deploys itself after the store publishes that version; see [Backend](backend.md#deployment-and-review-version).
+
+The first store listing must be created manually. The workflow needs these repository secrets: `CHROME_EXTENSION_ID`, `CHROME_CLIENT_ID`, `CHROME_CLIENT_SECRET`, `CHROME_REFRESH_TOKEN` (create them with `bunx wxt submit init`), plus `DEPLOY_SSH_HOST`, `DEPLOY_SSH_USER`, `DEPLOY_SSH_KEY`, optional `DEPLOY_SSH_PORT`, and `BACKEND_PATH`. The SSH script adds `~/.bun/bin` to `PATH`.
