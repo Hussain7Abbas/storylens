@@ -16,7 +16,7 @@ Character and replacement searches tolerate small spelling mistakes and transpos
 
 - `src/entrypoints/` contains background and content scripts, popup screens, and options UI. The popup uses React Router, Mantine, Jotai, and TanStack Query.
 - `src/components/`, `src/hooks/`, `src/store/`, and `src/utils/` contain shared presentation, state, and page logic.
-- `src/api/generated/` contains Orval output from the backend OpenAPI spec. `orval.config.ts` writes endpoint functions, React Query hooks, and schemas; `src/api/axios-instance.ts` configures the Axios transport.
+- `src/api/generated/` contains Orval output from the backend OpenAPI spec. `orval.config.ts` writes endpoint functions, React Query hooks, and schemas; `src/api/axios-instance.ts` configures the Axios transport. The output is committed so CI can typecheck and build without a backend; regenerate and commit it whenever the backend API changes.
 - `src/lib/offline/` uses Dexie to store downloaded novel data. Download, mutation hooks, a pending-operation queue, and sync code support reading and editing while offline. The background worker also schedules periodic sync.
 - `src/i18n/messages/` holds extracted application translations. `public/_locales/` holds browser manifest messages. The content script's tooltip has its own localized strings and reads locale from extension storage.
 
