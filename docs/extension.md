@@ -19,3 +19,11 @@ On a page whose domain has a website selector in the novel-site database or exte
 `wxt.config.ts` declares extension permissions, host permissions, React and icon modules, and an API URL fallback. Set `WXT_API_URL` to the running backend when developing locally; see the port caveat in [Development](development.md). Build and distribution targets are in the extension `Makefile` and `package.json`.
 
 See the [extension instructions](../apps/extension/AGENTS.md) for code conventions and offline change requirements. The [extension README](../apps/extension/README.md) has submodule commands.
+
+## Account and synchronization
+
+Registered users and admins can change their password from Profile, using the button above Logout. The form requires the current password, a new password of 8–72 characters, and matching confirmation. Guests do not see this action.
+
+The navbar counts all queued changes, including uploads in progress and failed operations. Manual sync reports upload and download failures with server error details, including permission refusals; unresolved changes stay queued. Automatic sync stops retrying an operation after five failures, while clicking Sync explicitly retries failed operations. Keyword aliases and versions use their respective endpoints, and temporary IDs are mapped into queued dependent writes. Concurrent sync requests share the active run. Refreshes skip novels and lookups with unresolved writes so failed uploads cannot overwrite local edits. A successful sync timestamp is recorded only when no failures or queued changes remain. Failed immediate uploads show an error and retain the local change for retry.
+
+Run sync regression checks with `bun test test/sync-engine.test.ts` from `apps/extension`.

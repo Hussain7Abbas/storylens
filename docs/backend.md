@@ -16,3 +16,5 @@ The server centralizes expected HTTP errors with `HttpError` and `AuthError`. Ro
 Environment variables are validated in `src/env.ts`. Copy `.env.example` and supply a database URL, Better Auth secret, and storage key; seed and AI features need their respective values. `PORT` defaults to 3000. The local Docker database is defined by `docker-compose.yml`.
 
 For local API and database commands, see [Development](development.md) and the [backend instructions](../apps/backend/AGENTS.md). The [backend README](../apps/backend/README.md) has standalone setup details.
+
+`POST /auth/change-password` accepts `currentPassword` and `newPassword` for authenticated users and admins. It rejects guests, verifies the current credential, validates the new password at 8–72 characters, and atomically updates both the user password and credential account hash. Existing sessions remain valid. Backend tests cover these guards and validation with isolated database mocks.
