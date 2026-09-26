@@ -8,7 +8,7 @@ Use Bun and Biome: `make dev-website`, `make build-website`, `make website-typec
 
 ## Production
 
-Domain: `storylens.iscoded.com`. Cloudflare A record proxies to `178.105.43.174`, created using local `flarectl`. Hosting is the existing `ssh raseen` server. Website code has its own checkout at `/srv/storylens-website` on branch `main`, separate from `/srv/storylens-backend`. There is no Next.js process in production.
+Live website: [storylens.iscoded.com](https://storylens.iscoded.com). Cloudflare A record proxies to `178.105.43.174`, created using local `flarectl`. Hosting is the existing `ssh raseen` server. Website code has its own checkout at `/srv/storylens-website` on branch `main`, separate from `/srv/storylens-backend`. There is no Next.js process in production.
 
 Nginx config: `apps/website/deploy/nginx/storylens.iscoded.com.conf`. The server runs `make sync` inside its website checkout to fast-forward main, install pinned dependencies with Bun, check TypeScript/Biome, build (using the dedicated `/opt/storylens-node/bin` Node LTS runtime for Next.js), generate CSP hashes, create a release, atomically update `/var/www/storylens/current`, test Nginx, and reload. Old releases remain for rollback. Initial HTTPS uses a Let’s Encrypt webroot certificate; port 80 serves challenges and redirects other requests to HTTPS. `/` redirects to `/en/`; explicit locale links preserve paths and hashes. Static assets receive long cache expiry. Build-generated script hashes allow Next bootstrap without unsafe-inline script permission. Inline styles support GSAP/Three.js styles.
 
@@ -16,4 +16,4 @@ CI checks all pushes to main/develop and pull requests. Auto-deploy is activated
 
 ## Legal maintenance
 
-Legal MDX bodies live in `src/content/legal/{en,ar}`. Update both language files, version, lastUpdated, and legal changelog together, and recheck `design-system/data-inventory.md` against changed extension/backend/client behavior. Identity/contact and legal defaults require the owner’s review before first publication. Do not post personal deletion requests in public issues. Store dashboard edits, search-engine submissions, manual VoiceOver checks, and signing installers remain owner tasks unless explicitly authorized.
+Legal MDX bodies live in `src/content/legal/{en,ar}`. Update both language files, version, lastUpdated, and legal changelog together, and recheck `design-system/data-inventory.md` against changed extension/backend/client behavior. The owner approved Hussain Abbas as operator, the age/law defaults, and hussain@iscoded.com for privacy and deletion requests before publication. The contact is centralized in site-config and configured in the server’s ignored .env. Do not post personal deletion requests in public issues. Store dashboard edits, search-engine submissions, manual VoiceOver checks, and signing installers remain owner tasks unless explicitly authorized.

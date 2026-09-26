@@ -41,6 +41,6 @@ As the owner, I want the site live on its domain with automatic deployments, and
 
 ## Validation record
 
-2026-09-27: Cloudflare proxied A record created using installed flarectl. Separate repo cloned at /srv/storylens-website on ssh raseen. Nginx static/TLS config, release rollback and dedicated restricted CI SSH key prepared; server build passes using the dedicated runtime. Extension/client legal links implemented. Certificate issued through 2026-12-25 with automatic renewal; production publication/smoke checks pending. Private contact needed before publication. No store or search-console submissions performed.
+2026-09-27: Cloudflare proxied A record created using installed flarectl. Separate repo cloned at /srv/storylens-website on ssh raseen. Nginx static/TLS config, release rollback and dedicated restricted CI SSH key prepared; server build passes using the dedicated runtime. Extension/client legal links implemented. Certificate issued through 2026-12-25 with automatic renewal; Production published with owner-approved hussain@iscoded.com contact. Both locales and legal routes, browser hydration, HTTPS redirect, headers, sitemap, robots, security.txt and 404 handling verified. Restricted CI auto-deploy enabled. No store or search-console submissions performed.
 
 Detailed evidence: `apps/website/design-system/validation/README.md`. Checkboxes remain unticked unless every listed condition was verified; implemented core behavior is recorded above.
