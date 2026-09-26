@@ -79,6 +79,7 @@ Run `make help` to see targets for all three apps. Client commands are also avai
 | `make init`            | Alias for `submodules-init`                                      |
 | `make pull`            | Pull umbrella repo, sync submodule pointers, pull each submodule |
 | `make update`          | Bump submodules to their latest remote commits                   |
+| `make deploy`          | Interactive `xeploy` release: bump versions, tag, publish to `main` |
 
 ### Setup
 

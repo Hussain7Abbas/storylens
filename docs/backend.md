@@ -15,6 +15,12 @@ The server centralizes expected HTTP errors with `HttpError` and `AuthError`. Ro
 
 Environment variables are validated in `src/env.ts`. Copy `.env.example` and supply a database URL, Better Auth secret, and storage key; seed and AI features need their respective values. `PORT` defaults to 3000. The local Docker database is defined by `docker-compose.yml`.
 
+## Health checks
+
+`GET /health` is a public liveness check that returns `{ status: "ok", timestamp }`. `GET /health/ready` is a public readiness check. It reports `backend` (with uptime), `database`, and `chromeStore`, each with a `status` and `latencyMs`, plus `versions.review` (the pending `Review_Version`, or `null`) and `versions.store` (the published Chrome Web Store version). Each check times out after 5 seconds.
+
+The overall status is `down` with HTTP 503 when the database check fails. It is `degraded` with HTTP 200 when the store check fails or `CHROME_EXTENSION_ID` is unset, and `ok` otherwise. Failure details are logged on the server, not returned. Logic lives in `src/lib/health.ts` and the routes in `src/routes/health.ts`.
+
 ## Deployment and review version
 
 Production runs under PM2 and deploys with `make sync`, which stops the API, pulls, generates the Prisma client, applies migrations, builds, and restarts. `make pm2-start`, `pm2-stop`, `pm2-restart`, and `pm2-delete` manage the process.

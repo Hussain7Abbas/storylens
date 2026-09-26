@@ -35,9 +35,10 @@ make typecheck            # typecheck all three submodules
 make test                 # backend and client tests
 make orval                # regenerate extension API client; backend must run
 make i18n-parse           # extract extension translation keys
+make deploy               # interactive xeploy release (bump, tag, publish to main)
 ```
 
-The root also provides database, zip, and `backend-<target>` / `extension-<target>` / `client-<target>` pass-through targets. See `make help`, the [development guide](docs/development.md), and each submodule's `Makefile`. `make pull` updates the umbrella and pulls submodules; `make update` advances submodules to remote commits. Use them deliberately because they change checkout state.
+The root also provides database, zip, and `backend-<target>` / `extension-<target>` / `client-<target>` pass-through targets. See `make help`, the [development guide](docs/development.md), and each submodule's `Makefile`. `make pull` updates the umbrella and pulls submodules; `make update` advances submodules to remote commits. Use them deliberately because they change checkout state. `make deploy` runs the interactive `xeploy` release (configured in `.xeploy.json`): it bumps app versions, tags with a `v` prefix, and publishes to each submodule's `main`. Only run it when the user asks for a release.
 
 ## Documentation maintenance
 

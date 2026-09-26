@@ -24,3 +24,7 @@ The backend's current `build` script runs Prisma generation, and its `start` scr
 ## Git workflow
 
 Make source changes inside the relevant submodule, commit and push there when ready, then commit the changed submodule pointer in the umbrella repository. Changes to root instructions or docs can be committed in the umbrella independently. `make pull` updates the umbrella and pulls each submodule; `make update` advances the submodule checkout to remote commits. Review local work before invoking either command.
+
+## Releases
+
+`make deploy` runs the globally installed `xeploy` CLI (`bun add -g xeploy`) with the settings in `.xeploy.json`. It bumps each app's version, creates `v<version>` tags, and publishes `develop` to `main` in each submodule. The extension's tag starts the Chrome Web Store publish workflow ([Extension](extension.md#chrome-web-store-release)). That workflow signals the backend repository, and the backend deploys once the store publishes the new version ([Backend](backend.md#deployment-and-review-version)). The production server must track `main`. Backend-only releases, where the extension version does not change, need `make backend-sync` on the server.

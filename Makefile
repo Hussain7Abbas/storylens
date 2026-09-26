@@ -7,7 +7,7 @@
 	typecheck test \
 	db-generate db-migrate-dev db-migrate-deploy db-reset db-seed db-studio storage-seed \
 	orval i18n-parse zip zip-firefox release-chrome \
-	docker-up docker-down docker-logs
+	docker-up docker-down docker-logs deploy
 
 ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 BACKEND := $(ROOT)/apps/backend
@@ -66,6 +66,9 @@ help:
 	@echo "  $(GREEN)orval$(RESET)                regenerate API client"
 	@echo "  $(GREEN)i18n-parse$(RESET)           extract i18n keys"
 	@echo ""
+	@echo "$(BLUE)Release$(RESET)"
+	@echo "  $(GREEN)deploy$(RESET)               interactive release with $(YELLOW)xeploy$(RESET) (bump, tag, publish to main)"
+	@echo ""
 	@echo "$(BLUE)Quality$(RESET)"
 	@echo "  $(GREEN)typecheck$(RESET)            typecheck all three submodules"
 	@echo "  $(GREEN)test$(RESET)                 run backend + client tests"
@@ -85,6 +88,10 @@ pull:
 	@$(MAKE) submodules-init
 	@echo "$(BLUE)Pulling submodules$(RESET) ..."
 	@git submodule foreach --recursive 'git pull --ff-only'
+
+deploy: ensure-submodules
+	@command -v xeploy >/dev/null 2>&1 || { echo "$(YELLOW)xeploy not found — install with $(GREEN)bun add -g xeploy$(RESET)"; exit 1; }
+	@cd "$(ROOT)" && xeploy
 
 update: ensure-submodules
 	@git submodule update --remote --merge
