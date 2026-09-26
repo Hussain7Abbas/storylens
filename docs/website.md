@@ -20,7 +20,7 @@ Legal MDX bodies live in `src/content/legal/{en,ar}`. Update both language files
 
 ## Google OAuth domain ownership
 
-Google OAuth homepage verification requires a Search Console **Domain property** for `iscoded.com`, verified by a Google account that owns the Cloud project. Website publication and HTTPS alone do not establish this ownership. A Google-generated TXT record was added through `flarectl` on 2026-09-27; Search Console confirmation is pending. Keep the verification TXT record permanently, alongside the existing mail TXT records.
+Google OAuth homepage verification requires a Search Console **Domain property** for `iscoded.com`, verified by a Google account that owns the Cloud project. Website publication and HTTPS alone do not establish this ownership. A Google-generated TXT record was added through `flarectl` on 2026-09-27; Search Console confirmed “Ownership verified” for the owner-approved Google Cloud Project Owner account. Keep the verification TXT record permanently, alongside the existing mail TXT records.
 
 Use `https://storylens.iscoded.com/en/` as the OAuth homepage and `https://storylens.iscoded.com/en/privacy/` as its matching privacy policy URL; both are public and return 200. The authorized domain is `iscoded.com`. After Google confirms ownership, follow the review team's resubmission instructions. Do not change OAuth redirect URIs as part of domain verification.
 
