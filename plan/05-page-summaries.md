@@ -16,7 +16,7 @@ As a reader, I want to click Summarize and read the result at the top of my curr
 
 The explicit action works on HTTP(S) pages without novel detection. Popup closure does not cancel it. Results stay with the originating page when active tabs change.
 
-On a domain with a configured website selector, the content script also displays a top-right circular launcher. It opens the same extension popup in a page overlay; it is not a prerequisite for summarization, which remains available from the browser toolbar on other sites.
+On a domain with a configured website selector, the content script also displays a draggable logo circle, initially at the top right. It opens the same extension popup in a page overlay; it is not a prerequisite for summarization, which remains available from the browser toolbar on other sites.
 
 ## Tasks
 
@@ -34,7 +34,8 @@ On a domain with a configured website selector, the content script also displays
 - [x] Deduplicate in-flight requests per document. Subsequent summaries replace the prior section and never include that section in the next prompt.
 - [x] Cancel/clear stale work on teardown and SPA navigation using WXT content-context/location-change facilities; guard against late results even when cancellation races.
 - [ ] Verify highlighting, replacement, novel detection, and selector refresh do not remove or process summary shadow content.
-- [x] Show the circular launcher only when a selector is available; embed the popup page in a shadow-DOM overlay and close it on outside click, Escape, or navigation.
+- [x] Show the circular logo launcher with a brown border only when a selector is available; embed the popup page in a shadow-DOM overlay and close it on outside click, Escape, or navigation.
+- [x] Allow pointer dragging, persist the position in extension-local storage, clamp it on restoration and resize, and place/size the popup within available screen space.
 
 ## Acceptance criteria
 
@@ -47,4 +48,4 @@ On a domain with a configured website selector, the content script also displays
 
 ## Validation record
 
-Implemented cloned body capture, form/script removal, English/Arabic prompt and required `responseLanguage`, shadow DOM result panel, retry/close, and SPA cancellation guard. Playwright Chromium summary of a non-novel article passed after popup closure. A separate Chrome smoke check confirmed the launcher stays hidden without a cached selector and opens/closes the embedded popup when one is available. **Open:** manual novel/form/SPA/restricted-page and Firefox checks.
+Implemented cloned body capture, form/script removal, English/Arabic prompt and required `responseLanguage`, shadow DOM result panel, retry/close, and SPA cancellation guard. Playwright Chromium summary of a non-novel article passed after popup closure. A separate Chrome smoke check confirmed the launcher stays hidden without a cached selector, loads the logo, persists dragging across reload, clamps out-of-bounds dragging and saved positions after resize, and opens the popup to the right from the top-left or left/above from the bottom-right. **Open:** manual novel/form/SPA/restricted-page and Firefox checks.
