@@ -17,3 +17,11 @@ CI checks all pushes to main/develop and pull requests. Auto-deploy is activated
 ## Legal maintenance
 
 Legal MDX bodies live in `src/content/legal/{en,ar}`. Update both language files, version, lastUpdated, and legal changelog together, and recheck `design-system/data-inventory.md` against changed extension/backend/client behavior. The owner approved Hussain Abbas as operator, the age/law defaults, and hussain@iscoded.com for privacy and deletion requests before publication. The contact is centralized in site-config and configured in the server’s ignored .env. Do not post personal deletion requests in public issues. Store dashboard edits, search-engine submissions, manual VoiceOver checks, and signing installers remain owner tasks unless explicitly authorized.
+
+## Google OAuth domain ownership
+
+Google OAuth homepage verification requires a Search Console **Domain property** for `iscoded.com`, verified by a Google account that owns the Cloud project. Website publication and HTTPS alone do not establish this ownership. A Google-generated TXT record was added through `flarectl` on 2026-09-27; Search Console confirmation is pending. Keep the verification TXT record permanently, alongside the existing mail TXT records.
+
+Use `https://storylens.iscoded.com/en/` as the OAuth homepage and `https://storylens.iscoded.com/en/privacy/` as its matching privacy policy URL; both are public and return 200. The authorized domain is `iscoded.com`. After Google confirms ownership, follow the review team's resubmission instructions. Do not change OAuth redirect URIs as part of domain verification.
+
+References: [Google domain verification](https://support.google.com/cloud/answer/13804266), [homepage requirements](https://support.google.com/cloud/answer/13807376).
