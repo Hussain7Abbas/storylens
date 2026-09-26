@@ -5,12 +5,12 @@
 <h1 align="center">Story Lens</h1>
 
 <p align="center">
-  A browser extension and API for reading web novels with keyword highlighting, text replacements, and AI-assisted chapter detection.
+  A browser extension, API, and desktop client for reading web novels with keyword highlighting, text replacements, AI-assisted chapter detection, and page summaries.
 </p>
 
 ---
 
-This is the umbrella repository for Story Lens. Application source lives in two Git submodules — a backend API and a browser extension. The root `Makefile` exposes a unified set of commands that delegate to each submodule.
+This is the umbrella repository for Story Lens. The backend API, browser extension, desktop client, and website are Git submodules. The root `Makefile` delegates commands to each app.
 
 ## Repositories
 
@@ -18,6 +18,8 @@ This is the umbrella repository for Story Lens. Application source lives in two 
 | ---------------- | --------------------------------------------------------------------------- | ---------------------------------------------------- |
 | `apps/backend`   | [storylens-backend](https://github.com/Hussain7Abbas/storylens-backend)     | Elysia.js API, PostgreSQL (Prisma), file storage, AI |
 | `apps/extension` | [storylens-extension](https://github.com/Hussain7Abbas/storylens-extension) | WXT + React browser extension                        |
+| `apps/client`    | [storylens-client](https://github.com/Hussain7Abbas/storylens-client)       | Electron desktop companion for Claude/Codex prompts  |
+| `apps/website` | [storylens-website](https://github.com/Hussain7Abbas/storylens-website) | Static English/Arabic Next.js landing and legal pages |
 
 ## Prerequisites
 
@@ -44,7 +46,7 @@ make submodules-init
 ### Quick Start
 
 ```bash
-# 1. Install dependencies in both submodules
+# 1. Install dependencies in all four submodules
 make install
 
 # 2. Configure environment files
@@ -59,11 +61,16 @@ make dev-backend
 make dev-extension
 ```
 
-The API runs at `http://localhost:3000`. OpenAPI docs are available while the backend is running.
+The API defaults to `http://localhost:3000`. OpenAPI docs are available in development mode.
+Set the extension's `WXT_API_URL` to the backend address before using API features;
+its checked-in development example points to port 7001. See the
+[development guide](docs/development.md) for details.
+
+For page summaries, install and sign in to Claude Code and/or Codex CLI, then run `make dev-client`. Pair the extension with the token shown in the desktop window. See the [desktop client guide](docs/client.md).
 
 ## Makefile Reference
 
-Run `make help` to see all available targets. All commands delegate to the Makefiles inside each submodule.
+Run `make help` to see targets for all four apps. Client commands are also available through `make client-<target>` or directly in `apps/client`.
 
 ### Submodules
 
@@ -73,12 +80,13 @@ Run `make help` to see all available targets. All commands delegate to the Makef
 | `make init`            | Alias for `submodules-init`                                      |
 | `make pull`            | Pull umbrella repo, sync submodule pointers, pull each submodule |
 | `make update`          | Bump submodules to their latest remote commits                   |
+| `make deploy`          | Interactive `xeploy` release: bump versions, tag, publish to `main` |
 
 ### Setup
 
 | Command        | Description                                     |
 | -------------- | ----------------------------------------------- |
-| `make install` | `bun install` in backend and extension          |
+| `make install` | `bun install` in all four apps                  |
 | `make setup`   | Backend setup: Docker Postgres + migrate + seed |
 
 ### Development
@@ -87,15 +95,19 @@ Run `make help` to see all available targets. All commands delegate to the Makef
 | -------------------- | ---------------------------------- |
 | `make dev-backend`   | Start API in watch mode            |
 | `make dev-extension` | Start Chrome extension dev server  |
+| `make dev-website` | Start the website development server |
+| `make dev-client`    | Start Electron desktop client      |
 | `make dev-firefox`   | Start Firefox extension dev server |
 
 ### Build
 
 | Command                | Description                      |
 | ---------------------- | -------------------------------- |
-| `make build`           | Build backend and extension      |
+| `make build`           | Build all four apps             |
 | `make build-backend`   | Production backend build         |
 | `make build-extension` | Chrome extension build           |
+| `make build-website` | Export the static website and CSP hashes |
+| `make build-client`    | Desktop client build             |
 | `make build-firefox`   | Firefox extension build          |
 | `make start-backend`   | Build and run the production API |
 | `make zip`             | Build and zip Chrome extension   |
@@ -123,10 +135,10 @@ Run `make help` to see all available targets. All commands delegate to the Makef
 
 ### Quality
 
-| Command          | Description               |
-| ---------------- | ------------------------- |
-| `make typecheck` | Typecheck both submodules |
-| `make test`      | Run backend tests         |
+| Command          | Description                        |
+| ---------------- | ---------------------------------- |
+| `make typecheck` | Typecheck all four submodules     |
+| `make test`      | Run backend and client tests       |
 
 ### Pass-Through Targets
 
@@ -137,6 +149,7 @@ make backend-dev
 make backend-db-studio
 make extension-typecheck
 make extension-orval
+make client-pack
 ```
 
 ## Working with Submodules
@@ -171,9 +184,12 @@ git commit -m "chore: bump backend submodule"
 storylens/
 ├── Makefile           # delegates to submodule Makefiles
 ├── README.md
+├── docs/              # development and architecture guides
 ├── apps/
 │   ├── backend/       # git submodule — Elysia.js API
-│   └── extension/     # git submodule — WXT + React extension
+│   ├── extension/     # git submodule — WXT + React extension
+│   ├── client/        # git submodule — Electron desktop companion
+│   └── website/       # git submodule — static Next.js website
 └── .gitmodules
 ```
 
@@ -185,5 +201,14 @@ You may use, modify, and share this project for **non-commercial purposes** only
 
 ## Further Reading
 
+- [Documentation index](docs/intro.md)
 - [Backend README](apps/backend/README.md)
 - [Extension README](apps/extension/README.md)
+- [Client README](apps/client/README.md)
+- [Website README](apps/website/README.md)
+
+## Website
+
+[Story Lens website](https://storylens.iscoded.com) · [Website source](https://github.com/Hussain7Abbas/storylens-website) · [Privacy](https://storylens.iscoded.com/en/privacy/) · [Terms](https://storylens.iscoded.com/en/terms/)
+
+The fourth submodule, `apps/website`, contains the English/Arabic Next.js static website. Use `make dev-website`, `make build-website`, and `make website-lint`. Bun and Biome provide its tooling. The root quality and build targets include it. See [Website deployment](docs/website.md) for the separate server checkout and Nginx configuration.

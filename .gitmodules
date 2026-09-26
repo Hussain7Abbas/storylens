@@ -4,3 +4,10 @@
 [submodule "apps/extension"]
 	path = apps/extension
 	url = git@github.com-personal:Hussain7Abbas/storylens-extension.git
+[submodule "apps/client"]
+	path = apps/client
+	url = https://github.com/Hussain7Abbas/storylens-client.git
+[submodule "apps/website"]
+	path = apps/website
+	url = git@github.com-personal:Hussain7Abbas/storylens-website.git
+	branch = develop
