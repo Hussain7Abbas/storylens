@@ -23,6 +23,8 @@ The backend therefore goes live only after the matching extension version does.
 
 ## 1. Chrome Web Store: developer account and first listing
 
+For current listing metadata and permission explanations, see [CHROMEWEBSTORE.md](../apps/extension/CHROMEWEBSTORE.md). The [asset guide](chrome-store/README.md) provides five screenshots, a demonstration MP4 to upload to YouTube, and a reproducible local sample chapter.
+
 The store API can only update an item that already exists, so the first version is always uploaded by hand.
 
 1. Open the [Chrome Web Store developer dashboard](https://chrome.google.com/webstore/devconsole) with the owner account. Pay the one-time registration fee and verify the contact email.
