@@ -8,6 +8,7 @@ Story Lens pairs a browser extension for novel reading with an API for novels, k
 - [Publishing runbook](publishing.md): set up Chrome Web Store publishing, GitHub environments, the server, and the first automated release on new accounts.
 - [Desktop client](client.md): Claude/Codex execution, pairing, page summaries, and packaging.
 - [Website](website.md): static bilingual landing site, legal content, Bun/Biome checks, and Nginx deployment.
+- [Branding](branding/README.md): approved Lensbook logo, light/dark palette and platform icon exports.
 - [Website implementation tracker](../website-plan/main.md): scope, decisions, evidence, and remaining owner launch checks.
 
 Agent rules and maintenance requirements live in the [root instructions](../AGENTS.md), with [backend](../apps/backend/AGENTS.md), [extension](../apps/extension/AGENTS.md), and [client](../apps/client/AGENTS.md) instructions for local work. The [README](../README.md) covers user-facing quick start and licensing.

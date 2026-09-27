@@ -28,14 +28,14 @@ Save the output to `apps/website/design-system/MASTER.md`, with page overrides i
 ## Design hypothesis (to be validated or replaced by the skill)
 
 - **Personality:** a literary, calm, precise reading companion. Editorial, not "AI startup neon".
-- **Palette idea:** warm paper and ink neutrals, plus the extension's existing **brown** launcher border as the brand accent. Keyword highlight colors are shown as a small set of semantic chips that match the extension's coloring feature. Dark theme is "night reading": warm charcoal, not pure black.
+- **Approved palette:** Ink & Iris, replacing the initial amber direction. Neutral light/dark surfaces and a violet primary unify website and extension UI. Inter supplies UI headings; serif is reserved for the website reading example. Reader-defined highlights remain independent. The active values and rules are in `apps/website/design-system/MASTER.md`; existing logo assets stay in place until the owner supplies the replacement.
 - **Type idea:** an expressive serif for display (for example Fraunces or Newsreader), a neutral sans for UI and body (for example Inter or Geist), and a matched Arabic face (for example IBM Plex Sans Arabic, or Noto Naskh Arabic for display). All self-hosted through `next/font`.
 - **Signature visual:** a lens that brings highlighted names into focus on a page of text. It ties together the name, the 3D hero, and the scroll demo.
 
 ## Tasks
 
 - [ ] Install the skill and record the version or commit used in the validation record.
-- [ ] Brand audit: collect the extension icons and logo (`apps/extension/public/icons`, `_locales`), the current store description, the launcher brown, and the popup's Mantine theme colors. Record hex values and usage rules.
+- [ ] Brand audit: collect the extension icons and logo (`apps/extension/public/icons`, `_locales`), the current store description, the Ink & Iris launcher tokens, and the popup's Mantine theme colors. Record hex values and usage rules.
 - [ ] Run the skill's design-system generation. Accept, adjust, or reject each recommendation, and write the reason next to any rejection in `MASTER.md`.
 - [ ] Define tokens: color roles for light and dark (bg, surface, text, muted, border, accent, focus, highlight-1…n), type scale (fluid `clamp()`), spacing, radius, shadow, motion durations and easings, z-index, breakpoints. Check that every text/background pair meets WCAG AA (4.5:1 body, 3:1 large text and UI).
 - [ ] Define motion principles: purpose (explain, not decorate), duration ranges, easing names, stagger rules, what reduced motion replaces each effect with, and a performance limit (animate only transform and opacity).

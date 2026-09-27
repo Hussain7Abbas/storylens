@@ -6,7 +6,7 @@
 
 ## Main areas
 
-- `src/routes/` handles accounts, novels, chapters, keywords and their aliases/versions, replacements, categories and natures, configuration, website selectors and biases, uploads, and AI operations.
+- `src/routes/` handles accounts, novels, chapters, keywords and their aliases/versions, replacements, categories and natures (each with an optional `description` that tells the extension's AI keyword suggestion when to choose it), configuration, website selectors and biases, uploads, and AI operations.
 - `src/middleware/authorize.ts` defines authenticated guest, user, and admin guards, plus ownership checks. Routes enforce permissions server side.
 - `src/lib/auth/` combines Better Auth with bearer session handling; `src/lib/db/` supplies Prisma, `src/lib/storage/` handles image storage, and `src/lib/ai/` supports chapter selector detection.
 - `prisma/schema.prisma` defines users, sessions, novels, chapters, keywords, aliases, versions, replacements, selectors, and related records. `prisma/migrations/` tracks schema changes; `prisma/seed/` populates development data.
