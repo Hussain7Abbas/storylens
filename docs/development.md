@@ -13,7 +13,7 @@ The umbrella repository has no application dependencies of its own. `apps/backen
 5. Start `make dev-backend` and `make dev-extension` in separate terminals. `make dev-firefox` starts the Firefox build instead.
 6. For AI summaries, install/sign in to Claude Code and/or Codex CLI, run `make dev-client`, and pair the extension with the token in its window. The summary feature does not need the backend.
 
-The backend's `PORT` defaults to 3000. The extension's checked-in development `WXT_API_URL` example and WXT fallback use port 7001, so configure one side to match the other before testing API calls or running `make orval`. Better Auth's base URL should also match the backend's listening address.
+The backend's `PORT` defaults to 3000. The extension's checked-in development `WXT_API_URL` example and WXT fallback use port 7001, so configure one side to match the other before testing API calls or running `make orval`. Better Auth's base URL should also match the backend's listening address. To use the website's account pages locally, set the extension's `WXT_WEBSITE_URL` to the website's origin (development builds default to `http://localhost:3000`) and the website's `NEXT_PUBLIC_API_URL` to the backend. Note that `next dev` also defaults to port 3000.
 
 ## Commands
 
@@ -27,7 +27,7 @@ Make source changes inside the relevant submodule, commit and push there when re
 
 ## Releases
 
-`make deploy` runs the globally installed `xeploy` CLI (`bun add -g xeploy`) with the settings in `.xeploy.json`. It bumps each app's version, creates `v<version>` tags, and publishes `develop` to `main` in each submodule. The extension's tag starts the Chrome Web Store publish workflow ([Extension](extension.md#chrome-web-store-release)). That workflow signals the backend repository, and the backend deploys once the store publishes the new version ([Backend](backend.md#deployment-and-review-version)). The production server must track `main`. Backend-only releases, where the extension version does not change, need `make backend-sync` on the server.
+`make deploy` runs the globally installed `xeploy` CLI (`bun add -g xeploy`) with the settings in `.xeploy.json`. It bumps each app's version, creates `v<version>` tags, and publishes `develop` to `main` in each submodule. The extension's tag starts the Chrome Web Store publish workflow ([Extension](extension.md#chrome-web-store-release)). That workflow signals the backend repository, and the backend deploys once the store publishes the new version ([Backend](backend.md#deployment-and-review-version)). The production server must track `main`. Backend-only releases, where the extension version does not change, need `make backend-sync` on the server. For first-time setup, see the [publishing runbook](publishing.md).
 
 ## Website
 

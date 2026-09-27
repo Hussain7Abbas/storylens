@@ -9,7 +9,7 @@ Build a public marketing site for the Story Lens browser extension in a new **pu
 - A landing page that explains the extension and its desktop companion, and gets visitors to install it.
 - A **Privacy Policy** and **Terms of Use**. Both must match what the code actually collects and does, and must be good enough to use as the Chrome Web Store and Firefox Add-ons privacy URL.
 - Next.js with Tailwind CSS, GSAP animation, and one small, optional Three.js scene.
-- UX/UI decisions made with the **UI UX Pro Max** skill. Its design system is saved in the website repository and used for every visual decision.
+- UX/UI decisions made with the **UI UX Pro Max** skill. Its research informed the structure; the owner-approved Ink & Iris direction in `apps/website/design-system/MASTER.md` is used for current visual decisions.
 
 ## Technical decisions
 
@@ -17,7 +17,7 @@ Build a public marketing site for the Story Lens browser extension in a new **pu
 | --- | --- | --- |
 | Framework | Latest stable Next.js App Router (16.x at time of writing; confirm during phase 1), React 19, strict TypeScript | Requested. Server components keep the landing page mostly JavaScript-free. |
 | Rendering | Fully static (SSG) for every route. No API routes or server runtime | A landing page and legal pages have no dynamic data. Cheap and fast, and any static host can serve it. |
-| Styling | Tailwind CSS v4 with CSS-first `@theme` tokens generated from the design system | Requested. Tokens keep the skill's output as the single source of truth. |
+| Styling | Tailwind CSS v4 with CSS-first `@theme` tokens generated from the design system | Requested. Tokens implement the owner-approved Ink & Iris design system. |
 | Motion | GSAP 3 (all plugins, including ScrollTrigger and SplitText, are free), used through `@gsap/react` `useGSAP` | Requested. `useGSAP` handles cleanup and React strict mode. |
 | 3D | One lazily loaded React Three Fiber and drei scene in the hero: a glass lens over a page. It only loads on capable desktops | "A little Three.js". Kept out of the critical path, with a static fallback. |
 | i18n | English and Arabic (RTL) through `next-intl`, with `/en` and `/ar` routes | The extension already ships English and Arabic. Arabic readers are a target audience. |
@@ -127,3 +127,7 @@ Public repository created using gh: https://github.com/Hussain7Abbas/storylens-w
 Cloudflare DNS A record: 6b28655ec48052244bb2428790b81e7e → 178.105.43.174, proxied. Server standalone checkout is /srv/storylens-website. Nginx bootstrap installed and webroot certificate issued through 2026-12-25 with automatic renewal; atomic release deployment and restricted SSH CI workflow are prepared. Bun 1.3.14 crashed after Next’s successful export; a dedicated Node 24.21.0 runtime is installed for Next builds while Bun manages dependencies/scripts.
 
 Owner approved operator/age/jurisdiction defaults. Private contact address remains pending. Do not publish the legal pages without that address. Professional legal review is recommended. Store-dashboard submissions, search-console submissions, manual VoiceOver/physical Windows checks, external rich-results debugger, and full animation/3D profiling remain unverified. Reading visuals are original illustrative UI, not real extension screenshots. Published Firefox listing and desktop installers are not claimed.
+
+## Ink & Iris rebrand — 2026-09-27
+
+Website and extension UI now share neutral light/dark surfaces, violet primary actions, Inter UI typography, and Lucide outline icons. The website keeps a serif for chapter passages and both apps preserve Arabic/RTL. Popup, settings, forms, launcher, keyword tooltip, summaries and extraction surfaces follow the same identity. Existing logo, favicon and social artwork remain pending the owner's replacement logo. Validation evidence is in `apps/website/design-system/validation/ink-iris/`; this is a local implementation, not a production release.
