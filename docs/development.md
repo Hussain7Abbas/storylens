@@ -27,7 +27,7 @@ Make source changes inside the relevant submodule, commit and push there when re
 
 ## Releases
 
-`make deploy` runs the globally installed `xeploy` CLI (`bun add -g xeploy`) with the settings in `.xeploy.json`. It bumps each app's version, creates `v<version>` tags, and publishes `develop` to `main` in each submodule. The extension's tag starts the Chrome Web Store publish workflow ([Extension](extension.md#chrome-web-store-release)). That workflow signals the backend repository, and the backend deploys once the store publishes the new version ([Backend](backend.md#deployment-and-review-version)). The production server must track `main`. Backend-only releases, where the extension version does not change, need `make backend-sync` on the server.
+`make deploy` runs the globally installed `xeploy` CLI (`bun add -g xeploy`) with the settings in `.xeploy.json`. It bumps each app's version, creates `v<version>` tags, and publishes `develop` to `main` in each submodule. The extension's tag starts the Chrome Web Store publish workflow ([Extension](extension.md#chrome-web-store-release)). That workflow signals the backend repository, and the backend deploys once the store publishes the new version ([Backend](backend.md#deployment-and-review-version)). The production server must track `main`. Backend-only releases, where the extension version does not change, need `make backend-sync` on the server. For first-time setup, see the [publishing runbook](publishing.md).
 
 ## Website
 
