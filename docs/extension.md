@@ -34,6 +34,12 @@ The navbar counts all queued changes, including uploads in progress and failed o
 
 Run sync regression checks with `bun test test/sync-engine.test.ts` from `apps/extension`.
 
+## Usage analytics
+
+The extension sends anonymous Google Analytics 4 events through the Measurement Protocol from the background service worker; Manifest V3 forbids remotely hosted code, so `gtag.js` is not used. Popup and content scripts call `trackEvent()` (`src/lib/analytics/client.ts`), which forwards a typed `trackAnalyticsEvent` message to `src/lib/analytics/background.ts`. The background attaches a random client ID (`storylens-analytics-client-id` in extension-local storage), a 30-minute session ID in session storage, and the extension version, then posts to `https://www.google-analytics.com/mp/collect` (a declared host permission). Development builds use GA's debug endpoint and log validation results.
+
+Analytics is disabled unless `WXT_GA_MEASUREMENT_ID` and `WXT_GA_API_SECRET` are set at build time. **Settings → General → Anonymous usage analytics** defaults to on and is saved as `storylens-analytics-enabled`. Events never include page text, titles, URLs, or account data. The event catalog and the rules for adding or removing events live in the [extension instructions](../apps/extension/AGENTS.md#analytics-events).
+
 ## Chrome Web Store release
 
 Bump `version` in `apps/extension/package.json`, commit, and push a matching `v<version>` tag, or run the **Publish to Chrome Web Store** workflow manually. `.github/workflows/publish-chrome.yml` runs `make install`, `make typecheck`, `make release-chrome`, and `make submit-chrome`, then sends an `extension-submitted` `repository_dispatch` event with the version to `storylens-backend`. That repository's **Set Review_Version** workflow records the version on the server. The backend deploys itself after the store publishes that version; see [Backend](backend.md#deployment-and-review-version).
