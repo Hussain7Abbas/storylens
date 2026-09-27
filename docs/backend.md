@@ -13,7 +13,7 @@
 
 The server centralizes expected HTTP errors with `HttpError` and `AuthError`. Routes validate inputs with Elysia schemas and use Prisma for persistence. The development OpenAPI UI is at `/docs`, with `/openapi.json` feeding the extension's Orval client. The OpenAPI plugin returns 404 in production mode.
 
-Environment variables are validated in `src/env.ts`. Copy `.env.example` and supply a database URL, Better Auth secret, and storage key; seed and AI features need their respective values. `PORT` defaults to 3000. The local Docker database is defined by `docker-compose.yml`.
+Environment variables are validated in `src/env.ts`. Copy `.env.example` and supply a database URL, Better Auth secret, and storage key. `BETTER_AUTH_URL` must be the API's public origin and `WEBSITE_URL` the website origin (default `https://storylens.iscoded.com`); `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` enable Google sign-in; seed and AI features need their respective values. `PORT` defaults to 3000. The local Docker database is defined by `docker-compose.yml`.
 
 ## Health checks
 
@@ -29,4 +29,14 @@ Backend deploys wait for the matching extension release. After a store submissio
 
 For local API and database commands, see [Development](development.md) and the [backend instructions](../apps/backend/AGENTS.md). The [backend README](../apps/backend/README.md) has standalone setup details.
 
-`POST /auth/change-password` accepts `currentPassword` and `newPassword` for authenticated users and admins. It rejects guests, verifies the current credential, validates the new password at 8–72 characters, and atomically updates both the user password and credential account hash. Existing sessions remain valid. Backend tests cover these guards and validation with isolated database mocks.
+`POST /auth/login` and `POST /auth/register` are public: they sit before the `shouldBeGuest()` guard in `src/routes/accounts.ts` because the website's account pages call them with no session after sign-out. Register still upgrades the guest in place when a guest bearer token is sent. The CORS plugin reflects requested headers (`allowedHeaders: true`), since a literal `*` never covers `Authorization` for the website's cross-origin calls.
+
+## Google sign-in (OAuth)
+
+Better Auth (`src/lib/auth/index.ts`) serves only OAuth. Its handler is mounted at `basePath: '/auth'` through the `/auth/*` catch-all in `src/routes/accounts.ts`. That route sits before the `shouldBeGuest()` guard because OAuth starts signed out; Elysia still matches the static custom routes first. Better Auth's email/password, `update-user`, email, password, delete, and account-linking endpoints are listed in `disabledPaths`, and `username`, `role`, and `password` are `input: false`, so request bodies can never set them. Custom routes remain the only credential and profile path.
+
+Google turns on when `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` are set; `GET /auth/providers` reports `{ google }` so the website shows the button without a rebuild. Register `{BETTER_AUTH_URL}/auth/callback/google` (production: `https://storylens-api.iscoded.com/auth/callback/google`) as the authorized redirect URI in Google Cloud, and add `https://storylens.iscoded.com` as an authorized JavaScript origin. `trustedOrigins` contains `WEBSITE_URL`, so callbacks can only return to the website.
+
+The flow: the website calls `POST /auth/sign-in/social`; Google returns to the API callback, which creates or finds the user and sets a Better Auth session cookie on the API domain. It then redirects to the website's `/profile/oauth/` page, which calls `POST /auth/oauth/session` with that cookie. That route issues a bearer session for the extension and signs the cookie session out. If the page also sends a guest token from the same browser, `mergeGuestInto()` moves the guest's novels, keywords, aliases, versions, replacements, and files to the account and deletes the guest; registered users are never merged. The user-create hook gives OAuth sign-ups the `user` role, a username derived from the display name (not the email), and a random bcrypt password so the credential routes stay consistent. `User.image` stores the provider picture URL. Google accounts whose verified email matches an existing account link to it, per Better Auth's defaults.
+
+`POST /auth/change-password` accepts `currentPassword` and `newPassword` for authenticated users and admins. It rejects guests, verifies the current credential, validates the new password at 8–72 characters, and atomically updates both the user password and credential account hash. Existing sessions remain valid. Backend tests cover these guards and validation, plus session-less sign-in and registration, the OAuth exchange, guest merging, route precedence, and OAuth usernames, with isolated database mocks.

@@ -2,7 +2,7 @@
 
 [Documentation index](intro.md) · [Development](development.md)
 
-`apps/extension` is a WXT and React extension for Chrome and Firefox. The popup lets readers manage novels, keyword coloring, replacement rules, profile, and settings. The content script detects supported pages and applies reading features; the background service worker handles messaging, selector loading, API proxy requests, and synchronization.
+`apps/extension` is a WXT and React extension for Chrome and Firefox. The popup lets readers manage novels, keyword coloring, replacement rules, and settings; its profile button opens the account pages on the website. The content script detects supported pages and applies reading features; the background service worker handles messaging, selector loading, API proxy requests, and synchronization.
 
 The popup also offers a **AI** tab beside **Replaces**, available even without a detected novel. The popup opens on **Coloring** when a novel is selected (including once a detected novel finishes loading) or when page-picked search text is carried over, and on **AI** otherwise. After pairing, readers choose a discovered Claude/Codex model and effort, then click **Summarize page**. The content script captures the active page's body and shows loading, result, or error at its top. The background worker contacts the authenticated loopback service. See the [client guide](client.md) for setup, limits, and privacy behavior.
 
@@ -20,13 +20,15 @@ Character and replacement searches tolerate small spelling mistakes and transpos
 - `src/lib/offline/` uses Dexie to store downloaded novel data. Download, mutation hooks, a pending-operation queue, and sync code support reading and editing while offline. The background worker also schedules periodic sync.
 - `src/i18n/messages/` holds extracted application translations. `public/_locales/` holds browser manifest messages. The content script's tooltip has its own localized strings and reads locale from extension storage.
 
-`wxt.config.ts` declares extension permissions, host permissions, React and icon modules, and an API URL fallback. Set `WXT_API_URL` to the running backend when developing locally; see the port caveat in [Development](development.md). Build and distribution targets are in the extension `Makefile` and `package.json`.
+`wxt.config.ts` declares extension permissions, host permissions, React and icon modules, and an API URL fallback. Set `WXT_API_URL` to the running backend and `WXT_WEBSITE_URL` to the website origin serving account pages when developing locally; see the port caveat in [Development](development.md). Build and distribution targets are in the extension `Makefile` and `package.json`.
 
 See the [extension instructions](../apps/extension/AGENTS.md) for code conventions and offline change requirements. The [extension README](../apps/extension/README.md) has submodule commands.
 
 ## Account and synchronization
 
-Registered users and admins can change their password from Profile, using the button above Logout. The form requires the current password, a new password of 8–72 characters, and matching confirmation. Guests do not see this action.
+The popup creates a guest account on first open and stores the session in `browser.storage.local` (`storylens-auth`). Sign-in, registration, profile edits, password changes, and sign-out live on the website's `/{locale}/profile/` pages, not in the popup: browser password managers such as Apple Passwords cannot fill forms on `chrome-extension://` pages. The popup's profile button opens that page in a new tab.
+
+The `website-bridge` content script runs only on the `WXT_WEBSITE_URL` origin (default `https://storylens.iscoded.com`; the development example uses `http://localhost:3000`). It answers `window.postMessage` requests on the `storylens-account` channel: `get` returns the stored session, `set` validates and stores a session from the page, and `clear` removes it. It also pushes storage changes to the page. Its protocol lives in `src/lib/website/account-bridge.ts` and must match the website's `src/lib/account/bridge.ts`. Open extension pages follow `storylens-auth` changes through `useAuthInit`. After sign-out, the next popup open creates a fresh guest, as before.
 
 The navbar counts all queued changes, including uploads in progress and failed operations. Manual sync reports upload and download failures with server error details, including permission refusals; unresolved changes stay queued. Automatic sync stops retrying an operation after five failures, while clicking Sync explicitly retries failed operations. Keyword aliases and versions use their respective endpoints, and temporary IDs are mapped into queued dependent writes. Concurrent sync requests share the active run. Refreshes skip novels and lookups with unresolved writes so failed uploads cannot overwrite local edits. A successful sync timestamp is recorded only when no failures or queued changes remain. Failed immediate uploads show an error and retain the local change for retry.
 

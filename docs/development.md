@@ -13,7 +13,7 @@ The umbrella repository has no application dependencies of its own. `apps/backen
 5. Start `make dev-backend` and `make dev-extension` in separate terminals. `make dev-firefox` starts the Firefox build instead.
 6. For AI summaries, install/sign in to Claude Code and/or Codex CLI, run `make dev-client`, and pair the extension with the token in its window. The summary feature does not need the backend.
 
-The backend's `PORT` defaults to 3000. The extension's checked-in development `WXT_API_URL` example and WXT fallback use port 7001, so configure one side to match the other before testing API calls or running `make orval`. Better Auth's base URL should also match the backend's listening address.
+The backend's `PORT` defaults to 3000. The extension's checked-in development `WXT_API_URL` example and WXT fallback use port 7001, so configure one side to match the other before testing API calls or running `make orval`. Better Auth's base URL should also match the backend's listening address. To use the website's account pages locally, set the extension's `WXT_WEBSITE_URL` to the website's origin (the example uses `http://localhost:3000`) and the website's `NEXT_PUBLIC_API_URL` to the backend. Note that `next dev` also defaults to port 3000.
 
 ## Commands
 
