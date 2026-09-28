@@ -37,7 +37,7 @@ See the [extension instructions](../apps/extension/AGENTS.md) for code conventio
 
 ## Account and synchronization
 
-The popup creates a guest account on first open and stores the session in `browser.storage.local` (`storylens-auth`). Sign-in, registration, profile edits, password changes, and sign-out live on the website's `/{locale}/profile/` pages, not in the popup: browser password managers such as Apple Passwords cannot fill forms on `chrome-extension://` pages. The popup's profile button opens that page in a new tab.
+The popup creates a guest account on first open and stores the session in `browser.storage.local` (`storylens-auth`). Sign-in, registration, profile edits, email and password changes, and sign-out live on the website's `/{locale}/profile/` pages, not in the popup: browser password managers such as Apple Passwords cannot fill forms on `chrome-extension://` pages. The popup's profile button opens that page in a new tab.
 
 The `website-bridge` content script runs only on the `WXT_WEBSITE_URL` origin (default `http://localhost:3000` in development and `https://storylens.iscoded.com` in production builds). The profile button and the settings website, privacy, and terms links use the same origin through `websitePageUrl`. It answers `window.postMessage` requests on the `storylens-account` channel: `get` returns the stored session, `set` validates and stores a session from the page, and `clear` removes it. It also pushes storage changes to the page. Its protocol lives in `src/lib/website/account-bridge.ts` and must match the website's `src/lib/account/bridge.ts`. Open extension pages follow `storylens-auth` changes through `useAuthInit`. After sign-out, the next popup open creates a fresh guest, as before.
 
