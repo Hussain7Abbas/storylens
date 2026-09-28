@@ -6,10 +6,12 @@
 
 ## Main areas
 
-- `src/routes/` handles accounts, novels, chapters, keywords and their aliases/versions, replacements, categories and natures (each with an optional `description` that tells the extension's AI keyword suggestion when to choose it), configuration, website selectors and biases, uploads, and AI operations.
+- `src/routes/` handles accounts, novels (including an optional `context` text that the extension's AI features use as the novel's global background), chapters, keywords and their aliases/versions, replacements, categories and natures (each with an optional `description` that tells the extension's AI keyword suggestion when to choose it), configuration, website selectors and biases, uploads, and AI operations.
 - `src/middleware/authorize.ts` defines authenticated guest, user, and admin guards, plus ownership checks. Routes enforce permissions server side.
 - `src/lib/auth/` combines Better Auth with bearer session handling; `src/lib/db/` supplies Prisma, `src/lib/storage/` handles image storage, and `src/lib/ai/` supports chapter selector detection.
 - `prisma/schema.prisma` defines users, sessions, novels, chapters, keywords, aliases, versions, replacements, selectors, and related records. `prisma/migrations/` tracks schema changes; `prisma/seed/` populates development data.
+
+`Novel.context` is accepted on `POST /novels` and `PUT /novels/:id`, and `PUT /novels/:id/context` sets it alone (up to 20,000 characters, HTML-escaped like other text). Admins can always change it; users can write it only while it is empty, which is how the extension saves the context its AI researched on first use. Character images generated in the extension upload through the existing `POST /files/upload` route to imgbb (`STORAGE_IMGBB_API_KEY`).
 
 The server centralizes expected HTTP errors with `HttpError` and `AuthError`. Routes validate inputs with Elysia schemas and use Prisma for persistence. The development OpenAPI UI is at `/docs`, with `/openapi.json` feeding the extension's Orval client. The OpenAPI plugin returns 404 in production mode.
 

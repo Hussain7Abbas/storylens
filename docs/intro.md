@@ -1,6 +1,6 @@
 # Story Lens documentation
 
-Story Lens pairs a browser extension for novel reading with an API for novels, keywords, replacements, selectors, accounts, storage, and chapter detection. A local desktop client runs optional Claude/Codex page summaries. A bilingual static website explains the product and its legal policies. The umbrella repository holds all four apps as Git submodules and delegates their commands through its root `Makefile`.
+Story Lens pairs a browser extension for novel reading with an API for novels, keywords, replacements, selectors, accounts, storage, and chapter detection. A local desktop client runs optional Claude/Codex AI actions: page summaries, keyword suggestions and extraction, novel context research, and Codex character images. A bilingual static website explains the product and its legal policies. The umbrella repository holds all four apps as Git submodules and delegates their commands through its root `Makefile`.
 
 - [Development and submodules](development.md): setup, commands, API client generation, and Git workflow.
 - [Backend API](backend.md): service organization, data, auth, and OpenAPI.
