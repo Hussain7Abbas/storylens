@@ -23,6 +23,8 @@ The backend therefore goes live only after the matching extension version does.
 
 ## 1. Chrome Web Store: developer account and first listing
 
+For current listing metadata and permission explanations, see [CHROMEWEBSTORE.md](../apps/extension/CHROMEWEBSTORE.md). The [asset guide](chrome-store/README.md) provides five screenshots, a demonstration MP4 to upload to YouTube, and a reproducible local sample chapter.
+
 The store API can only update an item that already exists, so the first version is always uploaded by hand.
 
 1. Open the [Chrome Web Store developer dashboard](https://chrome.google.com/webstore/devconsole) with the owner account. Pay the one-time registration fee and verify the contact email.
@@ -34,7 +36,7 @@ The store API can only update an item that already exists, so the first version 
 3. In the dashboard, click **New item** and upload that zip.
 4. Complete these tabs:
    - **Store listing:** description, category, screenshots, and icon.
-   - **Privacy:** single purpose, a justification for each permission (`tabs`, `storage`, `alarms`, `unlimitedStorage`, and the API host permission), data-use disclosures, and the privacy policy URL from the website.
+   - **Privacy:** single purpose, a justification for each permission (`tabs`, `storage`, `alarms`, `unlimitedStorage`, the API, loopback, and Google Analytics host permissions), data-use disclosures including configured analytics and supported-site hostnames, and the privacy policy URL from the website. Copy-ready English and Arabic text is in `apps/extension/store/`.
 5. Submit the item for review.
 6. Copy the 32-character **item ID** from the dashboard or the item's store URL. This is `CHROME_EXTENSION_ID`. It is public, so it doesn't need to be a secret.
 
