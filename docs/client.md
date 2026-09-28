@@ -45,3 +45,5 @@ Claude requests disable tools, MCP servers, personal setting sources, hooks, sla
 From `apps/client`: `bun run typecheck`, `bun test`, `bun run build`, `bun run pack`, `bun run dist:mac`, and `bun run dist:win`. Windows packages must be built and smoke-tested on Windows. An unsigned macOS package is suitable for local testing but may need an OS override to launch on another Mac. Record verification results and remaining platform checks alongside release work.
 
 The desktop settings window links to the website, privacy policy, and terms in the system browser. The main process allows only those exact HTTPS URLs and continues denying external Electron windows.
+
+The wiki crawler (`src/backend/api.ts`) uses the Story Lens session the extension shares through `POST /AccountSession`. The shared `apiUrl` is the API origin; requests go to its reader API under `/api/user` with the reader's bearer token, so the reader's role permissions apply.
