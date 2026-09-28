@@ -1,6 +1,6 @@
 # Story Lens repository instructions
 
-Story Lens is a browser extension for reading web novels with keyword highlighting, text replacement, chapter detection, and local AI summaries, supported by an Elysia API and desktop companion. This repository coordinates four independent Git submodules; it has no root `package.json` or shared workspace packages. Start with [the documentation index](docs/intro.md) for design and workflow details.
+Story Lens is a browser extension for reading web novels with keyword highlighting, text replacement, chapter detection, and local AI (summaries, keyword suggestions, novel context research, and character image generation), supported by an Elysia API and desktop companion. This repository coordinates four independent Git submodules; it has no root `package.json` or shared workspace packages. Start with [the documentation index](docs/intro.md) for design and workflow details.
 
 ## Repository map
 
