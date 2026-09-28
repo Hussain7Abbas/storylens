@@ -1,6 +1,7 @@
-# Story Lens meta-repo: delegates to backend, extension, client, and website submodules.
+# Story Lens meta-repo: delegates to backend, extension, client, website, and dashboard submodules.
 .PHONY: \
 	help init submodules-init pull update ensure-submodules website dev-website build-website website-% \
+	dashboard dev-dashboard build-dashboard dashboard-% \
 	backend extension client backend-% extension-% client-% \
 	install setup dev dev-backend dev-extension dev-client dev-firefox \
 	build build-backend build-extension build-client build-firefox start-backend \
@@ -14,7 +15,8 @@ BACKEND := $(ROOT)/apps/backend
 EXTENSION := $(ROOT)/apps/extension
 CLIENT := $(ROOT)/apps/client
 WEBSITE := $(ROOT)/apps/website
-CHILDREN := $(BACKEND) $(EXTENSION) $(CLIENT) $(WEBSITE)
+DASHBOARD := $(ROOT)/apps/dashboard
+CHILDREN := $(BACKEND) $(EXTENSION) $(CLIENT) $(WEBSITE) $(DASHBOARD)
 
 BLUE := $(shell printf '\033[34m')
 GREEN := $(shell printf '\033[32m')
@@ -35,7 +37,7 @@ help:
 	@echo "  $(GREEN)update$(RESET)               bump submodules to latest remote commits"
 	@echo ""
 	@echo "$(BLUE)Setup$(RESET)"
-	@echo "  $(GREEN)install$(RESET)              install deps in all four submodules"
+	@echo "  $(GREEN)install$(RESET)              install deps in all five submodules"
 	@echo "  $(GREEN)setup$(RESET)                backend setup (docker + db)"
 	@echo ""
 	@echo "$(BLUE)Development$(RESET)"
@@ -48,8 +50,9 @@ help:
 	@echo "  $(GREEN)dev-firefox$(RESET)          $(YELLOW)make -C apps/extension dev-firefox$(RESET)"
 	@echo ""
 	@echo "  $(GREEN)dev-website$(RESET)          $(YELLOW)make -C apps/website dev$(RESET)"
+	@echo "  $(GREEN)dev-dashboard$(RESET)        $(YELLOW)make -C apps/dashboard dev$(RESET)"
 	@echo "$(BLUE)Build$(RESET)"
-	@echo "  $(GREEN)build$(RESET)                build backend + extension + client + website"
+	@echo "  $(GREEN)build$(RESET)                build backend + extension + client + website + dashboard"
 	@echo "  $(GREEN)build-backend$(RESET)        $(YELLOW)make -C apps/backend build$(RESET)"
 	@echo "  $(GREEN)build-extension$(RESET)      $(YELLOW)make -C apps/extension build$(RESET)"
 	@echo "  $(GREEN)build-client$(RESET)         $(YELLOW)make -C apps/client build$(RESET)"
@@ -60,23 +63,24 @@ help:
 	@echo "  $(GREEN)release-chrome$(RESET)         $(YELLOW)make -C apps/extension release-chrome$(RESET)"
 	@echo ""
 	@echo "  $(GREEN)build-website$(RESET)        $(YELLOW)make -C apps/website build$(RESET)"
+	@echo "  $(GREEN)build-dashboard$(RESET)      $(YELLOW)make -C apps/dashboard build$(RESET)"
 	@echo "$(BLUE)Database & storage$(RESET) ($(YELLOW)backend submodule$(RESET))"
 	@echo "  $(GREEN)db-generate$(RESET) db-$(GREEN)migrate-dev$(RESET) db-$(GREEN)migrate-deploy$(RESET)"
 	@echo "  $(GREEN)db-reset$(RESET) db-$(GREEN)seed$(RESET) db-$(GREEN)studio$(RESET) $(GREEN)storage-seed$(RESET)"
 	@echo "  $(GREEN)docker-up$(RESET) $(GREEN)docker-down$(RESET) $(GREEN)docker-logs$(RESET)"
 	@echo ""
 	@echo "$(BLUE)Extension tooling$(RESET)"
-	@echo "  $(GREEN)orval$(RESET)                regenerate API client"
+	@echo "  $(GREEN)orval$(RESET)                regenerate extension API client ($(YELLOW)make dashboard-orval$(RESET) for the dashboard)"
 	@echo "  $(GREEN)i18n-parse$(RESET)           extract i18n keys"
 	@echo ""
 	@echo "$(BLUE)Release$(RESET)"
 	@echo "  $(GREEN)deploy$(RESET)               interactive release with $(YELLOW)xeploy$(RESET) (bump, tag, publish to main)"
 	@echo ""
 	@echo "$(BLUE)Quality$(RESET)"
-	@echo "  $(GREEN)typecheck$(RESET)            typecheck all four submodules"
-	@echo "  $(GREEN)test$(RESET)                 run backend + client + website tests"
+	@echo "  $(GREEN)typecheck$(RESET)            typecheck all five submodules"
+	@echo "  $(GREEN)test$(RESET)                 run backend + client + website + dashboard tests"
 	@echo ""
-	@echo "$(BLUE)Pass-through$(RESET): $(GREEN)backend-<target>$(RESET) / $(GREEN)extension-<target>$(RESET) / $(GREEN)client-<target>$(RESET) / $(GREEN)website-<target>$(RESET)"
+	@echo "$(BLUE)Pass-through$(RESET): $(GREEN)backend-<target>$(RESET) / $(GREEN)extension-<target>$(RESET) / $(GREEN)client-<target>$(RESET) / $(GREEN)website-<target>$(RESET) / $(GREEN)dashboard-<target>$(RESET)"
 	@echo "  e.g. $(YELLOW)make backend-dev$(RESET), $(YELLOW)make extension-typecheck$(RESET), $(YELLOW)make client-pack$(RESET)"
 	@echo ""
 
@@ -114,6 +118,7 @@ install: ensure-submodules
 	@$(MAKE) -C "$(EXTENSION)" install
 	@$(MAKE) -C "$(CLIENT)" install
 	@$(MAKE) -C "$(WEBSITE)" install
+	@$(MAKE) -C "$(DASHBOARD)" install
 
 setup: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" setup
@@ -136,7 +141,7 @@ client dev-client: ensure-submodules
 dev-firefox: ensure-submodules
 	@$(MAKE) -C "$(EXTENSION)" dev-firefox
 
-build: ensure-submodules build-backend build-extension build-client build-website
+build: ensure-submodules build-backend build-extension build-client build-website build-dashboard
 
 build-backend: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" build
@@ -158,11 +163,13 @@ typecheck: ensure-submodules
 	@$(MAKE) -C "$(EXTENSION)" typecheck
 	@$(MAKE) -C "$(CLIENT)" typecheck
 	@$(MAKE) -C "$(WEBSITE)" typecheck
+	@$(MAKE) -C "$(DASHBOARD)" typecheck
 
 test: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" test
 	@$(MAKE) -C "$(CLIENT)" test
 	@$(MAKE) -C "$(WEBSITE)" test
+	@$(MAKE) -C "$(DASHBOARD)" test
 
 docker-up: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" docker-up
@@ -226,3 +233,12 @@ build-website: ensure-submodules
 
 website-%: ensure-submodules
 	@$(MAKE) -C "$(WEBSITE)" $(patsubst website-%,%,$@)
+
+dashboard dev-dashboard: ensure-submodules
+	@$(MAKE) -C "$(DASHBOARD)" dev
+
+build-dashboard: ensure-submodules
+	@$(MAKE) -C "$(DASHBOARD)" build
+
+dashboard-%: ensure-submodules
+	@$(MAKE) -C "$(DASHBOARD)" $(patsubst dashboard-%,%,$@)
