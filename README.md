@@ -10,7 +10,7 @@
 
 ---
 
-This is the umbrella repository for Story Lens. The backend API, browser extension, desktop client, and website are Git submodules. The root `Makefile` delegates commands to each app.
+This is the umbrella repository for Story Lens. The backend API, browser extension, desktop client, website, and admin dashboard are Git submodules. The root `Makefile` delegates commands to each app.
 
 ## Repositories
 
@@ -20,6 +20,7 @@ This is the umbrella repository for Story Lens. The backend API, browser extensi
 | `apps/extension` | [storylens-extension](https://github.com/Hussain7Abbas/storylens-extension) | WXT + React browser extension                        |
 | `apps/client`    | [storylens-client](https://github.com/Hussain7Abbas/storylens-client)       | Electron desktop companion for Claude/Codex prompts  |
 | `apps/website` | [storylens-website](https://github.com/Hussain7Abbas/storylens-website) | Static English/Arabic Next.js landing and legal pages |
+| `apps/dashboard` | [storylens-dashboard](https://github.com/Hussain7Abbas/storylens-dashboard) | Vite + React admin dashboard: users, roles and permissions, novels, configs |
 
 ## Prerequisites
 
@@ -46,7 +47,7 @@ make submodules-init
 ### Quick Start
 
 ```bash
-# 1. Install dependencies in all four submodules
+# 1. Install dependencies in all five submodules
 make install
 
 # 2. Configure environment files
@@ -70,7 +71,7 @@ For page summaries, install and sign in to Claude Code and/or Codex CLI, then ru
 
 ## Makefile Reference
 
-Run `make help` to see targets for all four apps. Client commands are also available through `make client-<target>` or directly in `apps/client`.
+Run `make help` to see targets for all five apps. Client commands are also available through `make client-<target>` or directly in `apps/client`.
 
 ### Submodules
 
@@ -86,7 +87,7 @@ Run `make help` to see targets for all four apps. Client commands are also avail
 
 | Command        | Description                                     |
 | -------------- | ----------------------------------------------- |
-| `make install` | `bun install` in all four apps                  |
+| `make install` | `bun install` in all five apps                  |
 | `make setup`   | Backend setup: Docker Postgres + migrate + seed |
 
 ### Development
@@ -96,6 +97,7 @@ Run `make help` to see targets for all four apps. Client commands are also avail
 | `make dev-backend`   | Start API in watch mode            |
 | `make dev-extension` | Start Chrome extension dev server  |
 | `make dev-website` | Start the website development server |
+| `make dev-dashboard` | Start the admin dashboard development server |
 | `make dev-client`    | Start Electron desktop client      |
 | `make dev-firefox`   | Start Firefox extension dev server |
 
@@ -103,10 +105,11 @@ Run `make help` to see targets for all four apps. Client commands are also avail
 
 | Command                | Description                      |
 | ---------------------- | -------------------------------- |
-| `make build`           | Build all four apps             |
+| `make build`           | Build all five apps             |
 | `make build-backend`   | Production backend build         |
 | `make build-extension` | Chrome extension build           |
 | `make build-website` | Export the static website and CSP hashes |
+| `make build-dashboard` | Build the static admin dashboard |
 | `make build-client`    | Desktop client build             |
 | `make build-firefox`   | Firefox extension build          |
 | `make start-backend`   | Build and run the production API |
@@ -137,7 +140,7 @@ Run `make help` to see targets for all four apps. Client commands are also avail
 
 | Command          | Description                        |
 | ---------------- | ---------------------------------- |
-| `make typecheck` | Typecheck all four submodules     |
+| `make typecheck` | Typecheck all five submodules     |
 | `make test`      | Run backend and client tests       |
 
 ### Pass-Through Targets
@@ -189,7 +192,8 @@ storylens/
 │   ├── backend/       # git submodule — Elysia.js API
 │   ├── extension/     # git submodule — WXT + React extension
 │   ├── client/        # git submodule — Electron desktop companion
-│   └── website/       # git submodule — static Next.js website
+│   ├── website/       # git submodule — static Next.js website
+│   └── dashboard/     # git submodule — Vite + React admin dashboard
 └── .gitmodules
 ```
 
@@ -206,9 +210,16 @@ You may use, modify, and share this project for **non-commercial purposes** only
 - [Extension README](apps/extension/README.md)
 - [Client README](apps/client/README.md)
 - [Website README](apps/website/README.md)
+- [Dashboard README](apps/dashboard/README.md)
 
 ## Website
 
 [Story Lens website](https://storylens.iscoded.com) · [Website source](https://github.com/Hussain7Abbas/storylens-website) · [Privacy](https://storylens.iscoded.com/en/privacy/) · [Terms](https://storylens.iscoded.com/en/terms/)
 
 The fourth submodule, `apps/website`, contains the English/Arabic Next.js static website. Use `make dev-website`, `make build-website`, and `make website-lint`. Bun and Biome provide its tooling. The root quality and build targets include it. See [Website deployment](docs/website.md) for the separate server checkout and Nginx configuration.
+
+## Dashboard
+
+[Story Lens dashboard](https://storylens-dashboard.iscoded.com) · [Dashboard source](https://github.com/Hussain7Abbas/storylens-dashboard)
+
+The fifth submodule, `apps/dashboard`, is the admin dashboard for the API's `/api/admin` routes. Dashboard accounts (portal `admin`) sign in there only; there is no sign-up, and the backend seed creates the first super admin. Readers (portal `user`) keep using the extension, website and desktop client through `/api/user`. Every endpoint has its own permission, grouped into roles that the dashboard edits. See [Dashboard](docs/dashboard.md) and the [backend permission model](docs/backend.md#portals-roles-and-permissions).
