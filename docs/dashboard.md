@@ -2,7 +2,7 @@
 
 [Documentation index](intro.md) · [Backend permissions](backend.md#portals-roles-and-permissions)
 
-`apps/dashboard` is the independent public `storylens-dashboard` repository, the fifth submodule. It is a Vite + React single-page app for the backend's dashboard API (`/api/admin`), served as static files by Nginx at [storylens-dashboard.iscoded.com](https://storylens-dashboard.iscoded.com). Source uses PolyForm Noncommercial 1.0.0.
+`apps/dashboard` is the independent public `storylens-dashbaord` repository, the fifth submodule. It is a Vite + React single-page app for the backend's dashboard API (`/api/admin`), served as static files by Nginx at [storylens-dashbaord.iscoded.com](https://storylens-dashbaord.iscoded.com). Source uses PolyForm Noncommercial 1.0.0.
 
 ## What it manages
 
@@ -27,8 +27,8 @@ The dashboard uses the website's Ink & Iris identity: the same light/dark tokens
 
 ## Production
 
-- DNS: Cloudflare A record `storylens-dashboard.iscoded.com`, proxied, to the same server as the website (`178.105.43.174`), created with `flarectl` like the website's.
-- Server: `ssh raseen`, checkout `/srv/storylens-dashboard` on `main`, releases in `/var/www/storylens-dashboard/releases` with a `current` symlink.
-- `make sync` (as root in the checkout) pulls `main`, installs with Bun, builds with the Node LTS in `/opt/storylens-node/bin`, activates the release, installs `deploy/nginx/storylens-dashboard.iscoded.com.conf`, requests a Let's Encrypt certificate through `deploy/nginx/bootstrap.conf` on the first run, checks `/login` and rolls back on failure. The five newest releases are kept.
+- DNS: Cloudflare A record `storylens-dashbaord.iscoded.com`, proxied, to the same server as the website (`178.105.43.174`), created with `flarectl` like the website's.
+- Server: `ssh raseen`, checkout `/srv/storylens-dashbaord` on `main`, releases in `/var/www/storylens-dashbaord/releases` with a `current` symlink.
+- `make sync` (as root in the checkout) pulls `main`, installs with Bun, builds with the Node LTS in `/opt/storylens-node/bin`, activates the release, installs `deploy/nginx/storylens-dashbaord.iscoded.com.conf`, requests a Let's Encrypt certificate through `deploy/nginx/bootstrap.conf` on the first run, checks `/login` and rolls back on failure. The five newest releases are kept.
 - Nginx sends a strict CSP (scripts and styles from self; API calls only to `https://storylens-api.iscoded.com`), `noindex`, long-lived caching for hashed `/assets/`, and falls back to `index.html` for client routes.
 - The backend must be deployed with the portal/role migration and `DASHBOARD_ADMIN_*` set, then `make seed-dashboard-admin` run once in `/srv/storylens-backend`.

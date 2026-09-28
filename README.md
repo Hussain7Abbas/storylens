@@ -20,7 +20,7 @@ This is the umbrella repository for Story Lens. The backend API, browser extensi
 | `apps/extension` | [storylens-extension](https://github.com/Hussain7Abbas/storylens-extension) | WXT + React browser extension                        |
 | `apps/client`    | [storylens-client](https://github.com/Hussain7Abbas/storylens-client)       | Electron desktop companion for Claude/Codex prompts  |
 | `apps/website` | [storylens-website](https://github.com/Hussain7Abbas/storylens-website) | Static English/Arabic Next.js landing and legal pages |
-| `apps/dashboard` | [storylens-dashboard](https://github.com/Hussain7Abbas/storylens-dashboard) | Vite + React admin dashboard: users, roles and permissions, novels, configs |
+| `apps/dashboard` | [storylens-dashbaord](https://github.com/Hussain7Abbas/storylens-dashbaord) | Vite + React admin dashboard: users, roles and permissions, novels, configs |
 
 ## Prerequisites
 
@@ -220,6 +220,6 @@ The fourth submodule, `apps/website`, contains the English/Arabic Next.js static
 
 ## Dashboard
 
-[Story Lens dashboard](https://storylens-dashboard.iscoded.com) · [Dashboard source](https://github.com/Hussain7Abbas/storylens-dashboard)
+[Story Lens dashboard](https://storylens-dashbaord.iscoded.com) · [Dashboard source](https://github.com/Hussain7Abbas/storylens-dashbaord)
 
 The fifth submodule, `apps/dashboard`, is the admin dashboard for the API's `/api/admin` routes. Dashboard accounts (portal `admin`) sign in there only; there is no sign-up, and the backend seed creates the first super admin. Readers (portal `user`) keep using the extension, website and desktop client through `/api/user`. Every endpoint has its own permission, grouped into roles that the dashboard edits. See [Dashboard](docs/dashboard.md) and the [backend permission model](docs/backend.md#portals-roles-and-permissions).
