@@ -14,13 +14,13 @@ This is the umbrella repository for Story Lens. The backend API, browser extensi
 
 ## Repositories
 
-| Path             | Repository                                                                  | Description                                          |
-| ---------------- | --------------------------------------------------------------------------- | ---------------------------------------------------- |
-| `apps/backend`   | [storylens-backend](https://github.com/Hussain7Abbas/storylens-backend)     | Elysia.js API, PostgreSQL (Prisma), file storage, AI |
-| `apps/extension` | [storylens-extension](https://github.com/Hussain7Abbas/storylens-extension) | WXT + React browser extension                        |
-| `apps/client`    | [storylens-client](https://github.com/Hussain7Abbas/storylens-client)       | Electron desktop companion for Claude/Codex prompts  |
-| `apps/website` | [storylens-website](https://github.com/Hussain7Abbas/storylens-website) | Static English/Arabic Next.js landing and legal pages |
-| `apps/dashboard` | [storylens-dashbaord](https://github.com/Hussain7Abbas/storylens-dashbaord) | Vite + React admin dashboard: users, roles and permissions, novels, configs |
+| Path             | Repository                                                                  | Description                                                                 |
+| ---------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `apps/backend`   | [storylens-backend](https://github.com/Hussain7Abbas/storylens-backend)     | Elysia.js API, PostgreSQL (Prisma), file storage, AI                        |
+| `apps/extension` | [storylens-extension](https://github.com/Hussain7Abbas/storylens-extension) | WXT + React browser extension                                               |
+| `apps/client`    | [storylens-client](https://github.com/Hussain7Abbas/storylens-client)       | Electron desktop companion for Claude/Codex prompts                         |
+| `apps/website`   | [storylens-website](https://github.com/Hussain7Abbas/storylens-website)     | Static English/Arabic Next.js landing and legal pages                       |
+| `apps/dashboard` | [storylens-dashboard](https://github.com/Hussain7Abbas/storylens-dashboard) | Vite + React admin dashboard: users, roles and permissions, novels, configs |
 
 ## Prerequisites
 
@@ -75,12 +75,12 @@ Run `make help` to see targets for all five apps. Client commands are also avail
 
 ### Submodules
 
-| Command                | Description                                                      |
-| ---------------------- | ---------------------------------------------------------------- |
-| `make submodules-init` | Initialize submodules after clone                                |
-| `make init`            | Alias for `submodules-init`                                      |
-| `make pull`            | Pull umbrella repo, sync submodule pointers, pull each submodule |
-| `make update`          | Bump submodules to their latest remote commits                   |
+| Command                | Description                                                         |
+| ---------------------- | ------------------------------------------------------------------- |
+| `make submodules-init` | Initialize submodules after clone                                   |
+| `make init`            | Alias for `submodules-init`                                         |
+| `make pull`            | Pull umbrella repo, sync submodule pointers, pull each submodule    |
+| `make update`          | Bump submodules to their latest remote commits                      |
 | `make deploy`          | Interactive `xeploy` release: bump versions, tag, publish to `main` |
 
 ### Setup
@@ -92,29 +92,29 @@ Run `make help` to see targets for all five apps. Client commands are also avail
 
 ### Development
 
-| Command              | Description                        |
-| -------------------- | ---------------------------------- |
-| `make dev-backend`   | Start API in watch mode            |
-| `make dev-extension` | Start Chrome extension dev server  |
-| `make dev-website` | Start the website development server |
+| Command              | Description                                  |
+| -------------------- | -------------------------------------------- |
+| `make dev-backend`   | Start API in watch mode                      |
+| `make dev-extension` | Start Chrome extension dev server            |
+| `make dev-website`   | Start the website development server         |
 | `make dev-dashboard` | Start the admin dashboard development server |
-| `make dev-client`    | Start Electron desktop client      |
-| `make dev-firefox`   | Start Firefox extension dev server |
+| `make dev-client`    | Start Electron desktop client                |
+| `make dev-firefox`   | Start Firefox extension dev server           |
 
 ### Build
 
-| Command                | Description                      |
-| ---------------------- | -------------------------------- |
-| `make build`           | Build all five apps             |
-| `make build-backend`   | Production backend build         |
-| `make build-extension` | Chrome extension build           |
-| `make build-website` | Export the static website and CSP hashes |
-| `make build-dashboard` | Build the static admin dashboard |
-| `make build-client`    | Desktop client build             |
-| `make build-firefox`   | Firefox extension build          |
-| `make start-backend`   | Build and run the production API |
-| `make zip`             | Build and zip Chrome extension   |
-| `make zip-firefox`     | Build and zip Firefox extension  |
+| Command                | Description                              |
+| ---------------------- | ---------------------------------------- |
+| `make build`           | Build all five apps                      |
+| `make build-backend`   | Production backend build                 |
+| `make build-extension` | Chrome extension build                   |
+| `make build-website`   | Export the static website and CSP hashes |
+| `make build-dashboard` | Build the static admin dashboard         |
+| `make build-client`    | Desktop client build                     |
+| `make build-firefox`   | Firefox extension build                  |
+| `make start-backend`   | Build and run the production API         |
+| `make zip`             | Build and zip Chrome extension           |
+| `make zip-firefox`     | Build and zip Firefox extension          |
 
 ### Database & Storage
 
@@ -138,10 +138,10 @@ Run `make help` to see targets for all five apps. Client commands are also avail
 
 ### Quality
 
-| Command          | Description                        |
-| ---------------- | ---------------------------------- |
-| `make typecheck` | Typecheck all five submodules     |
-| `make test`      | Run backend and client tests       |
+| Command          | Description                   |
+| ---------------- | ----------------------------- |
+| `make typecheck` | Typecheck all five submodules |
+| `make test`      | Run backend and client tests  |
 
 ### Pass-Through Targets
 
@@ -220,6 +220,6 @@ The fourth submodule, `apps/website`, contains the English/Arabic Next.js static
 
 ## Dashboard
 
-[Story Lens dashboard](https://storylens-dashbaord.iscoded.com) · [Dashboard source](https://github.com/Hussain7Abbas/storylens-dashbaord)
+[Story Lens dashboard](https://storylens-dashboard.iscoded.com) · [Dashboard source](https://github.com/Hussain7Abbas/storylens-dashboard)
 
 The fifth submodule, `apps/dashboard`, is the admin dashboard for the API's `/api/admin` routes. One account can have reader access (the extension, website and desktop client through `/api/user`), dashboard access, or both, with a role for each. There is no dashboard sign-up: dashboard access is granted on its Users page, and the backend seed gives the first super admin. Every endpoint has its own permission, grouped into roles that the dashboard edits. See [Dashboard](docs/dashboard.md) and the [backend permission model](docs/backend.md#portals-roles-and-permissions).

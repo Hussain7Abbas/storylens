@@ -35,4 +35,4 @@ The fourth submodule is `apps/website`, tracked on `develop`. Run `make dev-webs
 
 ## Dashboard
 
-The fifth submodule is `apps/dashboard` (`storylens-dashbaord`), tracked on `develop`. Run `make dev-dashboard` (port 3040, API from `VITE_API_URL`), `make build-dashboard`, `make dashboard-lint`, or `make dashboard-test`. Sign in with the super admin the backend seed creates from `DASHBOARD_ADMIN_*`. Production has its own `main` checkout at `/srv/storylens-dashbaord` on `ssh raseen`; see [Dashboard](dashboard.md).
+The fifth submodule is `apps/dashboard` (`storylens-dashboard`), tracked on `develop`. Run `make dev-dashboard` (port 3040, API from `VITE_API_URL`), `make build-dashboard`, `make dashboard-lint`, or `make dashboard-test`. Sign in with the super admin the backend seed creates from `DASHBOARD_ADMIN_*`. Production has its own `main` checkout at `/srv/storylens-dashboard` on `ssh raseen`; see [Dashboard](dashboard.md).

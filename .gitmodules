@@ -13,5 +13,5 @@
 	branch = develop
 [submodule "apps/dashboard"]
 	path = apps/dashboard
-	url = https://github.com/Hussain7Abbas/storylens-dashbaord.git
+	url = https://github.com/Hussain7Abbas/storylens-dashboard.git
 	branch = develop
