@@ -17,6 +17,10 @@ The server centralizes expected HTTP errors with `HttpError` and `AuthError`. Ro
 
 Environment variables are validated in `src/env.ts`. Copy `.env.example` and supply a database URL, Better Auth secret, and storage key. `BETTER_AUTH_URL` must be the API's public origin and `WEBSITE_URL` the website origin (default `https://storylens.iscoded.com`); `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` enable Google sign-in; `RESEND_API_KEY` and `EMAIL_FROM` (a sender on a Resend-verified domain) deliver registration codes; the seed needs `DASHBOARD_ADMIN_EMAIL`, `DASHBOARD_ADMIN_USERNAME` and `DASHBOARD_ADMIN_PASSWORD`; AI features need their values. `PORT` defaults to 3000. The local Docker database is defined by `docker-compose.yml`.
 
+## Compatibility
+
+Installed extensions and desktop clients lag behind the API, so changes follow [API and data compatibility](compatibility.md). `src/plugins/client-version.ts` answers 426 Upgrade Required to `/api/*` requests whose `X-Client-Version` is older than `MIN_CLIENT_VERSIONS` (`src/lib/compat/client-version.ts`). The `deprecated` route option (`src/plugins/deprecation.ts`, available through `setup`) and `deprecate()` (`src/lib/compat/deprecation.ts`) mark deprecations in OpenAPI and send `Deprecation`/`Sunset` headers, which CORS exposes to browsers. `test/deprecations.test.ts` fails once a removal date passes, and `make deprecations` lists them all.
+
 ## Health checks
 
 `GET /health` is a public liveness check that returns `{ status: "ok", timestamp }`. `GET /health/ready` is a public readiness check. It reports `backend` (with uptime), `database`, and `chromeStore`, each with a `status` and `latencyMs`, plus `versions.review` (the pending `Review_Version`, or `null`) and `versions.store` (the published Chrome Web Store version). Each check times out after 5 seconds.

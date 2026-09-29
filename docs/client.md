@@ -46,4 +46,4 @@ From `apps/client`: `bun run typecheck`, `bun test`, `bun run build`, `bun run p
 
 The desktop settings window links to the website, privacy policy, and terms in the system browser. The main process allows only those exact HTTPS URLs and continues denying external Electron windows.
 
-The wiki crawler (`src/backend/api.ts`) uses the Story Lens session the extension shares through `POST /AccountSession`. The shared `apiUrl` is the API origin; requests go to its reader API under `/api/user` with the reader's bearer token, so the reader's role permissions apply.
+The wiki crawler (`src/backend/api.ts`) uses the Story Lens session the extension shares through `POST /AccountSession`. The shared `apiUrl` is the API origin; requests go to its reader API under `/api/user` with the reader's bearer token, so the reader's role permissions apply. Each request sends `X-Client-Version: desktop/<package version>` (`src/version.ts`); when the API no longer supports this release it answers 426, which surfaces as a `CLIENT_OUTDATED` error asking the reader to download the latest client. See [API and data compatibility](compatibility.md).

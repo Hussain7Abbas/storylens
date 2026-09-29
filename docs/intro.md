@@ -4,6 +4,7 @@ Story Lens pairs a browser extension for novel reading with an API for novels, k
 
 - [Development and submodules](development.md): setup, commands, API client generation, and Git workflow.
 - [Backend API](backend.md): service organization, data, auth, and OpenAPI.
+- [API and data compatibility](compatibility.md): additive API changes, dated deprecations, client version floors, and expand/contract migrations.
 - [Browser extension](extension.md): entry points, UI, localization, API access, and offline behavior.
 - [Publishing runbook](publishing.md): set up Chrome Web Store publishing, GitHub environments, the server, and the first automated release on new accounts.
 - [Chrome Web Store assets](chrome-store/README.md): real extension screenshots, a demonstration video, and a reproducible original sample chapter.
