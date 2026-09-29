@@ -46,4 +46,6 @@ From `apps/client`: `bun run typecheck`, `bun test`, `bun run build`, `bun run p
 
 The desktop settings window links to the website, privacy policy, and terms in the system browser. The main process allows only those exact HTTPS URLs and continues denying external Electron windows.
 
-The wiki crawler (`src/backend/api.ts`) uses the Story Lens session the extension shares through `POST /AccountSession`. The shared `apiUrl` is the API origin; requests go to its reader API under `/api/user` with the reader's bearer token, so the reader's role permissions apply.
+The wiki crawler (`src/backend/api.ts`) uses the Story Lens session the extension shares through `POST /AccountSession`. The shared `apiUrl` is the API origin; requests go to its reader API under `/api/user` with the reader's bearer token, so the reader's role permissions apply. It reads and saves novel and keyword names in the crawl's response language (`nameAr` or `nameEn`, sent as `Accept-Language`).
+
+Besides browser extensions, the loopback service accepts the Story Lens dashboard (`https://storylens-dashbaord.iscoded.com` and its `http://localhost:3040` dev server) for the Match translations page, still behind the pairing token, and answers Chrome's private-network preflight. CORS preflights are answered by an `OPTIONS` route.
