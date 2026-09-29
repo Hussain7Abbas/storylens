@@ -26,7 +26,7 @@ The keyword, alias and version forms have a **Generate image** button (`src/comp
 
 All AI answers (summaries, suggestions, and extractions) are written in the extension language. Every prompt carries an explicit language rule, and when the returned descriptions are mostly in the other script (Arabic vs Latin letters), the request is repeated once with a correction.
 
-Character and replacement searches tolerate small spelling mistakes and transposed letters while retaining partial-text matching. Character search includes alias names and version descriptions; replacement search includes both From and To. Online search loads all catalogue pages before filtering, and downloaded novels use the same matching locally. Add character and Add alias prefill Name from the trimmed search; Add replacement prefills From. Versions have no separate name, so Add version prefills Description. Existing edit forms keep their saved values.
+Character and replacement searches tolerate small spelling mistakes and transposed letters while retaining partial-text matching. Character search includes alias names (their Arabic and English translations too) and version descriptions; replacement search includes both From and To. Online search loads all catalogue pages before filtering, and downloaded novels use the same matching locally. Add character and Add alias prefill Name from the trimmed search; Add replacement prefills From. Versions have no separate name, so Add version prefills Description. Existing edit forms keep their saved values.
 
 ## Main areas
 
