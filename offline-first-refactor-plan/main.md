@@ -192,13 +192,13 @@ Commits on `feature/offline-v2`: backend `c9a30da`, `8de7ad7`; extension `57e49a
 
 **Deviations from the plan (decide or accept):**
 
-- `MIN_CLIENT_VERSIONS` is `3.2.2` for both clients: any version the release bump produces is served and every install up to 3.2.1 gets 426. Local development builds report 3.2.1 until the bump, so they are refused by a local backend on this branch.
+- `MIN_CLIENT_VERSIONS` is `3.2.2` for both clients: every install up to 3.2.1 gets 426. The local Chrome extension package now reports 3.2.2 so development builds can use the local backend; previously loaded 3.2.1 builds still need to be reloaded or replaced.
 - `HttpError` stores the code as `errorCode` (Elysia treats an error's own `code` as its type); responses still send `code`.
 - Deleting a category or nature is refused when an alias uses it too (the server checked versions only).
 - The moderator range-overlap mirror was not added: the reader API does not check overlap either.
 - Issue cards edit and resend inline (name, `from` or start chapter) instead of opening the full prefilled form (owner accepted).
 - No toast with **Review** appears when a run ends with new conflicts (7.3, owner accepted); the navbar turns red and cards read "Needs attention", which opens the Sync status page.
-- The merge to `develop` happened before the phase 10 browser and staging checks (owner request); a local development build (3.2.1) gets 426 from a local `develop` backend until the release bump.
+- The merge to `develop` happened before the phase 10 browser and staging checks (owner request). The local Chrome extension package was subsequently bumped to 3.2.2 to pass the backend's client-version floor. Real Chrome profile and staging checks remain open.
 - A deduplicated upload that returns another file's ID is adopted by rewriting the users' `imageId`.
 - Review correction: feed trigger inserts now hold a transaction-scoped lock, so cursors follow commit order without a fixed settling delay.
 - A local-only lookup-in-use check sees only novels on the device; the server stays the authority.

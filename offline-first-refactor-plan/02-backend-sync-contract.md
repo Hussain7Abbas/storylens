@@ -181,7 +181,7 @@ Backward compatibility is **not** kept (D13). Requests are validated against the
 - `scriptLanguage` stays in `src/utils/translation.ts`: the dashboard's `POST /keywords/:id/link-alias` still uses it to tell an English name stored in `nameAr`.
 - Category and nature deletes are refused when an **alias** uses them too (the server counted versions only); category and nature `PUT` became partial (`color` was required before).
 - Replacement chain rewrite now runs in the same transaction as the create or update, and clears `keywordId` when `to` no longer names a keyword (it used to keep the old link).
-- `MIN_CLIENT_VERSIONS` is `3.2.2` for both apps: every release up to 3.2.1 gets 426 and any version the release bump produces is served. Local development builds report 3.2.1 until the bump, so a local backend on this branch refuses them.
+- `MIN_CLIENT_VERSIONS` is `3.2.2` for both apps: every release up to 3.2.1 gets 426. The local Chrome extension package now reports 3.2.2; a previously loaded 3.2.1 build is still refused until reloaded or replaced.
 - Raw-text migration also decodes `User.name` and `Role.name`/`description` (written through `sanitize` too); `email`, `username` and slugs of users are left alone (usernames and emails never contain the escaped characters in practice, and decoding them could collide with unique indexes). Novel `slugs` are decoded element by element.
 - Phase 8's upload `id` and phase 9's change feeds were implemented in the same backend commit.
 - Live tests run only with `STORYLENS_LIVE_DB_TEST=1`; `make test-live` (with `TEST_DATABASE_URL`) migrates the disposable database and runs them. Plain `bun run test` skips them, so CI without a database does not run them.
