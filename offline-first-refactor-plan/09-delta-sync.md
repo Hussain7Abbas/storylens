@@ -1,6 +1,6 @@
 # Phase 9 — Delta sync
 
-[Global tracker](main.md) · **Status: In review (implemented 2026-09-30; measurements open)** · **Estimate: 5 points** · **Depends on: 2, 5** · **Ships in: the offline-first release (decision D4)**
+[Global tracker](main.md) · **Status: In review (implemented 2026-09-30)** · **Estimate: 5 points** · **Depends on: 2, 5** · **Ships in: the offline-first release (decision D4)**
 
 ## Goal
 
@@ -38,7 +38,7 @@ Refresh downloaded and cached novels, the catalogue and the lookups by downloadi
 - [x] `GET /api/user/sync/lookups/changes?since=` and `GET /api/user/sync/catalogue/changes?since=` work the same way.
 - [x] Register the routes in `src/routes/user.ts` with `USER_ENDPOINT_DESCRIPTIONS` entries (GET defaults to guest access).
 - [x] Retention cron in `src/plugins/crons.ts`.
-- [ ] Measure the trigger overhead on a bulk dashboard operation (for example a keyword merge with many aliases) and log it. — **Open (2026-09-30):** not measured.
+- [x] Measure the trigger overhead on a bulk dashboard operation (for example a keyword merge with many aliases) and log it. — **Done (2026-09-30):** see the log.
 
 ### 9.2 Extension
 
@@ -69,7 +69,7 @@ Refresh downloaded and cached novels, the catalogue and the lookups by downloadi
 ## Exit criteria
 
 - [x] All tests pass in the backend and extension; typecheck passes in all five submodules.
-- [ ] Trigger overhead and the delta and full measurements are in the verification log. — **Open (2026-09-30):** not measured.
+- [x] Trigger overhead and the delta and full measurements are in the verification log. — **Done (2026-09-30):** see the log.
 
 ## Docs
 
@@ -82,7 +82,7 @@ Refresh downloaded and cached novels, the catalogue and the lookups by downloadi
 - Expiry: a cursor older than the oldest kept `seq` gets 410. Pruning always keeps the newest row so an expired cursor stays detectable.
 - Lookups and catalogue feeds select by entity type (not `novelId IS NULL`), because children deleted in a keyword cascade are recorded without a novel.
 - Feed IDs whose current row belongs to another novel are ignored.
-- Tests 1 and 3 are partial: route writes, a keyword delete cascade and the chain rewrite are checked in the backend feed test; the dashboard merge is simulated by a server-side delete in the extension test. Test 6 (writes during a full pull) is not automated.
+- Tests 1 and 3 are partial: route writes, a keyword delete cascade and the chain rewrite are checked in the backend feed test; the dashboard merge is simulated by a server-side delete in the extension test. Test 6 is automated in `test/offline/sync/resolution.test.ts` (a change lands between the cursor read and the row fetch; the next delta pull applies it once).
 
 ## Verification log
 
@@ -90,4 +90,6 @@ Refresh downloaded and cached novels, the catalogue and the lookups by downloadi
 | --- | --- | --- | --- |
 | 2026-09-30 | Backend feed: writes, cascade, chain rewrite, paging, 410, lookups and catalogue | Pass | `apps/backend/test/sync-feed.test.ts` |
 | 2026-09-30 | Extension delta refresh equals full pull; deleted keyword and children; expired cursor falls back; lookups and catalogue | Pass | `test/offline/sync/pull.test.ts` › delta sync |
-| 2026-09-30 | Trigger overhead; delta vs full bytes (test 8) | Not measured | — |
+| 2026-09-30 | Trigger overhead: 2,000 alias inserts and a 4,000-row bulk update in one transaction, with and without the alias trigger (rolled back, two runs) | Inserts 41–53 ms vs 18–22 ms; update 76–79 ms vs 37–62 ms: about 13 µs per row | `psql` on the test database |
+| 2026-09-30 | Delta refresh of the unchanged 2,000-keyword novel (test 8) | 115 bytes, 10–23 ms, against about 6.1 MB and 0.35 s for the full pull | `curl` against a local backend |
+| 2026-09-30 | Writes during a full pull (test 6) | Pass | `test/offline/sync/resolution.test.ts` |

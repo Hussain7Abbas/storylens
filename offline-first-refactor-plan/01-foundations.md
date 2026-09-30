@@ -1,6 +1,6 @@
 # Phase 1 — Foundations
 
-[Global tracker](main.md) · **Status: In review (implemented 2026-09-30; manual checks open)** · **Estimate: 5 points** · **Depends on: none** · **Ships in: the offline-first release (the test harness and CI wiring may merge to `develop` early)**
+[Global tracker](main.md) · **Status: In review (implemented 2026-09-30; manual sign-in checks open)** · **Estimate: 5 points** · **Depends on: none** · **Ships in: the offline-first release (the test harness and CI wiring may merge to `develop` early)**
 
 ## Goal
 
@@ -128,7 +128,7 @@ Manual:
 - Gating: `canEdit*` helpers in `src/lib/auth/permissions.ts`; coloring cards (`coloring-cards.tsx`, `EditGate`) and replacing cards gate per row with the tooltip `permissions.creatorOrModerator`; add-alias/add-version buttons stay for readers; delete buttons live inside the edit forms, which only open when the (identical) delete rule allows.
 - Offline gating (D6): novel add/edit/delete and **Add slug** menu items are disabled with a `offline.requiresConnection` menu label; the chapter-bias pencil and the website selector **Add**/edit use `data-disabled` plus a tooltip (the repo's convention, so the tooltip still shows) and ignore clicks offline.
 - Strings were added directly to `public/locales/{en,ar}.json`: the configured `i18n:parse` output (`src/i18n/messages/`) is not where the app loads translations from, so it was not run. Arabic strings are machine-drafted and need a native review.
-- Not automated: tests 2, 3, 4 and 6 are React/component behaviour (no component test setup exists in the extension); the permission rules they depend on are covered by `test/offline/unit/pure.test.ts` and `enqueue` refusals by `test/offline/store/outbox.test.ts`. The manual sign-in checks below are open.
+- Tests 2, 3, 4 and 6 are automated in `test/ui/components.test.tsx` (happy-dom and Testing Library): another reader's keyword card opens no form while the reader's own alias under it does; novel actions, **Add slug** and website selector **Add** are disabled offline and start no request; `App` keeps one `QueryClient` across locale changes (counted with a `QueryClient` subclass). The manual sign-in checks below are open.
 
 ## Verification log
 
@@ -139,4 +139,5 @@ Manual:
 | 2026-09-30 | `fetchAllPages`: 1,234 rows, empty page, aborted, timeout option (test 5) | Pass | `pure.test.ts` › fetchAllPages |
 | 2026-09-30 | `bun run test` in `apps/extension`, root `make test`, publish workflow step | Pass (126 tests) | `package.json` `test`, `apps/extension/Makefile`, root `Makefile`, `.github/workflows/publish-chrome.yml` |
 | 2026-09-30 | Typecheck in all five submodules | Pass | backend `c9a30da`, `8de7ad7`; extension `57e49a1`, `df14ea8`, `c726009`; client `ea24581`, `879e2b0`; dashboard `ab2e4f9`, `4dc1080`; umbrella `34d4614` (all on `feature/offline-v2`) |
-| 2026-09-30 | Tests 2, 3, 4, 6 and the manual gating checks | Not run | Need a browser (see notes) |
+| 2026-09-30 | Tests 2, 3, 4 and 6 | Pass | `test/ui/components.test.tsx` |
+| 2026-09-30 | Manual gating checks (reader and moderator accounts) | Not run | Needs a browser |

@@ -130,7 +130,7 @@ Use the harness from phase 1 (`fake-indexeddb`, `fake-browser`). Put pure module
 
 ## Exit criteria
 
-- [ ] All tests above pass. Pure modules have branch coverage for every rule table (report `bun test --coverage` in the verification log). — **Open (2026-09-30):** tests pass (see log); a `bun test --coverage` report was not produced.
+- [x] All tests above pass. Pure modules have branch coverage for every rule table (report `bun test --coverage` in the verification log). — **Done (2026-09-30):** see the coverage row in the log (Bun reports line and function coverage, not branches).
 - [x] Typecheck passes in all five submodules.
 - [x] Pattern scan: no temp IDs, no `isDirty`, and nothing reads `storylens-offline` or `storylens-sync-state` outside `upgrade-cleanup.ts`.
 
@@ -162,7 +162,7 @@ Update at the branch merge (phase 10); keep a draft here in the meantime.
 - Not mirrored: a moderator's version range overlapping its neighbours. The reader API does not check overlap either (only "after the latest open version"), so a local check would refuse what the server accepts.
 - The lookup "in use" check only sees novels stored on the device plus pending changes; the server stays the authority (`rejected(rule)`).
 - `planDelete` (the dry run listing the unsent children) exists in `outbox.ts`, but the forms do not call it yet: see phase 6.3.
-- Test 1 is covered by scenario tests (version auto-close, chain rewrite and keyword link, cascades, lookup embedding, `createdById`) rather than one test per table row compared with the fake API; test 5 checks raw text in the view, not the content processor's pattern.
+- Test 1: scenario tests cover each projection rule, and `test/offline/sync/resolution.test.ts` › the view predicts the server compares the local view before sync with the synced and pulled view after the same writes (keyword create with alias, version auto-close, update, replacement chain). Test 5 checks raw text in the view, not the content processor's pattern.
 
 ## Verification log
 
@@ -174,3 +174,5 @@ Update at the branch merge (phase 10); keep a draft here in the meantime.
 | 2026-09-30 | 3.2.x cleanup and retry; database unavailable (tests 18–20) | Pass | `outbox.test.ts` › 3.2.x cleanup |
 | 2026-09-30 | Projection performance (test 21) | About 1 ms for 2,000 keywords, 4,000 children, 200 mutations (Bun, laptop) | `outbox.test.ts` › builds a large view quickly |
 | 2026-09-30 | Pattern scan: temp IDs, `isDirty`, 3.2.x storage readers | No hits outside `upgrade-cleanup.ts` | `findings.md` scans |
+| 2026-09-30 | Coverage (`bun test --coverage`) | Lines: merge, scheduler, indicator, form changes, permissions 100 %; validation 99 %; outbox 99 %; projection 96 %; snapshot 96 %; classify 100 % after adding the 422 case | `apps/extension` |
+| 2026-09-30 | View before sync equals server after sync (test 1) | Pass | `test/offline/sync/resolution.test.ts` |

@@ -41,8 +41,7 @@ const extensionId = new URL(worker.url()).hostname;
 await worker.evaluate(async ({ novel, selector, locale, launcherX }) => {
   await chrome.storage.local.set({
     "storylens-onboarding-completed": true,
-    "storylens-auth": JSON.stringify({ user: { id: "sample-reader", name: "Sample Reader", username: "sample-reader", email: "reader@example.invalid", role: "user" }, token: "local-sample-only" }),
-    "storylens-sync-state": { pendingOps: [], lastSyncAt: 0, downloadedNovelIds: [novel.id] },
+    "storylens-auth": JSON.stringify({ user: { id: "sample-reader", name: "Sample Reader", username: "sample-reader", email: "reader@example.invalid", isGuest: false, role: null, permissions: [] }, token: "local-sample-only" }),
     "storylens-website-selector-cache:127.0.0.1": selector,
     "storylens-analytics-enabled": false,
     "storylens-locale": locale,
@@ -52,13 +51,28 @@ await worker.evaluate(async ({ novel, selector, locale, launcherX }) => {
 const setup = await context.newPage();
 await setup.goto(`chrome-extension://${extensionId}/popup.html`);
 await setup.waitForTimeout(1500);
+// The sample rows use one `name`/`description`; the extension stores them per language.
+const field = locale === "ar" ? "Ar" : "En";
+const named = ({ name, description, ...row }) => ({ nameAr: null, nameEn: null, ...row, [`name${field}`]: name, ...(description === undefined ? {} : { description }) });
+const sampleNovel = (({ name, description, downloadedAt: _downloadedAt, ...row }) => ({ ...row, nameAr: null, nameEn: null, descriptionAr: null, descriptionEn: null, context: null, [`name${field}`]: name, [`description${field}`]: description }))(sample.novel);
 await setup.evaluate(async (data) => {
+  // The extension's `storylens` database exists once the popup opened; write the
+  // sample as server rows (snapshot tables) and mark the novel downloaded.
   const db = await new Promise((resolve, reject) => {
-    const request = indexedDB.open("storylens-offline");
+    const request = indexedDB.open("storylens");
     request.onsuccess = () => resolve(request.result);
     request.onerror = () => reject(request.error);
   });
-  const tables = { catalogNovels: [data.novel], novels: [data.novel], keywords: data.keywords, keywordAliases: data.aliases, keywordVersions: data.versions, replacements: data.replacements, keywordCategories: data.categories, keywordNatures: data.natures };
+  const tables = {
+    novels: [data.novel],
+    keywords: data.keywords.map(({ aliases: _aliases, versions: _versions, ...keyword }) => keyword),
+    keywordAliases: data.aliases,
+    keywordVersions: data.versions,
+    replacements: data.replacements,
+    keywordCategories: data.categories,
+    keywordNatures: data.natures,
+    novelSync: [{ novelId: data.novel.id, pinned: 1, downloadedAt: Date.now(), lastPulledAt: Date.now(), lastFullPullAt: Date.now() }],
+  };
   await new Promise((resolve, reject) => {
     const transaction = db.transaction(Object.keys(tables), "readwrite");
     for (const [table, rows] of Object.entries(tables)) for (const row of rows) transaction.objectStore(table).put(row);
@@ -66,7 +80,7 @@ await setup.evaluate(async (data) => {
     transaction.onerror = () => reject(transaction.error);
   });
   db.close();
-}, { novel: sample.novel, keywords: sample.keywords, aliases: sample.aliases, versions: sample.versions, replacements: sample.replacements, categories: sample.categories, natures: sample.natures });
+}, { novel: sampleNovel, keywords: sample.keywords.map(named), aliases: sample.aliases.map(named), versions: sample.versions, replacements: sample.replacements, categories: sample.categories, natures: sample.natures });
 await setup.close();
 context.setDefaultTimeout(10000);
 const page = await context.newPage();
@@ -147,8 +161,17 @@ await popup.getByRole("tab", { name: labels.coloring, exact: true }).waitFor();
 await resetScroll();
 await page.locator('[data-keyword-id="rowan"]').nth(1).hover();
 await page.getByText(labels.savedNote, { exact: true }).waitFor();
-const pendingOps = await worker.evaluate(async () => (await chrome.storage.local.get("storylens-sync-state"))["storylens-sync-state"].pendingOps);
-if (!pendingOps.some(operation => operation.entity === "keywordVersion" && operation.payload.description === labels.savedNote)) throw new Error("Saved note was not queued for synchronization");
+// The saved edit waits in the outbox (`mutations`) until the browser is online.
+const pendingOps = await worker.evaluate(() => new Promise((resolve, reject) => {
+  const request = indexedDB.open("storylens");
+  request.onerror = () => reject(request.error);
+  request.onsuccess = () => {
+    const all = request.result.transaction("mutations").objectStore("mutations").getAll();
+    all.onsuccess = () => resolve(all.result);
+    all.onerror = () => reject(all.error);
+  };
+}));
+if (!pendingOps.some(operation => operation.entity === "keywordVersion" && operation.patch.description === labels.savedNote)) throw new Error("Saved note was not queued for synchronization");
 const evidence = { highlightedKeywords: await page.locator(".storylens-keyword").count(), replacement: initialReplacement, savedNote: await page.locator("#storylens-keyword-tooltip-root").innerText(), queuedOperations: pendingOps.length };
 console.log("Verified local edit", evidence);
 await page.waitForTimeout(5000);

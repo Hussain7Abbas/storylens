@@ -1,6 +1,6 @@
 # Phase 5 — Pull and cache freshness
 
-[Global tracker](main.md) · **Status: In review (implemented 2026-09-30; measurement open)** · **Estimate: 5 points** · **Depends on: 3, 4** · **Ships in: the offline-first release (branch `feature/offline-v2`)**
+[Global tracker](main.md) · **Status: In review (implemented 2026-09-30)** · **Estimate: 5 points** · **Depends on: 3, 4** · **Ships in: the offline-first release (branch `feature/offline-v2`)**
 
 ## Goal
 
@@ -88,7 +88,7 @@ Keep the snapshot fresh without ever touching local intent. Pulls replace server
   - no snapshot writes outside `snapshot.ts`, and none of its callers outside `sync/`;
   - `writeNovelContentCache` and `replaceKeywordsForNovel` are gone;
   - no Dexie import in `src/entrypoints/content`.
-- [ ] A full-pull time and bytes measurement for a 2,000-keyword novel is logged below; phase 9 compares its delta refresh with it. — **Open (2026-09-30):** not measured (needs a real backend and a 2,000-keyword novel).
+- [x] A full-pull time and bytes measurement for a 2,000-keyword novel is logged below; phase 9 compares its delta refresh with it. — **Done (2026-09-30):** see the measurement row in the log.
 
 ## Risks
 
@@ -104,7 +104,7 @@ Keep the snapshot fresh without ever touching local intent. Pulls replace server
 - Page data waits up to 10 s for a first pull by polling `novelSync.lastPulledAt` (or `catalogPulledAt`) while a `kickSync("page")` runs under the lock; `syncKick` gained `forceCatalogue` for a slug missing from the catalogue and for the catalogue refresh after novel and slug changes.
 - `removeDownload` deletes snapshot rows through `snapshot.removeNovelSnapshot` inside the sync lock, so snapshot writes stay in `snapshot.ts`.
 - A downloaded novel removed on the server keeps its catalogue row until the reader removes the download.
-- Tests 2, 3 and 6 are covered indirectly (concurrency in phase 3 test 14; lookups pulled regardless of pending changes; a deleted category is pruned) rather than as the exact scenarios listed.
+- Tests 2, 3 and 6 are automated as listed in `test/offline/sync/resolution.test.ts` › pull scenarios.
 
 ## Verification log
 
@@ -113,4 +113,5 @@ Keep the snapshot fresh without ever touching local intent. Pulls replace server
 | 2026-09-30 | Tests 1, 4, 5, 7–15 | Pass | `test/offline/sync/pull.test.ts` |
 | 2026-09-30 | Every-page pulls of 1,100 keywords in two languages | Pass | `pull.test.ts` › fetch every page |
 | 2026-09-30 | Pattern scan: snapshot writes, old cache writers, content-script Dexie imports | Clean (only `snapshot.ts`; old functions gone; no Dexie in `.output/chrome-mv3/content-scripts/content.js`) | `rg` scans; `bun run build` |
-| 2026-09-30 | Full-pull time and bytes | Not measured | — |
+| 2026-09-30 | Full pull of a 2,000-keyword novel (2 languages × 4 pages of 500, novel, replacements, biases) against a local backend and Postgres | About 6.1 MB and 0.35 s in total (keyword pages 760 KB each, 30–80 ms) | `curl` against the release backend on the test database |
+| 2026-09-30 | Tests 2, 3 and 6 | Pass | `test/offline/sync/resolution.test.ts` |

@@ -1,6 +1,6 @@
 # Phase 10 — Rollout, hardening and docs
 
-[Global tracker](main.md) · **Status: Not started (owner); docs done 2026-09-30** · **Estimate: 3 points** · **Depends on: 1–9** · **Ships in: the offline-first release**
+[Global tracker](main.md) · **Status: In progress (2026-09-30): merged to develop locally; browser, staging and release checks open** · **Estimate: 3 points** · **Depends on: 1–9** · **Ships in: the offline-first release**
 
 ## Goal
 
@@ -12,7 +12,7 @@ There is one coordinated release and no compatibility layer, so the order of ste
 
 | Step | What happens | Readers see |
 | --- | --- | --- |
-| 1. Merge | The `feature/offline-v2` branches of all four apps merge to `develop` once 10.1–10.3 pass | — |
+| 1. Merge | The `feature/offline-v2` branches of all four apps merge to `develop` once 10.1–10.3 pass (**done early on 2026-09-30 at the owner's request**, before the browser checks; local merges, not pushed) | — |
 | 2. Back up | Take a production database backup right before the backend deploy (the alias-name and raw-text migrations are not reversible) | — |
 | 3. Extension | Submitted to the Chrome Web Store. During review it runs against the **old** API: the protocol guard pauses sync and local edits are kept | Reviewers: "Sync paused until Story Lens updates" |
 | 4. Desktop client | The new build is published before the backend deploys, so readers can update as soon as the floor rises | — |
@@ -25,7 +25,7 @@ The website does not change.
 
 ### 10.1 Before merging
 
-- [ ] Rebase every branch on `develop`. Run `make test`, `make typecheck`, and `bun run check` in the extension.
+- [x] Rebase every branch on `develop`. Run `make test`, `make typecheck`, and `bun run check` in the extension. — **Done (2026-09-30):** `develop` had not moved (no rebase needed); all suites and typechecks pass; Biome is clean in every changed file (pre-existing findings elsewhere remain).
 - [x] Run the pattern scans; every hit must match its allowed list in [findings](findings.md#pattern-scan-to-repeat-after-each-phase). — **Done (2026-09-30):** Run on the branches on 2026-09-30 (all hits match); run again after the rebase.
 - [x] Every row of the [compatibility cleanup inventory](main.md#compatibility-cleanup-inventory-d13) is done or kept with its reason. — **Done (2026-09-30):** Done on the branches: see the inventory in main.md.
 - [ ] Check the performance budgets in a real Chrome profile and log them:
@@ -119,7 +119,7 @@ The website does not change.
   - reliable offline editing, conflict handling and Sync status;
   - "download your novels again for offline use";
   - "update the desktop client".
-- [ ] `docs/chrome-store/README.md`: re-check the offline-save capture steps against the new UI. Update `apps/extension/CHROMEWEBSTORE.md` if the listing text mentions offline behaviour. — **Open (2026-09-30):** Not re-checked.
+- [x] `docs/chrome-store/README.md`: re-check the offline-save capture steps against the new UI. Update `apps/extension/CHROMEWEBSTORE.md` if the listing text mentions offline behaviour. — **Done (2026-09-30):** script and README updated; the capture itself was not re-run.
 - [ ] `docs/intro.md`: mark this tracker done, or remove its link once the work is merged and documented. — **Open (2026-09-30):** The index now says the work is implemented on the branches; mark done or remove it after the merge.
 - [x] Every `CLAUDE.md` stays `@AGENTS.md` only.
 
@@ -132,7 +132,7 @@ The website does not change.
 
 ## Implementation notes (2026-09-30)
 
-- Only 10.7 (documentation) was done, in the same change: `docs/extension.md`, `docs/backend.md` (Sync API), `docs/compatibility.md` (the deliberate break), `docs/dashboard.md`, `docs/client.md`, `docs/development.md`, `docs/intro.md`, `docs/changelog/v3.3.0.md` (draft; version is a placeholder), and the backend, extension, client and dashboard `AGENTS.md`. Not re-checked: `docs/chrome-store/README.md` capture steps and `apps/extension/CHROMEWEBSTORE.md`.
+- Only 10.7 (documentation) was done, in the same change: `docs/extension.md`, `docs/backend.md` (Sync API), `docs/compatibility.md` (the deliberate break), `docs/dashboard.md`, `docs/client.md`, `docs/development.md`, `docs/intro.md`, `docs/changelog/v3.3.0.md` (draft; version is a placeholder), and the backend, extension, client and dashboard `AGENTS.md`. `docs/chrome-store/capture.mjs` and its README were updated for the new database (snapshot seeding, per-language names, outbox check) but the capture was not re-run; `apps/extension/CHROMEWEBSTORE.md` needs no change.
 - Everything else in 10.1–10.6 needs a browser, staging or the release itself and is open.
 
 ## Verification log
@@ -141,3 +141,6 @@ The website does not change.
 | --- | --- | --- | --- |
 | 2026-09-30 | Documentation (10.7) | Done except the Chrome Web Store capture docs | umbrella `34d4614` |
 | 2026-09-30 | 10.1–10.6 | Not started | — |
+| 2026-09-30 | Pre-merge checks (10.1): typecheck ×5, all test suites, scans | Pass | backend 77 (live), extension 140, client 33 re-run before the merge; dashboard 48 and website 212 from the earlier run (no changes since) |
+| 2026-09-30 | Performance (partial, not a real Chrome profile) | Projection ~1 ms; full pull ~0.35 s; empty delta 10–23 ms (local backend) | phase 3 and phase 9 logs |
+| 2026-09-30 | Merge to `develop` (owner request, before 10.2–10.3) | Done locally in the four submodules and the umbrella; not pushed | see main.md |

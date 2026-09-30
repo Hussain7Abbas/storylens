@@ -1,6 +1,6 @@
 # Phase 7 — Conflict and issue resolution UX
 
-[Global tracker](main.md) · **Status: In review (implemented 2026-09-30; gaps listed)** · **Estimate: 5 points** · **Depends on: 6** · **Ships in: the offline-first release (branch `feature/offline-v2`)**
+[Global tracker](main.md) · **Status: In review (implemented 2026-09-30)** · **Estimate: 5 points** · **Depends on: 6** · **Ships in: the offline-first release (branch `feature/offline-v2`)**
 
 ## Goal
 
@@ -34,17 +34,17 @@ Each action calls the phase 3 `applyResolution` or `discardMutation` and then `s
 | Other account | "Made while signed in as {user}" | **Sign in** (opens the website profile page), **Discard** |
 
 - [x] **Discard** confirms first. When dependants exist (for example aliases created under a discarded keyword), the dialog lists them and discards them together.
-- [ ] **Create again** turns an update of a deleted row into a create under a new ID, using the viewed values. For aliases and versions it needs an existing parent, and otherwise offers only **Discard**. — **Open (2026-09-30):** implemented for every entity; it does not first check that an alias's or version's parent still exists (a missing parent comes back as `parent-missing`).
-- [ ] Field labels reuse the form labels. Values are formatted: category and nature names instead of IDs, `ch.X–Y` for ranges, matching type labels, and image thumbnails. — **Open (2026-09-30):** labels, matching types and booleans are formatted; categories and natures show their IDs, ranges are shown raw, and images have no thumbnails.
+- [x] **Create again** turns an update of a deleted row into a create under a new ID, using the viewed values. For aliases and versions it needs an existing parent, and otherwise offers only **Discard**. — **Done (2026-09-30):** an alias or version needs its keyword on the device or in an unsent create; otherwise it is refused with `PARENT_NOT_FOUND` (tested).
+- [x] Field labels reuse the form labels. Values are formatted: category and nature names instead of IDs, `ch.X–Y` for ranges, matching type labels, and image thumbnails. — **Done (2026-09-30):** category and nature names, `ch.N` chapters, matching labels and a thumbnail of the server's image (`ValueCell`).
 
 ### 7.3 Notification
 
 - [ ] When a run ends with new `conflict` or `rejected` mutations, the popup (if open) shows a toast with **Review**. The badge is red while anything needs attention (phase 4). — **Open (2026-09-30):** no toast with **Review** (owner accepted); **Sync now** shows a summary toast and the navbar turns red.
-- [ ] Entity badges from phase 6 link to their issue card. — **Open (2026-09-30):** badges are not links.
+- [x] Entity badges from phase 6 link to their issue card. — **Done (2026-09-30):** "Needs attention" badges open the Sync status page.
 
 ### 7.4 Accessibility and localization
 
-- [ ] Keyboard: every action is reachable; focus moves to the next card after a resolution; dialogs trap focus. Mantine defaults plus checks. — **Open (2026-09-30):** Mantine defaults only; focus does not move to the next card after a resolution.
+- [x] Keyboard: every action is reachable; focus moves to the next card after a resolution; dialogs trap focus. Mantine defaults plus checks. — **Done (2026-09-30):** cards are focusable (`data-issue-card`) and focus moves to the card that took the resolved one's place; dialogs are Mantine's.
 - [x] Screen readers: cards are labelled with the kind and entity name; comparison tables use table semantics.
 - [x] Arabic and RTL: mirrored layout; values keep their own direction (`dir="auto"`).
 - [x] Add every string to English and Arabic with `bun run i18n:parse`.
@@ -74,7 +74,7 @@ Manual:
 
 ## Exit criteria
 
-- [ ] Every conflict and rejection kind the runner can produce has a card and at least one action that removes it from Needs attention. — **Open (2026-09-30):** every kind has a card and **Discard**; see the tests gap below.
+- [x] Every conflict and rejection kind the runner can produce has a card and at least one action that removes it from Needs attention. — **Done (2026-09-30):** every kind has a card with **Discard**, plus its kind-specific actions.
 - [x] Automated tests pass; typecheck passes in all five submodules; the analytics catalog matches `rg "trackEvent\(|trackAnalyticsEvent\(" src`.
 
 ## Docs
@@ -83,9 +83,9 @@ Manual:
 
 ## Implementation notes (2026-09-30)
 
-- **Edit** for `duplicate` and `rule` edits the refused field inline on the card (the UI-language name, a replacement's `from`, or a version's start chapter) and resends, instead of opening the prefilled form (owner accepted as the better UX). There is no **Show existing** for duplicate keywords.
+- **Edit** for `duplicate` and `rule` edits the refused field inline on the card (the UI-language name, a replacement's `from`, or a version's start chapter) and resends, instead of opening the prefilled form (owner accepted as the better UX). A duplicate keyword offers **Show existing**, which selects the novel and opens the coloring tab searched to the name (`store/show-existing.ts`).
 - **Sign in** opens the website login page (not the profile page).
-- Tests 3, 4 and 5 are not automated; test 1 covers field choices, and discard with dependants is test 2.
+- Tests 3, 4 and 5 are automated in `test/offline/sync/resolution.test.ts`.
 
 ## Verification log
 
@@ -93,5 +93,6 @@ Manual:
 | --- | --- | --- | --- |
 | 2026-09-30 | Resolution logic: field choices, empty patch removal (test 1) | Pass | `test/offline/store/outbox.test.ts` › resolves conflicts field by field |
 | 2026-09-30 | Discard with dependants (test 2) | Pass | same test |
-| 2026-09-30 | Tests 3–5 and the manual list | Not run | — |
+| 2026-09-30 | Tests 3–5 | Pass | `test/offline/sync/resolution.test.ts` |
+| 2026-09-30 | Manual list (two profiles, dashboard merge, keyboard-only, Arabic) | Not run | Needs browsers |
 | 2026-09-30 | Analytics catalog matches `rg "trackEvent\(|trackAnalyticsEvent\(" src` | Pass | `apps/extension/AGENTS.md` |

@@ -1,6 +1,6 @@
 # Offline-first refactor — global tracker
 
-**Status: Phases 1–9 implemented on the `feature/offline-v2` branches (2026-09-30); phase 10's browser, staging and release checks remain for the owner.** Every decision is made (D1–D14; D7 and D8 are superseded by D13). See [Implementation status](#implementation-status-2026-09-30).
+**Status: Phases 1–9 implemented on the `feature/offline-v2` branches and merged to `develop` locally (2026-09-30); phase 10's browser, staging and release checks remain for the owner.** Every decision is made (D1–D14; D7 and D8 are superseded by D13). See [Implementation status](#implementation-status-2026-09-30).
 
 ## Goal
 
@@ -72,7 +72,7 @@ Story points are relative estimates, not dates. Status values: Not started · In
 | [7 — Conflict resolution UX](07-conflict-resolution-ux.md) | Sync status page, an issue card and actions per kind, notifications, analytics | 5 | 6 | Offline-first release | In review (2026-09-30) |
 | [8 — Offline image uploads](08-offline-image-uploads.md) | Queued image blobs, idempotent uploads, pending previews | 3 | 6 | Offline-first release | In review (2026-09-30) |
 | [9 — Delta sync](09-delta-sync.md) | Change feed written by database triggers; cursor refresh of novels, lookups and the catalogue | 5 | 2, 5 | Offline-first release | In review (2026-09-30) |
-| [10 — Rollout, hardening and docs](10-rollout-hardening-and-docs.md) | Coordinated release across four apps, fresh-start and forced-update checks, end-to-end matrix, documentation | 3 | 1–9 | Offline-first release | Not started (owner checks) |
+| [10 — Rollout, hardening and docs](10-rollout-hardening-and-docs.md) | Coordinated release across four apps, fresh-start and forced-update checks, end-to-end matrix, documentation | 3 | 1–9 | Offline-first release | In progress (2026-09-30: merged to `develop` locally; browser, staging and release checks open) |
 
 Total: 58 points.
 
@@ -142,7 +142,7 @@ Tick a finding when the phase that closes it records its test or manual check in
   - [x] S2 (4, 5)
   - [x] U1 (1)
   - [ ] U2 (5, 6) — page side tested; popup side (Dexie `storagemutated` across contexts) needs a browser check
-  - [ ] U3 (6) — keyword cards use view sync states; alias, version and replacement cards still use the pending-ID set
+  - [x] U3 (6)
   - [x] U4 (4, 5)
   - [x] U5 (5, 6)
   - [x] U6 (8)
@@ -186,9 +186,9 @@ Tick a finding when the phase that closes it records its test or manual check in
 
 ## Implementation status (2026-09-30)
 
-Commits on `feature/offline-v2`: backend `c9a30da`, `8de7ad7`; extension `57e49a1`, `df14ea8`, `c726009`; client `ea24581`, `879e2b0`; dashboard `ab2e4f9`, `4dc1080`; umbrella `34d4614`. Nothing is merged to `develop` or released.
+Commits on `feature/offline-v2`: backend `c9a30da`, `8de7ad7`; extension `57e49a1`, `df14ea8`, `c726009`, `454ce48`, `c72f22e`, `997df77`; client `ea24581`, `879e2b0`; dashboard `ab2e4f9`, `4dc1080`; umbrella `34d4614` and later. At the owner's request the four submodules and the umbrella were merged into `develop` locally (no-fast-forward merges, not pushed) before the browser, staging and release checks of phase 10. Nothing is released.
 
-**Verified (automated):** typecheck in all five submodules; backend 77 tests with `make test-live` on a disposable database (sync contract, replays and races, stale writes, codes, D12 matrix, partial updates and clears, protocol and 426 floors, change feeds and pruning, upload replay, alias-name and raw-text migrations with fixtures, stored-text scan); extension 126 tests on `fake-indexeddb`, a fake browser and a fake API (projection, coalescing, validation, permissions, 50 concurrent enqueues from two contexts, snapshot pulls with pending changes, cleanup, runner scenarios for lost responses, dead workers, merges, conflicts, 401/426/5xx/429, network drops, dependencies, accounts, old API, reruns, deadlines, alarms; pulls, delta sync, page data, downloads, images); client 33 tests and build; dashboard 48 Playwright tests; website 212. Pattern scans match their allowed lists. Projection of 2,000 keywords with 4,000 children and 200 mutations: about 1 ms in Bun.
+**Verified (automated):** typecheck in all five submodules; backend 77 tests with `make test-live` on a disposable database (sync contract, replays and races, stale writes, codes, D12 matrix, partial updates and clears, protocol and 426 floors, change feeds and pruning, upload replay, alias-name and raw-text migrations with fixtures, stored-text scan); extension 140 tests on `fake-indexeddb`, a fake browser and a fake API (projection, coalescing, validation, permissions, 50 concurrent enqueues from two contexts, snapshot pulls with pending changes, cleanup, runner scenarios for lost responses, dead workers, merges, conflicts, 401/426/5xx/429, network drops, dependencies, accounts, old API, reruns, deadlines, alarms; pulls, delta sync, page data, downloads, images, resolution actions and pull scenarios; component tests with happy-dom for gating, the stable query client, cross-context invalidation and storage-unavailable mode); client 33 tests and build; dashboard 48 Playwright tests; website 212. Pattern scans match their allowed lists. Projection of 2,000 keywords with 4,000 children and 200 mutations: about 1 ms in Bun. Full pull of a 2,000-keyword novel against a local backend: about 6.1 MB, 0.35 s; delta refresh with no changes: 115 bytes, 10–23 ms; change-feed triggers add about 13 µs per written row.
 
 **Deviations from the plan (decide or accept):**
 
@@ -196,11 +196,9 @@ Commits on `feature/offline-v2`: backend `c9a30da`, `8de7ad7`; extension `57e49a
 - `HttpError` stores the code as `errorCode` (Elysia treats an error's own `code` as its type); responses still send `code`.
 - Deleting a category or nature is refused when an alias uses it too (the server checked versions only).
 - The moderator range-overlap mirror was not added: the reader API does not check overlap either.
-- Issue cards edit and resend inline (name, `from` or start chapter) instead of opening the full prefilled form (owner accepted); there is no **Show existing** for duplicate keywords.
-- No toast with **Review** appears when a run ends with new conflicts (7.3, owner accepted); the navbar turns red and keyword cards read "Needs attention", but the badges are not links yet.
-- Deleting a locally created row does not list its unsent children before confirming (6.3); they are removed with it.
-- Offline-unavailable mode shows the banner but lists do not read online (6.7).
-- Conflict tables show category and nature IDs rather than names; no image thumbnails; focus does not move after a resolution (7.2, 7.4).
+- Issue cards edit and resend inline (name, `from` or start chapter) instead of opening the full prefilled form (owner accepted).
+- No toast with **Review** appears when a run ends with new conflicts (7.3, owner accepted); the navbar turns red and cards read "Needs attention", which opens the Sync status page.
+- The merge to `develop` happened before the phase 10 browser and staging checks (owner request); a local development build (3.2.1) gets 426 from a local `develop` backend until the release bump.
 - A deduplicated upload that returns another file's ID is adopted by rewriting the users' `imageId`.
 - Change-feed cursors hold back behind changes younger than a minute (late-committing transactions).
 - A local-only lookup-in-use check sees only novels on the device; the server stays the authority.
@@ -208,6 +206,6 @@ Commits on `feature/offline-v2`: backend `c9a30da`, `8de7ad7`; extension `57e49a
 
 **Per-phase detail:** each phase file now has its status, ticked tasks, open items marked **Open (2026-09-30)** with the reason, an *Implementation notes* section and a filled verification log.
 
-**Found and fixed after the first pass:** refused deletes (category in use, base version) wrote nothing and showed nothing; they now show the reason (extension `c726009`).
+**Found and fixed after the first pass:** refused deletes (category in use, base version) wrote nothing and showed nothing; they now show the reason (extension `c726009`). **Create again** for an alias or version whose keyword was deleted on the server would have been rejected again; it is now refused up front (extension `997df77`).
 
-**Not verified here (phase 10, needs a browser or staging):** Dexie `storagemutated` delivery from the worker to the popup and launcher iframe (a change-counter check covers misses), Firefox launcher-iframe storage partitioning (6.7), the manual checklists of phases 1 and 6–8, RTL layout of the new popover, dialog and Sync status page, performance budgets in a real Chrome profile, trigger overhead and full-vs-delta byte measurements, migrations on a production copy, and the release order. The new strings are machine-drafted in Arabic and need a native review.
+**Not verified here (phase 10, needs a browser or staging):** Dexie `storagemutated` delivery from the worker to the popup and launcher iframe (a change-counter check covers misses), Firefox launcher-iframe storage partitioning (6.7), the manual checklists of phases 1 and 6–8, RTL layout of the new popover, dialog and Sync status page, performance budgets in a real Chrome profile, migrations on a production copy, re-running the store screenshot capture, and the release order. The new strings are machine-drafted in Arabic and need a native review.

@@ -33,7 +33,7 @@ Every screen reads local views and writes through `enqueue`, whether online or o
 - [x] Reimplement `useOfflineKeywordMutations`, `…AliasMutations`, `…VersionMutations`, `…ReplacementMutations`, `useOfflineCategoryMutations` and `useOfflineNatureMutations` (names kept) on `enqueue`, followed by `sendMessage("syncKick", { reason: "enqueue" })` and `refreshContentScript()`.
 - [x] No network calls remain in these hooks (W1). Delete `runBackgroundSync`, `reportQueuedSyncFailure`, `withBackgroundSync` and `store/sync-status.ts`.
 - [x] Map `PermissionDenied` and `ValidationFailed` codes to localized messages in the forms. Nothing is written on refusal.
-- [ ] Deleting a locally created row that has unsent children asks for confirmation listing them. The data comes from `enqueue`'s dry run. — **Open (2026-09-30):** `planDelete` exists, but the forms still use their existing delete confirmation without listing the unsent children. The children are removed with the row either way.
+- [x] Deleting a locally created row that has unsent children asks for confirmation listing them. The data comes from `enqueue`'s dry run. — **Done (2026-09-30):** the keyword delete confirmation shows `UnsentDependants` (from `planDelete`) with the count of unsent changes it discards.
 
 ### 6.4 Forms send changes, not snapshots
 
@@ -80,7 +80,7 @@ Every screen reads local views and writes through `enqueue`, whether online or o
 ### 6.7 Platform checks
 
 - [ ] **Firefox:** confirm that the launcher iframe (`popup.html` embedded in a site) opens the same IndexedDB as the toolbar popup. Write in the iframe, read in the toolbar popup, and compare `mutations` counts. If it is partitioned, add a `viewProxy` and `enqueueProxy` message pair handled by the background, and use it whenever `window.parent !== window` on Firefox. — **Open (2026-09-30):** not verified (needs Firefox).
-- [ ] **Database unavailable** (`offlineUnavailable`): show a banner ("Offline storage is unavailable in this browser profile; changes need a connection"), read lists online and disable offline-only actions. — **Open (2026-09-30):** the banner shows (`OfflineUnavailableBanner` in `popup/App.tsx`), but lists do not fall back to reading online; they show empty.
+- [x] **Database unavailable** (`offlineUnavailable`): show a banner ("Offline storage is unavailable in this browser profile; changes need a connection"), read lists online and disable offline-only actions. — **Done (2026-09-30):** lists and page data read the API (`fetchNovelBundle`, `fetchLookups`, `fetchNovels`), and `enqueue` refuses edits with `StorageUnavailable` ("changes need a connection"); tested in `pull.test.ts`.
 
 ### 6.8 Remove the legacy engine
 
@@ -141,13 +141,13 @@ Manual (Chrome and Firefox, toolbar popup and launcher popup):
 ## Implementation notes (2026-09-30)
 
 - Hook names and return shapes were kept, except the write inputs: create takes field values (plus an optional queued `image`), update takes `{ id, changes, seen, seenUpdatedAt }` (from `form-changes.ts`), delete takes the ID. `useOfflineKeywordAliases` now also takes the novel ID.
-- Row badges: keyword cards show "Needs attention" (red) from the view's `EntitySyncState`; alias, version and replacement cards still use the pending set only, and the badges are not links to the status page.
+- Row badges: every card (keywords, aliases, versions, replacements, categories, natures) shows its view `EntitySyncState` through `components/sync-badge.tsx`; "Needs attention" opens the Sync status page.
 - Delete refusals (for example a category in use, a base version) now show a toast (`c726009`): delete buttons have no error area.
-- The category and nature forms still show their generic error for refused creates and updates (not the specific validation message).
+- The category and nature forms show the specific refusal message (`offlineErrorMessage`).
 - Selection view and parent select read `useNovelKeywords` (the view); `src/hooks/use-novel-keywords.ts` was removed and callers import from `@/lib/offline/hooks`.
 - The Sign-in-again link opens the website login page; Update required calls `runtime.requestUpdateCheck`.
 - Also removed: `src/utils/upload-image-file.ts` (images are queued), `test/sync-engine.test.ts`, and the client app's own `decodeStoredText` (`apps/client/src/crawl/merge.ts`).
-- Tests 4, 5 and 6 are not automated as written: the outbox dependency part of 5 is covered by `outbox.test.ts`; 4 and 6 need hook/component tests that the extension has no setup for.
+- Tests 4 and 6 are automated in `test/ui/components.test.tsx` (test 4 uses two Dexie instances in one process, so it proves the invalidation hook, not delivery from a real service worker). Test 5's dependency part is covered by `outbox.test.ts` and the immediate parent link by the extraction view saving with the returned `entityId`.
 
 ## Verification log
 
@@ -158,3 +158,4 @@ Manual (Chrome and Firefox, toolbar popup and launcher popup):
 | 2026-09-30 | Extension typecheck and build | Pass | `bun run typecheck`, `bun run build` |
 | 2026-09-30 | Pattern scans (final allowed lists) | Match | `findings.md` scans |
 | 2026-09-30 | Cross-context invalidation, Firefox iframe, manual list, RTL | Not run | Need a browser |
+| 2026-09-30 | Tests 4 and 6; storage-unavailable mode | Pass | `test/ui/components.test.tsx`, `test/offline/sync/pull.test.ts` |
