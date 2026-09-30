@@ -1,6 +1,6 @@
 # Phase 9 — Delta sync
 
-[Global tracker](main.md) · **Status: Not started** · **Estimate: 5 points** · **Depends on: 2, 5** · **Ships in: the offline-first release (decision D4)**
+[Global tracker](main.md) · **Status: In review (implemented 2026-09-30; measurements open)** · **Estimate: 5 points** · **Depends on: 2, 5** · **Ships in: the offline-first release (decision D4)**
 
 ## Goal
 
@@ -31,27 +31,27 @@ Refresh downloaded and cached novels, the catalogue and the lookups by downloadi
 
 ### 9.1 Backend
 
-- [ ] Migration: the `SyncChange` table with indexes `(novelId, seq)`, `(entity, seq)` and `(seq)`, plus trigger functions for each listed table (`AFTER INSERT OR UPDATE OR DELETE … FOR EACH ROW`).
-- [ ] `GET /api/user/sync/novels/:id/changes?since=<seq>&limit=1000` returns `{ novel?, keywords, aliases, versions, replacements, biases, deleted: [{ entity, id }], cursor, hasMore }`.
+- [x] Migration: the `SyncChange` table with indexes `(novelId, seq)`, `(entity, seq)` and `(seq)`, plus trigger functions for each listed table (`AFTER INSERT OR UPDATE OR DELETE … FOR EACH ROW`).
+- [x] `GET /api/user/sync/novels/:id/changes?since=<seq>&limit=1000` returns `{ novel?, keywords, aliases, versions, replacements, biases, deleted: [{ entity, id }], cursor, hasMore }`.
   - It returns the current rows for the changed IDs, with duplicate IDs collapsed, in both languages (it ignores `Accept-Language`).
   - Without `since`, it answers only the current cursor (used before a full pull).
-- [ ] `GET /api/user/sync/lookups/changes?since=` and `GET /api/user/sync/catalogue/changes?since=` work the same way.
-- [ ] Register the routes in `src/routes/user.ts` with `USER_ENDPOINT_DESCRIPTIONS` entries (GET defaults to guest access).
-- [ ] Retention cron in `src/plugins/crons.ts`.
-- [ ] Measure the trigger overhead on a bulk dashboard operation (for example a keyword merge with many aliases) and log it.
+- [x] `GET /api/user/sync/lookups/changes?since=` and `GET /api/user/sync/catalogue/changes?since=` work the same way.
+- [x] Register the routes in `src/routes/user.ts` with `USER_ENDPOINT_DESCRIPTIONS` entries (GET defaults to guest access).
+- [x] Retention cron in `src/plugins/crons.ts`.
+- [ ] Measure the trigger overhead on a bulk dashboard operation (for example a keyword merge with many aliases) and log it. — **Open (2026-09-30):** not measured.
 
 ### 9.2 Extension
 
-- [ ] `novelSync.cursor`, plus `syncMeta.lookupsCursor` and `syncMeta.catalogueCursor`.
-- [ ] Full pull (phase 5) reads the current cursor **before** fetching (no `since`), fetches and replaces, then stores that cursor. Changes made during the pull are fetched again next time, which is safe because applying rows is idempotent.
-- [ ] Delta pull: while `hasMore`, fetch a page and apply it in one transaction:
+- [x] `novelSync.cursor`, plus `syncMeta.lookupsCursor` and `syncMeta.catalogueCursor`.
+- [x] Full pull (phase 5) reads the current cursor **before** fetching (no `since`), fetches and replaces, then stores that cursor. Changes made during the pull are fetched again next time, which is safe because applying rows is idempotent.
+- [x] Delta pull: while `hasMore`, fetch a page and apply it in one transaction:
   - upsert rows (the later `updatedAt` wins);
   - delete removed rows and their children;
   - pending updates of deleted rows become `conflict(deleted)`;
   - a deleted novel is marked `removedOnServer`;
   - store the cursor.
-- [ ] `pullDueUnits` (phase 5) uses delta pulls whenever a cursor exists. It falls back to a full pull on 410 or any unexpected response, and does a full pull of each pinned novel once a week as reconciliation.
-- [ ] After a delta page changes a novel, tabs showing it get `refreshContent` (phase 5.4).
+- [x] `pullDueUnits` (phase 5) uses delta pulls whenever a cursor exists. It falls back to a full pull on 410 or any unexpected response, and does a full pull of each pinned novel once a week as reconciliation.
+- [x] After a delta page changes a novel, tabs showing it get `refreshContent` (phase 5.4).
 
 ## Tests
 
@@ -68,16 +68,26 @@ Refresh downloaded and cached novels, the catalogue and the lookups by downloadi
 
 ## Exit criteria
 
-- [ ] All tests pass in the backend and extension; typecheck passes in all five submodules.
-- [ ] Trigger overhead and the delta and full measurements are in the verification log.
+- [x] All tests pass in the backend and extension; typecheck passes in all five submodules.
+- [ ] Trigger overhead and the delta and full measurements are in the verification log. — **Open (2026-09-30):** not measured.
 
 ## Docs
 
 - `docs/backend.md`: the change feeds, retention and `CURSOR_EXPIRED`.
 - `docs/extension.md`: how downloaded novels stay fresh (delta refresh, weekly reconciliation).
 
+## Implementation notes (2026-09-30)
+
+- Cursors never move past feed rows younger than 60 s (`FEED_SETTLE_MS`): sequence values are taken at insert but become visible at commit, so a slow transaction could otherwise commit a lower `seq` after the client read past it. Unsettled rows are still returned (applying them twice is harmless) and `hasMore` is false while the cursor is held back.
+- Expiry: a cursor older than the oldest kept `seq` gets 410. Pruning always keeps the newest row so an expired cursor stays detectable.
+- Lookups and catalogue feeds select by entity type (not `novelId IS NULL`), because children deleted in a keyword cascade are recorded without a novel.
+- Feed IDs whose current row belongs to another novel are ignored.
+- Tests 1 and 3 are partial: route writes, a keyword delete cascade and the chain rewrite are checked in the backend feed test; the dashboard merge is simulated by a server-side delete in the extension test. Test 6 (writes during a full pull) is not automated.
+
 ## Verification log
 
 | Date | Check | Result | Evidence |
 | --- | --- | --- | --- |
-| | | | |
+| 2026-09-30 | Backend feed: writes, cascade, chain rewrite, paging, 410, lookups and catalogue | Pass | `apps/backend/test/sync-feed.test.ts` |
+| 2026-09-30 | Extension delta refresh equals full pull; deleted keyword and children; expired cursor falls back; lookups and catalogue | Pass | `test/offline/sync/pull.test.ts` › delta sync |
+| 2026-09-30 | Trigger overhead; delta vs full bytes (test 8) | Not measured | — |

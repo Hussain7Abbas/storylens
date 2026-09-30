@@ -78,7 +78,7 @@ Total: 58 points.
 
 - Phases 1 and 2 can run in parallel.
 - Work lands as reviewed pull requests on `feature/offline-v2` branches in the extension, backend, desktop client and dashboard submodules. They merge and release together once phase 10's exit criteria pass; there is no interim release (D13).
-- Only phase 1's test harness and CI wiring may merge to `develop` early, because they change nothing for readers.
+- Only phase 1's test harness and CI wiring may merge to `develop` early (not done: the harness targets the new engine, so it ships with it), because they change nothing for readers.
 - The order of deploys within the release is in [phase 10](10-rollout-hardening-and-docs.md#release-order).
 
 ## Compatibility cleanup inventory (D13)
@@ -87,11 +87,11 @@ Total: 58 points.
 
 | Item | Where | Action | Phase |
 | --- | --- | --- | --- |
-| Old offline pool and sync engine: `storylens-sync-state`, temp IDs, `isDirty`, `withTranslatedName` (payloads queued before names were translated), the unused `refreshDownloadedNovel`, the no-op `ensureCatalogNovelCached` | `apps/extension/src/lib/offline/*` | Delete; nothing is imported from it | 3, 6 |
-| Dexie upgrade chain, versions 1–8 of `storylens-offline` | `apps/extension/src/lib/offline/db.ts` | New database with one clean schema; delete the old database and pool key on update | 3 |
-| Alias `name` column ("old clients read only this") and the fallbacks around it (`aliasNames`, `aliasNameColumns`) | backend schema and reader and dashboard routes; `apps/dashboard/src/lib/translation.ts` and keyword forms; `apps/client/src/backend/api.ts`; extension alias forms, display and matching | Migrate to `nameAr`/`nameEn` only, like keywords; drop `name` | 2, 6 |
-| Stored sessions in the old `role` format (`LEGACY_ACCESS`) | `apps/extension/src/lib/auth/auth-store.ts` | Remove. A stored session that cannot be parsed but has a token reloads the user from `/auth/me` before any guest is created | 6 |
-| HTML-escaped stored text and its decoders (`decodeStoredText`) | backend `utils/sanitize.ts`; `apps/extension/src/lib/desktop-client/novel-context-prompt.ts` | Store raw text, migrate existing rows, delete the decoders (D11) | 2, 6 |
+| Old offline pool and sync engine: `storylens-sync-state`, temp IDs, `isDirty`, `withTranslatedName` (payloads queued before names were translated), the unused `refreshDownloadedNovel`, the no-op `ensureCatalogNovelCached` | `apps/extension/src/lib/offline/*` | Delete; nothing is imported from it | 3, 6 — **Done** |
+| Dexie upgrade chain, versions 1–8 of `storylens-offline` | `apps/extension/src/lib/offline/db.ts` | New database with one clean schema; delete the old database and pool key on update | 3 — **Done** |
+| Alias `name` column ("old clients read only this") and the fallbacks around it (`aliasNames`, `aliasNameColumns`) | backend schema and reader and dashboard routes; `apps/dashboard/src/lib/translation.ts` and keyword forms; `apps/client/src/backend/api.ts`; extension alias forms, display and matching | Migrate to `nameAr`/`nameEn` only, like keywords; drop `name` | 2, 6 — **Done** (also the client's `aliasNamesOf` fallback) |
+| Stored sessions in the old `role` format (`LEGACY_ACCESS`) | `apps/extension/src/lib/auth/auth-store.ts` | Remove. A stored session that cannot be parsed but has a token reloads the user from `/auth/me` before any guest is created | 6 — **Done** |
+| HTML-escaped stored text and its decoders (`decodeStoredText`) | backend `utils/sanitize.ts`; `apps/extension/src/lib/desktop-client/novel-context-prompt.ts` | Store raw text, migrate existing rows, delete the decoders (D11) | 2, 6 — **Done** (also the desktop client's own `decodeStoredText`) |
 | Kept: deprecation tooling and the client-version floor (`apps/backend/src/lib/compat/*`, `apps/extension/src/api/client-compat.ts`) | backend, extension | Keep: it is the mechanism this release uses (426) and future releases rely on | — |
 | Kept: desktop pairing feature detection (`apps/client/src/types.ts:18`; `apps/extension/src/lib/desktop-client/background.ts:84`) | client, extension | Keep: a local protocol with desktop installs that update by hand; not an API shim | — |
 | Kept: range bounding in `apps/backend/src/routes/admin/version-ranges.ts:35` | backend | Keep: a general range rule; only its comment mentions legacy data | — |
@@ -141,8 +141,8 @@ Tick a finding when the phase that closes it records its test or manual check in
   - [x] A3 (4)
   - [x] S2 (4, 5)
   - [x] U1 (1)
-  - [x] U2 (5, 6)
-  - [x] U3 (6)
+  - [ ] U2 (5, 6) — page side tested; popup side (Dexie `storagemutated` across contexts) needs a browser check
+  - [ ] U3 (6) — keyword cards use view sync states; alias, version and replacement cards still use the pending-ID set
   - [x] U4 (4, 5)
   - [x] U5 (5, 6)
   - [x] U6 (8)
@@ -186,7 +186,7 @@ Tick a finding when the phase that closes it records its test or manual check in
 
 ## Implementation status (2026-09-30)
 
-Commits on `feature/offline-v2`: backend `c9a30da` (plus docs), dashboard `ab2e4f9`, client `ea24581`, extension `57e49a1` (plus follow-ups). Nothing is merged to `develop` or released.
+Commits on `feature/offline-v2`: backend `c9a30da`, `8de7ad7`; extension `57e49a1`, `df14ea8`, `c726009`; client `ea24581`, `879e2b0`; dashboard `ab2e4f9`, `4dc1080`; umbrella `34d4614`. Nothing is merged to `develop` or released.
 
 **Verified (automated):** typecheck in all five submodules; backend 77 tests with `make test-live` on a disposable database (sync contract, replays and races, stale writes, codes, D12 matrix, partial updates and clears, protocol and 426 floors, change feeds and pruning, upload replay, alias-name and raw-text migrations with fixtures, stored-text scan); extension 126 tests on `fake-indexeddb`, a fake browser and a fake API (projection, coalescing, validation, permissions, 50 concurrent enqueues from two contexts, snapshot pulls with pending changes, cleanup, runner scenarios for lost responses, dead workers, merges, conflicts, 401/426/5xx/429, network drops, dependencies, accounts, old API, reruns, deadlines, alarms; pulls, delta sync, page data, downloads, images); client 33 tests and build; dashboard 48 Playwright tests; website 212. Pattern scans match their allowed lists. Projection of 2,000 keywords with 4,000 children and 200 mutations: about 1 ms in Bun.
 
@@ -196,11 +196,18 @@ Commits on `feature/offline-v2`: backend `c9a30da` (plus docs), dashboard `ab2e4
 - `HttpError` stores the code as `errorCode` (Elysia treats an error's own `code` as its type); responses still send `code`.
 - Deleting a category or nature is refused when an alias uses it too (the server checked versions only).
 - The moderator range-overlap mirror was not added: the reader API does not check overlap either.
-- Issue cards edit and resend inline (name, `from` or start chapter) instead of opening the full prefilled form; there is no **Show existing** for duplicate keywords.
-- No toast with **Review** appears when a run ends with new conflicts (7.3); the navbar turns red and card badges read "Needs attention", but the badges are not links yet.
+- Issue cards edit and resend inline (name, `from` or start chapter) instead of opening the full prefilled form (owner accepted); there is no **Show existing** for duplicate keywords.
+- No toast with **Review** appears when a run ends with new conflicts (7.3, owner accepted); the navbar turns red and keyword cards read "Needs attention", but the badges are not links yet.
+- Deleting a locally created row does not list its unsent children before confirming (6.3); they are removed with it.
+- Offline-unavailable mode shows the banner but lists do not read online (6.7).
+- Conflict tables show category and nature IDs rather than names; no image thumbnails; focus does not move after a resolution (7.2, 7.4).
 - A deduplicated upload that returns another file's ID is adopted by rewriting the users' `imageId`.
 - Change-feed cursors hold back behind changes younger than a minute (late-committing transactions).
 - A local-only lookup-in-use check sees only novels on the device; the server stays the authority.
 - The alias migration stops (with a list) when a backfilled name collides; dev data passed, production data must be checked on staging.
+
+**Per-phase detail:** each phase file now has its status, ticked tasks, open items marked **Open (2026-09-30)** with the reason, an *Implementation notes* section and a filled verification log.
+
+**Found and fixed after the first pass:** refused deletes (category in use, base version) wrote nothing and showed nothing; they now show the reason (extension `c726009`).
 
 **Not verified here (phase 10, needs a browser or staging):** Dexie `storagemutated` delivery from the worker to the popup and launcher iframe (a change-counter check covers misses), Firefox launcher-iframe storage partitioning (6.7), the manual checklists of phases 1 and 6–8, RTL layout of the new popover, dialog and Sync status page, performance budgets in a real Chrome profile, trigger overhead and full-vs-delta byte measurements, migrations on a production copy, and the release order. The new strings are machine-drafted in Arabic and need a native review.

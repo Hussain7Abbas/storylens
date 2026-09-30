@@ -1,6 +1,6 @@
 # Phase 10 — Rollout, hardening and docs
 
-[Global tracker](main.md) · **Status: Not started** · **Estimate: 3 points** · **Depends on: 1–9** · **Ships in: the offline-first release**
+[Global tracker](main.md) · **Status: Not started (owner); docs done 2026-09-30** · **Estimate: 3 points** · **Depends on: 1–9** · **Ships in: the offline-first release**
 
 ## Goal
 
@@ -26,8 +26,8 @@ The website does not change.
 ### 10.1 Before merging
 
 - [ ] Rebase every branch on `develop`. Run `make test`, `make typecheck`, and `bun run check` in the extension.
-- [ ] Run the pattern scans; every hit must match its allowed list in [findings](findings.md#pattern-scan-to-repeat-after-each-phase).
-- [ ] Every row of the [compatibility cleanup inventory](main.md#compatibility-cleanup-inventory-d13) is done or kept with its reason.
+- [x] Run the pattern scans; every hit must match its allowed list in [findings](findings.md#pattern-scan-to-repeat-after-each-phase). — **Done (2026-09-30):** Run on the branches on 2026-09-30 (all hits match); run again after the rebase.
+- [x] Every row of the [compatibility cleanup inventory](main.md#compatibility-cleanup-inventory-d13) is done or kept with its reason. — **Done (2026-09-30):** Done on the branches: see the inventory in main.md.
 - [ ] Check the performance budgets in a real Chrome profile and log them:
   - building the view of a 2,000-keyword novel takes under 50 ms in the background;
   - popup list first render takes under 150 ms;
@@ -101,27 +101,27 @@ The website does not change.
 
 ### 10.7 Documentation (in the merge that ships)
 
-- [ ] `docs/extension.md`:
+- [x] `docs/extension.md`:
   - rewrite "Account and synchronization" (snapshot, outbox and views, the runner, conflicts and the Sync status page, account holding, offline images, pull timing, the protocol guard);
   - update the "Main areas" offline bullet;
   - describe alias names and per-row edit permissions;
   - replace the sentence about local data being moved to the Arabic fields (that upgrade code no longer exists);
   - update the test command.
-- [ ] `apps/extension/AGENTS.md`:
+- [x] `apps/extension/AGENTS.md`:
   - rewrite "API and offline data" with the [invariants](architecture.md#invariants) as rules;
   - remove the lines about old stored `role` sessions and alias `name` fallbacks;
   - add the analytics catalog rows (`sync_manual_requested`, `sync_conflict_detected`, `sync_issue_resolved`);
   - add `test` to the commands.
-- [ ] `docs/backend.md` and `apps/backend/AGENTS.md`: the sync API (phase 2) and the required upload `id` (phase 8).
-- [ ] `docs/dashboard.md` and `docs/client.md`: alias name fields; the desktop crawler's client IDs.
-- [ ] `docs/compatibility.md`: this release deliberately broke compatibility and raised both floors (D13); the policy stays for later work.
-- [ ] `docs/changelog/<version>.md` (per `docs/changelog/README.md`), with reader-facing notes:
+- [x] `docs/backend.md` and `apps/backend/AGENTS.md`: the sync API (phase 2) and the required upload `id` (phase 8).
+- [x] `docs/dashboard.md` and `docs/client.md`: alias name fields; the desktop crawler's client IDs.
+- [x] `docs/compatibility.md`: this release deliberately broke compatibility and raised both floors (D13); the policy stays for later work.
+- [x] `docs/changelog/<version>.md` (per `docs/changelog/README.md`), with reader-facing notes:
   - reliable offline editing, conflict handling and Sync status;
   - "download your novels again for offline use";
   - "update the desktop client".
-- [ ] `docs/chrome-store/README.md`: re-check the offline-save capture steps against the new UI. Update `apps/extension/CHROMEWEBSTORE.md` if the listing text mentions offline behaviour.
-- [ ] `docs/intro.md`: mark this tracker done, or remove its link once the work is merged and documented.
-- [ ] Every `CLAUDE.md` stays `@AGENTS.md` only.
+- [ ] `docs/chrome-store/README.md`: re-check the offline-save capture steps against the new UI. Update `apps/extension/CHROMEWEBSTORE.md` if the listing text mentions offline behaviour. — **Open (2026-09-30):** Not re-checked.
+- [ ] `docs/intro.md`: mark this tracker done, or remove its link once the work is merged and documented. — **Open (2026-09-30):** The index now says the work is implemented on the branches; mark done or remove it after the merge.
+- [x] Every `CLAUDE.md` stays `@AGENTS.md` only.
 
 ## Exit criteria (whole refactor)
 
@@ -130,8 +130,14 @@ The website does not change.
 - [ ] The checks in 10.2 and the end-to-end matrix pass in Chrome and Firefox.
 - [ ] Docs, instructions, the analytics catalog and the changelog match the shipped behaviour.
 
+## Implementation notes (2026-09-30)
+
+- Only 10.7 (documentation) was done, in the same change: `docs/extension.md`, `docs/backend.md` (Sync API), `docs/compatibility.md` (the deliberate break), `docs/dashboard.md`, `docs/client.md`, `docs/development.md`, `docs/intro.md`, `docs/changelog/v3.3.0.md` (draft; version is a placeholder), and the backend, extension, client and dashboard `AGENTS.md`. Not re-checked: `docs/chrome-store/README.md` capture steps and `apps/extension/CHROMEWEBSTORE.md`.
+- Everything else in 10.1–10.6 needs a browser, staging or the release itself and is open.
+
 ## Verification log
 
 | Date | Check | Result | Evidence |
 | --- | --- | --- | --- |
-| | | | |
+| 2026-09-30 | Documentation (10.7) | Done except the Chrome Web Store capture docs | umbrella `34d4614` |
+| 2026-09-30 | 10.1–10.6 | Not started | — |

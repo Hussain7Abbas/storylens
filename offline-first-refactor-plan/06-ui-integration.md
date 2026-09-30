@@ -1,6 +1,6 @@
 # Phase 6 — UI integration
 
-[Global tracker](main.md) · **Status: Not started** · **Estimate: 8 points** · **Depends on: 3, 4, 5** · **Ships in: the offline-first release (branch `feature/offline-v2`)**
+[Global tracker](main.md) · **Status: In review (implemented 2026-09-30; browser checks open)** · **Estimate: 8 points** · **Depends on: 3, 4, 5** · **Ships in: the offline-first release (branch `feature/offline-v2`)**
 
 ## Goal
 
@@ -12,62 +12,62 @@ Every screen reads local views and writes through `enqueue`, whether online or o
 
 ### 6.1 Reactivity
 
-- [ ] Add an app-level `useOfflineInvalidation()` in `popup/App.tsx`. It subscribes to Dexie's global `storagemutated` event and invalidates the `["offline", …]` query keys of the tables that changed. Local reads keep TanStack Query with `networkMode: "always"`.
-- [ ] **Verify** that Dexie 4 delivers `storagemutated` from the background worker to an open popup and to the launcher iframe (BroadcastChannel). If a context misses it, the runner broadcasts an `offlineChanged` runtime message after each outcome and pull, and the hook listens for it too. Record the result in the verification log.
-- [ ] Replace the 5-second polling in `usePendingSyncCount`/`usePendingEntityIds` with the invalidation above (U2).
+- [x] Add an app-level `useOfflineInvalidation()` in `popup/App.tsx`. It subscribes to Dexie's global `storagemutated` event and invalidates the `["offline", …]` query keys of the tables that changed. Local reads keep TanStack Query with `networkMode: "always"`.
+- [ ] **Verify** that Dexie 4 delivers `storagemutated` from the background worker to an open popup and to the launcher iframe (BroadcastChannel). If a context misses it, the runner broadcasts an `offlineChanged` runtime message after each outcome and pull, and the hook listens for it too. Record the result in the verification log. — **Open (2026-09-30):** not verified in a browser. The hook listens to `storagemutated` and, as the fallback, checks `syncMeta.changeCounter` every 3 s (instead of a runtime `offlineChanged` message).
+- [x] Replace the 5-second polling in `usePendingSyncCount`/`usePendingEntityIds` with the invalidation above (U2).
 
 ### 6.2 Reads (`src/lib/offline/hooks.ts` stays the public UI module)
 
-- [ ] Split the internals into `hooks/reads.ts`, `hooks/mutations.ts` and `hooks/status.ts`, re-exported from `hooks.ts`, so imports do not churn.
-- [ ] Views back these hooks:
+- [x] Split the internals into `hooks/reads.ts`, `hooks/mutations.ts` and `hooks/status.ts`, re-exported from `hooks.ts`, so imports do not churn.
+- [x] Views back these hooks:
   - `useNovelKeywords`, `useOfflineKeywords`, `useOfflineKeywordAliases` and `useOfflineReplacements` use `getNovelView`;
   - `useOfflineKeywordCategories` and `useOfflineKeywordNatures` use `getLookupsView`;
   - `useCachedNovelsList` uses `getCatalogueView`;
   - `useDownloadedNovelIds` and `useDownloadedNovelsList` use `novelSync` pins.
-- [ ] Delete the online-only list queries (`hooks/use-novel-keywords.ts:17-41`, `replacing-cards.tsx:45-71`); one source of truth (W2).
-- [ ] With no snapshot for the novel: online, call `requestNovelRefresh` and show loading; offline, show a localized empty state ("Not available offline. Download this novel while online to use it offline.").
-- [ ] Row badges come from `EntitySyncState` instead of `isDirty` and entity-ID sets (U3): a cloud icon for pending, a warning icon for needs attention (links to the phase 7 page).
+- [x] Delete the online-only list queries (`hooks/use-novel-keywords.ts:17-41`, `replacing-cards.tsx:45-71`); one source of truth (W2).
+- [x] With no snapshot for the novel: online, call `requestNovelRefresh` and show loading; offline, show a localized empty state ("Not available offline. Download this novel while online to use it offline.").
+- [x] Row badges come from `EntitySyncState` instead of `isDirty` and entity-ID sets (U3): a cloud icon for pending, a warning icon for needs attention (links to the phase 7 page).
 
 ### 6.3 Writes
 
-- [ ] Reimplement `useOfflineKeywordMutations`, `…AliasMutations`, `…VersionMutations`, `…ReplacementMutations`, `useOfflineCategoryMutations` and `useOfflineNatureMutations` (names kept) on `enqueue`, followed by `sendMessage("syncKick", { reason: "enqueue" })` and `refreshContentScript()`.
-- [ ] No network calls remain in these hooks (W1). Delete `runBackgroundSync`, `reportQueuedSyncFailure`, `withBackgroundSync` and `store/sync-status.ts`.
-- [ ] Map `PermissionDenied` and `ValidationFailed` codes to localized messages in the forms. Nothing is written on refusal.
-- [ ] Deleting a locally created row that has unsent children asks for confirmation listing them. The data comes from `enqueue`'s dry run.
+- [x] Reimplement `useOfflineKeywordMutations`, `…AliasMutations`, `…VersionMutations`, `…ReplacementMutations`, `useOfflineCategoryMutations` and `useOfflineNatureMutations` (names kept) on `enqueue`, followed by `sendMessage("syncKick", { reason: "enqueue" })` and `refreshContentScript()`.
+- [x] No network calls remain in these hooks (W1). Delete `runBackgroundSync`, `reportQueuedSyncFailure`, `withBackgroundSync` and `store/sync-status.ts`.
+- [x] Map `PermissionDenied` and `ValidationFailed` codes to localized messages in the forms. Nothing is written on refusal.
+- [ ] Deleting a locally created row that has unsent children asks for confirmation listing them. The data comes from `enqueue`'s dry run. — **Open (2026-09-30):** `planDelete` exists, but the forms still use their existing delete confirmation without listing the unsent children. The children are removed with the row either way.
 
 ### 6.4 Forms send changes, not snapshots
 
-- [ ] Add a pure `src/lib/offline/form-changes.ts`:
+- [x] Add a pure `src/lib/offline/form-changes.ts`:
   - `keywordFormChanges(initial, values)` returns `{ keyword?, baseVersion? }`;
   - `aliasFormChanges`, `versionFormChanges`, `replacementFormChanges` and `lookupFormChanges`.
   - Each returns `changes` plus `seen` (the initial values of the changed fields).
-- [ ] The forms pass `seen` and `seenUpdatedAt` (the row's `updatedAt` when the form opened) to the hooks.
-- [ ] The keyword form writes the keyword mutation only when a name or the matching type changed, and the base-version mutation only when the description, category, nature or image changed (W4).
-- [ ] Cleared description and image fields become `null` in `changes` (W5).
+- [x] The forms pass `seen` and `seenUpdatedAt` (the row's `updatedAt` when the form opened) to the hooks.
+- [x] The keyword form writes the keyword mutation only when a name or the matching type changed, and the base-version mutation only when the description, category, nature or image changed (W4).
+- [x] Cleared description and image fields become `null` in `changes` (W5).
 
 ### 6.5 Flows
 
-- [ ] **Extraction view** (`popup.extract/extraction-view.tsx`):
+- [x] **Extraction view** (`popup.extract/extraction-view.tsx`):
   - rows save through `enqueue` one at a time;
   - an alias or version row whose suggested parent was saved moments ago uses the returned `entityId` immediately (W3);
   - parents resolve over the view.
-- [ ] **Selection view and `parent-keyword-select`**: the view through `useNovelKeywords`.
-- [ ] **Alias names** (phase 2 removes `name`):
+- [x] **Selection view and `parent-keyword-select`**: the view through `useNovelKeywords`.
+- [x] **Alias names** (phase 2 removes `name`):
   - Alias forms edit the UI language's `nameAr`/`nameEn` through `nameFields`, like keyword forms.
   - Display uses `nameIn`, and page matching uses both columns.
   - Delete `aliasNames`, `aliasNameColumns` and the `name` fallbacks in `src/utils/translation.ts` and `resolve-keyword-version.ts`.
-- [ ] **Settings lookups**: moderators only; deleting a category or nature in use is refused with the validation message.
-- [ ] **Downloads** (`popup.home/home.tsx`):
+- [x] **Settings lookups**: moderators only; deleting a category or nature in use is refused with the validation message.
+- [x] **Downloads** (`popup.home/home.tsx`):
   - download and remove go through the phase 5 messages;
   - `{ blocked: n }` opens a dialog with **Sync now**, **Discard changes and remove** and **Cancel**;
   - a `removedOnServer` novel shows a banner offering to remove the download.
-- [ ] **Novel context, novel form, slugs and biases**: online-only calls followed by `requestNovelRefresh` or a catalogue refresh (phase 5.6); `getBiasesByNovelId` reads the novel view.
-- [ ] **Popup auto-sync**: `usePopupAutoSync` sends `syncKick({ reason: "popup-open", pull: "stale" })`, with no forced retries (U4).
+- [x] **Novel context, novel form, slugs and biases**: online-only calls followed by `requestNovelRefresh` or a catalogue refresh (phase 5.6); `getBiasesByNovelId` reads the novel view.
+- [x] **Popup auto-sync**: `usePopupAutoSync` sends `syncKick({ reason: "popup-open", pull: "stale" })`, with no forced retries (U4).
 
 ### 6.6 Sync status in the navbar
 
-- [ ] The Sync button is always visible (U8). Its icon shows synced, pending (count), sending, offline, or needs attention (red).
-- [ ] Clicking it opens a popover with:
+- [x] The Sync button is always visible (U8). Its icon shows synced, pending (count), sending, offline, or needs attention (red).
+- [x] Clicking it opens a popover with:
   - "Last synced {time}";
   - pending and sending counts;
   - when offline: "Changes are saved on this device and sync when you are back online";
@@ -75,28 +75,28 @@ Every screen reads local views and writes through `enqueue`, whether online or o
   - **Sign in again** when `authRequired`, **Update required** when `upgradeRequired`, and "Sync paused until Story Lens updates" when `apiOutdated`;
   - a **Needs attention (n)** link to phase 7;
   - **Sync now**, which calls `syncNow` and shows the summary as a toast.
-- [ ] Analytics: `sync_manual_requested` (no parameters) when **Sync now** is pressed. Add it to the catalog in the same pull request.
+- [x] Analytics: `sync_manual_requested` (no parameters) when **Sync now** is pressed. Add it to the catalog in the same pull request.
 
 ### 6.7 Platform checks
 
-- [ ] **Firefox:** confirm that the launcher iframe (`popup.html` embedded in a site) opens the same IndexedDB as the toolbar popup. Write in the iframe, read in the toolbar popup, and compare `mutations` counts. If it is partitioned, add a `viewProxy` and `enqueueProxy` message pair handled by the background, and use it whenever `window.parent !== window` on Firefox.
-- [ ] **Database unavailable** (`offlineUnavailable`): show a banner ("Offline storage is unavailable in this browser profile; changes need a connection"), read lists online and disable offline-only actions.
+- [ ] **Firefox:** confirm that the launcher iframe (`popup.html` embedded in a site) opens the same IndexedDB as the toolbar popup. Write in the iframe, read in the toolbar popup, and compare `mutations` counts. If it is partitioned, add a `viewProxy` and `enqueueProxy` message pair handled by the background, and use it whenever `window.parent !== window` on Firefox. — **Open (2026-09-30):** not verified (needs Firefox).
+- [ ] **Database unavailable** (`offlineUnavailable`): show a banner ("Offline storage is unavailable in this browser profile; changes need a connection"), read lists online and disable offline-only actions. — **Open (2026-09-30):** the banner shows (`OfflineUnavailableBanner` in `popup/App.tsx`), but lists do not fall back to reading online; they show empty.
 
 ### 6.8 Remove the legacy engine
 
-- [ ] Delete `sync-engine.ts`, `sync-storage.ts`, `background-sync.ts`, `download.ts` (moved to the runner), `store/sync-status.ts`, the `isDirty` writers and `clean*` helpers, the `triggerFullSync` message and `test/sync-engine.test.ts`, whose scenarios now live in the phase 4 and 5 suites.
-- [ ] Nothing of the old engine stays (D13). The only code that touches 3.2.x storage is phase 3's one-time `upgrade-cleanup.ts`.
-- [ ] Run the pattern scans; every hit must match its allowed list in [findings](findings.md#pattern-scan-to-repeat-after-each-phase).
+- [x] Delete `sync-engine.ts`, `sync-storage.ts`, `background-sync.ts`, `download.ts` (moved to the runner), `store/sync-status.ts`, the `isDirty` writers and `clean*` helpers, the `triggerFullSync` message and `test/sync-engine.test.ts`, whose scenarios now live in the phase 4 and 5 suites.
+- [x] Nothing of the old engine stays (D13). The only code that touches 3.2.x storage is phase 3's one-time `upgrade-cleanup.ts`.
+- [x] Run the pattern scans; every hit must match its allowed list in [findings](findings.md#pattern-scan-to-repeat-after-each-phase).
 
 ### 6.9 Remove the extension's compatibility shims (D13)
 
-- [ ] `lib/auth/auth-store.ts`: delete `LEGACY_ACCESS` and `legacyAccess`. A stored session that fails to parse but has a token reloads the user from `/api/user/auth/me` before `useAuthInit` creates a guest. Otherwise an old stored session would silently turn a signed-in reader into a guest.
-- [ ] `lib/desktop-client/novel-context-prompt.ts`: delete `decodeStoredText` and its calls, because stored text is raw after phase 2 (D11).
-- [ ] Run the compatibility-shim scan in [findings](findings.md#pattern-scan-to-repeat-after-each-phase); every hit is fixed or listed as kept in the [inventory](main.md#compatibility-cleanup-inventory-d13).
+- [x] `lib/auth/auth-store.ts`: delete `LEGACY_ACCESS` and `legacyAccess`. A stored session that fails to parse but has a token reloads the user from `/api/user/auth/me` before `useAuthInit` creates a guest. Otherwise an old stored session would silently turn a signed-in reader into a guest.
+- [x] `lib/desktop-client/novel-context-prompt.ts`: delete `decodeStoredText` and its calls, because stored text is raw after phase 2 (D11).
+- [x] Run the compatibility-shim scan in [findings](findings.md#pattern-scan-to-repeat-after-each-phase); every hit is fixed or listed as kept in the [inventory](main.md#compatibility-cleanup-inventory-d13).
 
 ### 6.10 Localization
 
-- [ ] Add every new string (English and Arabic) with `bun run i18n:parse`, and check RTL layout of the popover, dialog and banners in Arabic.
+- [ ] Add every new string (English and Arabic) with `bun run i18n:parse`, and check RTL layout of the popover, dialog and banners in Arabic. — **Open (2026-09-30):** strings added; RTL not checked in a browser.
 
 ## Tests
 
@@ -121,9 +121,9 @@ Manual (Chrome and Firefox, toolbar popup and launcher popup):
 
 ## Exit criteria
 
-- [ ] All automated tests pass; typecheck passes in all five submodules; `bun run check` (Biome) is clean.
-- [ ] The pattern scans match their final allowed lists.
-- [ ] The manual list is done in Chrome and Firefox and recorded below.
+- [ ] All automated tests pass; typecheck passes in all five submodules; `bun run check` (Biome) is clean. — **Open (2026-09-30):** new and changed files are clean; the extension has pre-existing Biome findings (for example `!important` in `content.css`, `useTemplate` in `keyword-tooltip.ts`) that were left alone.
+- [x] The pattern scans match their final allowed lists.
+- [ ] The manual list is done in Chrome and Firefox and recorded below. — **Open (2026-09-30):** not done.
 
 ## Docs and instructions
 
@@ -138,8 +138,23 @@ Manual (Chrome and Firefox, toolbar popup and launcher popup):
 | Hook rewrites break screens that depend on the old return shapes | Names and return shapes are kept; typecheck plus the manual list per screen |
 | Firefox partitions the launcher iframe | Proxy messages (6.7), decided by the verification |
 
+## Implementation notes (2026-09-30)
+
+- Hook names and return shapes were kept, except the write inputs: create takes field values (plus an optional queued `image`), update takes `{ id, changes, seen, seenUpdatedAt }` (from `form-changes.ts`), delete takes the ID. `useOfflineKeywordAliases` now also takes the novel ID.
+- Row badges: keyword cards show "Needs attention" (red) from the view's `EntitySyncState`; alias, version and replacement cards still use the pending set only, and the badges are not links to the status page.
+- Delete refusals (for example a category in use, a base version) now show a toast (`c726009`): delete buttons have no error area.
+- The category and nature forms still show their generic error for refused creates and updates (not the specific validation message).
+- Selection view and parent select read `useNovelKeywords` (the view); `src/hooks/use-novel-keywords.ts` was removed and callers import from `@/lib/offline/hooks`.
+- The Sign-in-again link opens the website login page; Update required calls `runtime.requestUpdateCheck`.
+- Also removed: `src/utils/upload-image-file.ts` (images are queued), `test/sync-engine.test.ts`, and the client app's own `decodeStoredText` (`apps/client/src/crawl/merge.ts`).
+- Tests 4, 5 and 6 are not automated as written: the outbox dependency part of 5 is covered by `outbox.test.ts`; 4 and 6 need hook/component tests that the extension has no setup for.
+
 ## Verification log
 
 | Date | Check | Result | Evidence |
 | --- | --- | --- | --- |
-| | | | |
+| 2026-09-30 | Form change sets, status derivation (tests 1–3) | Pass | `test/offline/unit/pure.test.ts` |
+| 2026-09-30 | Alias names per language; display and matching | Pass | `test/translation.test.ts` |
+| 2026-09-30 | Extension typecheck and build | Pass | `bun run typecheck`, `bun run build` |
+| 2026-09-30 | Pattern scans (final allowed lists) | Match | `findings.md` scans |
+| 2026-09-30 | Cross-context invalidation, Firefox iframe, manual list, RTL | Not run | Need a browser |

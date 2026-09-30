@@ -1,6 +1,6 @@
 # Phase 7 — Conflict and issue resolution UX
 
-[Global tracker](main.md) · **Status: Not started** · **Estimate: 5 points** · **Depends on: 6** · **Ships in: the offline-first release (branch `feature/offline-v2`)**
+[Global tracker](main.md) · **Status: In review (implemented 2026-09-30; gaps listed)** · **Estimate: 5 points** · **Depends on: 6** · **Ships in: the offline-first release (branch `feature/offline-v2`)**
 
 ## Goal
 
@@ -12,12 +12,12 @@ Every change that could not be synced automatically is visible, explained in pla
 
 ### 7.1 Sync status page
 
-- [ ] Add a popup route `sync` (`popup/routers.tsx`), reached from the navbar popover, row warning badges and conflict toasts. It uses the existing routing (`useRoutes`), with navbar **Back** returning to the origin.
-- [ ] Sections:
+- [x] Add a popup route `sync` (`popup/routers.tsx`), reached from the navbar popover, row warning badges and conflict toasts. It uses the existing routing (`useRoutes`), with navbar **Back** returning to the origin.
+- [x] Sections:
   1. **Needs attention:** `conflict` and `rejected` mutations of the current account, grouped by novel, then entity.
   2. **Made while signed in as {user}:** other accounts' mutations.
   3. **Waiting to sync** (collapsed): pending, waiting and sending, with each item's last error and next attempt time.
-- [ ] Each item shows the entity type and its readable name (keyword name, alias name, version chapter range, replacement `from → to`, lookup name) in the UI language, and the novel.
+- [x] Each item shows the entity type and its readable name (keyword name, alias name, version chapter range, replacement `from → to`, lookup name) in the UI language, and the novel.
 
 ### 7.2 Issue cards and actions
 
@@ -33,26 +33,26 @@ Each action calls the phase 3 `applyResolution` or `discardMutation` and then `s
 | `permission` | "Only the creator or a moderator can change this" | **Discard** |
 | Other account | "Made while signed in as {user}" | **Sign in** (opens the website profile page), **Discard** |
 
-- [ ] **Discard** confirms first. When dependants exist (for example aliases created under a discarded keyword), the dialog lists them and discards them together.
-- [ ] **Create again** turns an update of a deleted row into a create under a new ID, using the viewed values. For aliases and versions it needs an existing parent, and otherwise offers only **Discard**.
-- [ ] Field labels reuse the form labels. Values are formatted: category and nature names instead of IDs, `ch.X–Y` for ranges, matching type labels, and image thumbnails.
+- [x] **Discard** confirms first. When dependants exist (for example aliases created under a discarded keyword), the dialog lists them and discards them together.
+- [ ] **Create again** turns an update of a deleted row into a create under a new ID, using the viewed values. For aliases and versions it needs an existing parent, and otherwise offers only **Discard**. — **Open (2026-09-30):** implemented for every entity; it does not first check that an alias's or version's parent still exists (a missing parent comes back as `parent-missing`).
+- [ ] Field labels reuse the form labels. Values are formatted: category and nature names instead of IDs, `ch.X–Y` for ranges, matching type labels, and image thumbnails. — **Open (2026-09-30):** labels, matching types and booleans are formatted; categories and natures show their IDs, ranges are shown raw, and images have no thumbnails.
 
 ### 7.3 Notification
 
-- [ ] When a run ends with new `conflict` or `rejected` mutations, the popup (if open) shows a toast with **Review**. The badge is red while anything needs attention (phase 4).
-- [ ] Entity badges from phase 6 link to their issue card.
+- [ ] When a run ends with new `conflict` or `rejected` mutations, the popup (if open) shows a toast with **Review**. The badge is red while anything needs attention (phase 4). — **Open (2026-09-30):** no toast with **Review** (owner accepted); **Sync now** shows a summary toast and the navbar turns red.
+- [ ] Entity badges from phase 6 link to their issue card. — **Open (2026-09-30):** badges are not links.
 
 ### 7.4 Accessibility and localization
 
-- [ ] Keyboard: every action is reachable; focus moves to the next card after a resolution; dialogs trap focus. Mantine defaults plus checks.
-- [ ] Screen readers: cards are labelled with the kind and entity name; comparison tables use table semantics.
-- [ ] Arabic and RTL: mirrored layout; values keep their own direction (`dir="auto"`).
-- [ ] Add every string to English and Arabic with `bun run i18n:parse`.
+- [ ] Keyboard: every action is reachable; focus moves to the next card after a resolution; dialogs trap focus. Mantine defaults plus checks. — **Open (2026-09-30):** Mantine defaults only; focus does not move to the next card after a resolution.
+- [x] Screen readers: cards are labelled with the kind and entity name; comparison tables use table semantics.
+- [x] Arabic and RTL: mirrored layout; values keep their own direction (`dir="auto"`).
+- [x] Add every string to English and Arabic with `bun run i18n:parse`.
 
 ### 7.5 Analytics
 
-- [ ] `sync_issue_resolved` with `kind` (`stale`, `deleted`, `duplicate`, `parent-missing`, `rule`, `permission`, `other-account`) and `resolution` (`keep_mine`, `use_theirs`, `merge`, `edit`, `discard`, `recreate`, `sign_in`). Track it once, when the resolution is applied.
-- [ ] Update the catalog in `apps/extension/AGENTS.md` in the same pull request; `sync_conflict_detected` already exists from phase 4.
+- [x] `sync_issue_resolved` with `kind` (`stale`, `deleted`, `duplicate`, `parent-missing`, `rule`, `permission`, `other-account`) and `resolution` (`keep_mine`, `use_theirs`, `merge`, `edit`, `discard`, `recreate`, `sign_in`). Track it once, when the resolution is applied.
+- [x] Update the catalog in `apps/extension/AGENTS.md` in the same pull request; `sync_conflict_detected` already exists from phase 4.
 
 ## Tests
 
@@ -74,15 +74,24 @@ Manual:
 
 ## Exit criteria
 
-- [ ] Every conflict and rejection kind the runner can produce has a card and at least one action that removes it from Needs attention.
-- [ ] Automated tests pass; typecheck passes in all five submodules; the analytics catalog matches `rg "trackEvent\(|trackAnalyticsEvent\(" src`.
+- [ ] Every conflict and rejection kind the runner can produce has a card and at least one action that removes it from Needs attention. — **Open (2026-09-30):** every kind has a card and **Discard**; see the tests gap below.
+- [x] Automated tests pass; typecheck passes in all five submodules; the analytics catalog matches `rg "trackEvent\(|trackAnalyticsEvent\(" src`.
 
 ## Docs
 
 - `docs/extension.md`: describe the Sync status page, the issue kinds and what each action does.
 
+## Implementation notes (2026-09-30)
+
+- **Edit** for `duplicate` and `rule` edits the refused field inline on the card (the UI-language name, a replacement's `from`, or a version's start chapter) and resends, instead of opening the prefilled form (owner accepted as the better UX). There is no **Show existing** for duplicate keywords.
+- **Sign in** opens the website login page (not the profile page).
+- Tests 3, 4 and 5 are not automated; test 1 covers field choices, and discard with dependants is test 2.
+
 ## Verification log
 
 | Date | Check | Result | Evidence |
 | --- | --- | --- | --- |
-| | | | |
+| 2026-09-30 | Resolution logic: field choices, empty patch removal (test 1) | Pass | `test/offline/store/outbox.test.ts` › resolves conflicts field by field |
+| 2026-09-30 | Discard with dependants (test 2) | Pass | same test |
+| 2026-09-30 | Tests 3–5 and the manual list | Not run | — |
+| 2026-09-30 | Analytics catalog matches `rg "trackEvent\(|trackAnalyticsEvent\(" src` | Pass | `apps/extension/AGENTS.md` |

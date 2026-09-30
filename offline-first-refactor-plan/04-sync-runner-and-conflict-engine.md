@@ -1,6 +1,6 @@
 # Phase 4 — Sync runner and conflict engine
 
-[Global tracker](main.md) · **Status: Not started** · **Estimate: 8 points** · **Depends on: 2, 3 (the phase 1 fake API implements phase 2's contract)** · **Ships in: the offline-first release (branch `feature/offline-v2`)**
+[Global tracker](main.md) · **Status: In review (implemented 2026-09-30)** · **Estimate: 8 points** · **Depends on: 2, 3 (the phase 1 fake API implements phase 2's contract)** · **Ships in: the offline-first release (branch `feature/offline-v2`)**
 
 ## Goal
 
@@ -32,27 +32,27 @@ Pulling is phase 5; this phase leaves a `pullDueUnits()` hook that does nothing.
 
 ### 4.1 Scheduler (pure)
 
-- [ ] `pickNext` implements the [runner rules](architecture.md#one-run). It walks mutations by `seq`:
+- [x] `pickNext` implements the [runner rules](architecture.md#one-run). It walks mutations by `seq`:
   - It skips other accounts.
   - It skips any entity that has an earlier mutation which cannot be sent now (in flight, waiting, conflicting, rejected or blocked).
   - It skips mutations whose `dependsOn` include an entity with an unconfirmed create in any status.
   - It returns the first remaining `pending` mutation whose `nextAttemptAt ≤ now`.
-- [ ] `nextWakeAt(mutations, now)` returns the earliest `nextAttemptAt` of a mutation that could be sent, for the retry alarm.
-- [ ] `manual: true` treats waiting mutations as due (**Sync now**) but never touches `conflict` or `rejected` ones.
+- [x] `nextWakeAt(mutations, now)` returns the earliest `nextAttemptAt` of a mutation that could be sent, for the retry alarm.
+- [x] `manual: true` treats waiting mutations as due (**Sync now**) but never touches `conflict` or `rejected` ones.
 
 ### 4.2 Transport
 
-- [ ] Build the bodies from the [transport table](architecture.md#transport):
+- [x] Build the bodies from the [transport table](architecture.md#transport):
   - Creates carry `id`, and keyword creates also carry `versionId`.
   - Updates, replacements included, carry only the patched fields plus `baseUpdatedAt` (both required by phase 2).
   - Alias names are sent as `nameAr`/`nameEn`.
   - Cleared fields are `null` in the patch and are sent as `null`.
-- [ ] Every call passes `{ timeout: 20_000 }` and an `AbortSignal` tied to the run deadline.
-- [ ] Return a discriminated result: `{ ok: true, data }` or `{ ok: false, status?, code?, body?, network?: "offline" | "timeout" | "unknown", retryAfterMs? }`. `isAxiosError` and `ECONNABORTED` are handled here only.
+- [x] Every call passes `{ timeout: 20_000 }` and an `AbortSignal` tied to the run deadline.
+- [x] Return a discriminated result: `{ ok: true, data }` or `{ ok: false, status?, code?, body?, network?: "offline" | "timeout" | "unknown", retryAfterMs? }`. `isAxiosError` and `ECONNABORTED` are handled here only.
 
 ### 4.3 Classification (pure)
 
-- [ ] `classify(mutation, result)` returns `success`, `alreadyDone`, `stale(current)`, `conflict(kind, server?)`, `rejected(kind, message)`, `transient(network | server, retryAfterMs?)`, `auth` or `upgrade`, following the [outcomes table](architecture.md#outcomes):
+- [x] `classify(mutation, result)` returns `success`, `alreadyDone`, `stale(current)`, `conflict(kind, server?)`, `rejected(kind, message)`, `transient(network | server, retryAfterMs?)`, `auth` or `upgrade`, following the [outcomes table](architecture.md#outcomes):
 
   | Response | Outcome |
   | --- | --- |
@@ -74,27 +74,27 @@ Pulling is phase 5; this phase leaves a `pullDueUnits()` hook that does nothing.
 
 One transaction per outcome, over `mutations`, the snapshot tables and `syncMeta`:
 
-- [ ] **success:**
+- [x] **success:**
   - Upsert the returned rows (`snapshot.upsertRows`) and remove the mutation.
   - Keyword creates write the keyword without embedded children, then its versions and aliases (fixes P11).
   - Version creates then read the parent's versions (`GET /keyword-versions?query[keywordId]=…`, every page) and upsert them, because the server closed the previous version.
   - Replacement writes mark the novel due for a pull (the chain rewrite), which phase 5 acts on.
-- [ ] **Rebase later mutations:** for each later `pending` mutation of the same entity whose `base` values all equal the response's values, set `baseUpdatedAt` to the response's `updatedAt`. This avoids a pointless 409.
-- [ ] **alreadyDone:** remove the row and its cascaded children, and remove the mutation.
-- [ ] **stale(current):**
+- [x] **Rebase later mutations:** for each later `pending` mutation of the same entity whose `base` values all equal the response's values, set `baseUpdatedAt` to the response's `updatedAt`. This avoids a pointless 409.
+- [x] **alreadyDone:** remove the row and its cascaded children, and remove the mutation.
+- [x] **stale(current):**
   1. Upsert `current`, then compute `merge(base, patch, current)`.
   2. No conflicting fields and nothing left: remove the mutation (it was a lost-response replay).
   3. No conflicting fields and a remaining patch: store the reduced patch, `base = current`'s values, `baseUpdatedAt = current.updatedAt`, `pending`, due now.
   4. Conflicting fields: `conflict(stale)` with the field list, and the patch unchanged, so the view still shows the reader's values.
   5. Allow at most 3 automatic merges per mutation per run. After that the mutation waits for backoff, so two clients cannot ping-pong.
-- [ ] **conflict / rejected:** store the kind, the server row when known and `lastError`. `conflict(deleted)` removes the snapshot row.
-- [ ] **transient:** `attempts + 1`; `nextAttemptAt` from the [backoff formula](architecture.md#outcomes) or `Retry-After`; `lastError`. Stop the loop on `network`. Stop after 3 consecutive `server` failures in one run.
-- [ ] **auth / upgrade:** return the mutation to `pending` without counting an attempt. Set the runner state (`authRequired` / `upgradeRequired`) and stop. On `upgrade`, the existing `client-compat.ts` handler already asks the store for an update.
-- [ ] Every outcome increments `syncMeta.changeCounter`.
+- [x] **conflict / rejected:** store the kind, the server row when known and `lastError`. `conflict(deleted)` removes the snapshot row.
+- [x] **transient:** `attempts + 1`; `nextAttemptAt` from the [backoff formula](architecture.md#outcomes) or `Retry-After`; `lastError`. Stop the loop on `network`. Stop after 3 consecutive `server` failures in one run.
+- [x] **auth / upgrade:** return the mutation to `pending` without counting an attempt. Set the runner state (`authRequired` / `upgradeRequired`) and stop. On `upgrade`, the existing `client-compat.ts` handler already asks the store for an update.
+- [x] Every outcome increments `syncMeta.changeCounter`.
 
 ### 4.5 Runner
 
-- [ ] `runSync({ reason, manual, pull })` follows the [run algorithm](architecture.md#one-run):
+- [x] `runSync({ reason, manual, pull })` follows the [run algorithm](architecture.md#one-run):
   - `navigator.locks.request("storylens-sync", { ifAvailable: true })`. When the lock is taken, record `rerun` and return.
   - Recover leases: `inflight` rows whose `leaseUntil` has passed go back to `pending`, with no attempt counted.
   - Read the signed-in user; stop with `authRequired` when there is none.
@@ -102,32 +102,32 @@ One transaction per outcome, over `mutations`, the snapshot tables and `syncMeta
   - Push loop until a deadline of about 4 minutes, checking the stored user before each pick so an account switch stops the loop.
   - `pullDueUnits()` (phase 5).
   - Status and badge; the retry alarm; rerun if requested.
-- [ ] Leasing (`inflight`, `leaseUntil = now + 90 s`), sending, and applying the outcome are separate steps. The worker can be killed between any two without losing or duplicating work.
-- [ ] A per-run summary (`sent`, `merged`, `conflicts`, `rejected`, `transientFailures`, `pulledUnits`, `durationMs`) is logged without payloads and returned to **Sync now**.
+- [x] Leasing (`inflight`, `leaseUntil = now + 90 s`), sending, and applying the outcome are separate steps. The worker can be killed between any two without losing or duplicating work.
+- [x] A per-run summary (`sent`, `merged`, `conflicts`, `rejected`, `transientFailures`, `pulledUnits`, `durationMs`) is logged without payloads and returned to **Sync now**.
 
 ### 4.6 Background wiring
 
-- [ ] Messages in `entrypoints/background/messaging.ts`:
+- [x] Messages in `entrypoints/background/messaging.ts`:
   - `syncKick({ reason, pull })` returns immediately, after updating the badge;
   - `syncNow()` returns `SyncRunSummary` and the status;
   - `getSyncStatus()` returns `SyncStatus`.
-- [ ] Remove `triggerFullSync` and `runSyncCycle` once phase 6 switches the callers (both live on the same branch).
-- [ ] Alarms:
+- [x] Remove `triggerFullSync` and `runSyncCycle` once phase 6 switches the callers (both live on the same branch).
+- [x] Alarms:
   - `storylens-periodic-sync` every 5 minutes, created only when missing (kept from phase 1; keep the name, or a renamed alarm would leave the old one firing);
   - `storylens-sync-retry` as a one-shot at `max(now + 30 s, nextWakeAt)`, cleared when nothing is waiting.
-- [ ] Listeners that call `runSync`:
+- [x] Listeners that call `runSync`:
   - `runtime.onStartup` and `runtime.onInstalled` (after the 3.2.x cleanup);
   - the worker `online` event;
   - `storage.onChanged` for `storylens-auth`, which resumes from `authRequired`, holds the previous account's mutations and sends the new account's.
-- [ ] Badge from `status.ts`:
+- [x] Badge from `status.ts`:
   - the count of the current account's unresolved mutations;
   - orange while pending, red when anything needs attention, grey `!` when offline with nothing pending;
   - `99+` cap.
 
 ### 4.7 Analytics
 
-- [ ] `sync_conflict_detected` with `kind` (`stale`, `deleted`, `duplicate`, `parent-missing`, `rule`, `permission`), sent from the background through `trackAnalyticsEvent()` when a mutation enters `conflict` or `rejected`. It carries no IDs or content.
-- [ ] Add the event to the catalog in `apps/extension/AGENTS.md` in the same pull request.
+- [x] `sync_conflict_detected` with `kind` (`stale`, `deleted`, `duplicate`, `parent-missing`, `rule`, `permission`), sent from the background through `trackAnalyticsEvent()` when a mutation enters `conflict` or `rejected`. It carries no IDs or content.
+- [x] Add the event to the catalog in `apps/extension/AGENTS.md` in the same pull request.
 
 ## Tests
 
@@ -165,9 +165,9 @@ Integration tests use `fake-indexeddb`, `fake-browser`, `fake-api` with phase 2 
 
 ## Exit criteria
 
-- [ ] Every test above passes, and the old `test/sync-engine.test.ts` scenarios are expressed against the runner.
-- [ ] Pattern scan: write endpoints are called only from `sync/transport.ts` (UI callers remain until phase 6 on the branch; list them in the verification log).
-- [ ] Typecheck passes in all five submodules; analytics catalog updated.
+- [x] Every test above passes, and the old `test/sync-engine.test.ts` scenarios are expressed against the runner.
+- [x] Pattern scan: write endpoints are called only from `sync/transport.ts` (UI callers remain until phase 6 on the branch; list them in the verification log).
+- [x] Typecheck passes in all five submodules; analytics catalog updated.
 
 ## Risks
 
@@ -178,8 +178,20 @@ Integration tests use `fake-indexeddb`, `fake-browser`, `fake-api` with phase 2 
 | Automatic merges loop against another active client | At most 3 merges per mutation per run, then backoff |
 | The new extension meets the old API during store review | The protocol guard pauses sync; reading and local edits keep working (test 20) |
 
+## Implementation notes (2026-09-30)
+
+- Extra modules: `sync/lock.ts` (Web Lock with `ifAvailable`, or an in-memory flag when `navigator.locks` is missing, since only the background runs the runner), `sync/indicator.ts` (navbar state, phase 6), `sync/service.ts` (background wiring, downloads), `sync/tabs.ts` (phase 5.4), `sync/pull.ts` (phase 5).
+- The auth interceptor (`lib/auth/auth-service.ts`) no longer overwrites an explicit `Authorization` header, so the transport sends each change with the run's token; the loop re-reads the stored account before every pick and stops on a switch.
+- Protocol check cache: an hour when the API is current, five minutes when it is outdated (so the store-review pause ends soon after the backend deploys). 401/426 from the protocol check map to `authRequired`/`upgradeRequired`.
+- A mutation discarded while in flight keeps the server's answer in the snapshot and is not recreated.
+- Rerun: a busy lock sets `syncMeta.rerun`; the holder runs at most three more passes.
+- Tests use the in-memory lock fallback, not a fake `navigator.locks` (Bun has none). Test 25 uses 20 mutations with a fake clock instead of 500 with a slow API. Test 13 resumes by running again after the auth failure rather than through the `storage.onChanged` listener (the listener is wired in `initSyncBackground`).
+
 ## Verification log
 
 | Date | Check | Result | Evidence |
 | --- | --- | --- | --- |
-| | | | |
+| 2026-09-30 | Scenarios 1–27 | Pass (20 runner tests; scheduler property test with 300 random outboxes) | `test/offline/sync/runner.test.ts`, `test/offline/unit/pure.test.ts` |
+| 2026-09-30 | Pattern scan: write endpoints | Only `src/lib/offline/sync/transport.ts` | `rg` scan in `findings.md` |
+| 2026-09-30 | Analytics catalog | `sync_conflict_detected` added | `apps/extension/AGENTS.md` |
+| 2026-09-30 | Typecheck in all five submodules | Pass | backend `c9a30da`, `8de7ad7`; extension `57e49a1`, `df14ea8`, `c726009`; client `ea24581`, `879e2b0`; dashboard `ab2e4f9`, `4dc1080`; umbrella `34d4614` (all on `feature/offline-v2`) |

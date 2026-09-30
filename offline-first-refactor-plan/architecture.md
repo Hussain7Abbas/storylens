@@ -426,6 +426,18 @@ These are enforced by tests and the scans in [findings](findings.md#pattern-scan
 8. Content scripts never open the extension database.
 9. Every request the runner makes has a timeout, and every trigger is idempotent (alarms are created only when missing).
 
+## As implemented (2026-09-30)
+
+The design above was built as written, with these differences (details in [main](main.md#implementation-status-2026-09-30) and each phase's implementation notes):
+
+- The backend's `HttpError` keeps the code in `errorCode` (Elysia treats an error's own `code` as its type); responses still carry `code`.
+- Change-feed cursors never move past rows younger than 60 s, so a transaction that commits a lower `seq` late is not skipped; unsettled rows are resent.
+- The sync lock falls back to an in-memory flag when `navigator.locks` is missing (only the background runs the runner).
+- The cross-context fallback for views is a change-counter check every 3 s in open pages, not an `offlineChanged` runtime message.
+- `syncMeta` also holds `lookupsFullPullAt`, `catalogFullPullAt` and `novelCounters`; `novelSync` also holds `pullDue`, `downloadedAt` and `lastFullPullAt`.
+- Lookups "in use" also counts aliases, on the server and in the local mirror; the moderator range-overlap mirror was not added because the reader API does not enforce it.
+- A deduplicated upload that returns another file's ID is adopted by rewriting the users' `imageId`.
+
 ## Alternatives considered
 
 | Option | Decision |
