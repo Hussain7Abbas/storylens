@@ -27,7 +27,7 @@ Getting started
 4. If you want AI features, install and pair Story Lens Client, then request a summary or suggestion.
 
 Privacy
-StoryLens uses the Story Lens service for accounts and a shared reference catalogue. Contributions are shared with other signed-in readers, so do not add private information. Requested AI actions send relevant page content to the chosen provider through the desktop client, or through Story Lens and its detection provider for AI-assisted chapter detection. If analytics is configured, the extension sends feature events and supported-site hostnames to Google Analytics; you can turn this off in Settings → General. See https://storylens.iscoded.com/en/privacy/ for details.
+StoryLens uses the Story Lens service for accounts and a shared reference catalogue. Contributions are shared with other signed-in readers, so do not add private information. Requested AI actions send relevant page content to the chosen provider through the desktop client. Chapter-selector detection uses that provider when configured, or OpenRouter through Story Lens otherwise. If analytics is configured, the extension sends feature events and supported-site hostnames to Google Analytics; you can turn this off in Settings → General. See https://storylens.iscoded.com/en/privacy/ for details.
 
 Support
 Questions or feedback: hussain@iscoded.com

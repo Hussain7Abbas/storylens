@@ -7,7 +7,7 @@ Yes.
 Data types
 
 [YES] Website content
-StoryLens reads visible chapter text locally for highlights and replacements. User-requested summaries send a cleaned copy of the active page through Story Lens Client to the chosen Claude/Codex provider. Requested keyword suggestions can send selected text and reference context, and chapter keyword extraction can send chapter text and known names, through the same desktop path. User-requested AI chapter-selector detection sends the page URL and HTML through the Story Lens API to OpenRouter and its model provider. These AI actions are optional.
+StoryLens reads visible chapter text locally for highlights and replacements. User-requested summaries send a cleaned copy of the active page through Story Lens Client to the chosen Claude/Codex provider. Requested keyword suggestions can send selected text and reference context, and chapter keyword extraction can send chapter text and known names, through the same desktop path. User-requested AI chapter-selector detection sends the page URL and a bounded outline of relevant page elements through Story Lens Client to the chosen provider when desktop AI is configured. Otherwise it sends the page URL and HTML through the Story Lens API for OpenRouter detection. These AI actions are optional.
 
 [YES] User activity
 User-created reference entries, aliases, chapter notes, replacements, colors and settings are saved or synced with the Story Lens API. When configured and enabled, Google Analytics receives extension and feature events, a random persistent client ID, a session ID and extension version. Events do not include glossary content or account IDs.
@@ -31,7 +31,7 @@ Data-use certifications
 Data is transmitted securely: Story Lens API, AI detection and Google Analytics use HTTPS. The optional desktop companion uses loopback HTTP on the same device before forwarding to the chosen AI provider.
 Data is sold to third parties: No.
 Data is used for unrelated advertising, creditworthiness or lending: No.
-Data is transferred to third parties: Yes, for configured usage analytics (Google Analytics), requested AI processing (OpenRouter/upstream model or chosen Claude/Codex provider), optional image uploads (ImgBB), and infrastructure needed to provide the service.
+Data is transferred to third parties: Yes, for configured usage analytics (Google Analytics), requested AI processing (chosen Claude/Codex provider or OpenRouter/upstream model when desktop AI is unconfigured), optional image uploads (ImgBB), and infrastructure needed to provide the service.
 Collection required: Partially. Page processing and a guest session support core reading/sync features; registration, images and AI actions are optional. Analytics is off if not configured and can be turned off in Settings → General; when configured, the preference defaults to on.
 
 Privacy policy URLs

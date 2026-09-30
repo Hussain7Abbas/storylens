@@ -22,6 +22,7 @@ StoryLens users may build large glossaries with many keywords, replacements, cat
 StoryLens needs access to web novel pages so its content script can locate chapter text and apply keyword highlights and replacements. Novel sites use many domains and URL structures, so the extension must run on reading pages the user opens. Chapter text is processed locally for those features. Only user-requested AI actions send relevant page content to an AI provider as explained in the listing and privacy policy.
 
 StoryLens also needs host access to https://storylens-api.iscoded.com so the background service worker can sync the user’s novels, keywords, categories, replacements, and settings with the StoryLens backend over HTTPS.
+When no desktop AI provider is configured, user-requested chapter-selector detection also sends the current page URL and HTML to this API for OpenRouter analysis. With desktop AI configured, detection uses the loopback Story Lens Client and the selected provider instead.
 
 StoryLens also needs access to http://127.0.0.1/* so the background worker can contact the user’s paired desktop client. Requested summaries, keyword suggestions and chapter keyword extraction send relevant page or reference content to the local client and selected AI provider. Summaries appear on the page; suggestions and extraction results appear in the extension.
 
