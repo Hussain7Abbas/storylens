@@ -56,8 +56,8 @@ Backward compatibility is **not** kept (D13). Requests are validated against the
 ### 2.3 Stale-write preconditions (required)
 
 - [x] `baseUpdatedAt: t.String({ format: "date-time" })` is **required** on the PUT bodies of the same six resources.
-- [x] `src/lib/sync/precondition.ts`: when `existing.updatedAt` is later than `baseUpdatedAt` (millisecond precision, since Prisma `DateTime` is `timestamp(3)`), it throws 409 `STALE_WRITE` with `current` in the route's 200 shape.
-- [x] One order in every synced PUT: 404 → 403 → 409 stale → rule and duplicate checks → write. `baseUpdatedAt` is never written; every route builds `data` field by field (checked).
+- [x] `src/lib/sync/precondition.ts`: when `existing.updatedAt` differs from `baseUpdatedAt` (millisecond precision, since Prisma `DateTime` is `timestamp(3)`), it throws 409 `STALE_WRITE` with `current` in the route's 200 shape.
+- [x] One order in every synced PUT: 404 → 403 → 409 stale → rule and duplicate checks → atomic revision compare and write. `baseUpdatedAt` is never written; every route builds `data` field by field (checked).
 - [x] Deletes stay unconditional (D2).
 
 ### 2.4 Partial updates everywhere
@@ -199,3 +199,7 @@ Backward compatibility is **not** kept (D13). Requests are validated against the
 | 2026-09-30 | Migrations applied to a copy of the dev database, with fixtures | Pass | alias names by script, `D&#x27;Art` decoded |
 | 2026-09-30 | `make orval` and `make dashboard-orval` | Regenerated and committed | extension `57e49a1`, dashboard `ab2e4f9` |
 | 2026-09-30 | Client tests and build | 33 pass; build ok | `apps/client` |
+
+### Review correction (2026-09-30)
+
+A monotonic database `updatedAt` trigger and conditional `UPDATE` now close the read/write race, including same-millisecond edits and dashboard writes. Reader version creates lock their parent keyword before reading and closing the latest version. Uploads serialize concurrent replays by client ID before contacting the storage provider. Unversioned requests to changed sync write routes receive 426. Live concurrency tests run against `TEST_DATABASE_URL`.

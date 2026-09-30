@@ -200,7 +200,7 @@ Commits on `feature/offline-v2`: backend `c9a30da`, `8de7ad7`; extension `57e49a
 - No toast with **Review** appears when a run ends with new conflicts (7.3, owner accepted); the navbar turns red and cards read "Needs attention", which opens the Sync status page.
 - The merge to `develop` happened before the phase 10 browser and staging checks (owner request); a local development build (3.2.1) gets 426 from a local `develop` backend until the release bump.
 - A deduplicated upload that returns another file's ID is adopted by rewriting the users' `imageId`.
-- Change-feed cursors hold back behind changes younger than a minute (late-committing transactions).
+- Review correction: feed trigger inserts now hold a transaction-scoped lock, so cursors follow commit order without a fixed settling delay.
 - A local-only lookup-in-use check sees only novels on the device; the server stays the authority.
 - The alias migration stops (with a list) when a backfilled name collides; dev data passed, production data must be checked on staging.
 
@@ -242,3 +242,7 @@ The [pattern scans](findings.md#pattern-scan-to-repeat-after-each-phase) should 
 **Points worth a reviewer's attention.** The deliberate API break and raised client floors (D13, `MIN_CLIENT_VERSIONS` 3.2.2); the three migrations (`20260930100000_alias_names_only` stops on a name collision, `20260930100100_store_raw_text` decodes HTML entities, `20260930100200_sync_change_feed` adds triggers); the runner's lease and lock handling and `classify`; the local rule mirrors in `rules/validation.ts` against the backend rules; and the deviations listed under Implementation status.
 
 **Not verifiable without a browser, staging or a release** (open in phases 1, 6, 7, 8 and 10): `storagemutated` delivery between the worker, popup and launcher iframe; Firefox iframe storage partitioning; RTL layout; the manual checklists; performance in a real Chrome profile; migrations on a production copy; re-running the store capture; the release order; a native Arabic review.
+
+## Review follow-up (2026-09-30, local `develop`)
+
+The Chrome-focused review fixes are local on `develop`; no push or release has occurred. Backend changes add commit-ordered feed triggers, exact atomic stale-write checks, serialized version creation and file-upload replay, and consistent full-snapshot endpoints. The extension now pulls those snapshots, honors explicit refresh requests, and protects other accounts' unsent edits when a download is removed. The test counts and offset-page performance figures above describe the original handoff and are superseded by the follow-up verification. Phase 10 browser, staging and release checks remain open. The `store_raw_text` migration cannot distinguish a literal entity such as `&lt;` from one produced by the former sanitizer; affected production rows need an owner-assisted audit before rollout.

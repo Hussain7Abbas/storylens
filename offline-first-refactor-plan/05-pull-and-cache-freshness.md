@@ -6,22 +6,19 @@
 
 Keep the snapshot fresh without ever touching local intent. Pulls replace server data in one transaction under the runner's lock. They run for downloaded (pinned) novels on every sync, for cached novels when the page or popup uses them, and for the catalogue and lookups on a timer. Page highlights follow the view and update after a refresh.
 
-**Closes:** P1 (pull side), P2, P3, P4, P5, P6, P7 (every page, with phase 1's helper), P8 (biases in novel pulls), P9, P10 (pull after side effects), P12, S2 (pulls on the alarm, with phase 4), S3, U2 (page side), U4 (pull side), U5 (the download-removal guard).
+**Closes:** P1 (pull side), P2, P3, P4, P5, P6, P7 (complete snapshot), P8 (biases in novel pulls), P9, P10 (pull after side effects), P12, S2 (pulls on the alarm, with phase 4), S3, U2 (page side), U4 (pull side), U5 (the download-removal guard).
 
 ## Tasks
 
 ### 5.1 Pull units (`sync/pull.ts`)
 
-- [x] `pullCatalogue()` fetches `GET /novels` in both languages (`Accept-Language` `ar` and `en`), every page, merges by ID and calls `replaceCatalogue`. It prunes deleted novels; downloaded novels missing from the result are marked `removedOnServer`.
-- [x] `pullLookups()` fetches categories and natures (every page) and calls `replaceLookups`. It prunes, and it is **never** skipped because of pending lookup mutations: the projection keeps local intent (fixes P3).
+- [x] `pullCatalogue()` fetches `/sync/snapshot/catalogue` (both languages and a cursor in one response) and calls `replaceCatalogue`. It prunes deleted novels; downloaded novels missing from the result are marked `removedOnServer`.
+- [x] `pullLookups()` fetches `/sync/snapshot/lookups` and calls `replaceLookups`. It prunes, and it is **never** skipped because of pending lookup mutations: the projection keeps local intent (fixes P3).
 - [x] `pullNovel(novelId)`:
-  1. `GET /novels/:id`. A 404 means `markRemovedOnServer` (its pending updates become `conflict(deleted)`), and the pull stops.
-  2. Keywords in both languages, every page.
-  3. Replacements, every page.
-  4. Biases (`getWebsiteNovelBiases({ novelId })`).
-  5. `replaceNovelSnapshot` in **one** transaction, which also refreshes the novel's row in `novels`.
-  6. `markPulled`.
-- [x] Every request has a 20 s timeout and the run deadline's signal, and sets `Accept-Language` explicitly per language. Nothing reads `localStorage`, which does not exist in the worker (S3). A failed unit records `lastPullError`, keeps its old `lastPulledAt` and does not stop other units.
+  1. `GET /sync/snapshot/novels/:id` returns the novel, every keyword with children, replacements, biases and a cursor from one repeatable-read database transaction. A 404 means `markRemovedOnServer` (its pending updates become `conflict(deleted)`), and the pull stops.
+  2. `replaceNovelSnapshot` in **one** local transaction, which also refreshes the novel's row in `novels`.
+  3. `markPulled` with that snapshot cursor.
+- [x] Every request has a 20 s timeout and the run deadline's signal; the snapshot response includes both languages. Nothing reads `localStorage`, which does not exist in the worker (S3). A failed unit records `lastPullError`, keeps its old `lastPulledAt` and does not stop other units.
 - [x] The per-novel category and nature requests are gone (P12); lookups are their own unit.
 
 ### 5.2 Timing (`pullDueUnits`)
@@ -111,7 +108,11 @@ Keep the snapshot fresh without ever touching local intent. Pulls replace server
 | Date | Check | Result | Evidence |
 | --- | --- | --- | --- |
 | 2026-09-30 | Tests 1, 4, 5, 7–15 | Pass | `test/offline/sync/pull.test.ts` |
-| 2026-09-30 | Every-page pulls of 1,100 keywords in two languages | Pass | `pull.test.ts` › fetch every page |
+| 2026-09-30 | Complete snapshot pull of 1,100 keywords in both languages | Pass | `pull.test.ts` › fetches large novels in a single consistent snapshot |
 | 2026-09-30 | Pattern scan: snapshot writes, old cache writers, content-script Dexie imports | Clean (only `snapshot.ts`; old functions gone; no Dexie in `.output/chrome-mv3/content-scripts/content.js`) | `rg` scans; `bun run build` |
 | 2026-09-30 | Full pull of a 2,000-keyword novel (2 languages × 4 pages of 500, novel, replacements, biases) against a local backend and Postgres | About 6.1 MB and 0.35 s in total (keyword pages 760 KB each, 30–80 ms) | `curl` against the release backend on the test database |
 | 2026-09-30 | Tests 2, 3 and 6 | Pass | `test/offline/sync/resolution.test.ts` |
+
+### Review correction (2026-09-30)
+
+The original offset-page implementation could omit unchanged rows after a concurrent deletion. Full pulls now use one repeatable-read response and the cursor from that same snapshot. Explicit refresh requests are honored even for fresh cached novels. Download removal checks the outbox inside its transaction and refuses to discard another account's edits. The earlier 2,000-keyword offset-page timing above is historical and does not measure the new snapshot endpoint. Chrome extension tests and build pass; the real-browser checks in phase 10 remain open.

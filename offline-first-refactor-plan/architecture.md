@@ -350,10 +350,10 @@ Conflicts are also found early. When a pull removes a row that has pending updat
   - each novel (the novel, its keywords with children in both languages, replacements and chapter biases).
 - **Timing:**
   - Pinned novels and lookups: on each run when older than 10 minutes, and always on manual Sync.
-  - Cached novels: when the page or popup uses them and they are older than 10 minutes. The view is served first and refreshed in the background (stale-while-revalidate).
+  - Cached novels: when the page or popup uses them and they are older than 10 minutes, or immediately when a refresh is explicitly requested. The view is served first and refreshed in the background (stale-while-revalidate).
   - Catalogue: on popup open when older than 30 minutes.
 - **Method:**
-  - Fetch every page (loop until `total`).
+  - Fetch each unit from one repeatable-read `/sync/snapshot/*` response with its cursor; the response contains both languages and all rows.
   - Replace the unit's snapshot rows in **one transaction**, so deletions on the server disappear locally (catalogue and lookups included).
   - Pulls run under the runner's lock, so no push response lands in the middle of one.
 - **Never touches the outbox.** Local intent always survives a refresh. This removes the old "skip refresh while anything is pending" rule and its deadlocks.
@@ -431,7 +431,7 @@ These are enforced by tests and the scans in [findings](findings.md#pattern-scan
 The design above was built as written, with these differences (details in [main](main.md#implementation-status-2026-09-30) and each phase's implementation notes):
 
 - The backend's `HttpError` keeps the code in `errorCode` (Elysia treats an error's own `code` as its type); responses still carry `code`.
-- Change-feed cursors never move past rows younger than 60 s, so a transaction that commits a lower `seq` late is not skipped; unsettled rows are resent.
+- Feed trigger inserts hold a transaction-scoped advisory lock before allocating `seq`, so commit order matches cursor order. Full-pull cursors and rows come from the same repeatable-read transaction.
 - The sync lock falls back to an in-memory flag when `navigator.locks` is missing (only the background runs the runner).
 - The cross-context fallback for views is a change-counter check every 3 s in open pages, not an `offlineChanged` runtime message.
 - `syncMeta` also holds `lookupsFullPullAt`, `catalogFullPullAt` and `novelCounters`; `novelSync` also holds `pullDue`, `downloadedAt` and `lastFullPullAt`.

@@ -50,10 +50,11 @@ The website does not change.
   - after switching the backend to the release build, everything syncs with no duplicates.
 - [ ] **Migrations on a copy of production data** (staging):
   - The alias-name and raw-text migrations complete, or stop with a list; fix the data and run them again.
+  - Audit old text containing literal entity sequences (`&lt;`, `&gt;`, `&quot;`, `&#x27;`) against source data or a pre-migration backup. The raw-text migration cannot distinguish typed entities from former sanitizer output; repair ambiguous rows before release.
   - The change-feed triggers record writes, including a dashboard keyword merge.
   - Spot-check aliases without letters, Arabic and English aliases, and names with apostrophes and quotes.
 
-### 10.3 End-to-end matrix (Chrome and Firefox; toolbar popup, launcher popup, extraction panel)
+### 10.3 End-to-end matrix (Chrome; toolbar popup, launcher popup, extraction panel)
 
 | # | Scenario | Pass when |
 | --- | --- | --- |
@@ -77,7 +78,7 @@ The website does not change.
 | 18 | Novel deleted on the server while downloaded with pending edits | Banner; the edits appear as `deleted`; the download is removable |
 | 19 | Another device edits a keyword on a page the reader has open | Highlights update after the next refresh (pinned: next run; cached: within 10 minutes of use) |
 | 20 | Attach an image offline, then reconnect | Uploads once and links to the entry |
-| 21 | Firefox launcher iframe | Sees and writes the same data as the toolbar popup (or through the proxy) |
+| 21 | Firefox launcher iframe | **Not applicable to this review (owner direction, 2026-09-30):** Chrome only. |
 | 22 | Another device deletes a keyword and renames a replacement in a downloaded novel | The next refresh is a delta pull (small request in the network panel), and both changes appear |
 
 ### 10.4 Rollback policy
@@ -127,7 +128,7 @@ The website does not change.
 
 - [ ] Every finding in [findings](findings.md) is closed, or recorded with a decision, in [main](main.md). — **Open (2026-09-30):** all but U2's popup side (a browser check).
 - [x] Every inventory row is done or kept with its reason.
-- [ ] The checks in 10.2 and the end-to-end matrix pass in Chrome and Firefox.
+- [ ] The checks in 10.2 and the end-to-end matrix pass in Chrome.
 - [ ] Docs, instructions, the analytics catalog and the changelog match the shipped behaviour.
 
 ## Implementation notes (2026-09-30)

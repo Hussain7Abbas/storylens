@@ -83,3 +83,7 @@ Manual: attach an image offline, close the browser, reopen online. The image upl
 | 2026-09-30 | Backend: replay without a second provider call, `ID_CONFLICT`, missing `id` 422 | Pass | `apps/backend/test/sync-files.test.ts` |
 | 2026-09-30 | Extension tests 1–7 (upload first, lost response, replaced image, discard, 12 MB refusal, orphan sweep) | Pass | `test/offline/sync/images.test.ts` |
 | 2026-09-30 | Manual: attach offline, restart, reconnect | Not run | — |
+
+### Review correction (2026-09-30)
+
+Concurrent sends of the same client file ID are now serialized before the storage provider call, and a stored replay skips upload. A provider success followed by a backend crash before the database commit can still orphan a remote file; this requires provider-side idempotency or reconciliation to eliminate entirely.

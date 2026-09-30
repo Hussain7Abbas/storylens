@@ -34,7 +34,7 @@ Refresh downloaded and cached novels, the catalogue and the lookups by downloadi
 - [x] Migration: the `SyncChange` table with indexes `(novelId, seq)`, `(entity, seq)` and `(seq)`, plus trigger functions for each listed table (`AFTER INSERT OR UPDATE OR DELETE … FOR EACH ROW`).
 - [x] `GET /api/user/sync/novels/:id/changes?since=<seq>&limit=1000` returns `{ novel?, keywords, aliases, versions, replacements, biases, deleted: [{ entity, id }], cursor, hasMore }`.
   - It returns the current rows for the changed IDs, with duplicate IDs collapsed, in both languages (it ignores `Accept-Language`).
-  - Without `since`, it answers only the current cursor (used before a full pull).
+  - Without `since`, it answers only the current cursor; full pulls now receive their cursor with the snapshot response.
 - [x] `GET /api/user/sync/lookups/changes?since=` and `GET /api/user/sync/catalogue/changes?since=` work the same way.
 - [x] Register the routes in `src/routes/user.ts` with `USER_ENDPOINT_DESCRIPTIONS` entries (GET defaults to guest access).
 - [x] Retention cron in `src/plugins/crons.ts`.
@@ -78,7 +78,7 @@ Refresh downloaded and cached novels, the catalogue and the lookups by downloadi
 
 ## Implementation notes (2026-09-30)
 
-- Cursors never move past feed rows younger than 60 s (`FEED_SETTLE_MS`): sequence values are taken at insert but become visible at commit, so a slow transaction could otherwise commit a lower `seq` after the client read past it. Unsettled rows are still returned (applying them twice is harmless) and `hasMore` is false while the cursor is held back.
+- Review correction: trigger inserts acquire a transaction-scoped advisory lock before allocating `seq`, so higher cursors cannot commit first. The fixed 60-second settling delay has been removed; `hasMore` follows the page size. Full-pull rows and their cursor come from one repeatable-read transaction.
 - Expiry: a cursor older than the oldest kept `seq` gets 410. Pruning always keeps the newest row so an expired cursor stays detectable.
 - Lookups and catalogue feeds select by entity type (not `novelId IS NULL`), because children deleted in a keyword cascade are recorded without a novel.
 - Feed IDs whose current row belongs to another novel are ignored.
@@ -93,3 +93,7 @@ Refresh downloaded and cached novels, the catalogue and the lookups by downloadi
 | 2026-09-30 | Trigger overhead: 2,000 alias inserts and a 4,000-row bulk update in one transaction, with and without the alias trigger (rolled back, two runs) | Inserts 41–53 ms vs 18–22 ms; update 76–79 ms vs 37–62 ms: about 13 µs per row | `psql` on the test database |
 | 2026-09-30 | Delta refresh of the unchanged 2,000-keyword novel (test 8) | 115 bytes, 10–23 ms, against about 6.1 MB and 0.35 s for the full pull | `curl` against a local backend |
 | 2026-09-30 | Writes during a full pull (test 6) | Pass | `test/offline/sync/resolution.test.ts` |
+
+### Review correction (2026-09-30)
+
+`test/sync-feed.test.ts` now holds one transaction open while a second write waits, then verifies sequence and commit order. Full snapshot endpoints replace the offset-page pull path. The previous full-pull timing above is historical and needs remeasurement before release.
