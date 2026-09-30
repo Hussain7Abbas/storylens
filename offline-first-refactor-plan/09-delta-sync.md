@@ -1,0 +1,95 @@
+# Phase 9 — Delta sync
+
+[Global tracker](main.md) · **Status: In review (implemented 2026-09-30)** · **Estimate: 5 points** · **Depends on: 2, 5** · **Ships in: the offline-first release (decision D4)**
+
+## Goal
+
+Refresh downloaded and cached novels, the catalogue and the lookups by downloading only what changed since the last refresh, including deletions, with an exact server-ordered cursor. Phase 5's full pull stays for three cases: the first download of a novel, an expired cursor, and a weekly reconciliation.
+
+**Why now (D4):** without it, every downloaded novel downloads all of its keywords and replacements again about every 10 minutes while the browser is open.
+
+## Design
+
+- **A change feed, not timestamps.** A `SyncChange` table (`seq BIGSERIAL`, `entity`, `entityId`, `novelId`, `op`, `at`) records every insert, update and delete of keywords, aliases, versions, replacements, website novel biases, novels, categories and natures. The `seq` gives an exact order, so there are no ties at the same millisecond and no clock skew.
+- **Three feeds:**
+  - per novel (`novelId`): the novel row, keywords, aliases, versions, replacements and biases;
+  - lookups: categories and natures (`novelId` is `null`);
+  - the catalogue: novel rows only.
+- **Written by Postgres triggers**, added through a Prisma migration with raw SQL, not by route code. The data changes in at least eleven delete paths plus bulk updates:
+  - reader routes: `keywords.ts:395`, `keyword-aliases.ts:191`, `keyword-versions.ts:253`, `replacements.ts:273`, `keyword-categories.ts:238`, `keyword-natures.ts:197`, `novels.ts:416`, `website-novel-biases.ts:85, 147`;
+  - dashboard routes: `admin/keywords.ts:135, 348` (including merges), `admin/keyword-aliases.ts:118`, `admin/keyword-versions.ts:134`, `admin/novels.ts:222`;
+  - database cascades: novel → keywords, replacements and biases; keyword → aliases and versions; website selector → biases;
+  - bulk updates such as the replacement chain rewrite (`updateMany`).
+
+  Row-level triggers see all of them.
+- **`novelId` for aliases and versions** is read through the parent keyword. When the parent keyword is deleted in the same cascade, the children's changes may be skipped: clients remove a deleted keyword's children themselves.
+- **Retention:** a cron job deletes `SyncChange` rows older than 90 days. A cursor older than the oldest kept `seq` answers 410 `CURSOR_EXPIRED`, and the client does a full pull.
+- **No backfill:** every install starts with full pulls after the fresh start (D14), so the feed only needs changes from the deploy onwards.
+- The feeds are part of protocol version 2 (phase 2), which this release introduces as a whole.
+
+## Tasks
+
+### 9.1 Backend
+
+- [x] Migration: the `SyncChange` table with indexes `(novelId, seq)`, `(entity, seq)` and `(seq)`, plus trigger functions for each listed table (`AFTER INSERT OR UPDATE OR DELETE … FOR EACH ROW`).
+- [x] `GET /api/user/sync/novels/:id/changes?since=<seq>&limit=1000` returns `{ novel?, keywords, aliases, versions, replacements, biases, deleted: [{ entity, id }], cursor, hasMore }`.
+  - It returns the current rows for the changed IDs, with duplicate IDs collapsed, in both languages (it ignores `Accept-Language`).
+  - Without `since`, it answers only the current cursor (used before a full pull).
+- [x] `GET /api/user/sync/lookups/changes?since=` and `GET /api/user/sync/catalogue/changes?since=` work the same way.
+- [x] Register the routes in `src/routes/user.ts` with `USER_ENDPOINT_DESCRIPTIONS` entries (GET defaults to guest access).
+- [x] Retention cron in `src/plugins/crons.ts`.
+- [x] Measure the trigger overhead on a bulk dashboard operation (for example a keyword merge with many aliases) and log it. — **Done (2026-09-30):** see the log.
+
+### 9.2 Extension
+
+- [x] `novelSync.cursor`, plus `syncMeta.lookupsCursor` and `syncMeta.catalogueCursor`.
+- [x] Full pull (phase 5) reads the current cursor **before** fetching (no `since`), fetches and replaces, then stores that cursor. Changes made during the pull are fetched again next time, which is safe because applying rows is idempotent.
+- [x] Delta pull: while `hasMore`, fetch a page and apply it in one transaction:
+  - upsert rows (the later `updatedAt` wins);
+  - delete removed rows and their children;
+  - pending updates of deleted rows become `conflict(deleted)`;
+  - a deleted novel is marked `removedOnServer`;
+  - store the cursor.
+- [x] `pullDueUnits` (phase 5) uses delta pulls whenever a cursor exists. It falls back to a full pull on 410 or any unexpected response, and does a full pull of each pinned novel once a week as reconciliation.
+- [x] After a delta page changes a novel, tabs showing it get `refreshContent` (phase 5.4).
+
+## Tests
+
+| # | Test | Expected |
+| --- | --- | --- |
+| 1 | Every delete path and cascade listed above, and the chain rewrite | Each produces the expected feed rows |
+| 2 | Server: update A, delete B, create C; client delta pull | Snapshot equals a full pull |
+| 3 | A dashboard merge deletes a keyword with a pending local alias update | Keyword and children removed; the update is `conflict(deleted)` |
+| 4 | Pagination with more than `limit` changes | Pages applied in order; final cursor equals the last `seq` |
+| 5 | Cursor expired (410) | Full pull; cursor reset |
+| 6 | Writes during a full pull | Seen by the next delta pull; nothing missed or duplicated |
+| 7 | Category deleted; new novel added | The lookups and catalogue feeds apply them |
+| 8 | Delta refresh of an unchanged 2,000-keyword novel, against phase 5's full-pull measurement | Bytes and time recorded; the delta is a small fraction of the full pull |
+
+## Exit criteria
+
+- [x] All tests pass in the backend and extension; typecheck passes in all five submodules.
+- [x] Trigger overhead and the delta and full measurements are in the verification log. — **Done (2026-09-30):** see the log.
+
+## Docs
+
+- `docs/backend.md`: the change feeds, retention and `CURSOR_EXPIRED`.
+- `docs/extension.md`: how downloaded novels stay fresh (delta refresh, weekly reconciliation).
+
+## Implementation notes (2026-09-30)
+
+- Cursors never move past feed rows younger than 60 s (`FEED_SETTLE_MS`): sequence values are taken at insert but become visible at commit, so a slow transaction could otherwise commit a lower `seq` after the client read past it. Unsettled rows are still returned (applying them twice is harmless) and `hasMore` is false while the cursor is held back.
+- Expiry: a cursor older than the oldest kept `seq` gets 410. Pruning always keeps the newest row so an expired cursor stays detectable.
+- Lookups and catalogue feeds select by entity type (not `novelId IS NULL`), because children deleted in a keyword cascade are recorded without a novel.
+- Feed IDs whose current row belongs to another novel are ignored.
+- Tests 1 and 3 are partial: route writes, a keyword delete cascade and the chain rewrite are checked in the backend feed test; the dashboard merge is simulated by a server-side delete in the extension test. Test 6 is automated in `test/offline/sync/resolution.test.ts` (a change lands between the cursor read and the row fetch; the next delta pull applies it once).
+
+## Verification log
+
+| Date | Check | Result | Evidence |
+| --- | --- | --- | --- |
+| 2026-09-30 | Backend feed: writes, cascade, chain rewrite, paging, 410, lookups and catalogue | Pass | `apps/backend/test/sync-feed.test.ts` |
+| 2026-09-30 | Extension delta refresh equals full pull; deleted keyword and children; expired cursor falls back; lookups and catalogue | Pass | `test/offline/sync/pull.test.ts` › delta sync |
+| 2026-09-30 | Trigger overhead: 2,000 alias inserts and a 4,000-row bulk update in one transaction, with and without the alias trigger (rolled back, two runs) | Inserts 41–53 ms vs 18–22 ms; update 76–79 ms vs 37–62 ms: about 13 µs per row | `psql` on the test database |
+| 2026-09-30 | Delta refresh of the unchanged 2,000-keyword novel (test 8) | 115 bytes, 10–23 ms, against about 6.1 MB and 0.35 s for the full pull | `curl` against a local backend |
+| 2026-09-30 | Writes during a full pull (test 6) | Pass | `test/offline/sync/resolution.test.ts` |
