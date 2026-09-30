@@ -77,7 +77,7 @@ Story points are relative estimates, not dates. Status values: Not started · In
 Total: 58 points.
 
 - Phases 1 and 2 can run in parallel.
-- Work lands as reviewed pull requests on `feature/offline-v2` branches in the extension, backend, desktop client and dashboard submodules. They merge and release together once phase 10's exit criteria pass; there is no interim release (D13).
+- Work lands as reviewed pull requests on `feature/offline-v2` branches in the extension, backend, desktop client and dashboard submodules. They merge and release together once phase 10's exit criteria pass; there is no interim release (D13). As built: the work was committed straight to those branches (no pull requests) and, at the owner's request, merged to `develop` locally on 2026-09-30 before phase 10's browser and staging checks; it is still unreleased. See [Review handoff](#review-handoff).
 - Only phase 1's test harness and CI wiring may merge to `develop` early (not done: the harness targets the new engine, so it ships with it), because they change nothing for readers.
 - The order of deploys within the release is in [phase 10](10-rollout-hardening-and-docs.md#release-order).
 
@@ -178,7 +178,7 @@ Tick a finding when the phase that closes it records its test or manual check in
 
 ## Definition of done
 
-- [x] Every finding above is closed, or has a recorded decision.
+- [ ] Every finding above is closed, or has a recorded decision (all but U2's popup side, which needs a browser check).
 - [x] Every row of the compatibility cleanup inventory is done or kept with its reason.
 - [x] The [architecture invariants](architecture.md#invariants) are enforced by tests and scans.
 - [ ] The fresh-start and forced-update checks and the end-to-end matrix ([phase 10](10-rollout-hardening-and-docs.md)) pass in Chrome and Firefox.
@@ -204,8 +204,41 @@ Commits on `feature/offline-v2`: backend `c9a30da`, `8de7ad7`; extension `57e49a
 - A local-only lookup-in-use check sees only novels on the device; the server stays the authority.
 - The alias migration stops (with a list) when a backfilled name collides; dev data passed, production data must be checked on staging.
 
-**Per-phase detail:** each phase file now has its status, ticked tasks, open items marked **Open (2026-09-30)** with the reason, an *Implementation notes* section and a filled verification log.
+**Per-phase detail:** each phase file now has its status, ticked tasks, open items marked **Open (2026-09-30)** with the reason, an *Implementation notes* section and a filled verification log. Items that will not be done by owner decision are marked **Won't do** or **Not applicable** with the reason; they stay unticked.
 
 **Found and fixed after the first pass:** refused deletes (category in use, base version) wrote nothing and showed nothing; they now show the reason (extension `c726009`). **Create again** for an alias or version whose keyword was deleted on the server would have been rejected again; it is now refused up front (extension `997df77`).
 
 **Not verified here (phase 10, needs a browser or staging):** Dexie `storagemutated` delivery from the worker to the popup and launcher iframe (a change-counter check covers misses), Firefox launcher-iframe storage partitioning (6.7), the manual checklists of phases 1 and 6–8, RTL layout of the new popover, dialog and Sync status page, performance budgets in a real Chrome profile, migrations on a production copy, re-running the store screenshot capture, and the release order. The new strings are machine-drafted in Arabic and need a native review.
+
+## Review handoff
+
+For a reviewer (for example Codex) checking this work against the plan. Everything is local: nothing is pushed or released.
+
+**What to diff.** Each repository has `develop` = a no-fast-forward merge of `feature/offline-v2`; the merge's first parent is the pre-refactor `develop`.
+
+| Repository | Path | Review range | Size |
+| --- | --- | --- | --- |
+| Backend | `apps/backend` | `git diff 0fd2528 develop` (or `develop^1..develop`) | 41 files, +2,484 −666 |
+| Extension | `apps/extension` | `git diff 21f7922 develop` | 676 files, +21,162 −5,010; 576 of them are the regenerated Orval client in `src/api/generated/` (review `src/lib/offline/`, `src/lib/auth/`, `src/entrypoints/`, `src/components/` and `test/` by hand) |
+| Desktop client | `apps/client` | `git diff 9ed44f2 develop` | 6 files, +84 −27 |
+| Dashboard | `apps/dashboard` | `git diff 357e63a develop` | 108 files, +165 −170, mostly the regenerated client |
+| Umbrella | `.` | `git diff bada1ee develop -- . ':!apps'` | this plan, `docs/`, root `Makefile`, `AGENTS.md`, changelog draft |
+
+**Where to start.** [Architecture](architecture.md) is the design; each phase file lists its tasks with **Done**, **Open**, **Won't do** or **Not applicable** notes, an *Implementation notes* section with deviations, and a verification log. The [findings](findings.md) are ticked in the checklist above, each against the phase that closed it. The code map: backend `src/lib/sync/` and the synced routes; extension `src/lib/offline/` (`db`, `outbox`, `projection`, `snapshot`, `rules/`, `sync/`, `hooks/`) and `test/offline/`, `test/ui/`.
+
+**How to re-run the checks.**
+
+```bash
+make typecheck                                   # all five submodules
+cd apps/extension && bun run test                # 140 tests (fake IndexedDB, browser and API; happy-dom)
+cd apps/backend && TEST_DATABASE_URL=postgresql://…/storylens_test make test-live   # 77 tests; disposable database only
+cd apps/backend && make deprecations             # 0 dated deprecations (D13)
+cd apps/client && bun test                       # 33 tests
+cd apps/dashboard && bun run test                # 48 Playwright tests
+```
+
+The [pattern scans](findings.md#pattern-scan-to-repeat-after-each-phase) should match their allowed lists (last run 2026-09-30).
+
+**Points worth a reviewer's attention.** The deliberate API break and raised client floors (D13, `MIN_CLIENT_VERSIONS` 3.2.2); the three migrations (`20260930100000_alias_names_only` stops on a name collision, `20260930100100_store_raw_text` decodes HTML entities, `20260930100200_sync_change_feed` adds triggers); the runner's lease and lock handling and `classify`; the local rule mirrors in `rules/validation.ts` against the backend rules; and the deviations listed under Implementation status.
+
+**Not verifiable without a browser, staging or a release** (open in phases 1, 6, 7, 8 and 10): `storagemutated` delivery between the worker, popup and launcher iframe; Firefox iframe storage partitioning; RTL layout; the manual checklists; performance in a real Chrome profile; migrations on a production copy; re-running the store capture; the release order; a native Arabic review.

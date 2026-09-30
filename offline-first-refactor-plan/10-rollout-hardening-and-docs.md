@@ -120,13 +120,13 @@ The website does not change.
   - "download your novels again for offline use";
   - "update the desktop client".
 - [x] `docs/chrome-store/README.md`: re-check the offline-save capture steps against the new UI. Update `apps/extension/CHROMEWEBSTORE.md` if the listing text mentions offline behaviour. — **Done (2026-09-30):** script and README updated; the capture itself was not re-run.
-- [ ] `docs/intro.md`: mark this tracker done, or remove its link once the work is merged and documented. — **Open (2026-09-30):** The index now says the work is implemented on the branches; mark done or remove it after the merge.
+- [ ] `docs/intro.md`: mark this tracker done, or remove its link once the work is merged and documented. — **Open (2026-09-30):** the index says the work is merged to `develop` and lists the remaining owner checks; remove the link after the release.
 - [x] Every `CLAUDE.md` stays `@AGENTS.md` only.
 
 ## Exit criteria (whole refactor)
 
-- [ ] Every finding in [findings](findings.md) is closed, or recorded with a decision, in [main](main.md).
-- [ ] Every inventory row is done or kept with its reason.
+- [ ] Every finding in [findings](findings.md) is closed, or recorded with a decision, in [main](main.md). — **Open (2026-09-30):** all but U2's popup side (a browser check).
+- [x] Every inventory row is done or kept with its reason.
 - [ ] The checks in 10.2 and the end-to-end matrix pass in Chrome and Firefox.
 - [ ] Docs, instructions, the analytics catalog and the changelog match the shipped behaviour.
 

@@ -39,7 +39,7 @@ Each action calls the phase 3 `applyResolution` or `discardMutation` and then `s
 
 ### 7.3 Notification
 
-- [ ] When a run ends with new `conflict` or `rejected` mutations, the popup (if open) shows a toast with **Review**. The badge is red while anything needs attention (phase 4). — **Open (2026-09-30):** no toast with **Review** (owner accepted); **Sync now** shows a summary toast and the navbar turns red.
+- [ ] When a run ends with new `conflict` or `rejected` mutations, the popup (if open) shows a toast with **Review**. The badge is red while anything needs attention (phase 4). — **Won't do (owner decision, 2026-09-30):** no toast with **Review**; **Sync now** shows a summary toast and the navbar turns red.
 - [x] Entity badges from phase 6 link to their issue card. — **Done (2026-09-30):** "Needs attention" badges open the Sync status page.
 
 ### 7.4 Accessibility and localization

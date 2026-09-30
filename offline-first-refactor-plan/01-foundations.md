@@ -102,7 +102,7 @@ Manual:
 - [x] `bun run test` passes in `apps/extension`, and runs from root `make test` and in the publish workflow.
 - [x] `bun run typecheck` passes in all five submodules.
 - [x] Every permission rule has a test.
-- [ ] `git diff` shows no change under `apps/extension/src/lib/offline/`. — **Open (2026-09-30):** not applicable: phases 1–9 were built together on one branch, so the old engine was replaced in the same change (it was deleted in phase 6.8).
+- [ ] `git diff` shows no change under `apps/extension/src/lib/offline/`. — **Not applicable (2026-09-30):** phases 1–9 were built together on one branch, so the old engine was replaced in the same change (it was deleted in phase 6.8).
 
 ## Docs and instructions
 
@@ -141,3 +141,4 @@ Manual:
 | 2026-09-30 | Typecheck in all five submodules | Pass | backend `c9a30da`, `8de7ad7`; extension `57e49a1`, `df14ea8`, `c726009`; client `ea24581`, `879e2b0`; dashboard `ab2e4f9`, `4dc1080`; umbrella `34d4614` (all on `feature/offline-v2`) |
 | 2026-09-30 | Tests 2, 3, 4 and 6 | Pass | `test/ui/components.test.tsx` |
 | 2026-09-30 | Manual gating checks (reader and moderator accounts) | Not run | Needs a browser |
+| 2026-09-30 | Extension suite after phases 1–9 and the follow-up fixes | Pass (140 tests, 15 files) | `bun run test` in `apps/extension` at `997df77` |

@@ -16,7 +16,7 @@ This phase builds and tests those pieces and the one-time cleanup of 3.2.x stora
 
 ## Branching
 
-Phases 1–9 land as reviewed pull requests on `feature/offline-v2` branches in the extension, backend, desktop client and dashboard submodules. Each branch is rebased on `develop` weekly. The branches merge and release together once phase 10's exit criteria pass (D13). The old and new engines never run in the same build.
+Phases 1–9 land as reviewed pull requests on `feature/offline-v2` branches (as built: committed directly on those branches without pull requests, then merged to `develop` locally on 2026-09-30 at the owner's request; see [main](main.md#review-handoff)) in the extension, backend, desktop client and dashboard submodules. Each branch is rebased on `develop` weekly. The branches merge and release together once phase 10's exit criteria pass (D13). The old and new engines never run in the same build.
 
 ## Module layout (`apps/extension/src/lib/offline/`)
 

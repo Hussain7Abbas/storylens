@@ -14,6 +14,6 @@ Story Lens pairs a browser extension for novel reading with an API for novels, k
 - [Dashboard](dashboard.md): admin dashboard for users, roles and permissions, novels and configs, and its deployment.
 - [Branding](branding/README.md): approved Lensbook logo, light/dark palette and platform icon exports.
 - [Website implementation tracker](../website-plan/main.md): scope, decisions, evidence, and remaining owner launch checks.
-- [Offline-first refactor tracker](../offline-first-refactor-plan/main.md): implemented on the `feature/offline-v2` branches; remaining owner checks (browser end-to-end matrix, staging migrations, coordinated release) are listed in phase 10.
+- [Offline-first refactor tracker](../offline-first-refactor-plan/main.md): implemented and merged to `develop` locally (not yet released); remaining owner checks (browser end-to-end matrix, staging migrations, coordinated release) are listed in phase 10.
 
 Agent rules and maintenance requirements live in the [root instructions](../AGENTS.md), with [backend](../apps/backend/AGENTS.md), [extension](../apps/extension/AGENTS.md), [client](../apps/client/AGENTS.md), [website](../apps/website/AGENTS.md), and [dashboard](../apps/dashboard/AGENTS.md) instructions for local work. The [README](../README.md) covers user-facing quick start and licensing.
