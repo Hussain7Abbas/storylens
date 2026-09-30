@@ -78,7 +78,7 @@ help:
 	@echo ""
 	@echo "$(BLUE)Quality$(RESET)"
 	@echo "  $(GREEN)typecheck$(RESET)            typecheck all five submodules"
-	@echo "  $(GREEN)test$(RESET)                 run backend + client + website + dashboard tests"
+	@echo "  $(GREEN)test$(RESET)                 run backend + extension + client + website + dashboard tests"
 	@echo ""
 	@echo "$(BLUE)Pass-through$(RESET): $(GREEN)backend-<target>$(RESET) / $(GREEN)extension-<target>$(RESET) / $(GREEN)client-<target>$(RESET) / $(GREEN)website-<target>$(RESET) / $(GREEN)dashboard-<target>$(RESET)"
 	@echo "  e.g. $(YELLOW)make backend-dev$(RESET), $(YELLOW)make extension-typecheck$(RESET), $(YELLOW)make client-pack$(RESET)"
@@ -167,6 +167,7 @@ typecheck: ensure-submodules
 
 test: ensure-submodules
 	@$(MAKE) -C "$(BACKEND)" test
+	@$(MAKE) -C "$(EXTENSION)" test
 	@$(MAKE) -C "$(CLIENT)" test
 	@$(MAKE) -C "$(WEBSITE)" test
 	@$(MAKE) -C "$(DASHBOARD)" test

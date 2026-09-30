@@ -4,6 +4,10 @@
 
 The extension and desktop client are installed apps: store review, auto-update delays and readers who never restart mean several releases call the API at once, and the backend deploys before most of them update. The website and dashboard are redeployed separately from the backend. Every API and database change must therefore keep working for the oldest client still in use. This page is the policy; the enforced rules live in the [root](../AGENTS.md) and [backend](../apps/backend/AGENTS.md) instructions.
 
+## The offline-first release (a deliberate break)
+
+The offline-first release changed the synced reader routes without a compatibility layer (decision D13): creates require client IDs, updates require `baseUpdatedAt`, error statuses changed (duplicates are 409), aliases lost their `name` column, and stored text is no longer HTML-escaped. The backend, extension, desktop client and dashboard shipped together, and `MIN_CLIENT_VERSIONS` was raised above 3.2.1 for both installed clients, so older installs get 426 and update. While the new extension waits in store review it meets the old API: its protocol check (`GET /api/user/sync/protocol`) fails, sync pauses and local edits are kept. The policy below still applies to every later change.
+
 ## Evolve instead of versioning
 
 `/api/user` and `/api/admin` are version 1 of the reader and dashboard APIs. Permission keys are route templates (`GET /api/user/novels/:id`), so a `/v2` mount would duplicate every permission and role grant. Treat a new URL version as a last resort that needs its own plan.

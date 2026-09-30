@@ -37,7 +37,7 @@ make dev-dashboard        # admin dashboard development (port 3040)
 make dev-firefox          # Firefox extension development
 make build                # delegate builds to all five submodules
 make typecheck            # typecheck all five submodules
-make test                 # backend, client, website, and dashboard tests
+make test                 # backend, extension, client, website, and dashboard tests
 make orval                # regenerate extension API client; backend must run
 make i18n-parse           # extract extension translation keys
 make deploy               # interactive xeploy release (bump, tag, publish to main)
