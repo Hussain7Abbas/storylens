@@ -11,13 +11,14 @@ This runbook sets up automated Chrome Web Store publishing from scratch. Use it 
 3. That workflow sends an `extension-submitted` `repository_dispatch` event, with the version, to `storylens-backend`.
 4. The backend's **Set Review_Version** workflow (`apps/backend/.github/workflows/set-review-version.yml`) connects to the server over SSH and runs `make set-review-version VERSION=<version>`.
 5. Every 10 minutes, the backend's `review-version-watcher` cron compares `Review_Version` with the version Chrome currently serves. Once Google approves and publishes the release, the two match. The cron then clears `Review_Version` and runs `make sync` to deploy the backend.
+6. If that sync succeeds, the server runs `make notify-dashboard`. It sends a `backend-deployed` `repository_dispatch` event to `storylens-dashboard`, and that repository's **Deploy production** workflow deploys the dashboard's `main` over a restricted SSH key.
 
-The backend therefore goes live only after the matching extension version does.
+The backend therefore goes live only after the matching extension version does, and the dashboard only after the backend.
 
 ## Accounts and tools you need
 
 - A Google account that will own the Chrome Web Store item. Use this same account for the Google Cloud project and the OAuth sign-in below.
-- Admin access to the `storylens-extension` and `storylens-backend` GitHub repositories.
+- Admin access to the `storylens-extension`, `storylens-backend` and `storylens-dashboard` GitHub repositories.
 - SSH access to the production server that runs the backend with PM2.
 - Local tools: `bun`, `gh` (logged in), and `xeploy` (`bun add -g xeploy`).
 
@@ -100,7 +101,7 @@ bun run submit:chrome --dry-run --chrome-zip .output/storylens-extension-<versio
 
 ## 5. GitHub configuration
 
-Both workflows run their job in a GitHub environment named `production`. Create that environment in each repository under **Settings → Environments**. Both workflow files must also be on each repository's default branch, `main`: GitHub only runs `repository_dispatch` workflows from the default branch.
+The extension, backend and dashboard workflows each run their job in a GitHub environment named `production`. Create that environment in each repository under **Settings → Environments**. The backend and dashboard workflow files must also be on each repository's default branch, `main`: GitHub only runs `repository_dispatch` workflows from the default branch.
 
 ### Extension repository (`storylens-extension`)
 
@@ -136,10 +137,26 @@ Both workflows run their job in a GitHub environment named `production`. Create 
   ```
 - **Deployment branches:** the dispatch-triggered run happens on `main`, so allowing `main` is enough.
 
+### Dashboard repository (`storylens-dashboard`)
+
+`production` environment secrets, used by `.github/workflows/deploy.yml`:
+
+| Name | Kind | Value |
+|------|------|-------|
+| `DEPLOY_HOST` | Secret | `root@<server ip>` |
+| `DEPLOY_PORT` | Secret | SSH port, `22` |
+| `DEPLOY_KNOWN_HOSTS` | Secret | The server's `known_hosts` lines |
+| `DEPLOY_SSH_KEY` | Secret | Private key of a dedicated, passphrase-protected ed25519 key pair |
+| `DEPLOY_SSH_PASSPHRASE` | Secret | That key's passphrase; the workflow decrypts the runner's copy |
+
+- **Server key:** install the wrapper with `install -m 755 deploy/ci-ssh.sh /usr/local/lib/storylens/dashboard-ci-ssh.sh`, then add the public key to root's `~/.ssh/authorized_keys` as `command="/usr/local/lib/storylens/dashboard-ci-ssh.sh",restrict <public key>`. The wrapper accepts only `deploy <sha>` for a commit on `main`.
+- **Dispatch token:** create a fine-grained token with only `storylens-dashboard` and **Contents: Read and write**, and set it as `DASHBOARD_DISPATCH_TOKEN` in the backend's server `.env`. `make notify-dashboard` reads it; the API does not need a restart. Without it, the watcher logs a warning in `sync.log` and the dashboard stays on its current release.
+- The workflow must be on `main`, because GitHub only runs `repository_dispatch` workflows from the default branch.
+
 ## 6. Server
 
 1. Clone the backend repository and check out `main`. `make sync` pulls whatever branch is checked out.
-2. Copy `.env.example` to `.env` and fill it in. Include `CHROME_EXTENSION_ID="<item id>"`, which the cron needs to look up the store version.
+2. Copy `.env.example` to `.env` and fill it in. Include `CHROME_EXTENSION_ID="<item id>"`, which the cron needs to look up the store version, and `DASHBOARD_DISPATCH_TOKEN`, which deploys the dashboard after the backend.
 3. Install `bun` in `~/.bun/bin`. The SSH step adds that directory to `PATH`.
 4. Run the one-time setup from the backend directory:
    ```bash
@@ -158,7 +175,8 @@ Both workflows run their job in a GitHub environment named `production`. Create 
 1. From the umbrella root, run `make deploy` and follow xeploy's prompts. Make sure the extension's version was bumped, because Chrome rejects a version it has already received.
 2. In the extension repository's **Actions** tab, check that **Publish to Chrome Web Store** passes, including the **Notify backend** step.
 3. In the backend repository's **Actions** tab, check that **Set Review_Version** passes. Then `/health/ready` should show `versions.review` as the new version.
-4. After Google approves the item, the backend deploys within about 10 minutes. `versions.review` returns to `null`, and the server's `sync.log` in the backend directory shows the `make sync` output.
+4. After Google approves the item, the backend deploys within about 10 minutes. `versions.review` returns to `null`, and the server's `sync.log` in the backend directory shows the `make sync` output followed by `Requested a Hussain7Abbas/storylens-dashboard deploy`.
+5. In the dashboard repository's **Actions** tab, check that **Deploy production** passes.
 
 To rerun the backend step by hand, for example after fixing SSH secrets:
 
@@ -178,3 +196,4 @@ Backend-only releases, where the extension version doesn't change, never set `Re
 | Job refused by environment protection rules | Allow the triggering ref (the `v*` tag, or `main`) under the `production` environment's deployment branches and tags. |
 | **Notify backend** fails with 403 or 404 | `BACKEND_DISPATCH_TOKEN` has expired, lacks Contents write, doesn't include `storylens-backend`, or the repo path in the workflow is wrong. |
 | Backend never deploys after the store publishes | Check `/health/ready`. `chromeStore` should be `ok`, and `versions.review` and `versions.store` should match. Also check that the server tracks `main` and that PM2 runs with `NODE_ENV=production`. Then check `sync.log`. |
+| Dashboard doesn't deploy after the backend | Check `sync.log` for the `notify-dashboard` output: a missing or expired `DASHBOARD_DISPATCH_TOKEN`, or a failed `make sync` (the dashboard is skipped). If the dispatch succeeded, check the dashboard's **Deploy production** run; rerun it with `gh workflow run deploy.yml -R Hussain7Abbas/storylens-dashboard`. |
