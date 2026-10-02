@@ -51,4 +51,17 @@ async function main() {
  await write('docs/branding/color-pallete.png', await sharp(Buffer.from(svg)).png().toBuffer());
  console.log(`Exported Lensbook master, ${sizes.length} PNG sizes, ICO, ICNS, app assets and palette.`);
 }
-main().catch(error => { console.error(error); process.exitCode = 1; });
+// The lens coin: components inline its SVG paths; emails need PNGs, which the website hosts.
+async function lensCoin() {
+ const coin = path.join(brand, 'lens-coin');
+ const full = await fs.readFile(path.join(coin, 'lens-coin.svg'));
+ const small = await fs.readFile(path.join(coin, 'lens-coin-small.svg'));
+ for (const size of [16, 32, 64, 128]) {
+  const png = await sharp(size <= 20 ? small : full, { density: 384 }).resize(size, size).png().toBuffer();
+  await write(`docs/branding/lens-coin/png/lens-coin-${size}.png`, png);
+  if (size === 32 || size === 64) await write(`apps/website/public/brand/lens-coin-${size}.png`, png);
+ }
+ console.log('Exported the lens coin PNGs (16, 32, 64, 128) and the website email copies.');
+}
+// `node export.cjs lens-coin` refreshes only the coin, leaving the logo assets untouched.
+(process.argv[2] === 'lens-coin' ? lensCoin() : main().then(lensCoin)).catch(error => { console.error(error); process.exitCode = 1; });

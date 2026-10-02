@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Lens">
+  <circle cx="32" cy="35" r="28" fill="#3e3289"/>
+  <circle cx="32" cy="31" r="28" fill="#6554c0"/>
+  <path d="M32 13c1.7 9.6 7.4 15.3 17 17-9.6 1.7-15.3 7.4-17 17-1.7-9.6-7.4-15.3-17-17 9.6-1.7 15.3-7.4 17-17z" fill="#ffffff"/>
+</svg>

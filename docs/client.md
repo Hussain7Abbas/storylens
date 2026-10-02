@@ -4,6 +4,8 @@
 
 `apps/client` is an Electron desktop companion for macOS and Windows. It starts an authenticated HTTP service on `127.0.0.1:43127` and runs the locally installed Claude Code or Codex CLI in headless mode. The extension uses it for four actions: **Summarize page** sends the active HTTP(S) page body to the selected provider and displays the returned plain text at the top of that page, the selection panel’s **Use AI** option sends a picked name with nearby page text and the category/nature list to suggest a new character's description, category, and nature, **Extract chapter characters** sends up to 120,000 characters of chapter text with the category/nature list and the novel's known names to list new characters, and the character forms' **Generate image** asks Codex to draw the character. Keyword suggestions, extractions and images also carry the reader's prompts from **Settings → AI** and the novel's global context; when a novel has no context, the extension first asks the provider to research the novel with web search and saves the answer to the novel through the backend. The Elysia backend is not involved in running prompts; it only stores the novel context and the uploaded image.
 
+The extension selects this path with **Settings → AI → Desktop companion**. It charges no Story Lens lenses; the reader uses their own provider account. Cloud is a separate backend path and does not change the client protocol or desktop-only wiki crawler.
+
 ## Wiki crawling
 
 The desktop window has two tabs: **Settings** (pairing, companion settings, providers) and **Crawling**. Crawling builds a novel's character list from a fan wiki without the browser:

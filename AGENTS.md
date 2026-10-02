@@ -1,15 +1,16 @@
 # Story Lens repository instructions
 
-Story Lens is a browser extension for reading web novels with keyword highlighting, text replacement, chapter detection, and local AI (summaries, keyword suggestions, novel context research, and character image generation), supported by an Elysia API, a desktop companion and an admin dashboard. This repository coordinates five independent Git submodules; it has no root `package.json` or shared workspace packages. Start with [the documentation index](docs/intro.md) for design and workflow details.
+Story Lens is a browser extension for reading web novels with keyword highlighting, text replacement, chapter detection, and AI (summaries, keyword suggestions, novel context research, and character image generation) through lens-funded Story Lens Cloud or the free desktop companion, supported by an Elysia API, a desktop companion and an admin dashboard. This repository coordinates five independent Git submodules; it has no root `package.json` or shared workspace packages. Start with [the documentation index](docs/intro.md) for design and workflow details.
 
 ## Repository map
 
-- `apps/backend/`: API (reader API at `/api/user`, dashboard API at `/api/admin`), auth, portals/roles/permissions, Prisma schema and migrations, seeds, storage, and AI features. Follow [backend instructions](apps/backend/AGENTS.md).
+- `apps/backend/`: API (reader API at `/api/user`, dashboard API at `/api/admin`), auth, portals/roles/permissions, Prisma schema and migrations, seeds, storage, billing/ledger, website sessions, and cloud AI features. Follow [backend instructions](apps/backend/AGENTS.md).
 - `apps/extension/`: WXT extension, popup and content scripts, generated API client, localization, and offline storage. Follow [extension instructions](apps/extension/AGENTS.md).
 - `apps/client/`: Electron desktop companion, local prompt service, provider adapters, AI wiki crawler, and packaging. Follow [client instructions](apps/client/AGENTS.md).
-- `apps/website/`: static Next.js marketing site, bilingual legal MDX, design tokens, browser tests, and standalone Nginx deployment. Follow [website instructions](apps/website/AGENTS.md).
-- `apps/dashboard/`: Vite + React admin dashboard (users, roles and permissions, novels, configs), generated admin API client, Ink & Iris design, browser tests, and standalone Nginx deployment. Follow [dashboard instructions](apps/dashboard/AGENTS.md).
+- `apps/website/`: static Next.js marketing site, standalone accounts, Balance/Pricing pages, bilingual legal MDX, design tokens, browser tests, and standalone Nginx deployment. Follow [website instructions](apps/website/AGENTS.md).
+- `apps/dashboard/`: Vite + React admin dashboard (users, roles and permissions, novels, billing requests, Configs and AI pricing), generated admin API client, Ink & Iris design, browser tests, and standalone Nginx deployment. Follow [dashboard instructions](apps/dashboard/AGENTS.md).
 - `Makefile`: delegates setup, development, build, and quality targets to the submodules.
+- `scripts/lenses-e2e.mjs`: isolated local browser integration across extension, website, dashboard, API and PostgreSQL; see [the rehearsal guide](docs/lenses-local-e2e.md).
 - `.cursor/rules/`: Cursor guidance; `AGENTS.md` files are the source of truth for agent rules.
 
 ## Shared rules and workflow

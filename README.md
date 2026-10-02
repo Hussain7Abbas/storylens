@@ -5,22 +5,24 @@
 <h1 align="center">Story Lens</h1>
 
 <p align="center">
-  A browser extension, API, and desktop client for reading web novels with keyword highlighting, text replacements, AI-assisted chapter detection, and page summaries.
+  A browser extension, API, and desktop client for reading web novels with keyword highlighting, text replacements, AI-assisted chapter detection, page summaries, and character images through Story Lens Cloud or the desktop companion.
 </p>
 
 ---
 
 This is the umbrella repository for Story Lens. The backend API, browser extension, desktop client, website, and admin dashboard are Git submodules. The root `Makefile` delegates commands to each app.
 
+Story Lens Cloud uses non-expiring lenses, with prices shown before paid actions. Readers sign in, view their balance and request lenses on the bilingual website. The Desktop source remains a free Story Lens alternative using their own Claude/Codex account. The dashboard manages requests, gifts, models and feature pricing. See the [3.4.0 draft changelog](docs/changelog/v3.4.0.md) and [release runbook](pricing-plan/11-legal-release-and-docs.md).
+
 ## Repositories
 
 | Path             | Repository                                                                  | Description                                                                 |
 | ---------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `apps/backend`   | [storylens-backend](https://github.com/Hussain7Abbas/storylens-backend)     | Elysia.js API, PostgreSQL (Prisma), file storage, AI                        |
+| `apps/backend`   | [storylens-backend](https://github.com/Hussain7Abbas/storylens-backend)     | Elysia.js API, PostgreSQL (Prisma), file storage, billing, cloud AI                        |
 | `apps/extension` | [storylens-extension](https://github.com/Hussain7Abbas/storylens-extension) | WXT + React browser extension                                               |
 | `apps/client`    | [storylens-client](https://github.com/Hussain7Abbas/storylens-client)       | Electron desktop companion for Claude/Codex prompts                         |
-| `apps/website`   | [storylens-website](https://github.com/Hussain7Abbas/storylens-website)     | Static English/Arabic Next.js landing and legal pages                       |
-| `apps/dashboard` | [storylens-dashboard](https://github.com/Hussain7Abbas/storylens-dashboard) | Vite + React admin dashboard: users, roles and permissions, novels, configs |
+| `apps/website`   | [storylens-website](https://github.com/Hussain7Abbas/storylens-website)     | Static Next.js marketing/legal site, accounts, Balance and Pricing                       |
+| `apps/dashboard` | [storylens-dashboard](https://github.com/Hussain7Abbas/storylens-dashboard) | Vite + React admin dashboard: users, roles and permissions, novels, billing, Configs and AI |
 
 ## Prerequisites
 

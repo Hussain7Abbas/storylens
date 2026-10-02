@@ -59,3 +59,9 @@ Never rename, retype or drop a column that running code or supported clients use
 | Contract | Drop the old column in a later migration | Stop touching the old field; remove its marker |
 
 Each phase is a separate release that is safe to roll back. The contract step waits until the API no longer exposes the field and no supported client (per `MIN_CLIENT_VERSIONS`) or offline sync payload sends it. For fields stored offline by the extension, the Dexie store, download bundle and sync payload follow the same cycle.
+
+## Cloud and lenses in 3.4.0
+
+Billing, website cookie sessions and feature-keyed `/api/user/ai/prompts` and `/images` are additive. No extension or desktop minimum version is raised. New extension Cloud fetches send `X-Client-Version`, bearer auth and language like the generated Axios client; 426 invokes the same update check. An old API’s 404 is a visible Cloud-unavailable error, while the independently selected Desktop path still works. An NDJSON result or a bounded JSON fallback is read from the same request, never by replaying a paid action.
+
+`POST /api/user/ai/chapter-selectors` remains for supported old clients with a dated deprecation (`remove-after: 2027-01-31`). New extensions use their own selector prompt, validation and one free correction on the feature route. Observe legacy route use before removal. Lens/session migrations expand the schema; rollback keeps their tables and columns so existing balances/history survive.

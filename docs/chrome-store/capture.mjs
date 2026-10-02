@@ -44,6 +44,12 @@ await worker.evaluate(async ({ novel, selector, locale, launcherX }) => {
     "storylens-auth": JSON.stringify({ user: { id: "sample-reader", name: "Sample Reader", username: "sample-reader", email: "reader@example.invalid", isGuest: false, role: null, permissions: [] }, token: "local-sample-only" }),
     "storylens-website-selector-cache:127.0.0.1": selector,
     "storylens-analytics-enabled": false,
+    // Isolated offline billing fixtures demonstrate the real Cloud controls without making an AI request.
+    "storylens-ai-source": "cloud",
+    "storylens-lens-balance": {userId: "sample-reader", balance: 128, updatedAt: Date.now()},
+    "storylens-ai-pricing": {fetchedAt: Date.now(), data: {currency: "USD", available:true, lensPriceUsd:"0.01", lensPriceMicros:10000, trialLenses:10, request:{min:100,max:50000,pendingMax:3}, cloudAi:{enabled:true}, features:[
+      ["page_summary",2,"Summarize page","تلخيص الصفحة"], ["keyword_suggestion",1,"Keyword suggestion","اقتراح الكلمات"], ["chapter_extraction",4,"Chapter extraction","استخراج شخصيات الفصل"], ["character_image",3,"Character image","صورة الشخصية"], ["novel_context",0,"Novel research","البحث عن الرواية"], ["selector_detection",0,"Selector detection","كشف المحددات"],
+    ].map(([key,lenses,nameEn,nameAr])=>({key,lenses,nameEn,nameAr,enabled:true,maxPromptChars:40000,descriptionEn:null,descriptionAr:null}))}},
     "storylens-locale": locale,
     "storylens-page-launcher-position": { x: launcherX, y: 102 },
   });
