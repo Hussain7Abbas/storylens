@@ -41,7 +41,7 @@ help:
 	@echo "  $(GREEN)setup$(RESET)                backend setup (docker + db)"
 	@echo ""
 	@echo "$(BLUE)Development$(RESET)"
-	@echo "  $(GREEN)dev$(RESET)                   start extension then backend (single terminal)"
+	@echo "  $(GREEN)dev$(RESET)                   start all five apps concurrently (single terminal)"
 	@echo "  $(GREEN)backend$(RESET)               alias for $(GREEN)dev-backend$(RESET)"
 	@echo "  $(GREEN)extension$(RESET)             alias for $(GREEN)dev-extension$(RESET)"
 	@echo "  $(GREEN)dev-backend$(RESET)          $(YELLOW)make -C apps/backend dev$(RESET)"
@@ -127,6 +127,9 @@ dev: ensure-submodules
 	@trap 'kill 0' INT TERM; \
 	$(MAKE) extension & \
 	$(MAKE) backend & \
+	$(MAKE) client & \
+	$(MAKE) website & \
+	$(MAKE) dashboard & \
 	wait
 
 backend dev-backend: ensure-submodules

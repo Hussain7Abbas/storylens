@@ -30,6 +30,7 @@ make help                 # full target list
 make submodules-init      # initialize all five submodules after cloning
 make install              # Bun install in each submodule
 make setup                # backend Docker Postgres, migrations, and seed
+make dev                  # all five apps concurrently in one terminal
 make dev-backend          # API in watch mode (PORT defaults to 3000)
 make dev-extension        # Chrome extension development
 make dev-client           # Electron desktop client development

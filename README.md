@@ -96,6 +96,7 @@ Run `make help` to see targets for all five apps. Client commands are also avail
 
 | Command              | Description                                  |
 | -------------------- | -------------------------------------------- |
+| `make dev`           | Start all five apps concurrently             |
 | `make dev-backend`   | Start API in watch mode                      |
 | `make dev-extension` | Start Chrome extension dev server            |
 | `make dev-website`   | Start the website development server         |

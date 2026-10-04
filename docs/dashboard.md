@@ -25,6 +25,8 @@ Navigation, pages and buttons follow the signed-in role's permissions (`can()` i
 
 The dashboard uses the website's Ink & Iris identity: the same light/dark tokens, Inter, Lucide icons at 1.75 stroke, iris primary actions and the Lensbook logo. `apps/dashboard/design-system/MASTER.md` records how the admin layout applies it; the vendored UI UX Pro Max skill supplied the minimal, dense dashboard structure, while its palette and fonts were rejected for Ink & Iris. Light, dark and system themes, reduced motion, keyboard focus, 44px coarse-pointer targets and no page-level horizontal scroll at phone widths are covered.
 
+Lens coins across the dashboard retain their original static full/small/mono SVG. Three surrounding CSS sparkles brighten at 300 ms offsets, each repeating every 900 ms, using theme iris or `currentColor` for mono. Hover/focus on a containing control pauses them; reduced motion and forced colors hide them. The independent `src/lib/lens-coin/LensCoinSparkles.tsx` and global styles mirror the canonical [branding source](branding/README.md#lens-coin), with no player or timers. `tests/lens-motion.spec.ts` verifies staggered lighting, static artwork and reduced-motion changes.
+
 ## Development and checks
 
 `make dev-dashboard` serves it at http://localhost:3040 against `VITE_API_URL`. `make dashboard-orval` regenerates `src/api/generated/` from a running backend (`ORVAL_API_URL`); only `Admin: …` tags are generated. `make dashboard-typecheck`, `dashboard-lint`, `build-dashboard` and `dashboard-test` (Playwright + axe on Chromium desktop and mobile with a mocked API; `CHROMIUM_PATH` selects a preinstalled browser) are the checks.
