@@ -37,8 +37,8 @@
 ### 7.3 Notices and celebration (D12)
 
 - [x] `src/components/billing/GiftCelebration.tsx`: when `getBalance()` (always `surface=website`) returns notices on any signed-in account page (profile or balance):
-  - gifts (`TRIAL_GIFT`, `ADMIN_GIFT`): a native `<dialog>` (focus moved in, Escape closes, focus returned) with the large coin, "Congratulations!" and "You received 10 free lenses to try Story Lens Cloud" or "Story Lens sent you 50 lenses" plus the gift note; confetti behind it;
-  - top-ups (`TOP_UP`): a plain success notice, "Your 500 lenses have arrived", without confetti;
+  - gifts (`TRIAL_GIFT`, `ADMIN_GIFT`): a native `<dialog>` (focus moved in, Escape closes, focus returned) with the large coin, "Congratulations!" and "You received 10 free lenses to try Story Lens Cloud" or "Story Lens sent you 50 lenses" plus the gift note; a short CSS sparkle burst behind it (`SparkBurst.tsx`; originally `canvas-confetti`, removed 2026-10-07);
+  - top-ups (`TOP_UP`): a plain success notice, "Your 500 lenses have arrived", with no burst;
   - after showing, `markNoticesSeen(ids, "website")`; several gifts are summed into one dialog. This marks them only for the website: the extension celebrates the same increases on its own (D12).
 - [x] Confetti: `canvas-confetti` (ISC, bundled, about 10 KB) loaded with `import()` only when a gift exists, with `useWorker: false` (the CSP has no `worker-src blob:`), `disableForReducedMotion: true`, the palette colors and a sparkle shape (`shapeFromPath` with the coin's four-point star). One burst, under 2 s, no loop.
 - [x] `Lens_Trial_Gift = 0` means the API creates no gift, so no dialog and no confetti appear. Nothing on the website checks the config itself.

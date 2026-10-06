@@ -8,7 +8,7 @@ Build a public marketing site for the Story Lens browser extension in a new **pu
 
 - A landing page that explains the extension and its desktop companion, and gets visitors to install it.
 - A **Privacy Policy** and **Terms of Use**. Both must match what the code actually collects and does, and must be good enough to use as the Chrome Web Store and Firefox Add-ons privacy URL.
-- Next.js with Tailwind CSS, GSAP animation, and one small, optional Three.js scene.
+- Next.js with Tailwind CSS and hand-written CSS motion. (The original plan used GSAP and a small Three.js scene; both were removed on 2026-10-07.)
 - UX/UI decisions made with the **UI UX Pro Max** skill. Its research informed the structure; the owner-approved Ink & Iris direction in `apps/website/design-system/MASTER.md` is used for current visual decisions.
 
 ## Technical decisions
@@ -18,8 +18,8 @@ Build a public marketing site for the Story Lens browser extension in a new **pu
 | Framework | Latest stable Next.js App Router (16.x at time of writing; confirm during phase 1), React 19, strict TypeScript | Requested. Server components keep the landing page mostly JavaScript-free. |
 | Rendering | Fully static (SSG) for every route. No API routes or server runtime | A landing page and legal pages have no dynamic data. Cheap and fast, and any static host can serve it. |
 | Styling | Tailwind CSS v4 with CSS-first `@theme` tokens generated from the design system | Requested. Tokens implement the owner-approved Ink & Iris design system. |
-| Motion | GSAP 3 (all plugins, including ScrollTrigger and SplitText, are free), used through `@gsap/react` `useGSAP` | Requested. `useGSAP` handles cleanup and React strict mode. |
-| 3D | One lazily loaded React Three Fiber and drei scene in the hero: a glass lens over a page. It only loads on capable desktops | "A little Three.js". Kept out of the critical path, with a static fallback. |
+| Motion | CSS keyframes and scroll-driven `animation-timeline` in `globals.css`, plus one ~400-byte inline `IntersectionObserver` for section reveals. No animation dependency *(2026-10-07; originally GSAP 3 through `@gsap/react`)* | Removes ~1.05MB of JavaScript from the export, keeps effects on the compositor, and degrades to a static page where scroll timelines are missing. |
+| Hero lens | `.lens-glass`: a CSS glass pane with an iris rim, specular highlight and slow drift, from 1024px up *(2026-10-07; originally a lazy React Three Fiber + drei scene)* | Same decorative intent at no bundle cost, and nothing to leak or dispose. |
 | i18n | English and Arabic (RTL) through `next-intl`, with `/en` and `/ar` routes | The extension already ships English and Arabic. Arabic readers are a target audience. |
 | Legal content | MDX files per locale, with `lastUpdated`/`version` frontmatter and a changelog | Easy to edit, diff, and review. Dates render from data, not hard-coded markup. |
 | Package manager and quality | Bun, Biome (same as the extension), `tsc --noEmit`, Playwright with axe, and Lighthouse CI | Matches repository rules. `next lint` was removed in Next 16. |
@@ -51,7 +51,7 @@ Story points are relative estimates, not dates. Implementation started at the us
 | [1 — Repository and submodule](01-repository-and-submodule.md) | Public repo, Next.js scaffold, tooling, umbrella integration | 3 | 0 (D9) | In progress |
 | [2 — Foundation, shell, and i18n](02-foundation-shell-i18n.md) | Tokens, fonts, layout shell, en/ar and RTL, theme, config | 5 | 0, 1 | In progress |
 | [3 — Landing page sections](03-landing-page-sections.md) | All static sections with final copy and assets | 8 | 2 | In progress |
-| [4 — Motion and 3D](04-motion-and-3d.md) | GSAP choreography, interactive demo, Three.js hero lens | 8 | 3 | In progress |
+| [4 — Motion](04-motion-and-3d.md) | CSS choreography, interactive demo, CSS hero lens | 8 | 3 | Superseded — rebuilt without libraries |
 | [5 — Privacy Policy and Terms of Use](05-legal-pages.md) | Verified data inventory, bilingual legal pages | 5 | 2 (D3–D5) | In progress |
 | [6 — Quality, SEO, and accessibility](06-quality-seo-a11y.md) | Budgets, audits, tests, metadata, security headers | 5 | 3, 4, 5 | In progress |
 | [7 — Deployment and launch](07-deployment-and-launch.md) | Hosting, domain, store listings, cross-repo links, docs | 3 | 6 (D1, D2) | In progress |
@@ -76,11 +76,12 @@ apps/website/                 # submodule → storylens-website
       layout/                 # Header, Footer, LocaleSwitch, ThemeToggle, SkipLink
       sections/               # Hero, Problem, Features, Demo, HowItWorks, Companion, Privacy, FAQ, FinalCta
       ui/                     # Button, Badge, Card, Accordion, StoreButton …
-      motion/                 # GSAP registration, useReveal, useSplitHeading, useReducedMotion
-      three/                  # LensScene (client-only, lazy), LensFallback
+      billing/                # LensCoin, LensPrice, PricingTable, GiftCelebration, SparkBurst
     content/legal/{en,ar}/    # privacy.mdx, terms.mdx
     i18n/                     # routing, request config; messages/en.json, ar.json
     lib/site-config.ts        # URLs, store IDs, contact, domain (single source)
+    lib/inline-scripts.ts     # themeScript and revealScript (both CSP-hashed)
+    lib/structured-data.ts    # schema.org graphs per page
   public/                     # icons, OG fallbacks, screenshots, poster images
   tests/                      # Playwright e2e + axe
   AGENTS.md  CLAUDE.md (@AGENTS.md)  Makefile  biome.json  README.md  LICENSE.md
@@ -111,8 +112,8 @@ apps/website/                 # submodule → storylens-website
 - UI UX Pro Max skill: <https://github.com/nextlevelbuilder/ui-ux-pro-max-skill>
 - Next.js App Router: <https://nextjs.org/docs/app>, static exports: <https://nextjs.org/docs/app/guides/static-exports>
 - Tailwind CSS v4 theme variables: <https://tailwindcss.com/docs/theme>
-- GSAP React: <https://gsap.com/resources/React>, ScrollTrigger: <https://gsap.com/docs/v3/Plugins/ScrollTrigger>
-- React Three Fiber: <https://r3f.docs.pmnd.rs>, drei: <https://drei.docs.pmnd.rs>
+- CSS scroll-driven animations: <https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_scroll-driven_animations>
+- llms.txt convention: <https://llmstxt.org>
 - next-intl App Router: <https://next-intl.dev/docs/getting-started/app-router>
 - Chrome Web Store user data policy: <https://developer.chrome.com/docs/webstore/program-policies/user-data-faq>
 - Firefox add-on policies: <https://extensionworkshop.com/documentation/publish/add-on-policies/>
@@ -131,3 +132,13 @@ Owner approved operator/age/jurisdiction defaults. Private contact address remai
 ## Ink & Iris rebrand — 2026-09-27
 
 Website and extension UI now share neutral light/dark surfaces, violet primary actions, Inter UI typography, and Lucide outline icons. The website keeps a serif for chapter passages and both apps preserve Arabic/RTL. Popup, settings, forms, launcher, keyword tooltip, summaries and extraction surfaces follow the same identity. Existing logo, favicon and social artwork remain pending the owner's replacement logo. Validation evidence is in `apps/website/design-system/validation/ink-iris/`; this is a local implementation, not a production release.
+
+## Implementation record — 2026-10-07
+
+Animation dependencies removed and rewritten in CSS: `gsap`, `@gsap/react`, `three`, `@react-three/fiber`, `@react-three/drei` and `canvas-confetti` are gone from `package.json`. Section reveals, the hero stagger, the header shadow, the demo lens sweep, the hero glass lens and the gift burst are CSS; the only motion script is the inline `revealScript`. The demo's staged walk now follows the passage's intersection ratio instead of a pinned scroll timeline. `browserslist` pins a modern baseline so SWC stops emitting `Array.prototype.at`/`flat` polyfills.
+
+Search and answer engines: richer per-route metadata (long-form robots directives, OG image dimensions and alt, localized keywords), schema.org graphs in `src/lib/structured-data.ts` (`Organization`, `WebSite`, `SoftwareApplication`, `WebPage`, `HowTo`, `FAQPage`, `BreadcrumbList`), a sitemap that reads the legal MDX dates and carries `x-default`, `robots.txt` that names the answer-engine crawlers and disallows `/[locale]/profile/`, a curated `public/llms.txt`, and a canonical/`hreflang` language gate at the bare domain.
+
+Loading: a 72px header logo (26.9KB → 2.1KB), 960px gallery variants with `sizes` matching the real column widths, and a header that only calls `/auth/me` when this browser has held a website session — which also removes the anonymous 401 that cost the best-practices score.
+
+Not yet measured: `make website-build`, Playwright/axe and Lighthouse were not run for this change; the build needs network access to Google Fonts that the agent sandbox blocks. Re-run them and record the figures before treating any budget as passed.

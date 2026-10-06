@@ -1,6 +1,8 @@
-# Phase 4 — Motion (GSAP) and 3D (Three.js)
+# Phase 4 — Motion
 
-[Global tracker](main.md) · **Status: In progress** · **Estimate: 8 points** · **Dependencies: phase 3**
+[Global tracker](main.md) · **Status: Superseded — rebuilt without libraries** · **Estimate: 8 points** · **Dependencies: phase 3**
+
+> **2026-10-07.** GSAP, Three.js and `canvas-confetti` were removed from the website. The tasks below record the original library-based plan and remain as dated history; the motion principles still apply. What ships now is CSS: keyframes and scroll-driven timelines in `src/app/globals.css`, a ~400-byte inline `IntersectionObserver` for section reveals (`revealScript` in `src/lib/inline-scripts.ts`), a CSS glass hero lens (`.lens-glass`) in place of the WebGL scene, an intersection-driven demo walk instead of the pinned scrub, and `SparkBurst.tsx` in place of the confetti canvas. The current rules live in `apps/website/AGENTS.md` and `apps/website/design-system/MASTER.md`.
 
 ## User story
 
@@ -54,5 +56,7 @@ As a visitor, I want the page to feel alive and to *show* how the lens works as 
 ## Validation record
 
 2026-09-27: Lazy GSAP useGSAP/ScrollTrigger/SplitText, reveals, header scroll state, desktop pinned staged demo, and desktop-only WebGL lens implemented. Reduced-motion tests pass with no canvas. Renderer chunk ~244KB gzip before ancillary code exceeds the 180KB stretch budget. Continuous 60fps profiling, 10-navigation WebGL leak audit and full scene refinement are not marked complete.
+
+2026-10-07: The library-based implementation above was replaced with hand-written CSS motion. `gsap`, `@gsap/react`, `three`, `@react-three/fiber`, `@react-three/drei` and `canvas-confetti` are no longer dependencies, and `AGENTS.md` forbids adding an animation library. Scroll pinning is gone, so the "no scroll-jacking" and "no leaked WebGL contexts" risks no longer apply. Re-measure the performance acceptance criteria against the new export; the figures recorded above are historical.
 
 Detailed evidence: `apps/website/design-system/validation/README.md`. Checkboxes remain unticked unless every listed condition was verified; implemented core behavior is recorded above.
