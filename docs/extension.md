@@ -121,6 +121,8 @@ Updating from 3.2.x deletes the old `storylens-offline` database and `storylens-
 
 Run the extension tests with `bun run test` (or `make test`) from `apps/extension`; they use a fake browser, `fake-indexeddb` and an in-memory API that follows the sync contract (`test/helpers/`), and `test/ui/` renders components with happy-dom and Testing Library.
 
+Browser-dependent tests share the `#imports` mock from `test/helpers/fake-browser.ts`. Override methods on that shared browser only for the tests that need them, and restore them after each test. Replacing `#imports` with a partial browser mock leaks into later files in the same Bun process and breaks UI and offline tests.
+
 ## Usage analytics
 
 The extension sends pseudonymous Google Analytics 4 events through the Measurement Protocol from the background service worker; Manifest V3 forbids remotely hosted code, so `gtag.js` is not used. Popup and content scripts call `trackEvent()` (`src/lib/analytics/client.ts`), which forwards a typed `trackAnalyticsEvent` message to `src/lib/analytics/background.ts`. The background attaches a random client ID (`storylens-analytics-client-id` in extension-local storage), a 30-minute session ID in session storage, and the extension version, then posts to `https://www.google-analytics.com/mp/collect` (a declared host permission). Development builds use GA's debug endpoint and log validation results.
