@@ -49,3 +49,5 @@ For a live browser check, start a **disposable** local PostgreSQL database, appl
 Keyword/alias descriptions save independent `descriptionAr`/`descriptionEn` fields (keywords on the base version); the table and nested rows show the selected language. A version form edits both descriptions explicitly. Translation links retain both languages, and clearing one description keeps the other. Older API responses use their shared description only in the language identified by its script.
 
 The AI settings also list `chapter_cover` pricing after the chapter-cover migration. It uses the image model like `character_image`, with a separate estimate for the longer chapter scene brief and independent editable lens price and limits.
+
+The `chapter_context` text feature appears in Settings → AI with editable lens pricing and a structured-output cost estimate (15,000 typical input / 5,000 output tokens). Chapter covers remain an image feature.

@@ -85,3 +85,7 @@ The unreleased Word VFX schema is refined by migration `20261016163040_word_vfx_
 ## Gemini CLI desktop provider
 
 Gemini is an additive provider under desktop protocol 2: capabilities add `provider: "gemini"` models from ACP discovery, and existing prompt requests keep their fields. Gemini offers only `default` effort. New and legacy companion settings default `geminiPath` to `gemini`; existing tokens, paths, account and preferences remain valid. Image generation stays on Codex and fails explicitly when unavailable. No backend/schema/client floor changes.
+
+## Chapter context consolidation
+
+The owner explicitly requested physical removal of Chapter.description and ChapterCover. Migration `20261017000000_chapter_context` performs that consolidation atomically, retaining descriptions inside context.summary, migrating cover File references and active reservations, and preserving keyword links while deduplicating chapters. Deploy the matching backend with this migration; rolling its database back requires a separate data-preserving reverse migration. Installed clients retain the legacy cover endpoint contract through dated adapters (remove-after: 2027-04-30); new clients use `/chapter-artwork`. Legacy chapter description inputs map to summary and are dated deprecated. New chapter metadata responses exclude context bodies and lease secrets, with dedicated APIs for current context and image-time continuity. No extension/desktop client floor is raised.
