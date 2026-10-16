@@ -73,3 +73,15 @@ The nullable `descriptionAr`/`descriptionEn` columns on aliases and versions are
 ## Initial keyword ranges and category effects
 
 Keyword creation adds optional `startingChapter`/`endingChapter` fields, defaulting to 0/null for existing clients. They set the initial version only; normal highlighting still falls back to the base outside its range. Category requests add optional `effect`, and responses add its string value. Migration `20261016123431_keyword_category_effect` adds a defaulted `NONE` column without changing existing colors; old partial writes preserve it. Known writes are the five effect choices; clients render missing or unknown read values as plain highlighting. Deploy the migration/backend before the extension. No client floor changes or Dexie index/schema migration is required.
+
+## Word VFX
+
+Migration `20261016154843_word_vfx` adds defaulted `wordVfx` strings to `Keyword` and `KeywordAlias`; optional reader/admin inputs and additive responses preserve older clients and partial writes. Existing words start at `NONE`; no category effects are copied to words. Current forms and highlighting use independent word effects, and aliases do not inherit their parent’s. Category `effect` stays readable/writable for supported old clients and carries `remove-after: 2027-04-30` on its Prisma field. Remove it only after the normal usage/deprecation cycle. The extension keeps the existing `storylens-show-category-effects` boolean key for the renamed **Show word VFX** preference. Deploy the migration/backend before the extension; no client floor or Dexie index version changes.
+
+### Word VFX color and enum storage
+
+The unreleased Word VFX schema is refined by migration `20261016163040_word_vfx_color`: `wordVfx` uses the PostgreSQL/Prisma `WordVfx` enum, and `wordVfxColor` is nullable text on both keywords and aliases. The migration casts existing valid effects without resetting them; existing colors start at null. The API still uses the same five effect strings, plus an optional color field (null or six-digit hex), and partial updates preserve omitted fields. The nullable color is included in snapshots, feeds and offline mutations, with no Dexie index change. Deploy the migration/backend before the extension; no client floor changes.
+
+## Gemini CLI desktop provider
+
+Gemini is an additive provider under desktop protocol 2: capabilities add `provider: "gemini"` models from ACP discovery, and existing prompt requests keep their fields. Gemini offers only `default` effort. New and legacy companion settings default `geminiPath` to `gemini`; existing tokens, paths, account and preferences remain valid. Image generation stays on Codex and fails explicitly when unavailable. No backend/schema/client floor changes.

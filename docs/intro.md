@@ -1,6 +1,6 @@
 # Story Lens documentation
 
-Story Lens pairs a browser extension for novel reading with an API for novels, keywords, replacements, selectors, accounts, storage, chapter detection, billing and Cloud AI. Readers choose lens-funded Story Lens Cloud or the free local desktop companion for summaries, keyword suggestions and extraction, selectors, novel research and character images. The desktop client runs Claude/Codex and can also crawl a novel's wiki into a character list. A bilingual static website explains the product and its legal policies and provides standalone accounts and lens requests. The admin dashboard manages accounts, roles, novels, configs, billing requests and AI pricing. The umbrella repository holds all five apps as Git submodules and delegates their commands through its root `Makefile`.
+Story Lens pairs a browser extension for novel reading with an API for novels, keywords, replacements, selectors, accounts, storage, chapter detection, billing and Cloud AI. Readers choose lens-funded Story Lens Cloud or the free local desktop companion for summaries, keyword suggestions and extraction, selectors, novel research and character images. The desktop client runs Claude/Codex/Gemini CLI and can also crawl a novel's wiki into a character list. A bilingual static website explains the product and its legal policies and provides standalone accounts and lens requests. The admin dashboard manages accounts, roles, novels, configs, billing requests and AI pricing. The umbrella repository holds all five apps as Git submodules and delegates their commands through its root `Makefile`.
 
 - [Development and submodules](development.md): setup, commands, API client generation, and Git workflow.
 - [Version changelogs](changelog/): release notes for each prepared version, starting with the upcoming 3.2.0 minor update.
@@ -9,7 +9,7 @@ Story Lens pairs a browser extension for novel reading with an API for novels, k
 - [Browser extension](extension.md): entry points, UI, localization, API access, and offline behavior.
 - [Publishing runbook](publishing.md): set up Chrome Web Store publishing, GitHub environments, the server, and the first automated release on new accounts.
 - [Chrome Web Store assets](chrome-store/README.md): real extension screenshots, a demonstration video, and a reproducible original sample chapter.
-- [Desktop client](client.md): Claude/Codex execution, pairing, page summaries, the AI wiki crawler, and packaging.
+- [Desktop client](client.md): Claude/Codex/Gemini CLI execution, pairing, page summaries, the AI wiki crawler, and packaging.
 - [Website](website.md): static bilingual landing site, legal content, Bun/Biome checks, and Nginx deployment.
 - [Dashboard](dashboard.md): admin dashboard for users, roles and permissions, novels and configs, and its deployment.
 - [Branding](branding/README.md): approved Lensbook logo, light/dark palette and platform icon exports.
