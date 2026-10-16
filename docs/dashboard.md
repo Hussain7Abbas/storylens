@@ -21,6 +21,8 @@ There is no registration page. `make backend-seed-dashboard-admin` gives `DASHBO
 
 Navigation, pages and buttons follow the signed-in role's permissions (`can()` in `src/lib/auth.tsx`, keys in `src/lib/permissions.ts`); the API enforces them regardless. A role without the overview permission lands on its first allowed page.
 
+Novel covers and keyword, alias and version images share a 100px drag-and-drop uploader (`components/ui/image-field.tsx`). It has a centered upload icon, click or keyboard selection, hover and accepted/rejected drag feedback, preview and a separate delete button. Choose one image up to 8 MB; uploading requires the file-upload permission. Uploads start immediately, while saving the form persists the image reference or its removal. Replacement, deletion and saving are disabled during upload; closing the form aborts it, and failures keep the previous image. `tests/image-upload.spec.ts` verifies these controls across the four forms on desktop and mobile.
+
 ## Design
 
 The dashboard uses the website's Ink & Iris identity: the same light/dark tokens, Inter, Lucide icons at 1.75 stroke, iris primary actions and the Lensbook logo. `apps/dashboard/design-system/MASTER.md` records how the admin layout applies it; the vendored UI UX Pro Max skill supplied the minimal, dense dashboard structure, while its palette and fonts were rejected for Ink & Iris. Light, dark and system themes, reduced motion, keyboard focus, 44px coarse-pointer targets and no page-level horizontal scroll at phone widths are covered.
