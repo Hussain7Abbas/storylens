@@ -47,3 +47,5 @@ For a live browser check, start a **disposable** local PostgreSQL database, appl
 - The backend must be deployed with the role and access migrations and `DASHBOARD_ADMIN_*` set, then `make seed-dashboard-admin` run once in `/srv/storylens-backend`.
 
 Keyword/alias descriptions save independent `descriptionAr`/`descriptionEn` fields (keywords on the base version); the table and nested rows show the selected language. A version form edits both descriptions explicitly. Translation links retain both languages, and clearing one description keeps the other. Older API responses use their shared description only in the language identified by its script.
+
+The AI settings also list `chapter_cover` pricing after the chapter-cover migration. It uses the image model like `character_image`, with a separate estimate for the longer chapter scene brief and independent editable lens price and limits.
