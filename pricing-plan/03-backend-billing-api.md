@@ -21,7 +21,7 @@ Register in `src/routes/user.ts`. Order inside the module: `.use(setup)`, the pu
     "lensPriceUsd": "0.010000",
     "lensPriceMicros": 10000,
     "trialLenses": 10,
-    "request": { "min": 100, "max": 50000, "pendingMax": 3 },
+    "request": { "min": 500, "max": 2147483647, "pendingMax": 3 },
     "cloudAi": { "enabled": false },
     "features": [
       {
@@ -47,7 +47,7 @@ Register in `src/routes/user.ts`. Order inside the module: `.use(setup)`, the pu
   1. `currentUser.isGuest` → 403 `REGISTERED_ACCOUNT_REQUIRED`.
   2. Replay: a request with this `id` by the same user and the same `lenses` → 200 with that request; a different user or amount → 409 `ID_CONFLICT`.
   3. Billing config unavailable → 503 `BILLING_UNAVAILABLE`.
-  4. `lenses` outside `[Lens_Request_Min, Lens_Request_Max]` (100 and 50,000 at launch, D8) → 400 `LENS_AMOUNT_OUT_OF_RANGE` `{ min, max }`.
+  4. `lenses` outside the fixed `[500, 2,147,483,647]` range (the 100/50,000 launch limits are superseded) → 400 `LENS_AMOUNT_OUT_OF_RANGE` `{ min, max }`.
   4b. Contact (`src/lib/billing/contact.ts`, D21): trim and normalize, then validate. WhatsApp: `+` and 8–15 digits after removing spaces, dashes and brackets, stored as `+<digits>`. Telegram: `@` plus 5–32 letters, digits or underscores (stored lowercase with the `@`), or a phone number as for WhatsApp. Otherwise 400 `CONTACT_INVALID` `{ channel }`.
   5. `parseUsdToMicros(quotedLensPriceUsd)` differs from the current price → 409 `PRICE_CHANGED` `{ lensPriceUsd, lensPriceMicros }`.
   6. More than 10 requests by this reader in 24 hours → 429 `REQUEST_RATE_LIMITED` `{ retryAfterSeconds }`.

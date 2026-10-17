@@ -23,7 +23,7 @@ No route is added here except the trial gift calls inside existing registration 
 - [x] `bun run db:migrate:dev --name lenses` generates the migration. Then add, in the same migration file **before it is first applied anywhere** (the rule against hand-editing applies to migrations already applied):
   - `CHECK ("lensBalance" >= 0)` on `"User"`, `CHECK ("delta" <> 0)` on `"LensTransaction"`, `CHECK ("lenses" > 0)` on `"BillingRequest"`;
   - the six `AiFeaturePrice` rows from [Pricing records](architecture.md#pricing-records-seeded-by-migration), `ON CONFLICT ("key") DO NOTHING`;
-  - config defaults `Lens_Price_USD=0.01`, `Lens_Trial_Gift=10`, `Lens_Request_Min=100`, `Lens_Request_Max=50000`, `Lens_Pending_Requests_Max=3`, `AI_Cloud_Enabled=false`, `ON CONFLICT ("key") DO NOTHING`.
+  - config defaults `Lens_Price_USD=0.01`, `Lens_Trial_Gift=10`, `Lens_Request_Min=100`, `Lens_Request_Max=50000`, `Lens_Pending_Requests_Max=3`, `AI_Cloud_Enabled=false`, `ON CONFLICT ("key") DO NOTHING`. These are historical seed values: `Lens_Request_Min`/`Lens_Request_Max` are now ignored in favor of the fixed 500–2,147,483,647 request range.
 - [ ] Adding `lensBalance` with a constant default does not rewrite the `User` table on PostgreSQL 11 and later; confirm the server's Postgres version before deploying (phase 11).
 - [x] `bun run db:generate` regenerates Prisma and prismabox (`ConfigPlain`-style TypeBox models are used by routes in phase 3).
 - [x] `prisma/seed/`: development seed gives the seeded reader 25 lenses through `applyLensChange` (key `seed:<userId>`), so local testing has a balance.

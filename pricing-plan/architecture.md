@@ -249,7 +249,7 @@ The migration also adds:
 
 - Feature prices, balances, gifts and requests are whole lenses (`Int`).
 - `Lens_Price_USD` is parsed with `^\d{1,4}(\.\d{1,6})?$` into integer **micro-dollars** (1 USD = 1,000,000). Never parse it with `parseFloat`.
-- `totalCents = floor((lenses × priceMicros + 5,000) / 10,000)`, which is half-up rounding to cents. `lenses ≤ 50,000` and `priceMicros ≤ 9,999,999,999` keep the product below `Number.MAX_SAFE_INTEGER`, so plain integers suffice.
+- `totalCents = floor((lenses × priceMicros + 5,000) / 10,000)`, which is half-up rounding to cents. `lenses ≤ 2,147,483,647` and `priceMicros ≤ 9,999,999,999` require BigInt intermediates; the rounded cents remain safe integers. Request totals use Decimal(16,2).
 - The same `priceCents(lenses, priceMicros)` function, with the same test vectors, lives in `apps/backend/src/lib/billing/money.ts`, `apps/website/src/lib/billing/money.ts` and `apps/dashboard/src/lib/money.ts` (there is no shared package). Format with `Intl.NumberFormat(locale, { style: "currency", currency: "USD" })`.
 - The API returns prices as decimal strings (`"0.010000"`, `"5.00"`) plus `lensPriceMicros`; clients never do floating-point money math.
 
@@ -263,7 +263,9 @@ Test vectors used in every copy (lenses, price in micro-dollars → cents):
 | 1 | 4,000 | 0 | $0.004 rounds down |
 | 1 | 5,000 | 1 | $0.005 rounds half-up |
 | 7 | 1,234,567 | 864 | $8.641969 |
-| 50,000 | 9,999,999,999 | 49,999,999,995 | Largest inputs stay below `Number.MAX_SAFE_INTEGER` |
+| 50,000 | 9,999,999,999 | 49,999,999,995 | Former maximum quantity |
+| 2,147,483,647 | 9,999,999,999 | 2,147,483,646,785,252 | PostgreSQL Int maximum and highest price |
+| 2,147,483,646 | 9,999,999,998 | 2,147,483,645,570,503 | Regression: Number multiplication overcharged one cent |
 
 ## Config keys
 
@@ -273,8 +275,8 @@ Stored in the existing `Config` table (string values), edited on the dashboard's
 | --- | --- | --- | --- |
 | `Lens_Price_USD` | decimal, > 0, ≤ 9999.999999, up to 6 decimals | `0.01` (seeded) | Price of one lens. Missing or invalid: billing is unavailable (`503 BILLING_UNAVAILABLE`); AI still works on existing balances. |
 | `Lens_Trial_Gift` | integer 0–10,000 | `10` (seeded) | Lenses given to each new registered reader. `0` (or missing): no gift and no celebration. |
-| `Lens_Request_Min` | integer ≥ 1 | `100` (seeded) | Smallest request. |
-| `Lens_Request_Max` | integer ≥ min, ≤ 50,000 | `50000` (seeded) | Largest request. |
+| `Lens_Request_Min` | Legacy compatible key | `100` (historical seed) | Ignored; minimum is fixed at 500. |
+| `Lens_Request_Max` | Legacy compatible key | `50000` (historical seed) | Ignored; maximum is PostgreSQL Int, 2,147,483,647. |
 | `Lens_Pending_Requests_Max` | integer 1–20 | `3` (seeded) | Pending requests per reader. |
 | `Billing_Notify_Email` | email | empty (falls back to `DASHBOARD_ADMIN_EMAIL`) | Receives an email for each new request. |
 | `AI_Cloud_Enabled` | `true` / `false` | `false` (seeded) | Kill switch; `false` answers `503 AI_UNAVAILABLE`. The owner turns it on at launch. |
