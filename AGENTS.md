@@ -45,7 +45,7 @@ make i18n-parse           # extract extension translation keys
 make deploy               # interactive xeploy release (bump, tag, publish to main)
 ```
 
-The root also provides database, zip, and `backend-<target>` / `extension-<target>` / `client-<target>` / `website-<target>` / `dashboard-<target>` pass-through targets. See `make help`, the [development guide](docs/development.md), and each submodule's `Makefile`. `make pull` updates the umbrella and pulls submodules; `make update` advances submodules to remote commits. Use them deliberately because they change checkout state. `make deploy` runs the interactive `xeploy` release (configured in `.xeploy.json`): it bumps app versions, tags with a `v` prefix, and publishes to each submodule's `main`. Only run it when the user asks for a release.
+The root also provides database, zip, and `backend-<target>` / `extension-<target>` / `client-<target>` / `website-<target>` / `dashboard-<target>` pass-through targets. See `make help`, the [development guide](docs/development.md), and each submodule's `Makefile`. `make pull` updates the umbrella and pulls submodules; `make update` advances submodules to remote commits. Use them deliberately because they change checkout state. `make deploy` runs the interactive `xeploy` release (configured in `.xeploy.json`): it bumps app versions, tags with a `v` prefix, and publishes to each submodule's `main`. Xeploy 1.5+ also accepts `xeploy --production 1 --minor --unify` from the umbrella for a unified minor production release; select the umbrella and all five apps, then confirm the plan. Update the global CLI with `bun add --global xeploy@latest` before using newly introduced arguments. Only run releases when the user asks.
 
 ## Documentation maintenance
 

@@ -172,7 +172,7 @@ The extension, backend and dashboard workflows each run their job in a GitHub en
 
 ## 7. First automated release
 
-1. From the umbrella root, run `make deploy` and follow xeploy's prompts. Make sure the extension's version was bumped, because Chrome rejects a version it has already received.
+1. Update xeploy with `bun add --global xeploy@latest` (1.5+ for release arguments). From the umbrella root, run `make deploy` interactively, or `xeploy --production 1 --minor --unify` for a unified minor production release; select the umbrella and all five apps. Make sure the extension's version was bumped, because Chrome rejects a version it has already received.
 2. In the extension repository's **Actions** tab, check that **Publish to Chrome Web Store** passes, including the **Notify backend** step.
 3. In the backend repository's **Actions** tab, check that **Set Review_Version** passes. Then `/health/ready` should show `versions.review` as the new version.
 4. After Google approves the item, the backend deploys within about 10 minutes. `versions.review` returns to `null`, and the server's `sync.log` in the backend directory shows the `make sync` output followed by `Requested a Hussain7Abbas/storylens-dashboard deploy`.
