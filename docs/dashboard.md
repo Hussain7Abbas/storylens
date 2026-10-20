@@ -83,3 +83,6 @@ Chapter context and Page summary use the same template read/save permissions, 20
 
 
 Chapter-context instructions in Settings → AI now default to compact visual-only extraction. Migration `20261018040000_compact_visual_context` updates the shared template while retaining customized priorities. Current generation uses one nearest earlier chapter and a single bulk read only for returning elements; it never uses later chapters. Active absence expires at 10 chapters and tracks last seen only.
+
+
+`components/ui/multi-buttons-modal.tsx::MultiButtonsModal` is the generic confirmation shell. It accepts any number of named buttons, body content, errors and busy state using the existing native `Dialog`. `ConfirmDialog` remains a thin two-button adapter, so all current destructive/approval confirmations (including keyword/alias/version and category/nature deletion) use this shell. Focus Cancel first; pending actions disable buttons and close/Escape dismissal. Keep errors and replacement selections in the dialog on failure. Informational and editing dialogs continue to use `Dialog`.
