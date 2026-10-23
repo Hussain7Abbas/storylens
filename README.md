@@ -83,7 +83,8 @@ Run `make help` to see targets for all five apps. Client commands are also avail
 | `make init`            | Alias for `submodules-init`                                         |
 | `make pull`            | Pull umbrella repo, sync submodule pointers, pull each submodule    |
 | `make update`          | Bump submodules to their latest remote commits                      |
-| `make deploy`          | Interactive `xeploy` release: bump versions, tag, publish to `main` |
+| `make deploy`          | Run all app tests, then interactive `xeploy` release |
+| `make deploy-no-check` | Interactive `xeploy` release without tests |
 
 ### Setup
 

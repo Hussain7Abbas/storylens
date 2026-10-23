@@ -2,11 +2,11 @@
 
 [Documentation index](intro.md) · [Extension](extension.md#chrome-web-store-release) · [Backend](backend.md#deployment-and-review-version) · [Development](development.md#releases)
 
-This runbook sets up automated Chrome Web Store publishing from scratch. Use it for a new Google account, Chrome Web Store publisher, Google Cloud project, GitHub account, or server. Once setup is done, each release is only `make deploy`.
+This runbook sets up automated Chrome Web Store publishing from scratch. Use it for a new Google account, Chrome Web Store publisher, Google Cloud project, GitHub account, or server. Once setup is done, each release is only `make deploy`. Use `make deploy-no-check` to call xeploy directly when deliberately skipping the local test gate.
 
 ## How a release flows
 
-1. `make deploy` (xeploy) bumps versions, merges `develop` into `main` in each submodule, and pushes `v<version>` tags.
+1. `make deploy` runs `make test` across all five apps and stops on failure, then xeploy bumps versions, merges `develop` into `main` in each submodule, and pushes `v<version>` tags.
 2. The extension's `v<version>` tag runs **Publish to Chrome Web Store** (`apps/extension/.github/workflows/publish-chrome.yml`). It builds the zip, uploads it with `wxt submit`, and submits it for review.
 3. That workflow sends an `extension-submitted` `repository_dispatch` event, with the version, to `storylens-backend`.
 4. The backend's **Set Review_Version** workflow (`apps/backend/.github/workflows/set-review-version.yml`) connects to the server over SSH and runs `make set-review-version VERSION=<version>`.

@@ -8,7 +8,7 @@
 	typecheck test \
 	db-generate db-migrate-dev db-migrate-deploy db-reset db-seed db-studio storage-seed \
 	orval i18n-parse zip zip-firefox release-chrome \
-	docker-up docker-down docker-logs deploy
+	docker-up docker-down docker-logs deploy deploy-no-check
 
 ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 BACKEND := $(ROOT)/apps/backend
@@ -74,7 +74,8 @@ help:
 	@echo "  $(GREEN)i18n-parse$(RESET)           extract i18n keys"
 	@echo ""
 	@echo "$(BLUE)Release$(RESET)"
-	@echo "  $(GREEN)deploy$(RESET)               interactive release with $(YELLOW)xeploy$(RESET) (bump, tag, publish to main)"
+	@echo "  $(GREEN)deploy$(RESET)               run all tests, then interactive release with $(YELLOW)xeploy$(RESET)"
+	@echo "  $(GREEN)deploy-no-check$(RESET)      interactive $(YELLOW)xeploy$(RESET) release without tests"
 	@echo ""
 	@echo "$(BLUE)Quality$(RESET)"
 	@echo "  $(GREEN)typecheck$(RESET)            typecheck all five submodules"
@@ -96,7 +97,10 @@ pull:
 	@echo "$(BLUE)Pulling submodules$(RESET) ..."
 	@git submodule foreach --recursive 'git pull --ff-only'
 
-deploy: ensure-submodules
+deploy: test
+	@$(MAKE) deploy-no-check
+
+deploy-no-check:
 	@command -v xeploy >/dev/null 2>&1 || { echo "$(YELLOW)xeploy not found — install with $(GREEN)bun add -g xeploy$(RESET)"; exit 1; }
 	@cd "$(ROOT)" && xeploy
 

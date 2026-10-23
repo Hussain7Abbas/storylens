@@ -134,7 +134,7 @@ Analytics is disabled unless `WXT_GA_MEASUREMENT_ID` and `WXT_GA_API_SECRET` are
 
 ## Chrome Web Store release
 
-The publishing workflow pins Bun 1.4.3 and installs from the frozen lockfile. Its test step runs `bun run test:ci`, isolating every test file and explicitly preloading the fake browser/`#imports` mock. Run that command with Bun 1.4.3 to reproduce CI; plain `bun run test` keeps the shared-process local suite. The isolation prevents DOM/module state from an earlier test file leaving later React tests stuck on loading screens when discovery order changes.
+The publishing workflow pins Bun 1.4.3 and installs from the frozen lockfile. Its test step runs `bun run test:ci`, isolating every test file and explicitly preloading the fake browser/`#imports` mock. Run that command with Bun 1.4.3 to reproduce CI; plain `bun run test` keeps the shared-process local suite. The isolation prevents DOM/module state from an earlier test file leaving later React tests stuck on loading screens when discovery order changes. Selection AI requests are consumed and cancelled when their form closes; readiness changes must never replay a cleared request. Async cover tests wait for the retry state rather than assuming it appears after a fixed delay.
 
 [Listing metadata](../apps/extension/CHROMEWEBSTORE.md) tracks store text, permission explanations and asset status. The umbrella [demonstration assets](chrome-store/README.md) use the actual production extension with an original sample chapter and isolated local data; fixtures are outside the extension build.
 
