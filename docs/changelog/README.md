@@ -4,7 +4,7 @@
 
 Keep one Markdown file per umbrella release, named `v<major>.<minor>.<patch>.md`. Prepare its notes from the tagged release baseline and all five submodule changes before publishing. A file marked **Unreleased** is a draft; it does not change package versions or trigger deployment.
 
-- [v3.11.0, image descriptions and scene-aware continuity (prepared)](v3.11.0.md)
+- [v3.11.0, image descriptions and scene-aware continuity](v3.11.0.md)
 - [v3.10.0, editable image prompts and keyword inheritance](v3.10.0.md)
 - [v3.4.0, Story Lens Cloud and lenses (unreleased)](v3.4.0.md)
 - [v3.3.0, offline-first (unreleased)](v3.3.0.md)
