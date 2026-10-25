@@ -13,6 +13,14 @@ Story Lens is a browser extension for reading web novels with keyword highlighti
 - `scripts/lenses-e2e.mjs`: isolated local browser integration across extension, website, dashboard, API and PostgreSQL; see [the rehearsal guide](docs/lenses-local-e2e.md).
 - `.cursor/rules/`: Cursor guidance; `AGENTS.md` files are the source of truth for agent rules.
 
+## Skill discovery and approval
+
+- Before answering or acting on each new request, first inspect the available skill catalog and search installed skill descriptions and invocation settings for useful matches. Discovery may use read-only inspection; do not execute candidate skills, begin substantive task research, answer the underlying request, or change files before approval.
+- Suggest the smallest useful selection of skills, briefly explain their purpose for the request, and wait for explicit user approval before proceeding. If no useful skill exists, say so and ask to proceed without one. An explicit user invocation of a named skill counts as approval to use it for that request.
+- Approval covers the current task and its follow-ups; do not ask again unless the scope changes substantially or a newly needed skill would materially change the workflow. Continue already-approved work and answer routine progress questions without restarting discovery.
+- When the user says "skill finding off", disable this discovery and approval process for the remainder of that chat until they say "skill finding on". Keep this override local to the chat; do not change the saved global or project rule. While off, follow normal skill invocation rules.
+- Exclude all `voidra-*` skills from suggestions and execution unless the current project explicitly supports Voidra, evidenced by its project instructions or an initialized `.voidra` setup. In a supported project, suggest only relevant Voidra skills and wait for explicit approval or invocation before using them; support alone does not authorize execution.
+
 ## Shared rules and workflow
 
 - Use Bun for dependency management and package scripts. Install in each app (`make install` delegates all five); do not assume a root Bun workspace.
@@ -55,4 +63,4 @@ As part of every task, keep project instructions and documentation synchronized 
 <!-- Voidra planning -->
 ## Voidra planning
 
-Read [.voidra/README.md](.voidra/README.md), the project profile and action before work. Respect the question, exact-content plan and review gates. Use the Voidra skills for tracked work, and run `npx voidra@1.1.1 check` after planning writes.
+Read [.voidra/README.md](.voidra/README.md), the project profile and action before work. Respect the question, exact-content plan and review gates. For tracked work, suggest relevant Voidra skills under the skill discovery and approval rule above; use them only after explicit approval or invocation. Run `bunx voidra@1.1.1 check` after approved planning writes.
