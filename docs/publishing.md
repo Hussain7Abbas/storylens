@@ -2,7 +2,7 @@
 
 [Documentation index](intro.md) · [Extension](extension.md#chrome-web-store-release) · [Backend](backend.md#deployment-and-review-version) · [Development](development.md#releases)
 
-This runbook sets up automated Chrome Web Store publishing from scratch. Use it for a new Google account, Chrome Web Store publisher, Google Cloud project, GitHub account, or server. Once setup is done, each release is only `make deploy`. Use `make deploy-no-check` to call xeploy directly when deliberately skipping the local test gate.
+This runbook sets up automated Chrome Web Store publishing from scratch and defines how to verify and recover production releases.
 
 ## How a release flows
 
@@ -170,13 +170,13 @@ The extension, backend and dashboard workflows each run their job in a GitHub en
    ```
    Expect `services.chromeStore.status` to be `ok` and `versions.store` to be the version Chrome currently serves. If `chromeStore` is `unconfigured`, `CHROME_EXTENSION_ID` is missing from `.env`.
 
-## 7. First automated release
+## Production release and recovery
 
-1. Update xeploy with `bun add --global xeploy@latest` (1.5+ for release arguments). From the umbrella root, run `make deploy` interactively, or `xeploy --production 1 --minor --unify` for a unified minor production release; select the umbrella and all five apps. Make sure the extension's version was bumped, because Chrome rejects a version it has already received.
-2. In the extension repository's **Actions** tab, check that **Publish to Chrome Web Store** passes, including the **Notify backend** step.
-3. In the backend repository's **Actions** tab, check that **Set Review_Version** passes. Then `/health/ready` should show `versions.review` as the new version.
-4. After Google approves the item, the backend deploys within about 10 minutes. `versions.review` returns to `null`, and the server's `sync.log` in the backend directory shows the `make sync` output followed by `Requested a Hussain7Abbas/storylens-dashboard deploy`.
-5. In the dashboard repository's **Actions** tab, check that **Deploy production** passes.
+1. Run `bun add --global xeploy@latest` and check `xeploy --version`. Run `make typecheck` and `make test`; commit and push app changes to `develop` before committing and pushing their umbrella pointers. Select the personal GitHub account before using `gh`.
+2. From the umbrella root, run `xeploy --production 1 --minor --unify` for an authorized unified minor release. Select the umbrella and all five apps and check the planned version before confirming. Use the equivalent xeploy option for other authorized release types. Check that each `v<version>` tag and production branch points to the intended release.
+3. Follow the Actions runs for this tag or production commit through completion (`gh run watch <run-id> --exit-status -R <repository>`). Check **Publish to Chrome Web Store** and **Notify backend** in the extension, **Set Review_Version** in the backend, **Desktop client** and its published installers/checksums, and the website's **Deploy production**.
+4. Check `/health/ready`: `versions.review` should report the new version until Chrome publishes it. The backend watcher then deploys within about 10 minutes. Verify `versions.store` matches the release, `versions.review` clears, backend `sync.log` records a successful sync and dispatch, and the dashboard's matching **Deploy production** run ends successfully. A successful store upload or release tag alone does not establish that production deployed. Report any pending external review separately.
+5. If a run fails, read the failed job logs, correct the cause and redeploy. Rerun failed jobs for a transient or external fix on the same commit. For a code or workflow fix, commit it through `develop` and deploy the fixed revision using xeploy if a new release is needed; do not rerun an old revision expecting new code or move published tags. If Chrome already accepted the upload and only backend notification failed, dispatch the backend step directly instead of uploading the same version again. Watch the replacement run and the dependent jobs to their actual final outcome.
 
 To rerun the backend step by hand, for example after fixing SSH secrets:
 
